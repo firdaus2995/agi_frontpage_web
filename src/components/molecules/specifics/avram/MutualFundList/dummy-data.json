@@ -1,0 +1,1273 @@
+{
+  "fund-list": [
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 1",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 2",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.3,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "low"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "mid"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "low"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "mid"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "low"
+        }
+      }
+    },
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 3",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.4,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "mid"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 4",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.9,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 5",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.8,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Saham",
+      "title": "Avram Ada Saham Blue Safir 6",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 7",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.3,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 8",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 9",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 10",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 11",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "low"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "mid"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "low"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "mid"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "low"
+        }
+      }
+    },
+    {
+      "type": "Campuran",
+      "title": "Avram Ada Saham Blue Safir 12",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "mid"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 13",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 14",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 15",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 16",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 17",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pendapatan Tetap",
+      "title": "Avram Ada Saham Blue Safir 18",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 19",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 20",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "low"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "mid"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "low"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "mid"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "low"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 21",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "mid"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 22",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 23",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Pasar Uang",
+      "title": "Avram Ada Saham Blue Safir 24",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 25",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 26",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 27",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 28",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 29",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "low"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "mid"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "low"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "mid"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "low"
+        }
+      }
+    },
+    {
+      "type": "Terproteksi",
+      "title": "Avram Ada Saham Blue Safir 30",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "mid"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 31",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 32",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 33",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.1,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 34",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 35",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Syariah",
+      "title": "Avram Ada Saham Blue Safir 36",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 37",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 38",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "low"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "mid"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "low"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "mid"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "low"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 39",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "mid"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 40",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.78,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 41",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.6,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    },
+    {
+      "type": "Indeks",
+      "title": "Avram Ada Saham Blue Safir 42",
+      "tags": ["Equity", "Big Cap"],
+      "nab": "19-07-2023",
+      "rp": "10.709,50",
+      "risk": 0.55,
+      "dailyPerformance": {
+        "number": 0.16,
+        "threshold": "high"
+      },
+      "yearlyPerformance": {
+        "ongoing": {
+          "number": 0.48,
+          "sign": "high"
+        },
+        "firstYear": {
+          "number": 2.63,
+          "sign": "high"
+        },
+        "thirdYear": {
+          "number": 4.91,
+          "sign": "high"
+        },
+        "fifthYear": {
+          "number": 8.19,
+          "sign": "high"
+        }
+      }
+    }
+  ],
+  "tabs-list": [
+    "Saham",
+    "Campuran",
+    "Pendapatan Tetap",
+    "Pasar Uang",
+    "Terproteksi",
+    "Syariah",
+    "Indeks"
+  ]
+}

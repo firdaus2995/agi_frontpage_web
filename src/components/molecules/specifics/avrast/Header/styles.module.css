@@ -1,0 +1,30 @@
+.nav-transition,
+.nav-card-animation {
+  visibility: hidden;
+  opacity: 0;
+  transition: 300ms all ease-in-out;
+}
+
+.nav-card-animation {
+  top: 90%;
+}
+
+.nav-list-item:hover .nav-card-animation,
+.nav-list-item:hover + .nav-card-animation,
+.nav-card-animation:hover {
+  top: 100%;
+}
+
+.nav-list-item:hover :is(.nav-transition, .nav-card-animation),
+.nav-list-item:hover + :is(.nav-transition, .nav-card-animation),
+:is(.nav-transition, .nav-card-animation):hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-transition,
+  .nav-card-animation {
+    display: none;
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "menus": {
+    "navbar": [
+      {
+        "title": "Investasi",
+        "content": {
+          "title": "Investasi",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quod suscipit aliquid repudiandae temporibus veniam vero beatae porro! Temporibus, magnam.",
+          "buttonTitle": "Download Brosur",
+          "subMenus": [
+            "Reksa Dana",
+            "Jasa Investasi",
+            "Hitung Investasi",
+            "Avrampedia"
+          ],
+          "imageSource": 0
+        }
+      },
+      {
+        "title": "Analisis",
+        "content": {
+          "title": "Analisis",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quod suscipit aliquid repudiandae temporibus veniam vero beatae porro! Temporibus, magnam.",
+          "buttonTitle": "Lihat Berita Terkini",
+          "subMenus": [
+            "Avram Perspektif",
+            "Fund's Manager Letter",
+            "Strategi Investasi",
+            "Berita Harian"
+          ],
+          "imageSource": 1
+        }
+      },
+      {
+        "title": "Informasi",
+        "content": {
+          "title": "Informasi",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quod suscipit aliquid repudiandae temporibus veniam vero beatae porro! Temporibus, magnam.",
+          "buttonTitle": "Lihat Promo Terkini",
+          "subMenus": ["Media dan Promosi", "Agen Penjual", "Formulir", "FAQs"],
+          "imageSource": 2
+        }
+      },
+      {
+        "title": "Tentang Avram",
+        "content": {
+          "title": "Tentang Avram",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quod suscipit aliquid repudiandae temporibus veniam vero beatae porro! Temporibus, magnam.",
+          "buttonTitle": "Struktur Organisasi",
+          "subMenus": [
+            "Sekilas Perusahaan",
+            "Manajemen",
+            "Penghargaan dan Sertifikasi",
+            "Tata Kelola Perusahaan"
+          ],
+          "imageSource": 3
+        }
+      },
+      {
+        "title": "Karir",
+        "content": {
+          "title": "Karir",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quod suscipit aliquid repudiandae temporibus veniam vero beatae porro! Temporibus, magnam.",
+          "buttonTitle": "Lihat Lowongan",
+          "subMenus": [
+            "Respect",
+            "Responsibility",
+            "Value and Vision",
+            "Impact"
+          ],
+          "imageSource": 4
+        }
+      }
+    ]
+  }
+}

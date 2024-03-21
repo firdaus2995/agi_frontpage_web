@@ -1,0 +1,11 @@
+.hide-menu {
+  visibility: hidden;
+  opacity: 0;
+  top: 90%;
+}
+
+.show-menu {
+  visibility: visible;
+  opacity: 1;
+  top: 100%;
+}

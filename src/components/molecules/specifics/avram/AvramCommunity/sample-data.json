@@ -1,0 +1,44 @@
+{
+  "community-videos": [
+    {
+      "id": "sample-vid-1",
+      "videoUrl": "https://www.youtube.com/watch?v=uF7eT3nhyZ0",
+      "videoThumbnail": "https://images.freeimages.com/vhq/images/previews/d50/butterfly-papilio-philenor-side-clip-art-545705.jpg",
+      "type": "Strategi Investasi",
+      "date": "01-10-2023",
+      "title": "Membangun Portofolio Terbaik",
+      "description": "Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt. Tincidunt gravida orci feugiat amet. At ridiculus dolor augue gravida. Risus ut neque leo fringilla tincidunt suspendisse fusce eu arcu. Blandit fermentum faucibus tempus varius quis at. Vulputate elit lorem purus faucibus blandit non ut. Ornare tortor pulvinar eget facilisis mi tortor vulputate.",
+      "tags": ["Berita Harian 1", "Reksa Dana", "Informasi"]
+    },
+    {
+      "id": "sample-vid-2",
+      "videoUrl": "https://www.youtube.com/embed/WtH6UIIOY2w",
+      "videoThumbnail": "https://images.freeimages.com/image/previews/477/sweet-flat-candy-png-5690113.png",
+      "type": "Strategi Investasi",
+      "date": "01-10-2023",
+      "title": "Membangun Portofolio yang Bertanggung Jawab 1",
+      "description": "Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt. Tincidunt gravida orci feugiat amet. At ridiculus dolor augue gravida. Risus ut neque leo fringilla tincidunt suspendisse fusce eu arcu. Blandit fermentum faucibus tempus varius quis at. Vulputate elit lorem purus faucibus blandit non ut. Ornare tortor pulvinar eget facilisis mi tortor vulputate.",
+      "tags": ["Berita Harian 2", "Reksa Dana", "Informasi"]
+    },
+    {
+      "id": "sample-vid-3",
+      "videoUrl": "https://youtu.be/Av3xaZkVpJs?si=35uVM3hbbIucFWWG",
+      "videoThumbnail": "https://images.freeimages.com/vhq/images/previews/3c7/desktop-vector-elements-561434.jpg",
+      "type": "Strategi Investasi",
+      "date": "01-10-2023",
+      "title": "Membangun Portofolio yang Bertanggung Jawab 2",
+      "description": "Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt. Tincidunt gravida orci feugiat amet. At ridiculus dolor augue gravida. Risus ut neque leo fringilla tincidunt suspendisse fusce eu arcu. Blandit fermentum faucibus tempus varius quis at. Vulputate elit lorem purus faucibus blandit non ut. Ornare tortor pulvinar eget facilisis mi tortor vulputate.",
+      "tags": ["Berita Harian 3", "Reksa Dana", "Informasi"]
+    },
+    {
+      "id": "sample-vid-4",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "videoThumbnail": "https://images.freeimages.com/image/previews/fa2/animal-shadows-earth-air-water-5691290.jpg",
+      "type": "Strategi Investasi",
+      "date": "01-10-2023",
+      "title": "Membangun Portofolio yang Bertanggung Jawab 3",
+      "description": "Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt. Tincidunt gravida orci feugiat amet. At ridiculus dolor augue gravida. Risus ut neque leo fringilla tincidunt suspendisse fusce eu arcu. Blandit fermentum faucibus tempus varius quis at. Vulputate elit lorem purus faucibus blandit non ut. Ornare tortor pulvinar eget facilisis mi tortor vulputate.",
+      "tags": ["Berita Harian 4", "Reksa Dana", "Informasi"]
+    }
+  ]
+}

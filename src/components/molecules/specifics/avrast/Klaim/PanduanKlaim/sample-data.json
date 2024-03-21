@@ -1,0 +1,32 @@
+{
+  "community-videos": [
+    {
+      "id": "sample-vid-1",
+      "videoUrl": "https://www.youtube.com/watch?v=uF7eT3nhyZ0",
+      "videoThumbnail": "https://images.freeimages.com/vhq/images/previews/d50/butterfly-papilio-philenor-side-clip-art-545705.jpg",
+      "type": "Asuransi Jiwa Individu",
+      "color": "purple_dark"
+    },
+    {
+      "id": "sample-vid-2",
+      "videoUrl": "https://www.youtube.com/embed/WtH6UIIOY2w",
+      "videoThumbnail": "https://images.freeimages.com/image/previews/477/sweet-flat-candy-png-5690113.png",
+      "type": "Avrist Jiwa Korporasi",
+      "color": "grey_video_footer"
+    },
+    {
+      "id": "sample-vid-3",
+      "videoUrl": "https://youtu.be/Av3xaZkVpJs?si=35uVM3hbbIucFWWG",
+      "videoThumbnail": "https://images.freeimages.com/vhq/images/previews/3c7/desktop-vector-elements-561434.jpg",
+      "type": "Avrist Syariah",
+      "color": "green_border"
+    },
+    {
+      "id": "sample-vid-4",
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "videoThumbnail": "https://images.freeimages.com/image/previews/fa2/animal-shadows-earth-air-water-5691290.jpg",
+      "type": "Avrist DPLK",
+      "color": "orange_border"
+    }
+  ]
+}

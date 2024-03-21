@@ -1,11 +1,11 @@
 node {
-    def WORKSPACE = "/var/lib/jenkins/workspace/avrist-frontpage-web-deploy"
-    def dockerImageTag = "avrist-frontpage-web-deploy${env.BUILD_NUMBER}"
+    def WORKSPACE = "/var/lib/jenkins/workspace/agi-frontpage-web-deploy"
+    def dockerImageTag = "agi-frontpage-web-deploy${env.BUILD_NUMBER}"
 try{
     notifyBuild('STARTED')
     stage('Clone Repo') {
-        git url: 'git@gitlab.com:bit-avrist-website-frontpage/avrist-cms-frontpage-web.git',
-            credentialsId: 'avrist-sit-fe-fp',
+        git url: 'git@gitlab.com:bit-agi-website-frontpage/agi-cms-frontpage-web.git',
+            credentialsId: 'agi-fe-fp',
             branch: 'sit'
      }
     stage('Build Static HTML'){
@@ -43,7 +43,7 @@ def notifyBuild(String buildStatus = 'STARTED'){
   // message
   def subject = "${buildStatus}, Job: ${env.JOB_NAME} - Deployment Sequence: [${env.BUILD_NUMBER}] "
   def summary = "${subject} - Check On: (${env.BUILD_URL}) - Time: ${now}"
-  def subject_email = "Avrist Web FrontPage Deployment"
+  def subject_email = "AGI Web FrontPage Deployment"
   def details = """<p>${buildStatus} JOB </p>
     <p>Job: ${env.JOB_NAME} - Deployment Sequence: [${env.BUILD_NUMBER}] - Time: ${now}</p>
     <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME}</a>"</p>"""

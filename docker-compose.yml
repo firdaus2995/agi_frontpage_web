@@ -1,8 +1,8 @@
 version: '3'
 services:
-  avrist-frontpage-web:
-    container_name: avrist-frontpage-web-app
-    image: avrist-frontpage-web
+  agi-frontpage-web:
+    container_name: agi-frontpage-web-app
+    image: agi-frontpage-web
     build:
       context: .                          
       dockerfile: Dockerfile  

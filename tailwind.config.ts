@@ -91,7 +91,8 @@ const config: Config = {
         olive_green: '#A5C903',
         grey_video_footer: '#8C8B89',
         syariah_green: '#3D5910',
-        syariah_green_informing: '#417C40'
+        syariah_green_informing: '#417C40',
+        dplk_yellow: '#F2A625'
       }
     }
   },

@@ -50,7 +50,10 @@ const InformationCard: React.FC<InformationCardProps> = ({
                 {item.cardTitle}
               </p>
             )}
-            <p className="text-[16px]">{item.cardBody}</p>
+            <div
+              dangerouslySetInnerHTML={{ __html: item.cardBody }}
+              className="text-[16px]"
+            />
           </div>
           <div className="text-center">
             {item.cardButtonText && (

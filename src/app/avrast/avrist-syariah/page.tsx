@@ -1,3 +1,4 @@
+'use client';
 import GreenBinocular from '@/assets/images/avrast/avrist-syariah/green-binocular.svg';
 import GreenHead from '@/assets/images/avrast/avrist-syariah/green-head.svg';
 import GreenPeople from '@/assets/images/avrast/avrist-syariah/green-people.svg';
@@ -80,17 +81,17 @@ const AvristSyariah = () => {
             {
               cardIcon: GreenBinocular,
               cardBody:
-                'Mengawasi, memberi nasihat dan saran kepada Direksi agar kegiatan Perusahaan sesuai dengan prinsip Syariah.'
+                '<strong>Mengawasi,</strong> memberi nasihat dan saran kepada Direksi agar kegiatan Perusahaan sesuai dengan prinsip Syariah.'
             },
             {
               cardIcon: GreenHead,
               cardBody:
-                'Berupaya menjaga keseimbangan kepentingan semua pihak, khususnya kepentingan Nasabah.'
+                'Berupaya menjaga keseimbangan kepentingan semua pihak, khususnya <strong>kepentingan Nasabah.</strong>'
             },
             {
               cardIcon: GreenPeople,
               cardBody:
-                'Menyelenggarakan rapat DPS secara berkala paling sedikit enam kali dalam satu tahun.'
+                'Menyelenggarakan <strong>rapat DPS</strong> secara berkala paling sedikit enam kali dalam satu tahun.'
             }
           ]}
           cardClassname="border-b-syariah_green"
@@ -140,7 +141,7 @@ const AvristSyariah = () => {
           cardClassname="border-b-syariah_green"
         />
       </div>
-      <RoundedFrameBottom bgColor='bg-white' frameColor="bg-gray_bglightgray" />
+      <RoundedFrameBottom bgColor="bg-white" frameColor="bg-gray_bglightgray" />
       <SimpleContainer>
         <HelpCard
           title={
@@ -156,7 +157,7 @@ const AvristSyariah = () => {
           image={HelpDesk}
         />
       </SimpleContainer>
-      <RoundedFrameTop bgColor='bg-white' frameColor="bg-white" />
+      <RoundedFrameTop bgColor="bg-white" frameColor="bg-white" />
       <FooterCards
         cards={[
           {

@@ -101,7 +101,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards }) => {
   };
 
   return (
-    <div className="px-8 mx-4 sm:mx-[136px]">
+    <div className="px-8 mx-4 sm:mx-[136px] mb-[32px]">
       <Slider {...settings}>
         {cards.map((item, index) => (
           <div
@@ -109,7 +109,11 @@ const FooterCards: React.FC<IFooterCards> = ({ cards }) => {
             className="flex flex-col justify-between w-full max-w-[274px] h-full min-h-[280px] p-[24px] sm:gap-[24px] border border-gray_light rounded-[12px] shadow-md bg-white"
           >
             <div className="flex justify-center">
-              <Image alt={index.toString()} src={item.icon} className="w-[100px] h-[100px]"/>
+              <Image
+                alt={index.toString()}
+                src={item.icon}
+                className="w-[100px] h-[100px]"
+              />
             </div>
             <div className="flex flex-col justify-center mx-2 mt-2 gap-2">
               <p className="text-center font-bold md:text-lg 2xl:text-[24px]">

@@ -146,7 +146,7 @@ const CategoryWithThreeCards = ({
     <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:py-[72px] gap-[36px] sm:gap-[48px] sm:flex-row">
       {/* CATEGORIES */}
       <Dropdown categories={categories} selectedCategory={selectedCategory} />
-      <div className="flex flex-col">
+      <div className="flex flex-col sm:block hidden">
         {!hiddenCategory && (
           <CategoryList
             categories={categories}

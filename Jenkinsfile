@@ -5,7 +5,7 @@ try{
     notifyBuild('STARTED')
     stage('Clone Repo') {
         git url: 'git@gitlab.com:bit-agi-website-frontpage/agi-cms-frontpage-web.git',
-            credentialsId: 'agi-fe-fp',
+            credentialsId: 'agi-frontpage-web',
             branch: 'sit'
      }
     stage('Build Static HTML'){

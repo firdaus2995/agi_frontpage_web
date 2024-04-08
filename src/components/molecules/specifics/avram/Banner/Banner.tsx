@@ -46,7 +46,6 @@ const sliderSettings = {
       | React.ReactElement<string | React.JSXElementConstructor<string>>
       | Iterable<React.ReactNode>
       | React.ReactPortal
-      | Promise<React.AwaitedReactNode>
       | null
       | undefined
   ) => (

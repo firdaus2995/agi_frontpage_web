@@ -1,10 +1,12 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { useRouter } from 'next/navigation';
 import Slider from 'react-slick';
+import { PanduanLayananModal } from '../../../../Modal';
+import { StandarPelayananModal } from '../../../../Modal';
 import BantuanIcon from '@/assets/images/avrast/component/informasi-klaim/bantuan.svg';
 import KelolaPolisIcon from '@/assets/images/avrast/component/informasi-klaim/kelola-polis.svg';
 import KetepatanWaktuIcon from '@/assets/images/avrast/component/informasi-klaim/ketepatan-waktu.svg';
@@ -54,7 +56,10 @@ const data = [
 ];
 
 const InfoKlaimTab = () => {
+  const router = useRouter(); 
+  const [isShowModalPelayanan, setShowModalPelayanan] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
+  const [isShowPanduanLayananModal, setIsShowPanduanLayananModal] = useState(false);
   const next = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
@@ -74,7 +79,35 @@ const InfoKlaimTab = () => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+
+  const handleClickPelayananButton = (text: string) => {
+    const actionMap: { [key: string]: () => void } = {
+      'Panduan Layanan Nasabah': () => {
+        setIsShowPanduanLayananModal(true);
+      },
+      'Standar Pelayanan': () => {
+        setShowModalPelayanan(true);
+      },
+      'Informasi Nasabah': () => {
+        router.push('https://my.avrist.com/welcome');
+      },
+      'Panduan Klaim': () => {
+        console.log('Tombol "Panduan Klaim" diklik');
+      },
+      'Cari Lokasi': () => {
+        router.push('/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan');
+      },
+      'Hubungi Kami': () => {
+        router.push('/hubungi-kami')
+      }
+    };
+    
+    actionMap[text]();
+  };
+  
+
   return (
+    <div>
     <div className="flex flex-col self-stretch items-center justify-center">
       <div className="w-full flex flex-col items-center justify-center py-2 text-center">
         <h2 className="text-[32px] font-bold mb-6 text-purple_dark">
@@ -101,7 +134,8 @@ const InfoKlaimTab = () => {
               </p>
               <div
                 role="button"
-                className="w-[80%] p-2 bg-purple_dark mx-10 flex items-center justify-center text-white font-medium rounded-xl"
+                onClick={() => handleClickPelayananButton(val.btnText)}
+                className="w-[80%] p-2 bg-purple_dark mx-10 flex items-center justify-center text-white font-medium rounded-xl"    
               >
                 {val.btnText}
               </div>
@@ -119,7 +153,7 @@ const InfoKlaimTab = () => {
           {data.map((val, idx) => (
             <div
               key={idx}
-              className="max-w-sm flex flex-col items-center justify-center p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 border-b-8 border-b-purple_dark"
+              className="max-w-sm h-[380px] flex flex-col items-center justify-center p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 border-b-8 border-b-purple_dark"
             >
               <div className="flex w-full items-center justify-center">
                 <Image src={val.icon} alt={val.title} className="w-20" />
@@ -134,7 +168,7 @@ const InfoKlaimTab = () => {
                 <div
                   role="button"
                   className="w-[80%] p-3 bg-purple_dark mx-10 flex items-center justify-center text-white font-medium rounded-xl text-xs text-center"
-                >
+                  onClick={() => handleClickPelayananButton(val.btnText)}>
                   {val.btnText}
                 </div>
               </div>
@@ -146,6 +180,14 @@ const InfoKlaimTab = () => {
           <Image alt="next" src={ARROW_RIGHT} role="button" onClick={next} />
         </div>
       </div>
+      <StandarPelayananModal
+        show={isShowModalPelayanan}
+        onClose={() => setShowModalPelayanan(false)}
+      />
+    </div>
+      <PanduanLayananModal 
+        isShowPanduanLayananModal={isShowPanduanLayananModal} 
+        handleCloseModal={() => setIsShowPanduanLayananModal(false)}/>
     </div>
   );
 };

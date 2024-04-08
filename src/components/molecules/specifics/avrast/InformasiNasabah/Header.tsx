@@ -8,16 +8,17 @@ import BannerImg from '@/assets/images/avrast/component/klaim-header/header-imag
 interface IHeader {
   menu: string[];
   title: string;
+  bannerImageSrc?: string;
 }
 
 export const Header: React.FC<IHeader> = (props) => {
-  const { menu, title } = props;
+  const { menu, title, bannerImageSrc = BannerImg } = props;
   return (
     <div className="flex w-full">
       <div className="w-full md:h-[300px] xs:h-[200px] bg-purple_dark shadow-lg flex md:items-center xs:items-start justify-center relative">
         <Image
           className="bg-purple_dark w-full absolute top-0 object-top opacity-10"
-          src={BannerImg}
+          src={bannerImageSrc}
           alt="banner-img"
           layout="fill"
           objectFit="cover"

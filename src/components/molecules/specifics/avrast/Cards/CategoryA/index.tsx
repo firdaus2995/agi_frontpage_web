@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import BlankImage from '@/assets/images/blank-image.svg';
 import ButtonSmall from '@/components/atoms/ButtonSmall';
@@ -12,6 +13,7 @@ interface ICardCategoryA {
   summary: string;
   description: string;
   tags: string[];
+  href?: string;
 }
 
 const CardCategoryA = ({
@@ -19,7 +21,8 @@ const CardCategoryA = ({
   title,
   summary,
   description,
-  tags
+  tags,
+  href
 }: ICardCategoryA) => {
   return (
     <div className="flex flex-col gap-[18px] p-[24px] border border-gray_light border-b-8 border-b-purple_dark rounded-[18px] rounded-b-[12px]">
@@ -41,7 +44,13 @@ const CardCategoryA = ({
           <MediumTag key={index} title={item} />
         ))}
       </div>
-      <ButtonSmall title="Pelajari Produk" />
+      {href ? (
+        <Link href={href} className="w-full">
+          <ButtonSmall title="Pelajari Produk" customClassName="w-full" />
+        </Link>
+      ) : (
+        <ButtonSmall title="Pelajari Produk" />
+      )}
     </div>
   );
 };

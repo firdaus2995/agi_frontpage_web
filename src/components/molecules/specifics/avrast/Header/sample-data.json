@@ -68,6 +68,7 @@
       },
       {
         "title": "Avrist Syariah",
+        "skipUrl": true,
         "content": [
           {
             "title": "Avrist Syariah",
@@ -89,6 +90,7 @@
       },
       {
         "title": "Avrist DPLK",
+        "skipUrl": true,
         "content": [
           {
             "title": "Avrist DPLK",

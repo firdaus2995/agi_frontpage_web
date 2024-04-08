@@ -47,6 +47,7 @@ type NavCardProps = {
   customClass?: string;
   title: string;
   indexData: number;
+  skipUrl?: boolean;
 };
 
 const ICON_MAPPING = [
@@ -70,7 +71,8 @@ const NavCard: React.FC<NavCardProps> = ({
   content,
   customClass,
   indexData,
-  title
+  title,
+  skipUrl
 }) => {
   // This component has become a client component even when there's not a "use client" withint this file.
   // This is because this component has been imported into a Header component that is a client component.
@@ -131,7 +133,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           item.listMenu.map((value, idx) => (
                             <Link
                               href={{
-                                pathname: `/avrast/${convertToKebabCase(title)}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
+                                pathname: `${!skipUrl ? `/${convertToKebabCase(title)}` : ''}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
                                 query: { tab: item.title, category: value }
                               }}
                               key={idx}
@@ -155,7 +157,7 @@ const NavCard: React.FC<NavCardProps> = ({
                     <React.Fragment key={index}>
                       <Link
                         href={{
-                          pathname: `/avrast/${convertToKebabCase(title)}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
+                          pathname: `${!skipUrl ? `/${convertToKebabCase(title)}` : ''}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
                           query: { tab: item.title }
                         }}
                         className={`flex flex-row justify-between`}

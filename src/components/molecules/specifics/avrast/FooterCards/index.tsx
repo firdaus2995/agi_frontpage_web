@@ -2,6 +2,7 @@
 import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,7 +10,13 @@ import ArrowCarouselLeft from '@/assets/images/common/arrow-carousel-left.svg';
 import ArrowCarouselRight from '@/assets/images/common/arrow-carousel-right.svg';
 
 interface IFooterCards {
-  cards: { title: string; icon: StaticImport | string; subtitle?: string }[];
+  cards: {
+    title: string;
+    icon: StaticImport | string;
+    subtitle?: string;
+    href?: string;
+  }[];
+  bgColor?: string;
 }
 
 interface CustomPrevArrowProps {
@@ -81,7 +88,7 @@ const CustomPrevArrow: React.FC<CustomPrevArrowProps> = (props) => {
   );
 };
 
-const FooterCards: React.FC<IFooterCards> = ({ cards }) => {
+const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
   const settings = {
     slidesToShow: 4,
     initialSlide: 0,
@@ -101,35 +108,38 @@ const FooterCards: React.FC<IFooterCards> = ({ cards }) => {
   };
 
   return (
-    <div className="px-8 mx-4 sm:mx-[136px] mb-[32px]">
-      <Slider {...settings}>
-        {cards.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col justify-between w-full max-w-[274px] h-full min-h-[280px] p-[24px] sm:gap-[24px] border border-gray_light rounded-[12px] shadow-md bg-white"
-          >
-            <div className="flex justify-center">
-              <Image
-                alt={index.toString()}
-                src={item.icon}
-                className="w-[100px] h-[100px]"
-              />
-            </div>
-            <div className="flex flex-col justify-center mx-2 mt-2 gap-2">
-              <p className="text-center font-bold md:text-lg 2xl:text-[24px]">
-                {item.title.split('\n').map((line, index) => (
-                  <span key={index}>{line}</span>
-                ))}
-              </p>
-              {item.subtitle && (
-                <p className="text-center font-bold md:text-lg 2xl:text-[24px] text-purple_dark">
-                  {item.subtitle}
+    <div className={bgColor ?? ''}>
+      <div className="px-8 mx-4 sm:mx-[136px] pb-[32px]">
+        <Slider {...settings}>
+          {cards.map((item, index) => (
+            <Link
+              href={item?.href ?? '#'}
+              key={index}
+              className="flex flex-col justify-between w-full max-w-[274px] h-full min-h-[280px] p-[24px] sm:gap-[24px] border border-gray_light rounded-[12px] shadow-md bg-white"
+            >
+              <div className="flex justify-center">
+                <Image
+                  alt={index.toString()}
+                  src={item.icon}
+                  className="w-[100px] h-[100px]"
+                />
+              </div>
+              <div className="flex flex-col justify-center mt-2 gap-2">
+                <p className="text-center font-bold md:text-lg 2xl:text-[24px]">
+                  {item.title.split('\n').map((line, index) => (
+                    <span key={index}>{line}</span>
+                  ))}
                 </p>
-              )}
-            </div>
-          </div>
-        ))}
-      </Slider>
+                {item.subtitle && (
+                  <p className="text-center font-bold md:text-lg 2xl:text-[24px] text-purple_dark">
+                    {item.subtitle}
+                  </p>
+                )}
+              </div>
+            </Link>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

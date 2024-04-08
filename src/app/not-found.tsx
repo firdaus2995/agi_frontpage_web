@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Header from '@/components/molecules/specifics/avrast/Header';
 
 export default function NotFound() {
   const pathname = usePathname();
@@ -9,7 +8,6 @@ export default function NotFound() {
   if (pathname.includes('/avrast'))
     return (
       <div>
-        <Header />
         <div className="my-[96px] w-full flex flex-col items-center">
           <p className="font-karla font-bold text-[240px] text-purple_verylight">
             404
@@ -24,7 +22,7 @@ export default function NotFound() {
             </p>
           </div>
           <Link
-            href="/avrast"
+            href="/"
             className="bg-purple_dark text-white font-opensans font-semibold text-[20px] rounded-lg py-[18px] px-[40px] mt-[36px]"
           >
             Kembali Ke Beranda

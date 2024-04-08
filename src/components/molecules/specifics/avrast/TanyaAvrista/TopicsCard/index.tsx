@@ -13,7 +13,7 @@ const TopicsCard = ({ cards }: ITopicsCard) => {
         Pilih <span className="font-bold">topik</span> sesuai kendala{' '}
         <span className="font-bold">Anda</span>
       </h1>
-      <div className="grid grid-cols-4 md:gap-4 2xl:gap-10 px-44 mt-8 mb-20">
+      <div className="grid xs:grid-rows-1 md:grid-cols-2 xl:grid-cols-4 md:gap-4 2xl:gap-10 px-44 mt-8 mb-20">
         {cards.map((item, index) => (
           <div key={index} className="flex flex-col items-center">
             <div className="md:w-[200px] bg-white 2xl:w-[274px] md:h-[186px] 2xl:h-[260px] flex flex-col items-center justify-center p-[24px] gap-[24px] border border-gray_light rounded-t-xl">
@@ -21,6 +21,8 @@ const TopicsCard = ({ cards }: ITopicsCard) => {
                 alt={item.title}
                 src={item.icon}
                 className="md:w-[60px] md:h-[60px] 2xl:w-[100px] 2xl:h-[100px]"
+                width={60}
+                height={60}
               />
               <p className="text-center font-bold md:text-lg 2xl:text-[24px]">
                 {item.title.split('\n').map((line, index) => (

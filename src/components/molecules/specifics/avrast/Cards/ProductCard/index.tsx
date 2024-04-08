@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import BlankImage from '@/assets/images/blank-image.svg';
 
@@ -14,6 +15,7 @@ interface CardProductProps {
   cardTitleClassname?: string;
   cardTagsClassname?: string;
   cardButtonClassname?: string;
+  href?: string;
 }
 
 const CardProduct = ({
@@ -25,7 +27,8 @@ const CardProduct = ({
   cardClassname,
   cardTitleClassname,
   cardTagsClassname,
-  cardButtonClassname
+  cardButtonClassname,
+  href
 }: CardProductProps) => {
   return (
     <div
@@ -54,11 +57,21 @@ const CardProduct = ({
           </div>
         ))}
       </div>
-      <button
-        className={`${cardButtonClassname} px-[19px] py-[7px] rounded-[6px] font-bold`}
-      >
-        <p>Pelajari Produk</p>
-      </button>
+      {href ? (
+        <Link href={href} className="w-full">
+          <button
+            className={`${cardButtonClassname} w-full px-[19px] py-[7px] rounded-[6px] font-bold`}
+          >
+            <p>Pelajari Produk</p>
+          </button>
+        </Link>
+      ) : (
+        <button
+          className={`${cardButtonClassname} w-full px-[19px] py-[7px] rounded-[6px] font-bold`}
+        >
+          <p>Pelajari Produk</p>
+        </button>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '@/components/atoms/Button/Button';
 
 interface IFooterInformation {
@@ -8,6 +9,7 @@ interface IFooterInformation {
   image: string;
   buttonVariant?: string;
   bgColor?: string;
+  href?: string;
 }
 
 // button variants: primary, secondary
@@ -17,15 +19,21 @@ const FooterInformation = ({
   buttonTitle,
   image,
   buttonVariant,
-  bgColor,
+  href,
+  bgColor
 }: IFooterInformation) => {
   return (
     <div className="w-full flex px-[32px] py-[50px] sm:px-[136px] sm:py-[72px] bg-avrast_product_bg justify-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
-        <div className={`flex flex-col gap-[24px] justify-center p-[36px] ${bgColor}`}>
+        <div
+          className={`flex flex-col gap-[24px] justify-center p-[36px] ${bgColor}`}
+        >
           <div>{title}</div>
           {buttonTitle && (
-            <div className='flex justify-center sm:justify-start'>
+            <Link
+              href={href ?? ''}
+              className="flex justify-center sm:justify-start"
+            >
               <Button
                 customButtonClass={
                   !buttonVariant || buttonVariant === 'primary'
@@ -43,7 +51,7 @@ const FooterInformation = ({
                 }
                 title={buttonTitle}
               />
-            </div>
+            </Link>
           )}
         </div>
         <div className="flex rounded-r-[24px]">

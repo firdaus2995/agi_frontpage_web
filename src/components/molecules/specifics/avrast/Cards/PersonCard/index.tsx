@@ -12,14 +12,16 @@ interface PersonCardProps {
   heading: string;
   cards: Card[];
   roleClassname?: string;
+  idTags?: string;
 }
 
 const PersonCard: React.FC<PersonCardProps> = ({
   heading,
   cards,
-  roleClassname
+  roleClassname,
+  idTags
 }) => (
-  <div className="font-karla mx-[36px] my-[64px]">
+  <div className="font-karla mx-[36px] my-[64px]" id={idTags}>
     <div className="text-center mb-[24px]">
       <p className="font-bold text-[56px]">{heading}</p>
     </div>

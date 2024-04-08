@@ -13,8 +13,7 @@ const nextConfig = {
       }
     ]
   },
-  output: 'export',
-  distDir: 'dist'
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

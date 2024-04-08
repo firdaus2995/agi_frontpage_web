@@ -12,6 +12,7 @@ interface AboutHeadingProps {
   tags: string[];
   tagsClassname?: string;
   tagsTextClassname?: string;
+  idTags?: string;
 }
 
 const AboutHeading: React.FC<AboutHeadingProps> = ({
@@ -23,9 +24,10 @@ const AboutHeading: React.FC<AboutHeadingProps> = ({
   description,
   tags,
   tagsClassname,
-  tagsTextClassname
+  tagsTextClassname,
+  idTags
 }) => (
-  <div className="flex flex-col flex-nowrap">
+  <div className="flex flex-col flex-nowrap" id={idTags}>
     <div>
       <div className="flex flex-row items-center gap-[12px] font-karla">
         {categoriesIcon && (

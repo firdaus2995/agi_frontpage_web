@@ -14,6 +14,7 @@ interface InformationCardProps {
   cardClassname?: string;
   cardButtonClassname?: string;
   cardButtonTextClassname?: string;
+  idTags?: string;
 }
 
 const InformationCard: React.FC<InformationCardProps> = ({
@@ -22,9 +23,10 @@ const InformationCard: React.FC<InformationCardProps> = ({
   cards,
   cardClassname,
   cardButtonClassname,
-  cardButtonTextClassname
+  cardButtonTextClassname,
+  idTags
 }) => (
-  <div className="font-karla my-[64px] mx-auto">
+  <div className="font-karla my-[64px] mx-auto" id={idTags}>
     <div className="text-center mb-[24px]">
       <p className="font-bold text-[56px]">{heading}</p>
       {subHeading && <p className="text-[36px]">{subHeading}</p>}

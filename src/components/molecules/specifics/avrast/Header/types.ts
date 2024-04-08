@@ -1,5 +1,6 @@
 export interface NavbarMenuItem {
   title: string;
+  skipUrl?: boolean;
   content: NavbarMenuItemContent[];
 }
 

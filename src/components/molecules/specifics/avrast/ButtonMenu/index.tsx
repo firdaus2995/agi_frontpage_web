@@ -36,7 +36,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList }) => {
         {buttonList.map((i) => (
           <Link
             href={{
-              pathname: '/avrast/klaim-layanan/layanan',
+              pathname: '/klaim-layanan/layanan',
               query: { tab: i }
             }}
             scroll={false}
@@ -63,7 +63,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList }) => {
           {buttonList.map((i) => (
             <Link
               href={{
-                pathname: '/avrast/klaim-layanan/layanan',
+                pathname: '/klaim-layanan/layanan',
                 query: { tab: i }
               }}
               scroll={false}

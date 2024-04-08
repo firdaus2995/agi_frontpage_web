@@ -7,28 +7,28 @@ import CHEVRON_RIGHT_PURPLE from '@/assets/images/common/chevron-right-purple.sv
 const faqData = [
   {
     title: 'Apa yang dimaksud dengan Asuransi Pribadi atau Asuransi Individu?',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   },
   {
     title:
       'Apa yang saya akan peroleh jika polis saya batalkan di kemudian hari?',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   },
   {
     title: 'Siapa yang dapat ditentukan sebagai Pihak Yang Ditunjuk?',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   },
   {
     title: 'Lorem ipsum dolor sit amet consectetur.',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   },
   {
     title: 'Lorem ipsum dolor sit amet consectetur.',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   },
   {
     title: 'Lorem ipsum dolor sit amet consectetur.',
-    href: '/avrast/tanya-avrista/asuransi-jiwa-individu/'
+    href: '/tanya-avrista/asuransi-jiwa-individu/'
   }
 ];
 

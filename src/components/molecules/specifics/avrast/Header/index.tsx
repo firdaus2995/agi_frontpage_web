@@ -37,7 +37,7 @@ const Header = () => {
         </div>
         <div className="flex flex-row gap-4 flex flex-row gap-4 md:divide-x-2">
           <Link
-            href={`/avrast/tanya-avrista`}
+            href={`/tanya-avrista`}
             className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden"
           >
             <Icon name="helpcircle" color="gray_black" />
@@ -59,7 +59,7 @@ const Header = () => {
             <p className="font-bold text-sm">Subscribe</p>
           </div>
           <div className="flex flex-row gap-2 cursor-pointer pl-2">
-            <Link href={`/avrast/pencarian`}>
+            <Link href={`/pencarian`}>
               <Icon name="search" />
             </Link>
           </div>
@@ -68,13 +68,15 @@ const Header = () => {
 
       {/* Purple Section */}
 
-      {pathname !== '/avrast' ? (
+      {pathname !== '/' ? (
         <div className="bg-gradient-to-b  from-purple_dark to-purple_light w-full m-0 text-white py-3 px-4 md:px-8 relative">
           <div className="flex justify-between items-center w-full max-w-[90rem] m-auto gap-8">
             <ul className="md:flex gap-8 items-center hidden">
-              <Button.IconButton>
-                <Icon name="homeIcon" color="white" width={20} isSquare />
-              </Button.IconButton>
+              <Link href={`/`}>
+                <Button.IconButton>
+                  <Icon name="homeIcon" color="white" width={20} isSquare />
+                </Button.IconButton>
+              </Link>
               {menus.map((item, idx) => (
                 <React.Fragment key={item.title}>
                   <li
@@ -82,13 +84,14 @@ const Header = () => {
                   >
                     {item.title}
                     <TriangleMarker
-                      customClass={`absolute bottom-0 left-1/2 -translate-x-1/2 top-[33px] cursor-default ${styles['nav-transition']}`}
+                      customClass={`absolute bottom-0 left-1/2 -translate-x-1/2 top-[60px] cursor-default ${styles['nav-transition']}`}
                     />
                   </li>
                   <NavCard
                     customClass={`${styles['nav-card-animation']} absolute cursor-default left-0 duration-300`}
                     content={item.content}
                     title={item.title}
+                    skipUrl={item.skipUrl}
                     indexData={idx}
                   />
                 </React.Fragment>
@@ -100,7 +103,9 @@ const Header = () => {
             >
               <Icon name="hamburgerMenuIcon" color="white" />
             </Button.IconButton>
-            <Image alt="Avrist Logo" src={AVRIST_LOGO} />
+            <Link href={`/`}>
+              <Image alt="Avrist Logo" src={AVRIST_LOGO} />
+            </Link>
           </div>
           <NavDropdownMenus
             isVisible={isDropdownVisible}

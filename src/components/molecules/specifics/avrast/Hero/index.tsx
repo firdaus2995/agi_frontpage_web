@@ -14,9 +14,15 @@ interface IHero {
     href: string;
   }[];
   bottomImage?: StaticImport;
+  imageUrl?: string;
 }
 
-const Hero: React.FC<IHero> = ({ title, breadcrumbsData, bottomImage }) => {
+const Hero: React.FC<IHero> = ({
+  title,
+  breadcrumbsData,
+  bottomImage,
+  imageUrl
+}) => {
   return (
     <div
       className={`relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[740px] sm:h-[840px]' : 'h-[200px]'}`}
@@ -48,7 +54,8 @@ const Hero: React.FC<IHero> = ({ title, breadcrumbsData, bottomImage }) => {
       <Image
         className={`-z-[2] w-full top-0 absolute object-cover ${bottomImage ? 'h-[150px] sm:h-[280px]' : 'h-[200px]'}`}
         alt="Avrist"
-        src={HERO_IMAGE}
+        src={imageUrl ?? HERO_IMAGE}
+        layout="fill"
       />
       {bottomImage && (
         <div className="-z-[1] w-full top-[100px] sm:top-[200px] absolute">

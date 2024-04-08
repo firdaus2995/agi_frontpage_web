@@ -7,17 +7,21 @@ interface IButtonMenuVertical {
     color?: string;
     onClick?: () => void;
   }[];
+  outerClass?: string;
 }
 
-const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({ item }) => {
+const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({
+  item,
+  outerClass
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   return (
-    <>
+    <div className={outerClass}>
       <div className="xs:hidden md:block w-full bg-purple_light_bg rounded-xl cursor-pointer">
         {item.map((i, index) => (
           <span
-            className="flex flex-row gap-4 items-center"
+            className="flex flex-row gap-4 items-center h-[50px]"
             key={index}
             onClick={() => {
               i.onClick ? i.onClick() : null;
@@ -25,10 +29,10 @@ const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({ item }) => {
             }}
           >
             <div
-              className={`w-[6px] h-[49px] ${index === selected ? 'bg-purple_dark' : 'bg-purple_mediumlight'} ${index === 0 ? 'rounded-tl-xl' : index === item.length - 1 ? 'rounded-bl-xl' : ''}`}
+              className={`w-[6px] h-full ${index === selected ? 'bg-purple_dark' : 'bg-purple_mediumlight'} ${index === 0 ? 'rounded-tl-xl' : index === item.length - 1 ? 'rounded-bl-xl' : ''}`}
             />
             <p
-              className={`text-md 2xl:text-lg font-bold ${i.color ? i.color : selected === index ? 'text-purple_dark' : 'text-purple_mediumlight'}`}
+              className={`w-[70%] text-md 2xl:text-lg font-bold ${i.color ? i.color : selected === index ? 'text-purple_dark' : 'text-purple_mediumlight'}`}
             >
               {i.title}
             </p>
@@ -83,7 +87,7 @@ const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({ item }) => {
               )
           )}
       </div>
-    </>
+    </div>
   );
 };
 

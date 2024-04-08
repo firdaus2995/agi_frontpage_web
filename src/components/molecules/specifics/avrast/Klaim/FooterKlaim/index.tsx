@@ -15,7 +15,9 @@ import FOOTER_NASABAH_4 from '@/assets/images/avrast/component/footer-klaim/foot
 import ARROW_LEFT from '@/assets/images/avrast/component/total-solution/arrow-left.svg';
 import ARROW_RIGHT from '@/assets/images/avrast/component/total-solution/arrow-right.svg';
 import ARROW_CIRCLE_RIGHT from '@/assets/images/common/arrow-circle-right.svg';
+import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
 import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
+import EMAIL from '@/assets/images/common/email.svg';
 import HEART_CHECK from '@/assets/images/common/heart-check.svg';
 import HOME_ADD from '@/assets/images/common/home-add.svg';
 import MESSAGE from '@/assets/images/common/message.svg';
@@ -78,19 +80,42 @@ const dataPerformaInvestasi = [
   {
     icon: HOME_ADD,
     title: 'Asuransi Korporasi',
-    link1: 'Lebih Lanjut'
+    link1: 'Lihat Produk'
   },
   {
     icon: UMBRELLA_GREEN,
     title: 'Avrist Syariah',
-    link1: 'Lihat Prosedur',
+    link1: 'Lihat Produk',
     color: 'text-syariah_green'
   },
   {
     icon: PERSON_HOME_YELLOW,
     title: 'Avrist DPLK',
-    link1: 'Lebih Lanjut',
+    link1: 'Lihat Produk',
     color: 'text-orange_border'
+  }
+];
+
+const dataRSRekanan = [
+  {
+    icon: CUSTOMER_SERVICE,
+    title: 'Layanan Nasabah',
+    link1: '021 5789 8188'
+  },
+  {
+    icon: MESSAGE,
+    title: 'Tanya Avrista',
+    link1: 'Lebih Lanjut'
+  },
+  {
+    icon: EMAIL,
+    title: 'Tanya Lewat Email',
+    link1: 'Kirim Email'
+  },
+  {
+    icon: DOCUMENT_SEARCH,
+    title: 'Prosedur Pengaduan',
+    link1: 'Lihat Prosedur'
   }
 ];
 
@@ -104,7 +129,9 @@ const FooterKlaim = () => {
       ? dataFormulirPendaftaran
       : params.includes('Performa Investasi')
         ? dataPerformaInvestasi
-        : dataInformasiNasabah;
+        : params.includes('Rumah Sakit Rekanan')
+          ? dataRSRekanan
+          : dataInformasiNasabah;
 
   const sliderRef = useRef<Slider | null>(null);
   const next = () => {

@@ -14,7 +14,7 @@ const Footer = () => {
   const pathname = usePathname();
   if (pathname.includes('/under-construction')) return null;
   return (
-    <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative pt-[10rem]">
+    <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
       <div className="md:p-16 p-8">
         <Image
           alt="Avrist"
@@ -51,7 +51,7 @@ const Footer = () => {
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
                 <p className="font-semibold text-base">Layanan Nasabah</p>
-                <p className="font-semibold text-lg">021 5789 8188</p>
+                <a href='tel:+622157898188' className="font-semibold text-lg">021 5789 8188</a>
               </div>
               <div>
                 <p className="font-semibold text-base">Waktu Operasional</p>
@@ -59,7 +59,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-semibold text-base">Email</p>
-                <p>service@avrist.com</p>
+                <a href='mailto:service@avrist.com'>service@avrist.com</a>
               </div>
             </div>
           </div>

@@ -109,7 +109,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
 
   return (
     <div className={bgColor ?? ''}>
-      <div className="px-8 mx-4 sm:mx-[136px] pb-[32px]">
+      <div className="px-8 mx-4 sm:mx-[136px] py-[32px]">
         <Slider {...settings}>
           {cards.map((item, index) => (
             <Link

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import Icon from '@/components/atoms/Icon';
 
@@ -87,17 +87,20 @@ export const TextInputArea = (props: TextInputAreaProps) => {
 type SelectRadioProps = {
   title: string;
   require?: boolean;
+  flexType?: string;
   data: { label: string; id: string }[];
 };
 export const SelectRadio = (props: SelectRadioProps) => {
-  const { title, require, data } = props;
+  const { title, require, data, flexType } = props;
   return (
-    <div>
+    <div className="mb-4">
       <p className="font-opensans font-bold text-[16px]">
         {title}
         {require && <span className="text-red_error">*</span>}
       </p>
-      <div className="mt-[8px]">
+      <div
+        className={`mt-[8px] flex ${flexType === 'columns' ? 'flex-col' : 'flex-row'}`}
+      >
         {data.map((i) => (
           <label className="mr-[32px]" key={i.id}>
             <input type="radio" value={i.id} />
@@ -199,5 +202,33 @@ export const SearchInput = (props: SearchInputProps) => {
         Cari
       </button>
     </div>
+  );
+};
+
+type UploadInputProps = {
+  title: string;
+  onUpload?: () => void;
+};
+
+export const UploadInput = (props: UploadInputProps) => {
+  const { title, onUpload } = props;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  return (
+    <Fragment>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={onUpload}
+        style={{ display: 'none' }}
+      />
+      <div
+        onClick={() => fileInputRef.current?.click()}
+        className="w-full h-full rounded-2xl border border-gray_light cursor-pointer flex flex-col justify-center items-center gap-4"
+      >
+        <Icon name="UploadIcon" color="purple_dark" height={24} width={24} />
+        <p className="text-base">{title}</p>
+      </div>
+    </Fragment>
   );
 };

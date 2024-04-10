@@ -1,11 +1,11 @@
-import { DividerRainbow } from './Divider';
+import { DividerPurple } from './Divider';
 import { TextInput, TextInputArea } from './form/Input';
 import { RatingEmoji } from './form/Rating';
 
 export const FeedbackForm = () => {
   return (
-    <div className="bg-white py-[80px] px-[136px]">
-      <div className="border rounded-xl flex flex-col justify-between overflow-hidden">
+    <div className="bg-purple_superlight py-[80px] px-[136px]">
+      <div className="bg-white border rounded-xl flex flex-col justify-between overflow-hidden">
         <div className="p-[36px]">
           <p className="font-bold font-karla text-[36px] text-purple_dark">
             Saran untuk Kami
@@ -42,7 +42,7 @@ export const FeedbackForm = () => {
             </div>
           </form>
         </div>
-        <DividerRainbow />
+        <DividerPurple />
       </div>
     </div>
   );

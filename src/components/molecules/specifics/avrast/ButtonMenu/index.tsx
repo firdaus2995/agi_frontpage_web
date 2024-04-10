@@ -6,9 +6,10 @@ import Button from '@/components/atoms/Button/Button';
 
 interface IButtonMenu {
   buttonList: string[];
+  path?: string;
 }
 
-const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList }) => {
+const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
   const searchParams = useSearchParams();
   const params = searchParams.get('tab') ?? '';
   const sliderRef = useRef<Slider | null>(null);
@@ -32,11 +33,11 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList }) => {
 
   return (
     <>
-      <div className="xs:hidden md:flex flex-row justify-between gap-4">
+      <div className="xs:hidden md:flex flex-row justify-between gap-4 my-10 mx-[32px] md:mx-[136px]">
         {buttonList.map((i) => (
           <Link
             href={{
-              pathname: '/klaim-layanan/layanan',
+              pathname: path,
               query: { tab: i }
             }}
             scroll={false}
@@ -63,7 +64,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList }) => {
           {buttonList.map((i) => (
             <Link
               href={{
-                pathname: '/klaim-layanan/layanan',
+                pathname: path,
                 query: { tab: i }
               }}
               scroll={false}

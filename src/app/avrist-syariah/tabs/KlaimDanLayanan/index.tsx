@@ -1,13 +1,13 @@
 import React from 'react';
 
-import GreenContact from '@/assets/images/avrast/avrist-syariah/green-contact.svg';
-import GreenForm from '@/assets/images/avrast/avrist-syariah/green-form.svg';
-import GreenHelpDesk from '@/assets/images/avrast/avrist-syariah/green-helpdesk.svg';
-import GreenHospital from '@/assets/images/avrast/avrist-syariah/green-hospital.svg';
-import GreenPaper from '@/assets/images/avrast/avrist-syariah/green-paper.svg';
-import GreenReceipt from '@/assets/images/avrast/avrist-syariah/green-receipt.svg';
+import GreenContact from '@/assets/images/agi/avrist-syariah/green-contact.svg';
+import GreenForm from '@/assets/images/agi/avrist-syariah/green-form.svg';
+import GreenHelpDesk from '@/assets/images/agi/avrist-syariah/green-helpdesk.svg';
+import GreenHospital from '@/assets/images/agi/avrist-syariah/green-hospital.svg';
+import GreenPaper from '@/assets/images/agi/avrist-syariah/green-paper.svg';
+import GreenReceipt from '@/assets/images/agi/avrist-syariah/green-receipt.svg';
 
-import InformationCard from '@/components/molecules/specifics/avrast/Cards/InformationCard';
+import InformationCard from '@/components/molecules/specifics/agi/Cards/InformationCard';
 
 const KlaimDanLayanan = () => {
   return (

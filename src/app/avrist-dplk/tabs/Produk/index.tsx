@@ -1,11 +1,11 @@
 import React from 'react';
 
-import YellowHome from '@/assets/images/avrast/dplk/yellow-dplk-home-sun.svg';
+import YellowHome from '@/assets/images/agi/dplk/yellow-dplk-home-sun.svg';
 
 import Icon from '@/components/atoms/Icon';
-import CardProduct from '@/components/molecules/specifics/avrast/Cards/ProductCard';
-import CategoryPillsBox from '@/components/molecules/specifics/avrast/CategoryPillsBox';
-import SearchBar from '@/components/molecules/specifics/avrast/SearchBar';
+import CardProduct from '@/components/molecules/specifics/agi/Cards/ProductCard';
+import CategoryPillsBox from '@/components/molecules/specifics/agi/CategoryPillsBox';
+import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
 const Produk = () => {
   return (

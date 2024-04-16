@@ -2,17 +2,17 @@ import React from 'react';
 
 import Link from 'next/link';
 import { Modal } from '../component/modal/modal';
-import Icon1 from '@/assets/images/avrast/component/informasi-klaim/bantuan.svg';
-import Icon2 from '@/assets/images/avrast/component/proses-klaim/step-4-icon-4.svg';
+import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
+import Icon2 from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon3 from '@/assets/images/common/email.svg';
 import Icon4 from '@/assets/images/common/procedure.svg';
 import WHATSAPP from '@/assets/images/wa.svg';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import FooterInformation from '@/components/molecules/specifics/avrast/FooterInformation';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 
 export const generateStaticParams = () => {
   return [{ detail: 'detail', show: true }];

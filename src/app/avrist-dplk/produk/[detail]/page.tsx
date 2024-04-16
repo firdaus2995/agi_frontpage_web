@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-import HeroDplk3 from '@/assets/images/avrast/dplk/hero-dplk-3.svg';
-import YellowHeart from '@/assets/images/avrast/dplk/klaim-layanan.svg';
-import VideoDplk from '@/assets/images/avrast/dplk/videotron-dplk.svg';
-import YellowChat from '@/assets/images/avrast/dplk/yellow-chat-heart.svg';
-import YellowHomeSun from '@/assets/images/avrast/dplk/yellow-dplk-home-sun.svg';
-import YellowShield from '@/assets/images/avrast/dplk/yellow-shield.svg';
+import HeroDplk3 from '@/assets/images/agi/dplk/hero-dplk-3.svg';
+import YellowHeart from '@/assets/images/agi/dplk/klaim-layanan.svg';
+import VideoDplk from '@/assets/images/agi/dplk/videotron-dplk.svg';
+import YellowChat from '@/assets/images/agi/dplk/yellow-chat-heart.svg';
+import YellowHomeSun from '@/assets/images/agi/dplk/yellow-dplk-home-sun.svg';
+import YellowShield from '@/assets/images/agi/dplk/yellow-shield.svg';
 
 import BlankImage from '@/assets/images/blank-image.svg';
 
@@ -16,14 +16,14 @@ import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import AboutHeading from '@/components/molecules/specifics/avrast/AboutHeading';
-import HelpCard from '@/components/molecules/specifics/avrast/Cards/HelpCard';
-import CardProduct from '@/components/molecules/specifics/avrast/Cards/ProductCard';
-import CategorySideBySideSixCards from '@/components/molecules/specifics/avrast/CategorySideBySideSixCards';
-import SimpleContainer from '@/components/molecules/specifics/avrast/Containers/Simple';
-import CustomForm from '@/components/molecules/specifics/avrast/CustomForm/Index';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
+import AboutHeading from '@/components/molecules/specifics/agi/AboutHeading';
+import HelpCard from '@/components/molecules/specifics/agi/Cards/HelpCard';
+import CardProduct from '@/components/molecules/specifics/agi/Cards/ProductCard';
+import CategorySideBySideSixCards from '@/components/molecules/specifics/agi/CategorySideBySideSixCards';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import CustomForm from '@/components/molecules/specifics/agi/CustomForm/Index';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 
 const ProdukSyariahDetail = ({ params }: { params: { detail: string } }) => {
   console.log(params);

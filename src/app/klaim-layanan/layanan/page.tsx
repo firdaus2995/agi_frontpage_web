@@ -1,12 +1,12 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import { FormulirPendaftaran } from '@/components/molecules/specifics/avrast/FormulirPendaftaran';
-import { MainContent } from '@/components/molecules/specifics/avrast/InformasiNasabah';
-import FooterKlaim from '@/components/molecules/specifics/avrast/Klaim/FooterKlaim';
-import KlaimHeader from '@/components/molecules/specifics/avrast/Klaim/KlaimHeader/KlaimHeader';
-import KlaimVideo from '@/components/molecules/specifics/avrast/Klaim/KlaimVideo';
-import { PerformaInvestasi } from '@/components/molecules/specifics/avrast/PerformaInvestasi';
-import { RSRekanan } from '@/components/molecules/specifics/avrast/RSRekanan';
+import { FormulirPendaftaran } from '@/components/molecules/specifics/agi/FormulirPendaftaran';
+import { MainContent } from '@/components/molecules/specifics/agi/InformasiNasabah';
+import FooterKlaim from '@/components/molecules/specifics/agi/Klaim/FooterKlaim';
+import KlaimHeader from '@/components/molecules/specifics/agi/Klaim/KlaimHeader/KlaimHeader';
+import KlaimVideo from '@/components/molecules/specifics/agi/Klaim/KlaimVideo';
+import { PerformaInvestasi } from '@/components/molecules/specifics/agi/PerformaInvestasi';
+import { RSRekanan } from '@/components/molecules/specifics/agi/RSRekanan';
 
 const InformationCustomer = () => {
   const searchParams = useSearchParams();

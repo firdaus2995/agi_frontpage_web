@@ -6,10 +6,10 @@ import MESSAGE from '@/assets/images/common/message.svg';
 import GROUP_PHOTO from '@/assets/images/group-photo.svg';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import FooterInformation from '@/components/molecules/specifics/avrast/FooterInformation';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
-import SearchForm from '@/components/molecules/specifics/avrast/Pencarian/SearchForm';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
+import SearchForm from '@/components/molecules/specifics/agi/Pencarian/SearchForm';
 
 const breadcrumbsData = [
   { title: 'Beranda', href: '/' },
@@ -25,13 +25,10 @@ const Pencarian = () => {
       <FooterInformation
         title={
           <p className="text-[48px]">
-            Solusi inovatif untuk{' '}
-            <span className="text-purple_dark font-bold">nasabah</span>,
-            <span className="text-purple_dark font-bold"> individu</span> dan{' '}
-            <span className="text-purple_dark font-bold">korporasi</span>
+            Ada yang bisa <span className="text-purple_dark font-bold">AvGen</span> bantu untuk Anda?
           </p>
         }
-        buttonTitle="Lihat Produk"
+        buttonTitle="Tanya AvGen"
         image={GROUP_PHOTO}
       />
       <RoundedFrameTop />

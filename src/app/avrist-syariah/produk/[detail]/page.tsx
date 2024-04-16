@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-import GambarProdukSyariah2 from '@/assets/images/avrast/avrist-syariah/about.svg';
-import GreenHeartChat from '@/assets/images/avrast/avrist-syariah/green-chat-heart.svg';
-import GreenShield from '@/assets/images/avrast/avrist-syariah/green-shield.svg';
-import HelpDesk from '@/assets/images/avrast/avrist-syariah/helpdesk.svg';
-import GambarProdukSyariah from '@/assets/images/avrast/avrist-syariah/hero-syariah-3.svg';
-import GreenGiveHeart from '@/assets/images/avrast/avrist-syariah/klaim-layanan.svg';
-import PlaceholderVideo from '@/assets/images/avrast/avrist-syariah/videotron-syariah.svg';
+import GambarProdukSyariah2 from '@/assets/images/agi/avrist-syariah/about.svg';
+import GreenHeartChat from '@/assets/images/agi/avrist-syariah/green-chat-heart.svg';
+import GreenShield from '@/assets/images/agi/avrist-syariah/green-shield.svg';
+import HelpDesk from '@/assets/images/agi/avrist-syariah/helpdesk.svg';
+import GambarProdukSyariah from '@/assets/images/agi/avrist-syariah/hero-syariah-3.svg';
+import GreenGiveHeart from '@/assets/images/agi/avrist-syariah/klaim-layanan.svg';
+import PlaceholderVideo from '@/assets/images/agi/avrist-syariah/videotron-syariah.svg';
 import ProdukClaim from '@/assets/images/produk-claim.svg';
 import ProdukPolis from '@/assets/images/produk-polis.svg';
 import ProdukRumahSakit from '@/assets/images/produk-rumah-sakit.svg';
@@ -14,14 +14,14 @@ import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import AboutHeading from '@/components/molecules/specifics/avrast/AboutHeading';
-import HelpCard from '@/components/molecules/specifics/avrast/Cards/HelpCard';
-import CardProduct from '@/components/molecules/specifics/avrast/Cards/ProductCard';
-import CategorySideBySideSixCards from '@/components/molecules/specifics/avrast/CategorySideBySideSixCards';
-import SimpleContainer from '@/components/molecules/specifics/avrast/Containers/Simple';
-import CustomForm from '@/components/molecules/specifics/avrast/CustomForm/Index';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
+import AboutHeading from '@/components/molecules/specifics/agi/AboutHeading';
+import HelpCard from '@/components/molecules/specifics/agi/Cards/HelpCard';
+import CardProduct from '@/components/molecules/specifics/agi/Cards/ProductCard';
+import CategorySideBySideSixCards from '@/components/molecules/specifics/agi/CategorySideBySideSixCards';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import CustomForm from '@/components/molecules/specifics/agi/CustomForm/Index';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 
 const ProdukSyariahDetail = ({ params }: { params: { detail: string } }) => {
   console.log(params);

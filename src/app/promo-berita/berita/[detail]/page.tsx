@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Image from 'next/image';
-import Icon1 from '@/assets/images/avrast/component/informasi-klaim/bantuan.svg';
-import Icon3 from '@/assets/images/avrast/component/panduan-pengajuan/icon-1.svg';
-import Icon2 from '@/assets/images/avrast/component/proses-klaim/step-4-icon-4.svg';
+import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
+import Icon3 from '@/assets/images/agi/component/panduan-pengajuan/icon-1.svg';
+import Icon2 from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Email from '@/assets/images/common/email.svg';
 import Icon4 from '@/assets/images/common/heart-check.svg';
@@ -16,9 +16,9 @@ import Input from '@/components/atoms/Input';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import FooterInformation from '@/components/molecules/specifics/avrast/FooterInformation';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 
 export const generateStaticParams = () => {
   return [{ detail: 'berita-dan-kegiatan' }];

@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 
 // import CustomerFund from '@/components/molecules/specifics/avram/_investasi/CustomerFund';
 import { useRouter, useSearchParams } from 'next/navigation';
-import FooterKlaim from '@/components/molecules/specifics/avrast/Klaim/FooterKlaim';
-import InformasiKlaimComponent from '@/components/molecules/specifics/avrast/Klaim/InformasiKlaim';
-import KlaimBanner from '@/components/molecules/specifics/avrast/Klaim/KlaimBanner/KlaimBanner';
-import KlaimHeader from '@/components/molecules/specifics/avrast/Klaim/KlaimHeader/KlaimHeader';
-import KlaimVideo from '@/components/molecules/specifics/avrast/Klaim/KlaimVideo';
-import PanduanKlaim from '@/components/molecules/specifics/avrast/Klaim/PanduanKlaim';
-import ProsesKlaim from '@/components/molecules/specifics/avrast/Klaim/ProsesKlaim';
+import FooterKlaim from '@/components/molecules/specifics/agi/Klaim/FooterKlaim';
+import InformasiKlaimComponent from '@/components/molecules/specifics/agi/Klaim/InformasiKlaim';
+import KlaimBanner from '@/components/molecules/specifics/agi/Klaim/KlaimBanner/KlaimBanner';
+import KlaimHeader from '@/components/molecules/specifics/agi/Klaim/KlaimHeader/KlaimHeader';
+import KlaimVideo from '@/components/molecules/specifics/agi/Klaim/KlaimVideo';
+import PanduanKlaim from '@/components/molecules/specifics/agi/Klaim/PanduanKlaim';
+import ProsesKlaim from '@/components/molecules/specifics/agi/Klaim/ProsesKlaim';
 import { ParamsProps } from '@/utils/globalTypes';
 
 const InformasiKlaim: React.FC<ParamsProps> = () => {

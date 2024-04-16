@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Open_Sans, Karla } from 'next/font/google';
 import './globals.css';
-import Footer from '@/components/molecules/specifics/avrast/Footer';
-import Header from '@/components/molecules/specifics/avrast/Header';
+import Footer from '@/components/molecules/specifics/agi/Footer';
+import Header from '@/components/molecules/specifics/agi/Header';
 
 const openSans = Open_Sans({
   subsets: ['latin'],

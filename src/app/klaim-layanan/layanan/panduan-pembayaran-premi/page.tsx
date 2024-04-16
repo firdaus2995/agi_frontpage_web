@@ -1,8 +1,8 @@
 'use client';
-import { Header } from '@/components/molecules/specifics/avrast/InformasiNasabah';
-import FooterKlaim from '@/components/molecules/specifics/avrast/Klaim/FooterKlaim';
-import KlaimVideo from '@/components/molecules/specifics/avrast/Klaim/KlaimVideo';
-import { MainContent } from '@/components/molecules/specifics/avrast/PanduanPembayaranPolis';
+import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
+import FooterKlaim from '@/components/molecules/specifics/agi/Klaim/FooterKlaim';
+import KlaimVideo from '@/components/molecules/specifics/agi/Klaim/KlaimVideo';
+import { MainContent } from '@/components/molecules/specifics/agi/PanduanPembayaranPolis';
 
 const TutorialPayment = () => {
   return (

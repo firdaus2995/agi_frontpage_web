@@ -8,11 +8,11 @@ import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
 import EMAIL from '@/assets/images/common/email.svg';
 import MESSAGE from '@/assets/images/common/message.svg';
 import WHATSAPP from '@/assets/images/wa.svg';
-import ButtonMenu from '@/components/molecules/specifics/avrast/ButtonMenu';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import FooterInformation from '@/components/molecules/specifics/avrast/FooterInformation';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
-import { MainContent } from '@/components/molecules/specifics/avrast/HubungiKami';
+import ButtonMenu from '@/components/molecules/specifics/agi/ButtonMenu';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
+import { MainContent } from '@/components/molecules/specifics/agi/HubungiKami';
 const CallMe = () => {
   const searchParams = useSearchParams();
   const params = searchParams.get('tab') ?? '';

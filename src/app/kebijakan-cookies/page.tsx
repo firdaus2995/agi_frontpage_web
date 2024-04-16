@@ -1,10 +1,10 @@
 'use client';
-import { Header } from '@/components/molecules/specifics/avrast/InformasiNasabah';
-import { MainContent } from '@/components/molecules/specifics/avrast/KebijakanCookies';
+import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
+import { MainContent } from '@/components/molecules/specifics/agi/KebijakanCookies';
 import {
   BannerFooter,
   InformationAvrastFooter
-} from '@/components/molecules/specifics/avrast/SyaratPengunaan';
+} from '@/components/molecules/specifics/agi/SyaratPengunaan';
 
 const SyaratPengunaan = () => {
   return (

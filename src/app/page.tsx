@@ -1,9 +1,9 @@
 import React from 'react';
-import BannerAvrast from '@/components/molecules/specifics/avrast/Banner/Banner';
-import CompanySection from '@/components/molecules/specifics/avrast/CompanySection';
-import LayananNasabah from '@/components/molecules/specifics/avrast/LayananNasabah';
-import { HomeBannerModal } from '@/components/molecules/specifics/avrast/Modal';
-import TotalSolution from '@/components/molecules/specifics/avrast/TotalSolution';
+import BannerAvrast from '@/components/molecules/specifics/agi/Banner/Banner';
+import CompanySection from '@/components/molecules/specifics/agi/CompanySection';
+import LayananNasabah from '@/components/molecules/specifics/agi/LayananNasabah';
+import { HomeBannerModal } from '@/components/molecules/specifics/agi/Modal';
+import TotalSolution from '@/components/molecules/specifics/agi/TotalSolution';
 
 const Avrist = () => {
   return (

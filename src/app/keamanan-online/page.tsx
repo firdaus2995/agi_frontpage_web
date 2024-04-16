@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 
 import MainContentKeamananOnline from './component/MainContentKeamananOnline';
-import { Header } from '@/components/molecules/specifics/avrast/InformasiNasabah';
+import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
 import {
   BannerFooter,
   InformationAvrastFooter
-} from '@/components/molecules/specifics/avrast/SyaratPengunaan';
+} from '@/components/molecules/specifics/agi/SyaratPengunaan';
 import {
   contentStringTransformer,
   pageTransformer,

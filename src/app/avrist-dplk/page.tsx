@@ -10,12 +10,12 @@ import ManfaatUtama from './tabs/ManfaatUtama';
 import Produk from './tabs/Produk';
 import TentangAvristDPLK from './tabs/TentangAvristDPLK';
 
-import ProdukEmail from '@/assets/images/avrast/component/proses-klaim/step-4-icon-1.svg';
-import ProdukNasabah from '@/assets/images/avrast/component/proses-klaim/step-4-icon-3.svg';
-import ProdukTanya from '@/assets/images/avrast/component/proses-klaim/step-4-icon-4.svg';
-import HeroDplk1 from '@/assets/images/avrast/dplk/hero-dplk-1.svg';
-import HeroDplk2 from '@/assets/images/avrast/dplk/hero-dplk-2.svg';
-import HeroDplk4 from '@/assets/images/avrast/dplk/hero-dplk-4.svg';
+import ProdukEmail from '@/assets/images/agi/component/proses-klaim/step-4-icon-1.svg';
+import ProdukNasabah from '@/assets/images/agi/component/proses-klaim/step-4-icon-3.svg';
+import ProdukTanya from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
+import HeroDplk1 from '@/assets/images/agi/dplk/hero-dplk-1.svg';
+import HeroDplk2 from '@/assets/images/agi/dplk/hero-dplk-2.svg';
+import HeroDplk4 from '@/assets/images/agi/dplk/hero-dplk-4.svg';
 import BlankImage from '@/assets/images/blank-image.svg';
 import ProdukClaim from '@/assets/images/produk-claim.svg';
 import ProdukPolis from '@/assets/images/produk-polis.svg';
@@ -24,11 +24,11 @@ import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import HelpCard from '@/components/molecules/specifics/avrast/Cards/HelpCard';
+import HelpCard from '@/components/molecules/specifics/agi/Cards/HelpCard';
 
-import SimpleContainer from '@/components/molecules/specifics/avrast/Containers/Simple';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 
 import { ParamsProps } from '@/utils/globalTypes';
 

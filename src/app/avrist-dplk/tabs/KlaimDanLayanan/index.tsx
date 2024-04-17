@@ -1,12 +1,12 @@
 import React from 'react';
 
-import YellowContact from '@/assets/images/avrast/dplk/yellow-contact.svg';
-import YellowForm from '@/assets/images/avrast/dplk/yellow-form.svg';
-import YellowHelpDesk from '@/assets/images/avrast/dplk/yellow-head.svg';
-import YellowPaper from '@/assets/images/avrast/dplk/yellow-paper.svg';
-import YellowRecipt from '@/assets/images/avrast/dplk/yellow-receipt.svg';
+import YellowContact from '@/assets/images/agi/dplk/yellow-contact.svg';
+import YellowForm from '@/assets/images/agi/dplk/yellow-form.svg';
+import YellowHelpDesk from '@/assets/images/agi/dplk/yellow-head.svg';
+import YellowPaper from '@/assets/images/agi/dplk/yellow-paper.svg';
+import YellowRecipt from '@/assets/images/agi/dplk/yellow-receipt.svg';
 
-import InformationCard from '@/components/molecules/specifics/avrast/Cards/InformationCard';
+import InformationCard from '@/components/molecules/specifics/agi/Cards/InformationCard';
 
 const KlaimDanLayanan = () => {
   return (

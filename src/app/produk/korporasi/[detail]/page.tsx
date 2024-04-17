@@ -15,16 +15,16 @@ import InfoRedSymbol from '@/assets/symbols/info-red-symbol.svg';
 import ShieldSymbol from '@/assets/symbols/shield-symbol.svg';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import CardCategoryA from '@/components/molecules/specifics/avrast/Cards/CategoryA';
-import CategorySideBySideSixCards from '@/components/molecules/specifics/avrast/CategorySideBySideSixCards';
-import GridContainer from '@/components/molecules/specifics/avrast/Containers/Grid';
-import SimpleContainer from '@/components/molecules/specifics/avrast/Containers/Simple';
-import CustomForm from '@/components/molecules/specifics/avrast/CustomForm/Index';
-import DescriptionCategoryA from '@/components/molecules/specifics/avrast/Descriptions/CategoryA';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import FooterInformation from '@/components/molecules/specifics/avrast/FooterInformation';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
-import InfoError from '@/components/molecules/specifics/avrast/Info/Error';
+import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
+import CategorySideBySideSixCards from '@/components/molecules/specifics/agi/CategorySideBySideSixCards';
+import GridContainer from '@/components/molecules/specifics/agi/Containers/Grid';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import CustomForm from '@/components/molecules/specifics/agi/CustomForm/Index';
+import DescriptionCategoryA from '@/components/molecules/specifics/agi/Descriptions/CategoryA';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
+import InfoError from '@/components/molecules/specifics/agi/Info/Error';
 
 const ProdukKorporasiDetail = ({ params }: { params: { detail: string } }) => {
   console.log(params);

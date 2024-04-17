@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ProdukCard from '@/assets/images/avrast/avrist-syariah/about.svg';
+import ProdukCard from '@/assets/images/agi/avrist-syariah/about.svg';
 
 import Icon from '@/components/atoms/Icon';
-import CardProduct from '@/components/molecules/specifics/avrast/Cards/ProductCard';
-import CategoryPillsBox from '@/components/molecules/specifics/avrast/CategoryPillsBox';
-import SearchBar from '@/components/molecules/specifics/avrast/SearchBar';
+import CardProduct from '@/components/molecules/specifics/agi/Cards/ProductCard';
+import CategoryPillsBox from '@/components/molecules/specifics/agi/CategoryPillsBox';
+import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
 const Produk = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import HeartSymbol from '@/assets/symbols/heart-symbol.svg';
-import CardCategoryA from '@/components/molecules/specifics/avrast/Cards/CategoryA';
+import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
 
 function AsuransiJiwa() {
   return (

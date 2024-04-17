@@ -1,14 +1,14 @@
 import React from 'react';
 
-import YellowBinocular from '@/assets/images/avrast/dplk/yellow-binocular.svg';
-import YellowHead from '@/assets/images/avrast/dplk/yellow-head.svg';
-import YellowPeople from '@/assets/images/avrast/dplk/yellow-people.svg';
-import People1 from '@/assets/images/avrast/people-1.svg';
-import People2 from '@/assets/images/avrast/people-2.svg';
+import YellowBinocular from '@/assets/images/agi/dplk/yellow-binocular.svg';
+import YellowHead from '@/assets/images/agi/dplk/yellow-head.svg';
+import YellowPeople from '@/assets/images/agi/dplk/yellow-people.svg';
+import People1 from '@/assets/images/agi/people-1.svg';
+import People2 from '@/assets/images/agi/people-2.svg';
 
-import AboutHeading from '@/components/molecules/specifics/avrast/AboutHeading';
-import InformationCard from '@/components/molecules/specifics/avrast/Cards/InformationCard';
-import PersonCard from '@/components/molecules/specifics/avrast/Cards/PersonCard';
+import AboutHeading from '@/components/molecules/specifics/agi/AboutHeading';
+import InformationCard from '@/components/molecules/specifics/agi/Cards/InformationCard';
+import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
 
 const ManfaatUtama = () => {
   return (

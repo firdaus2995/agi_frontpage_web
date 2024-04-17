@@ -1,14 +1,14 @@
 import React from 'react';
 
-import GreenBinocular from '@/assets/images/avrast/avrist-syariah/green-binocular.svg';
-import GreenHead from '@/assets/images/avrast/avrist-syariah/green-head.svg';
-import GreenPeople from '@/assets/images/avrast/avrist-syariah/green-people.svg';
-import People1 from '@/assets/images/avrast/people-1.svg';
-import People2 from '@/assets/images/avrast/people-2.svg';
+import GreenBinocular from '@/assets/images/agi/avrist-syariah/green-binocular.svg';
+import GreenHead from '@/assets/images/agi/avrist-syariah/green-head.svg';
+import GreenPeople from '@/assets/images/agi/avrist-syariah/green-people.svg';
+import People1 from '@/assets/images/agi/people-1.svg';
+import People2 from '@/assets/images/agi/people-2.svg';
 
-import AboutHeading from '@/components/molecules/specifics/avrast/AboutHeading';
-import InformationCard from '@/components/molecules/specifics/avrast/Cards/InformationCard';
-import PersonCard from '@/components/molecules/specifics/avrast/Cards/PersonCard';
+import AboutHeading from '@/components/molecules/specifics/agi/AboutHeading';
+import InformationCard from '@/components/molecules/specifics/agi/Cards/InformationCard';
+import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
 
 const DewanPengawasSyariah = () => {
   return (

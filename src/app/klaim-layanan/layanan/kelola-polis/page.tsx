@@ -1,8 +1,8 @@
 'use client';
-import { Header } from '@/components/molecules/specifics/avrast/InformasiNasabah';
-import { MainContent } from '@/components/molecules/specifics/avrast/KelolaPolis';
-import FooterKlaim from '@/components/molecules/specifics/avrast/Klaim/FooterKlaim';
-import KlaimVideo from '@/components/molecules/specifics/avrast/Klaim/KlaimVideo';
+import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
+import { MainContent } from '@/components/molecules/specifics/agi/KelolaPolis';
+import FooterKlaim from '@/components/molecules/specifics/agi/Klaim/FooterKlaim';
+import KlaimVideo from '@/components/molecules/specifics/agi/Klaim/KlaimVideo';
 
 const InformationPolicy = () => {
   return (

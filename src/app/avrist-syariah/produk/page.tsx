@@ -1,7 +1,7 @@
 'use client';
-import ProdukCard from '@/assets/images/avrast/avrist-syariah/about.svg';
-import HelpDesk from '@/assets/images/avrast/avrist-syariah/helpdesk.svg';
-import HeroSyariah2 from '@/assets/images/avrast/avrist-syariah/hero-syariah-2.svg';
+import ProdukCard from '@/assets/images/agi/avrist-syariah/about.svg';
+import HelpDesk from '@/assets/images/agi/avrist-syariah/helpdesk.svg';
+import HeroSyariah2 from '@/assets/images/agi/avrist-syariah/hero-syariah-2.svg';
 
 import ProdukClaim from '@/assets/images/produk-claim.svg';
 import ProdukPolis from '@/assets/images/produk-polis.svg';
@@ -11,14 +11,14 @@ import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 import Icon from '@/components/atoms/Icon';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import HelpCard from '@/components/molecules/specifics/avrast/Cards/HelpCard';
-import CardProduct from '@/components/molecules/specifics/avrast/Cards/ProductCard';
-import CategoryPills from '@/components/molecules/specifics/avrast/CategoryPills';
-import CategoryPillsBox from '@/components/molecules/specifics/avrast/CategoryPillsBox';
-import SimpleContainer from '@/components/molecules/specifics/avrast/Containers/Simple';
-import FooterCards from '@/components/molecules/specifics/avrast/FooterCards';
-import Hero from '@/components/molecules/specifics/avrast/Hero';
-import SearchBar from '@/components/molecules/specifics/avrast/SearchBar';
+import HelpCard from '@/components/molecules/specifics/agi/Cards/HelpCard';
+import CardProduct from '@/components/molecules/specifics/agi/Cards/ProductCard';
+import CategoryPills from '@/components/molecules/specifics/agi/CategoryPills';
+import CategoryPillsBox from '@/components/molecules/specifics/agi/CategoryPillsBox';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import Hero from '@/components/molecules/specifics/agi/Hero';
+import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
 const ProdukSyariah = () => {
   return (

@@ -5,8 +5,8 @@ import OFFICE from '@/assets/images/common/office-gray.svg';
 import WORKER from '@/assets/images/common/worker-gray.svg';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
-import PurposeCard from '@/components/molecules/specifics/avrast/Cards/PurposeCard';
-import CategoryWithThreeCards from '@/components/molecules/specifics/avrast/CategoryWithThreeCards';
+import PurposeCard from '@/components/molecules/specifics/agi/Cards/PurposeCard';
+import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 
 const purposeData = [
   {

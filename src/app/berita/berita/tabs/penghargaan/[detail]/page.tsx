@@ -1,37 +1,39 @@
 import React from 'react';
 
 import Image from 'next/image';
+
 import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
-import Icon3 from '@/assets/images/agi/component/panduan-pengajuan/icon-1.svg';
 import Icon2 from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
 import BlankImage from '@/assets/images/blank-image.svg';
-import Icon4 from '@/assets/images/common/heart-check.svg';
+import Icon3 from '@/assets/images/common/email.svg';
+import Email from '@/assets/images/common/email.svg';
+import Office from '@/assets/images/common/office.svg';
+import Phone from '@/assets/images/common/phone.svg';
+import Icon4 from '@/assets/images/common/procedure.svg';
+import PlayButton from '@/assets/images/play-button.svg';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import Input from '@/components/atoms/Input';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
-import CardCategoryB from '@/components/molecules/specifics/agi/Cards/CategoriB';
+import MediumTag from '@/components/atoms/Tag/MediumTag';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
-import InterestSection from '@/components/molecules/specifics/agi/InterestSection';
 
 export const generateStaticParams = () => {
-  return [{ detail: 'promo-terbaru' }];
+  return [{ detail: 'detail' }];
 };
 
-const DetailPromoTerbaru = ({ params }: { params: { detail: string } }) => {
+const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
   console.log(params);
   return (
     <>
       <Hero
-        title="Promo"
+        title="Penghargaan"
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
           {
-            title: 'Avrist Promo Terbaru',
-            href: '/promo-berita/promo?tab=Promo+Terbaru'
+            title: 'Penghargaan',
+            href: '/berita/berita?tab=Penghargaan'
           }
         ]}
         bottomImage={BlankImage}
@@ -40,13 +42,18 @@ const DetailPromoTerbaru = ({ params }: { params: { detail: string } }) => {
       <div className="flex items-center justify-center w-full">
         <div className="flex flex-col gap-10 w-2/3 p-10">
           <div className="flex flex-col gap-5">
-            <p className="text-purple_dark font-semibold">Penawaran</p>
+            <p className="text-purple_dark font-semibold">Penghargaan</p>
             <p className="font-semibold text-[48px]">
-              Lorem ipsum dolor sit amet consectetur.
+              Best Insurance 2023: Avrist Cetak Prestasi Gemilang!{' '}
             </p>
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-col gap-2">
-                <p>2 Januari 2024</p>
+                <p>23 Februari 2024 | Budi Rahman</p>
+                <div className="flex flex-row gap-2">
+                  <MediumTag title="Asuransi" />
+                  <MediumTag title="Edukasi" />
+                  <MediumTag title="Artikel" />
+                </div>
               </div>
               <div className="flex flex-col gap-1 items-center">
                 <div className="flex items-center" role="button">
@@ -143,43 +150,90 @@ const DetailPromoTerbaru = ({ params }: { params: { detail: string } }) => {
           <div className="bg-gray-200">
             <Image src={BlankImage} alt="img" className="w-full" />
           </div>
+          <p>
+            <span className="font-bold italic">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>{' '}
+            Quis non est egestas urna. Dictum pellentesque iaculis at tellus
+            tortor sit dis nunc. Volutpat dictum venenatis non eget et. Augue
+            tortor aliquam sapien ultricies egestas phasellus venenatis
+            pulvinar. Consectetur magna dignissim turpis est ut et sapien.
+            Commodo morbi iaculis viverra eget elementum rutrum duis. Magna urna
+            et ullamcorper neque orci urna. Aenean libero enim in sed. Fusce a
+            ipsum ipsum vestibulum metus orci libero aliquam. Augue vitae nam et
+            volutpat lectus tempus quam turpis eget.
+          </p>
+          <div className="flex relative bg-gray-200">
+            <Image
+              height={0}
+              width={0}
+              alt="sliderInformationImage"
+              className="min-h-[400px] w-full object-cover"
+              src={BlankImage}
+            />
+            <div className="w-full h-full absolute flex items-center justify-center">
+              <Image alt={'play-button'} className="w-24" src={PlayButton} />
+            </div>
+          </div>
           <div className="flex flex-row gap-4">
             <div className="flex flex-row gap-4">
-              <p className="text-sm font-medium">Lihat Promo ini di:</p>
+              <p className="text-sm font-medium">
+                Artikel ini telah di liput di:
+              </p>
               <div className="flex flex-row gap-2 items-center text-xs font-medium text-purple_dark">
-                Apple Watch
+                Kompas
                 <Icon name="externalLink" color="purple_dark" width={10} />
+              </div>
+              <div className="flex flex-row gap-2 items-center text-xs font-medium text-purple_dark">
+                Media Indonesia
+                <Icon name="externalLink" color="purple_dark" width={10} />
+              </div>
+              <div className="flex flex-row gap-2 items-center text-xs font-medium text-purple_dark">
+                Tribun
+                <Icon name="externalLink" color="purple_dark" width={10} />
+              </div>
+              <div className="flex flex-row gap-2 items-center text-xs font-medium text-purple_dark">
+                Detik
+                <Icon name="externalLink" color="purple_dark" width={10} />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 p-5 border border-b-8 border-b-purple_dark rounded-xl">
+            <p className="font-semibold text-xl">
+              Informasi lebih lanjut, hubungi:
+            </p>
+            <div className="flex flex-col">
+              <p className="font-bold text-xl">Lika Shalia</p>
+              <p className="text-xl">
+                Head of Corporate & Marketing Communications
+              </p>
+            </div>
+            <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row gap-2 items-center">
+                <Image alt={'email'} className="w-6" src={Email} />
+                <p className="font-bold">corcom@avrist.com</p>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <Image alt={'phone'} className="w-6" src={Phone} />
+                <p className="font-bold">+62 21 5789 8188</p>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <Image alt={'office'} className="w-6" src={Office} />
+                <p className="font-bold">Sekilas Avrist Life Insurance</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <InterestSection />
-
       <div className="flex flex-col">
-        <div className="flex flex-col items-center justify-center gap-10 p-10">
-          <p className="text-purple_dark font-bold text-[36px]">
-            Penawaran Promo Lainnya
-          </p>
-          <div className="grid grid-cols-3 gap-[24px] p-10">
-            {[...Array(3)].map((_, index) => (
-              <CardCategoryB
-                key={index}
-                summary="Lorem ipsum dolor sit amet consectetur."
-                description="2 Januari 2024"
-              />
-            ))}
-          </div>
-        </div>
-        <RoundedFrameBottom />
         <FooterInformation
           title={
             <div className="flex flex-col gap-4">
               <p className="text-[56px]">Subscribe Informasi Terkini!</p>
               <Button
                 title="Avrist Life Insurance"
-                customButtonClass="bg-purple_dark rounded-xl"
+                customButtonClass="bg-agi_grey border-agi_grey rounded-xl"
                 customTextClass="text-white font-bold"
               />
               <div className="flex flex-row gap-2">
@@ -194,34 +248,35 @@ const DetailPromoTerbaru = ({ params }: { params: { detail: string } }) => {
           }
           image={BlankImage}
         />
-        <RoundedFrameTop />
       </div>
-      <FooterCards
-        cards={[
-          {
-            title: 'Hubungi Kami',
-            icon: Icon1,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Tanya Avrista',
-            icon: Icon2,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Panduan Klaim',
-            icon: Icon3,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Asuransi Individu',
-            icon: Icon4,
-            subtitle: 'Lihat Produk'
-          }
-        ]}
-      />
+      <div className="w-full h-full bg-purple_superlight pb-20">
+        <FooterCards
+          cards={[
+            {
+              title: 'Layanan Nasabah',
+              icon: Icon1,
+              subtitle: '021 5789 8188'
+            },
+            {
+              title: 'Tanya Avrista',
+              icon: Icon2,
+              subtitle: 'Lebih Lanjut'
+            },
+            {
+              title: 'Tanya Lewat Email',
+              icon: Icon3,
+              subtitle: 'Kirim Email'
+            },
+            {
+              title: 'Prosedur Pengaduan',
+              icon: Icon4,
+              subtitle: 'Lihat Prosedur'
+            }
+          ]}
+        />
+      </div>
     </>
   );
 };
 
-export default DetailPromoTerbaru;
+export default DetailPenghargaan;

@@ -166,7 +166,7 @@ const CategoryWithThreeCards = ({
             <div className="flex flex-row gap-[12px] ">
               <input
                 placeholder={searchPlaceholder ?? 'Cari'}
-                className="focus:outline-none w-[450px] px-[16px] py-[8px] rounded-[12px] bg-purple_dark/[.06]"
+                className="focus:outline-none w-[600px] px-[16px] py-[8px] rounded-[12px] bg-purple_dark/[.06]"
               />
               <ButtonSmall title="Cari" />
             </div>

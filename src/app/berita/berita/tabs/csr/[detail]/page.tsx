@@ -1,40 +1,39 @@
 import React from 'react';
 
 import Image from 'next/image';
+
 import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
-import Icon3 from '@/assets/images/agi/component/panduan-pengajuan/icon-1.svg';
 import Icon2 from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
 import BlankImage from '@/assets/images/blank-image.svg';
+import Icon3 from '@/assets/images/common/email.svg';
 import Email from '@/assets/images/common/email.svg';
-import Icon4 from '@/assets/images/common/heart-check.svg';
 import Office from '@/assets/images/common/office.svg';
 import Phone from '@/assets/images/common/phone.svg';
+import Icon4 from '@/assets/images/common/procedure.svg';
 import PlayButton from '@/assets/images/play-button.svg';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import Input from '@/components/atoms/Input';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 
 export const generateStaticParams = () => {
-  return [{ detail: 'berita-dan-kegiatan' }];
+  return [{ detail: 'detail' }];
 };
 
-const DetailTanyaAvrista = ({ params }: { params: { detail: string } }) => {
+const DetailCSR = ({ params }: { params: { detail: string } }) => {
   console.log(params);
   return (
     <>
       <Hero
-        title="Avrist Terkini"
+        title="CSR"
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
           {
-            title: 'Berita dan Kegiatan',
-            href: '/promo-berita/berita?tab=Avrist+Terkini&category=Berita+dan+Kegiatan'
+            title: 'CSR',
+            href: '/berita/berita?tab=CSR'
           }
         ]}
         bottomImage={BlankImage}
@@ -43,9 +42,7 @@ const DetailTanyaAvrista = ({ params }: { params: { detail: string } }) => {
       <div className="flex items-center justify-center w-full">
         <div className="flex flex-col gap-10 w-2/3 p-10">
           <div className="flex flex-col gap-5">
-            <p className="text-purple_dark font-semibold">
-              Tanggung Jawab Sosial
-            </p>
+            <p className="text-purple_dark font-semibold">CSR</p>
             <p className="font-semibold text-[48px]">
               Avrist Assurance: Edukasi Keuangan pada Komunitas{' '}
             </p>
@@ -230,14 +227,13 @@ const DetailTanyaAvrista = ({ params }: { params: { detail: string } }) => {
       </div>
 
       <div className="flex flex-col">
-        <RoundedFrameBottom />
         <FooterInformation
           title={
             <div className="flex flex-col gap-4">
               <p className="text-[56px]">Subscribe Informasi Terkini!</p>
               <Button
                 title="Avrist Life Insurance"
-                customButtonClass="bg-purple_dark rounded-xl"
+                customButtonClass="bg-agi_grey border-agi_grey rounded-xl"
                 customTextClass="text-white font-bold"
               />
               <div className="flex flex-row gap-2">
@@ -252,34 +248,35 @@ const DetailTanyaAvrista = ({ params }: { params: { detail: string } }) => {
           }
           image={BlankImage}
         />
-        <RoundedFrameTop />
       </div>
-      <FooterCards
-        cards={[
-          {
-            title: 'Hubungi Kami',
-            icon: Icon1,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Tanya Avrista',
-            icon: Icon2,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Panduan Klaim',
-            icon: Icon3,
-            subtitle: 'Lebih Lanjut'
-          },
-          {
-            title: 'Asuransi Individu',
-            icon: Icon4,
-            subtitle: 'Lihat Produk'
-          }
-        ]}
-      />
+      <div className="w-full h-full bg-purple_superlight pb-20">
+        <FooterCards
+          cards={[
+            {
+              title: 'Layanan Nasabah',
+              icon: Icon1,
+              subtitle: '021 5789 8188'
+            },
+            {
+              title: 'Tanya Avrista',
+              icon: Icon2,
+              subtitle: 'Lebih Lanjut'
+            },
+            {
+              title: 'Tanya Lewat Email',
+              icon: Icon3,
+              subtitle: 'Kirim Email'
+            },
+            {
+              title: 'Prosedur Pengaduan',
+              icon: Icon4,
+              subtitle: 'Lihat Prosedur'
+            }
+          ]}
+        />
+      </div>
     </>
   );
 };
 
-export default DetailTanyaAvrista;
+export default DetailCSR;

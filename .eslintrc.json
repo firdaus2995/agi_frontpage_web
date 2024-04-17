@@ -37,7 +37,9 @@
     "@typescript-eslint/consistent-type-imports": 0,
     "@typescript-eslint/no-invalid-void-type": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
-    "@typescript-eslint/strict-boolean-expressions": 0
+    "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/ban-ts-comment": 1,
+    "@typescript-eslint/no-explicit-any": 1
     // "@typescript-eslint/no-misused-promises": [
     //   2,
     //   {

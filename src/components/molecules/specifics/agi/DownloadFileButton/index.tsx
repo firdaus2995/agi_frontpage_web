@@ -25,8 +25,8 @@ const DownloadFileButton: React.FC<IDownloadFileButton> = ({
       <div className="xs:w-full md:w-auto">
         <Button
           title="Unduh"
-          customButtonClass="bg-purple_dark rounded-lg"
-          customTextClass="text-white"
+          customButtonClass="bg-white rounded-lg"
+          customTextClass="text-purple_dark"
         />
       </div>
     </div>

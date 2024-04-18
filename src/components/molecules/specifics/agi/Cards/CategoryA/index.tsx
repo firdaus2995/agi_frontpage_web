@@ -46,7 +46,11 @@ const CardCategoryA = ({
       </div>
       {href ? (
         <Link href={href} className="w-full">
-          <ButtonSmall title="Pelajari Produk" customClassName="w-full" />
+          <ButtonSmall
+            title="Pelajari Produk"
+            customClassName="w-full"
+            variant="outlined"
+          />
         </Link>
       ) : (
         <ButtonSmall title="Pelajari Produk" />

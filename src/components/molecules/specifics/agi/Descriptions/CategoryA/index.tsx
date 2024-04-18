@@ -7,7 +7,7 @@ interface IDescriptionCategoryA {
   tags: string[];
   categoryTitle: string;
   productTitle: string;
-  categorySymbol: StaticImageData;
+  categorySymbol?: StaticImageData;
 }
 
 const DescriptionCategoryA = ({
@@ -21,18 +21,21 @@ const DescriptionCategoryA = ({
       <div className="flex flex-col gap-[8px]">
         <div className="flex flex-row gap-[12px]">
           {/* <Image width={36} height={36} alt="symbol" src={HeartSymbol} /> */}
-          <Image width={36} height={36} alt="symbol" src={categorySymbol} />
+          {categorySymbol && (
+            <Image width={36} height={36} alt="symbol" src={categorySymbol} />
+          )}
           <p className="font-bold text-[24px] text-purple_dark">
             {categoryTitle}
           </p>
         </div>
-        <p className="font-bold text-[36px] sm:text-[56px]">{productTitle}</p>
+        <p className="font-bold text-[36px] sm:text-[56px] text-purple_dark">
+          {productTitle}
+        </p>
       </div>
       <div className="flex flex-col gap-[12px]">
         <p className="text-[24px] sm:text-[36px]">
           <span className="font-bold">Perlindungan maksimal</span> dan{' '}
-          <span className="font-bold">investasi optimal</span> untuk jalani
-          passion-mu.{' '}
+          <span className="font-bold">investasi optimal</span> untuk hidup-mu.{' '}
         </p>
         <p className="font-light text-[24px]">
           Lorem ipsum dolor sit amet consectetur. Eget nisl mi leo eu. Risus

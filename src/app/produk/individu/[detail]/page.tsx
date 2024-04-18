@@ -1,21 +1,17 @@
 import React from 'react';
-import Image from 'next/image';
 
-import GambarProdukIndividu from '@/assets/images/gambar-produk-individu.svg';
-import PlayVideo from '@/assets/images/play-video.svg';
-import ProdukClaim from '@/assets/images/produk-claim.svg';
-import ProdukIndividuImage from '@/assets/images/produk-individu-image.svg';
-import ProdukPolis from '@/assets/images/produk-polis.svg';
-import ProdukRumahSakit from '@/assets/images/produk-rumah-sakit.svg';
-import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
-import GiveHeartSymbol from '@/assets/symbols/giveheart-symbol.svg';
+import BLANK_IMAGE from '@/assets/images/blank-image.svg';
+import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
+import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
+import EMAIL from '@/assets/images/common/email.svg';
+import MESSAGE from '@/assets/images/common/message.svg';
+
+import GiveHeartSymbol from '@/assets/symbols/giveheart-symbol-gray.svg';
 import HeartSymbol from '@/assets/symbols/heart-symbol.svg';
-import HeartChatSymbol from '@/assets/symbols/heartchat-symbol.svg';
+import HeartChatSymbol from '@/assets/symbols/heartchat-symbol-gray.svg';
 import InfoRedSymbol from '@/assets/symbols/info-red-symbol.svg';
-import ShieldSymbol from '@/assets/symbols/shield-symbol.svg';
+import ShieldSymbol from '@/assets/symbols/shield-symbol-gray.svg';
 
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
 import CategorySideBySideSixCards from '@/components/molecules/specifics/agi/CategorySideBySideSixCards';
 import GridContainer from '@/components/molecules/specifics/agi/Containers/Grid';
@@ -38,20 +34,18 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           { title: 'Beranda', href: '/' },
           { title: 'Produk', href: '/produk/individu' },
           {
-            title: 'Avrist Pasti',
-            href: '/produk/individu/avrist-pasti'
+            title: 'Asuransi Penyimpanan Uang',
+            href: '/produk/individu/asuransi-penyimpanan-uang'
           }
         ]}
-        bottomImage={GambarProdukIndividu}
+        bottomImage={BLANK_IMAGE}
       />
       <SimpleContainer>
         <DescriptionCategoryA
-          categorySymbol={HeartSymbol}
-          categoryTitle="Employee Benefit"
-          productTitle="Avrist PASTI"
-          tags={['Asuransi Jiwa', 'Premi Tetap', 'Premi Berkala']}
+          categoryTitle="Asuransi Aneka"
+          productTitle="Asuransi Penyimpanan Uang"
+          tags={['Asuransi Jiwa', 'Premi Tetap']}
         />
-        <Image className="self-center" alt="play_video" src={PlayVideo} />
         <CategorySideBySideSixCards
           leftSide={[
             {
@@ -130,39 +124,39 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           />
         ))}
       </GridContainer>
-      <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
-          <p className="text-[56px]">
-            <span className="font-bold text-purple_dark">Hello,</span> Ada yang
-            bisa <span className="font-bold text-purple_dark">Avrista</span>{' '}
-            bantu?
+          <p className="text-[36px] sm:text-[56px] text-center sm:text-left">
+            Ada yang bisa{' '}
+            <span className="font-bold text-purple_dark">AvGen</span> bantu
+            untuk Anda?
           </p>
         }
-        buttonTitle="Tanya Avrista"
-        image={ProdukIndividuImage}
+        buttonTitle="Tanya AvGen"
+        image={BLANK_IMAGE}
       />
-      <RoundedFrameTop bgColor="bg-white" />
       <FooterCards
+        bgColor="bg-purple_superlight"
         cards={[
           {
-            title: 'Rumah Sakit Rekanan',
-            icon: ProdukRumahSakit
+            title: 'Layanan Nasabah',
+            subtitle: '021 5789 8188',
+            icon: CUSTOMER_SERVICE
           },
           {
-            title: 'Klaim & Layanan',
-            icon: ProdukClaim,
-            subtitle: 'Lebih Lanjut'
+            title: 'Tanya Avrista',
+            subtitle: 'Lebih Lanjut',
+            icon: MESSAGE
           },
           {
-            title: 'Kelola Polis',
-            icon: ProdukPolis,
-            subtitle: 'Login Akun'
+            title: 'Tanya Lewat Email',
+            subtitle: 'Kirim Email',
+            icon: EMAIL
           },
           {
-            title: 'Testimonial',
-            icon: ProdukTestimoni,
-            subtitle: 'Lebih Lanjut'
+            title: 'Prosedur Pengaduan',
+            subtitle: 'Lihat Prosedur',
+            icon: DOCUMENT_SEARCH
           }
         ]}
       />

@@ -13,7 +13,7 @@ function AsuransiJiwa() {
           summary="Lorem Ipsum"
           description="Lorem ipsum dolor sit amet"
           tags={['Asuransi Jiwa', 'Premi Tetap', 'Premi Berkala']}
-          href={`/produk/individu/produk-asuransi-jiwa-` + index}
+          href={`/produk/individu/asuransi-penyimpanan-uang-` + index}
         />
       ))}
     </div>

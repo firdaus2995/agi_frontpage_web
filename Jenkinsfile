@@ -1,10 +1,10 @@
 node {
-    def WORKSPACE = "/var/lib/jenkins/workspace/avrist-frontpage-web-deploy"
-    def dockerImageTag = "avrist-frontpage-web-deploy${env.BUILD_NUMBER}"
+    def WORKSPACE = "/var/lib/jenkins/workspace/agi-frontpage-web-deploy"
+    def dockerImageTag = "agi-frontpage-web-deploy${env.BUILD_NUMBER}"
 try{
     notifyBuild('STARTED')
     stage('Clone Repo') {
-        git url: 'git@gitlab.com:bit-avrist-website-frontpage/avrist-cms-frontpage-web.git',
+        git url: 'git@gitlab.com:bit-agi-website-frontpage/agi-cms-frontpage-web.git',
             credentialsId: 'avrist-sit-fe-fp',
             branch: 'sit'
      }

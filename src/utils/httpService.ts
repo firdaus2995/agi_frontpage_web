@@ -1,14 +1,25 @@
 import { BASE_URL } from './baseUrl';
 
-type Environment = 'page' | '';
+type Environment =
+  | 'page'
+  | 'content'
+  | 'default'
+  | 'content/category'
+  | 'content-detail'
+  | 'form'
+  | '';
 
-interface QueryParams {
+export interface QueryParams {
   [key: string]: string;
 }
 
 interface FetchOptions extends RequestInit {
   responseType?: 'json';
   queryParams?: QueryParams;
+  headers?: {
+    Authorization?: string;
+    'Content-Type': string;
+  };
 }
 
 export async function httpService<T>(
@@ -37,6 +48,16 @@ function getBaseUrl(env: Environment): string {
   switch (env) {
     case 'page':
       return BASE_URL.apiPage;
+    case 'content':
+      return BASE_URL.contentPage;
+    case 'content/category':
+      return BASE_URL.contentCategoryPage;
+    case 'default':
+      return BASE_URL.default;
+    case 'content-detail':
+      return BASE_URL.contentDetail;
+    case 'form':
+      return BASE_URL.formUrl;
     default:
       throw new Error(`Unknown environment: ${env}`);
   }

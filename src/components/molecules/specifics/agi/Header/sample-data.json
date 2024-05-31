@@ -21,12 +21,17 @@
             "title": "Produk",
             "subMenus": [
               { "title": "Asuransi Kendaraan", "icon": 0 },
-              { "title": "Asuransi Pengangkutan Barang", "icon": 2 },
               { "title": "Asuransi Harta Benda", "icon": 1 },
-              { "title": "Asuransi Aneka", "icon": 2 },
               { "title": "Asuransi Kecelakaan Diri", "icon": 2 },
+              { "title": "Asuransi Rekayasa", "icon": 2 }
+            ]
+          },
+          {
+            "title": "",
+            "subMenus": [
+              { "title": "Asuransi Pengangkutan Barang", "icon": 2 },
+              { "title": "Asuransi Aneka", "icon": 2 },
               { "title": "Asuransi Tanggung Gugat", "icon": 2 },
-              { "title": "Asuransi Rekayasa", "icon": 2 },
               { "title": "Asuransi Mikro", "icon": 2 },
               { "title": "Asuransi Perjalanan", "icon": 2 }
             ]

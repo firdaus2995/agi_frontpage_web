@@ -4,9 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 
-import AsuransiJiwa from './tabs/AsuransiJiwa';
-import AsuransiKesehatan from './tabs/AsuransiKesehatan';
-
 import Search from '@/assets/images/common/search.svg';
 import ProdukClaim from '@/assets/images/produk-claim.svg';
 import ProdukPolis from '@/assets/images/produk-polis.svg';
@@ -48,6 +45,12 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const paginatedData = dataContent
+    ? dataContent.slice(startIndex, endIndex)
+    : [];
+  const totalPages = dataContent
+    ? Math.ceil(dataContent.length / itemsPerPage)
+    : 0;
 
   const searchParams = useSearchParams();
 
@@ -90,9 +93,9 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
     const fetchDataContentWithCategory = async () => {
       try {
-        if (activeTab) {
+        if (activeTab === searchParams.get('tab')) {
           const contentCategoryResponse = await fetch(
-            `/api/produk/content-category?productFilter=individu&category=${activeTab}&channelFilter=${selectedChannels}&searchFilter=${searchValue}`
+            `/api/produk/content-category?category=${activeTab}&channelFilter=${selectedChannels}&searchFilter=${searchValue}`
           );
           const data = await contentCategoryResponse.json();
           const transformedDataContent = contentCategoryTransformer(
@@ -158,14 +161,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         setChannels(Array.from(uniqueChannels));
       }
     });
-  }, [searchParams, selectedChannels, searchValue]);
-
-  const paginatedData = dataContent
-    ? dataContent.slice(startIndex, endIndex)
-    : [];
-  const totalPages = dataContent
-    ? Math.ceil(dataContent.length / itemsPerPage)
-    : 0;
+  }, [searchParams, selectedChannels, searchValue, activeTab]);
 
   const handleSelectedChannels = (value: any) => {
     if (selectedChannels === value) {
@@ -183,46 +179,13 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     setSearchValue(value);
   };
 
-  const renderCard = () => {
-    if (!activeTab) {
-      return (
-        dataContent && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
-            {paginatedData.map((item: any, index: number) => (
-              <CardCategoryA
-                key={index}
-                imageProduk={item.produkImage.imageUrl}
-                symbol={item.kategoriProdukIcon.imageUrl}
-                title={item.categoryName}
-                summary={item.namaProduk}
-                description={item.deskripsiSingkatProduk}
-                tags={item.tags.split(',')}
-                href={`/produk/${item.id}`}
-              />
-            ))}
-          </div>
-        )
-      );
-    }
-    const renderActiveTab = {
-      'Asuransi Jiwa': () => <AsuransiJiwa data={paginatedData} />,
-      'Asuransi Kesehatan': () => <AsuransiKesehatan data={paginatedData} />
-    };
-
-    return (
-      renderActiveTab[
-        activeTab as keyof typeof renderActiveTab
-      ] as () => JSX.Element
-    )();
-  };
-
   return (
     <div className="flex flex-col">
       <Hero
         title={activeTab || ''}
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
-          { title: 'Produk', href: '#' }
+          { title: activeTab, href: '#' }
         ]}
         bottomImage={data.bannerImageUrl}
         imageUrl={data.titleImageUrl}
@@ -248,7 +211,22 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               />
             </div>
           </div>
-          {renderCard()}
+          {dataContent && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+              {paginatedData.map((item: any, index: number) => (
+                <CardCategoryA
+                  key={index}
+                  imageProduk={item.produkImage.imageUrl}
+                  symbol={item.kategoriProdukIcon.imageUrl}
+                  title={activeTab}
+                  summary={item.namaProduk}
+                  description={item.deskripsiSingkatProduk}
+                  tags={item.tags.split(',')}
+                  href={`/produk/${item.id}`}
+                />
+              ))}
+            </div>
+          )}
           {dataContent?.length === 0 && (
             <div className="w-full flex flex-col md:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
               <Image src={Search} alt="search" />

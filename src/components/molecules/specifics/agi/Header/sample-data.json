@@ -16,24 +16,24 @@
       },
       {
         "title": "Produk",
+        "skipUrl": true,
         "content": [
           {
             "title": "Produk",
             "subMenus": [
-              { "title": "Asuransi Kendaraan", "icon": 0 },
-              { "title": "Asuransi Harta Benda", "icon": 1 },
-              { "title": "Asuransi Kecelakaan Diri", "icon": 2 },
-              { "title": "Asuransi Rekayasa", "icon": 2 }
+              { "title": "Kendaraan", "icon": 0 },
+              { "title": "Properti", "icon": 1 },
+              { "title": "Kecelakaan Diri", "icon": 2 },
+              { "title": "Engineering", "icon": 2 }
             ]
           },
           {
             "title": "",
             "subMenus": [
-              { "title": "Asuransi Pengangkutan Barang", "icon": 2 },
-              { "title": "Asuransi Aneka", "icon": 2 },
-              { "title": "Asuransi Tanggung Gugat", "icon": 2 },
-              { "title": "Asuransi Mikro", "icon": 2 },
-              { "title": "Asuransi Perjalanan", "icon": 2 }
+              { "title": "Casualities", "icon": 2 },
+              { "title": "Pihak Ketiga", "icon": 2 },
+              { "title": "Mikro", "icon": 2 },
+              { "title": "Marine Cargo", "icon": 2 }
             ]
           }
         ]

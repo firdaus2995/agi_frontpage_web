@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getContentCategory } from '@/services/content-page.api';
+import { BASE_SLUG } from '@/utils/baseSlug';
 import { QueryParams } from '@/utils/httpService';
 
 export async function GET(request: NextRequest) {
+  const slug = BASE_SLUG.PRODUK.CONTENT.PRODUK;
+
   try {
     const productFilter =
       request.nextUrl.searchParams.get('productFilter') || '';
@@ -19,7 +22,7 @@ export async function GET(request: NextRequest) {
         channelFilter,
         searchFilter
       };
-      const data = await getContentCategory('Produk-Avras', queryParams);
+      const data = await getContentCategory(slug, queryParams);
       return NextResponse.json(data, { status: 200 });
     }
 
@@ -29,7 +32,7 @@ export async function GET(request: NextRequest) {
       category,
       searchFilter
     };
-    const data = await getContentCategory('Produk-Avras', queryParams);
+    const data = await getContentCategory(slug, queryParams);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json(

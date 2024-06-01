@@ -27,21 +27,27 @@ const CardCategoryA = ({
   imageProduk
 }: ICardCategoryA) => {
   return (
-    <div className="flex flex-col gap-[24px] px-[24px] pt-[24px] pb-[36px] border border-gray_light border-b-8 border-b-purple_dark rounded-[18px] rounded-b-[12px]">
+    <div className="flex flex-col px-[24px] pt-[24px] pb-[36px] border border-gray_light border-b-8 border-b-purple_dark rounded-[18px] rounded-b-[12px]">
       <Image
         alt="blank-image"
         width={100}
         height={172}
         src={imageProduk || BlankImage}
-        className="w-full h-[172px] rounded-[10px]"
+        className="w-full h-[172px] rounded-[10px] mb-[1.5rem]"
       />
-      <div className="flex flex-row items-center gap-[4px]">
-        <Image alt="symbol" src={symbol} width={24} height={24} />
+      <div className="flex flex-row items-center gap-[4px] mb-[0.5rem]">
+        <Image
+          alt="symbol"
+          src={symbol}
+          width={24}
+          height={24}
+          className="hidden"
+        />
         <p className="text-purple_dark font-bold text-sm">{title}</p>
       </div>
       <p className="text-[32px] font-bold">{summary}</p>
       <p
-        className="line-clamp-3"
+        className="line-clamp-3 my-[0.75rem]"
         dangerouslySetInnerHTML={{ __html: description ?? '' }}
       />
       <div className="flex flex-col justify-between grow gap-4">
@@ -55,10 +61,11 @@ const CardCategoryA = ({
             <ButtonSmall
               title="Pelajari Produk"
               customClassName="w-full text-[18px]"
+              variant="outlined"
             />
           </Link>
         ) : (
-          <ButtonSmall title="Pelajari Produk" />
+          <ButtonSmall variant="outlined" title="Pelajari Produk" />
         )}
       </div>
     </div>

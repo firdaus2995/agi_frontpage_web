@@ -26,7 +26,7 @@ const FooterInformation = ({
 }: IFooterInformation) => {
   return (
     <div
-      className={`w-full md:pt-[6.25rem] md:pb-[7.5rem] xs:py-[3.125rem] bg-avrast_product_bg justify-center ${outerClassName}`}
+      className={`w-full md:pt-[6.25rem] md:pb-[7.5rem] xs:py-[3.125rem] xs:px-[2rem] md:px-[8.5rem] bg-avrast_product_bg justify-center ${outerClassName}`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
         <div

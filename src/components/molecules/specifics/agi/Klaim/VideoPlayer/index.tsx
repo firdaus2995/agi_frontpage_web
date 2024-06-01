@@ -3,12 +3,13 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import YouTube, { YouTubeEvent } from 'react-youtube';
+import PlayButtonGreen from '@/assets/images/play-button-green.svg';
 import PlayButton from '@/assets/images/play-button.svg';
 
 export type VideoPlayerProps = {
   url: string;
-  thumbnail: string;
-  type: string;
+  thumbnail?: string;
+  type?: string;
   color: string;
 };
 
@@ -38,6 +39,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     } else if (lastPiece && lastPiece.includes('?si=')) {
       const anotherSplitted = lastPiece.split('?si=');
       return anotherSplitted.at(0);
+    } else if (lastPiece && lastPiece.includes('?')) {
+      const videoIdParam = lastPiece.split('?')[0];
+      return videoIdParam ?? '';
     }
     return lastPiece ?? '';
   }, [url]);
@@ -47,7 +51,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     try {
       videoPlayerRef.current?.playVideo();
     } catch (err) {
-      console.error('Error auto playing media');
+      console.error('Error auto playing media', err);
     }
   }, [isThumbnailVisible]);
 
@@ -67,6 +71,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const handleReady = (ev: YouTubeEvent) => {
     videoPlayerRef.current = ev.target;
     isReady.current = true;
+    setIsThumbnailVisible(false);
   };
 
   const handleThumbnailClick = () => {
@@ -74,7 +79,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     setIsThumbnailVisible(false);
   };
 
+  const videoOptions = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1
+    }
+  };
+
   return (
+    // isReady.current &&
     <div className="isolate relative w-full h-full">
       <div
         className={`
@@ -86,13 +100,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           alt="Thumbnail"
           width={0}
           height={0}
-          className="absolute h-full w-full"
-          src={thumbnail}
+          className={`absolute h-full w-full ${type ? 'rounded-t-2xl' : 'rounded-2xl'}`}
+          src={
+            thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+          }
           onClick={handleThumbnailClick}
         />
-      <div className="w-full h-full absolute flex items-center justify-center">
-        <Image alt={'play-button'} className="w-24" src={PlayButton} />
-      </div>
+        <div className="w-full h-full flex items-center justify-center">
+          <Image
+            alt={'play-button'}
+            className="w-24 absolute"
+            src={color.includes('syariah') ? PlayButtonGreen : PlayButton}
+            onClick={handleThumbnailClick}
+          />
+        </div>
       </div>
       {/* <iframe
         className="aspect-video -z-1"
@@ -102,15 +123,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       /> */}
       <YouTube
         videoId={videoId}
-        className="h-full"
-        iframeClassName="-z-1 w-full h-full"
+        className="sm:h-[35.438rem] xs:h-[13.375rem]"
+        iframeClassName="-z-1 w-full sm:h-[35.438rem] xs:h-[13.375rem] rounded-t-xl"
         onReady={handleReady}
+        opts={videoOptions}
       />
-      <div
-        className={`p-4 w-full bg-${color} rounded-b-xl text-sm text-white font-semibold`}
-      >
-        {type}
-      </div>
+      {type && (
+        <div
+          className={`p-[1.5rem] w-full bg-${color} rounded-b-xl text-white font-bold md:text-2xl font-karla flex flex-row justify-between`}
+        >
+          {type}
+        </div>
+      )}
     </div>
   );
 };

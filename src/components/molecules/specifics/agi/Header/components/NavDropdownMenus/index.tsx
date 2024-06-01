@@ -73,7 +73,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
                           href={
                             index !== 2 || el.icon !== 2
                               ? {
-                                  pathname: `/${convertToKebabCase(item.title)}/${camelToKebabCase(val.title)}`,
+                                  pathname: `/${convertToKebabCase(item.title)}/${!item.skipUrl ? camelToKebabCase(val.title) : ''}`,
                                   query: { tab: el.title }
                                 }
                               : 'https://my.avrist.com/welcome'

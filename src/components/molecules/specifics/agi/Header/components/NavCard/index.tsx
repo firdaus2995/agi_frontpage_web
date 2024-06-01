@@ -169,11 +169,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           pathname: `${!skipUrl ? `/${convertToKebabCase(title)}` : ''}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
                           query: { tab: item.title }
                         }}
-                        target={
-                          indexData === 1 && item.icon === 2
-                            ? '_blank'
-                            : '_self'
-                        }
+                        target={item.customUrl ? '_blank' : '_self'}
                         className={`flex flex-row justify-between`}
                         onClick={() => {
                           setShouldForceHideBanner(true);

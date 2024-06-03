@@ -6,7 +6,8 @@ export const BASE_URL = {
   contentCategoryPage: `${process.env.NEXT_PUBLIC_AVRAS_API}/api/content/category`,
   image: `${process.env.NEXT_PUBLIC_IMAGE_API}`,
   provider: `${process.env.NEXT_PUBLIC_PROVIDER_API}`,
-  default: `${process.env.NEXT_PUBLIC_AVRAS_API}/api`
+  default: `${process.env.NEXT_PUBLIC_AVRAS_API}/api`,
+  cms: `${process.env.NEXT_PUBLIC_AVRAS_API}/api-cms`
 };
 
 export const EXTERNAL_URL = {

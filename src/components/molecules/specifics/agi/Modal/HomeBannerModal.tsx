@@ -1,8 +1,13 @@
 'use client';
 import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import Link from 'next/link';
 import { CardRainbow } from '../HubungiKami/MainContentComponent/Card';
 import Icon from '@/components/atoms/Icon';
+import {
+  contentStringTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 function getCookie(name: string) {
   const nameEQ = name + '=';
@@ -36,8 +41,15 @@ function setCookie(name: string, value: string) {
 
 const MODAL = 'homeModalBanner';
 
-export const HomeBannerModal = () => {
+type HomeBannerModal = {
+  content: any;
+};
+
+export const HomeBannerModal = (props: HomeBannerModal) => {
+  const { content } = props;
+
   const [isOpen, setIsOpen] = useState(false);
+  const [bannerModalPath, setBannerModalPath] = useState('');
 
   function closeModal() {
     setIsOpen(false);
@@ -50,10 +62,15 @@ export const HomeBannerModal = () => {
 
   useEffect(() => {
     const statusModal: string | null = getCookie(MODAL);
+
     if (statusModal === null) {
+      setBannerModalPath(
+        singleImageTransformer(content['popup-image']).imageUrl
+      );
       openModal();
     }
   }, []);
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-[99]" onClose={closeModal}>
@@ -70,7 +87,7 @@ export const HomeBannerModal = () => {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-4 text-center py-[100px] px-[72px]">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -80,26 +97,29 @@ export const HomeBannerModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="h-[80%] w-[60%] transform overflow-hidden transition-all">
-                <CardRainbow>
-                  <div className="h-full">
-                    <div className="absolute right-0 p-[24px]">
-                      <button onClick={closeModal}>
-                        <Icon
-                          name="close"
-                          width={24}
-                          height={24}
-                          color="white"
-                        />
-                      </button>
+              <Dialog.Panel className="h-[80%] w-[60%] transform overflow-hidden transition-all cursor-pointer">
+                <div className="absolute right-0 p-[24px]">
+                  <button onClick={closeModal}>
+                    <Icon name="close" width={24} height={24} color="white" />
+                  </button>
+                </div>
+                <Link
+                  href={
+                    contentStringTransformer(content['popup-link']) !== '-'
+                      ? contentStringTransformer(content['popup-link'])
+                      : '#'
+                  }
+                >
+                  <CardRainbow>
+                    <div className="h-full min-h-[200px]">
+                      <img
+                        src={bannerModalPath}
+                        alt="modal-home-banner"
+                        className="object-cover h-full w-full"
+                      />
                     </div>
-                    <img
-                      src="https://img.freepik.com/premium-vector/flash-sale-discount-banner-template-promotion_7087-866.jpg"
-                      alt="modal-home-banner"
-                      className="object-cover h-full w-full"
-                    />
-                  </div>
-                </CardRainbow>
+                  </CardRainbow>
+                </Link>
               </Dialog.Panel>
             </Transition.Child>
           </div>

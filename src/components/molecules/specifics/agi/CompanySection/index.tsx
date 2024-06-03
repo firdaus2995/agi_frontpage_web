@@ -1,64 +1,32 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import CHEVRONRIGHTGRAY from '@/assets/images/agi/component/product-section/chevron-right-gray.svg';
-import CHEVRONRIGHTGREEN from '@/assets/images/agi/component/product-section/chevron-right-green.svg';
-import CHEVRONRIGHTPURPLE from '@/assets/images/agi/component/product-section/chevron-right-purple.svg';
-import ICON1PRODUCT1 from '@/assets/images/agi/component/product-section/icon-1-product-1.svg';
-import ICON1PRODUCT2 from '@/assets/images/agi/component/product-section/icon-1-product-2.svg';
-import ICON1PRODUCT3 from '@/assets/images/agi/component/product-section/icon-1-product-3.svg';
-import ICON2PRODUCT1 from '@/assets/images/agi/component/product-section/icon-2-product-1.svg';
-import ICON2PRODUCT2 from '@/assets/images/agi/component/product-section/icon-2-product-2.svg';
-import ICON2PRODUCT3 from '@/assets/images/agi/component/product-section/icon-2-product-3.svg';
-import PRODUCTIMG1 from '@/assets/images/agi/component/product-section/product-1-img.svg';
-import PRODUCTIMG2 from '@/assets/images/agi/component/product-section/product-2-img.svg';
-import PRODUCTIMG3 from '@/assets/images/agi/component/product-section/product-3-img.svg';
 import Button from '@/components/atoms/Button/Button';
+import {
+  contentStringTransformer,
+  heroContentTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-const data = [
-  {
-    category: 'Avrist Life Insurance',
-    icon1: ICON1PRODUCT1,
-    icon2: ICON2PRODUCT1,
-    title1: 'Integritas.',
-    title2: '1000+ Rekanan di Indonesia',
-    link1: 'Penghargaan',
-    link2: 'Rumah Sakit Rekanan',
-    linkIcon: CHEVRONRIGHTPURPLE,
-    img: PRODUCTIMG1
-  },
-  {
-    category: 'Avrist Asset Management',
-    icon1: ICON1PRODUCT2,
-    icon2: ICON2PRODUCT2,
-    title1: 'Inovasi Solusi.',
-    title2: 'Investasi dengan Tim Profesional',
-    link1: 'Penghargaan',
-    link2: 'Tentang Kami',
-    linkIcon: CHEVRONRIGHTGREEN,
-    img: PRODUCTIMG2
-  },
-  {
-    category: 'Avrist General Insurance',
-    icon1: ICON1PRODUCT3,
-    icon2: ICON2PRODUCT3,
-    title1: 'Dinamis progresif.',
-    title2: 'Efektif, terpercaya dan transparan ',
-    link1: 'Penghargaan',
-    link2: 'Tentang Kami',
-    linkIcon: CHEVRONRIGHTGRAY,
-    img: PRODUCTIMG3
-  }
-];
+type CompanySection = {
+  content: any;
+};
 
-const CompanySection = () => {
+const CompanySection = (props: CompanySection) => {
+  const { content } = props;
+  const [sliderData, setSliderData] = useState<any>([]);
+
+  useEffect(() => {
+    setSliderData(heroContentTransformer(content['why-us-looping']));
+  }, []);
+
   const sliderSettings = {
     dots: true,
     infinite: false,
@@ -66,45 +34,46 @@ const CompanySection = () => {
     centerMode: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    adaptiveHeight: true
   };
 
-  const renderCard = (val: {
-    category: string;
-    icon1: StaticImport;
-    icon2: StaticImport;
-    title1: string;
-    title2: string;
-    link1: string;
-    link2: string;
-    linkIcon: StaticImport;
-    img: StaticImport;
-  }) => {
+  const renderCard = (val: any) => {
     return (
       <div
-        className={`w-full md:h-[40vh] xs:h-[65vh] flex mb-10 md:flex-row xs:flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
+        className={`md:mx-[4.5rem] md:h-[50vh] flex mb-10 md:flex-row xs:flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
       >
         <div
-          className={`md:w-1/2 xs:w-full p-5 flex h-full flex-col items-start justify-center gap-5`}
+          className={`h-[392px] md:w-1/2 xs:w-full p-5 flex flex-col items-start justify-center gap-6`}
         >
-          <p className="text-[28px] text-left text-purple_dark">Penghargaan</p>
-          <p className="text-[50px] text-left text-purple_dark">
-            <span className="font-bold text-purple_dark">Best Insurance</span>{' '}
-            Award Media Asuransi 2022
+          <p className="text-[28px] text-left text-purple_dark">
+            {contentStringTransformer(val['why-us-text-1'])}
           </p>
-          <Button
-            title="Berita Pers"
-            customButtonClass="bg-purple_dark"
-            customTextClass="text-white"
+          <p
+            dangerouslySetInnerHTML={{
+              __html: contentStringTransformer(val['why-us-text-2'])
+            }}
+            className="text-[50px] text-left text-purple_dark line-clamp-2"
           />
+          <Link
+            href={contentStringTransformer(val['why-us-button-link'])}
+            target="_blank"
+          >
+            <Button
+              title={contentStringTransformer(val['why-us-button-label'])}
+              customButtonClass="bg-purple_dark"
+              customTextClass="text-white"
+            />
+          </Link>
         </div>
         <div
-          className={`md:w-1/2 xs:w-full h-full md:rounded-r-xl xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden`}
+          className={`md:w-1/2 xs:w-full h-full xs:max-md:h-[212px] md:rounded-r-xl md:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}
         >
           <Image
-            src={val.img}
-            alt={val.category}
-            className="w-full md:rounded-r-xl xs:rounded-b-xl"
+            src={singleImageTransformer(val['why-us-banner']).imageUrl}
+            alt={singleImageTransformer(val['why-us-banner']).altText}
+            className="w-full md:rounded-r-xl md:rounded-bl-none xs:rounded-b-xl"
+            fill
           />
         </div>
       </div>
@@ -114,18 +83,27 @@ const CompanySection = () => {
   return (
     <div className="flex flex-col self-stretch items-center justify-center py-32 gap-16 bg-purple_dark">
       <div>
-        <p className="md:text-5xl xs:text-3xl text-center font-bold text-white px-10">
-          Mengapa Avrist General Insurance?
+        <p className="md:text-[4rem] xs:text-3xl text-center font-extrabold text-white px-10 font-karla">
+          {contentStringTransformer(content['why-us-title-section'])}
         </p>
-        <p className="md:text-4xl xs:text-2xl text-white text-center px-10">
-          Berkembang dengan{' '}
-          <span className="font-bold">solusi yang inovatif</span>
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: contentStringTransformer(
+              content['why-us-description-section']
+            )
+          }}
+          className="md:text-[2.25rem] xs:text-3xl text-center font-light px-10 font-karla lg:mt-10 text-white"
+        />
       </div>
-      <div className="w-full grid grid-cols-1  gap-4">
+      <div className="w-full grid grid-cols-1">
         <Slider {...sliderSettings}>
-          {data.map((val, idx) => (
-            <div key={idx}>{renderCard(val)}</div>
+          {sliderData.map((val: any, idx: any) => (
+            <div
+              key={idx}
+              className="w-full flex items-center justify-center sm:px-[24px] sm:py-[36px] xs:p-4"
+            >
+              {renderCard(val)}
+            </div>
           ))}
         </Slider>
       </div>

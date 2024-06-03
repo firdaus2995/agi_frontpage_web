@@ -62,7 +62,6 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
           { title: tab, href: '#' }
         ]}
         bottomImage={tab === 'Sekilas Perusahaan' && BlankImage}
-        isRounded={false}
       />
       <div className="w-full grid grid-cols-3 gap-2 px-[136px] py-20 bg-white ">
         {tabs.map((val, idx) => (

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import BannerImg from '@/assets/images/agi/component/klaim-video/img-video.svg';
 
 export const BannerFooter = () => {
@@ -18,12 +19,13 @@ export const BannerFooter = () => {
               Pahami Kewajiban Sebagai{' '}
               <span className="font-bold text-purple_dark">Nasabah</span>
             </p>
-            <div
+            <Link
               role="button"
               className="p-4 bg-purple_dark rounded-xl text-sm font-semibold text-white flex flex-row gap-2"
+              href={'/klaim-layanan/klaim?tab=Informasi+Klaim'}
             >
               Standar Pelayanan
-            </div>
+            </Link>
           </div>
           <div
             className={`md:w-1/2 xs:w-full h-full md:rounded-r-xl md:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}

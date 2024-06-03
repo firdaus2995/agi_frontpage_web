@@ -96,6 +96,45 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         const footerBtnUrl = contentStringTransformer(
           content['cta1-link-button']
         );
+        const judulForm = contentStringTransformer(content['judul-form']);
+        const judulSection = contentStringTransformer(content['judul-section']);
+        const kotak1 = {
+          judul: contentStringTransformer(content['judul-kotak-1']),
+          icon1: singleImageTransformer(content['icon-1-kotak-1']).imageUrl,
+          subjudul1: contentStringTransformer(content['subjudul-1-kotak-1']),
+          icon2: singleImageTransformer(content['icon-2-kotak-1']).imageUrl,
+          subjudul2: contentStringTransformer(content['subjudul-2-kotak-1']),
+          icon3: singleImageTransformer(content['icon-3-kotak-1']).imageUrl,
+          subjudul3: contentStringTransformer(content['subjudul-3-kotak-1'])
+        };
+
+        const kotak2 = {
+          judul: contentStringTransformer(content['judul-kotak-2'])
+        };
+
+        const kotak3 = {
+          icon: singleImageTransformer(content['icon-kotak-3']).imageUrl,
+          judul: contentStringTransformer(content['judul-kotak-3']),
+          btnLabel: contentStringTransformer(content['label-button-kotak-3'])
+        };
+
+        const kotak4 = {
+          judul: contentStringTransformer(content['judul-kotak-4']),
+          btnLabel: contentStringTransformer(content['label-button-kotak-4'])
+        };
+
+        const kotak5 = {
+          judul: contentStringTransformer(content['judul-kotak-5']),
+          icon: singleImageTransformer(content['icon-button-kotak-5']).imageUrl,
+          btnLabel: contentStringTransformer(content['label-button-kotak-5']),
+          url: contentStringTransformer(content['url-button-kotak-5']),
+          footnote: contentStringTransformer(content['footnote-kotak-5'])
+        };
+
+        const kotak6 = {
+          judul: contentStringTransformer(content['judul-kotak-6']),
+          icon: singleImageTransformer(content['icon-kotak-6']).imageUrl
+        };
 
         const cta41 = {
           icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
@@ -128,10 +167,18 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           footerText,
           footerBtnLabel,
           footerBtnUrl,
+          judulForm,
+          judulSection,
           cta41,
           cta42,
           cta43,
-          cta44
+          cta44,
+          kotak1,
+          kotak2,
+          kotak3,
+          kotak4,
+          kotak5,
+          kotak6
         });
       } catch (error) {
         console.error('Error:', error);
@@ -187,43 +234,21 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       const fileBrosur = singleImageTransformer(content['file-brosur']);
       const formProduk = contentStringTransformer(content['form-produk']);
       const kotak1 = {
-        judul: contentStringTransformer(content['judul-kotak-1']),
-        icon1: singleImageTransformer(content['icon-1-kotak-1']).imageUrl,
-        subjudul1: contentStringTransformer(content['subjudul-1-kotak-1']),
         deskripsi1: contentStringTransformer(content['deskripsi-1-kotak-1']),
-        icon2: singleImageTransformer(content['icon-2-kotak-1']).imageUrl,
-        subjudul2: contentStringTransformer(content['subjudul-2-kotak-1']),
         deskripsi2: contentStringTransformer(content['deskripsi-2-kotak-1']),
-        icon3: singleImageTransformer(content['icon-3-kotak-1']).imageUrl,
-        subjudul3: contentStringTransformer(content['subjudul-3-kotak-1']),
         deskripsi3: contentStringTransformer(content['deskripsi-3-kotak-1'])
       };
       const kotak2 = {
-        judul: contentStringTransformer(content['judul-kotak-2']),
         deskripsi: contentStringTransformer(content['deskripsi-kotak-2'])
       };
       const kotak3 = {
-        icon: singleImageTransformer(content['icon-kotak-3']).imageUrl,
-        judul: contentStringTransformer(content['judul-kotak-3']),
-        btnLabel: contentStringTransformer(content['label-button-kotak-3']),
         url: contentStringTransformer(content['url-button-kotak-3'])
       };
       const kotak4 = {
-        judul: contentStringTransformer(content['judul-kotak-4']),
         deskripsi: contentStringTransformer(content['deskripsi-kotak-4']),
-        btnLabel: contentStringTransformer(content['label-button-kotak-4']),
         url: singleImageTransformer(content['file-kotak-4']).imageUrl
       };
-      const kotak5 = {
-        judul: contentStringTransformer(content['judul-kotak-5']),
-        icon: singleImageTransformer(content['icon-button-kotak-5']).imageUrl,
-        btnLabel: contentStringTransformer(content['label-button-kotak-5']),
-        url: contentStringTransformer(content['url-button-kotak-5']),
-        footnote: contentStringTransformer(content['Footnote-kotak-5'])
-      };
       const kotak6 = {
-        judul: contentStringTransformer(content['judul-kotak-6']),
-        icon: singleImageTransformer(content['icon-kotak-6']).imageUrl,
         deskripsi: contentStringTransformer(content['deskripsi-kotak-6'])
       };
 
@@ -254,7 +279,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         kotak2,
         kotak3,
         kotak4,
-        kotak5,
         kotak6
       };
 
@@ -443,54 +467,57 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
                 />
               )}
               <CategorySideBySideSixCards
-                title={dataDetail?.kotak1.judul}
+                title={data?.kotak1?.judul}
                 leftSide={[
                   {
-                    symbol: dataDetail?.kotak1?.icon1 ?? ShieldSymbol,
-                    title: dataDetail?.kotak1?.subjudul1 ?? '',
+                    symbol: data?.kotak1?.icon1 ?? ShieldSymbol,
+                    title: data?.kotak1?.subjudul1 ?? '',
                     description: dataDetail?.kotak1?.deskripsi1
                   },
                   {
-                    symbol: dataDetail?.kotak1?.icon2 ?? HeartChatSymbol,
-                    title: dataDetail?.kotak1?.subjudul2 ?? '',
+                    symbol: data?.kotak1?.icon2 ?? HeartChatSymbol,
+                    title: data?.kotak1?.subjudul2 ?? '',
                     description: dataDetail?.kotak1?.deskripsi2
                   },
                   {
-                    symbol: dataDetail?.kotak1?.icon3 ?? GiveHeartSymbol,
-                    title: dataDetail?.kotak1?.subjudul3 ?? '',
+                    symbol: data?.kotak1?.icon3 ?? GiveHeartSymbol,
+                    title: data?.kotak1?.subjudul3 ?? '',
                     description: dataDetail?.kotak1?.deskripsi3
                   }
                 ]}
                 rightSide={[
                   {
-                    title: dataDetail?.kotak2.judul ?? '',
-                    description: dataDetail?.kotak2.deskripsi ?? ''
+                    title: data?.kotak2?.judul ?? '',
+                    description: dataDetail?.kotak2?.deskripsi ?? ''
                   },
                   {
-                    title: dataDetail?.kotak3.judul ?? '',
-                    description: dataDetail?.kotak3.deskripsi ?? '',
-                    hasDownloadButton: true,
-                    urlDownload: dataDetail?.kotak3.url
+                    title: data?.kotak3?.judul ?? '',
+                    description: dataDetail?.kotak3?.deskripsi ?? '',
+                    hasDownloadButton: false,
+                    btnLabel: data?.kotak3?.btnLabel,
+                    urlDownload: dataDetail?.kotak3?.url,
+                    icon: data?.kotak3?.icon
                   },
                   {
-                    title: dataDetail?.kotak4.judul ?? '',
-                    description: dataDetail?.kotak4.deskripsi,
+                    title: data?.kotak4?.judul ?? '',
+                    description: dataDetail?.kotak4?.deskripsi,
                     hasDownloadButton: true,
-                    urlDownload: dataDetail?.kotak4.url
+                    btnLabel: data?.kotak4?.btnLabel,
+                    urlDownload: dataDetail?.kotak4?.url
                   }
                 ]}
                 extraBox={{
-                  title: dataDetail?.kotak5.judul ?? '',
-                  icon: dataDetail?.kotak5.icon ?? '',
-                  buttonTitle: dataDetail?.kotak5.btnLabel ?? '',
-                  url: dataDetail?.kotak5.url,
-                  footnote: dataDetail?.kotak5.footnote ?? ''
+                  title: data?.kotak5?.judul ?? '',
+                  icon: data?.kotak5?.icon ?? '',
+                  buttonTitle: data?.kotak5?.btnLabel ?? '',
+                  url: data?.kotak5?.url,
+                  footnote: data?.kotak5?.footnote ?? ''
                 }}
               />
               {dataDetail?.kotak6 && (
                 <InfoError
-                  symbol={dataDetail?.kotak6.icon ?? InfoRedSymbol}
-                  title={dataDetail?.kotak6.judul ?? ''}
+                  symbol={data?.kotak6.icon ?? InfoRedSymbol}
+                  title={data?.kotak6.judul ?? ''}
                   description={dataDetail?.kotak6.deskripsi ?? ''}
                 />
               )}
@@ -501,6 +528,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       <SimpleContainer bgColor="purple_superlight" gap="gap-0">
         {dataForm && (
           <CustomForm
+            title={data?.judulForm}
             customFormClassname="border-none p-[0px] rounded-[12px]"
             onChange={handleChange}
             dataForm={dataForm}
@@ -550,7 +578,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         pxSm="136px"
         py="36px"
         pySm="72px"
-        textTitle="Rekomendasi Produk Lainnya"
+        textTitle={data?.judulSection ?? 'Rekomendasi Produk Lainnya'}
       >
         {dataRekomendasi &&
           dataRekomendasi.length !== 0 &&

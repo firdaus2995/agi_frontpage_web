@@ -7,7 +7,7 @@ interface IDescriptionCategoryA {
   tags: string[];
   categoryTitle: string;
   productTitle: string;
-  categorySymbol: StaticImageData;
+  categorySymbol?: StaticImageData;
   tagLineProduk?: string;
   deskripsiLengkapProduk?: string;
 }
@@ -29,7 +29,7 @@ const DescriptionCategoryA = ({
             width={36}
             height={36}
             alt="symbol"
-            src={categorySymbol}
+            src={categorySymbol ?? ''}
             className="hidden"
           />
           <p className="font-bold text-[24px] text-purple_dark">

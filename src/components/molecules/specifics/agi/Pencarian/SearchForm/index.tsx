@@ -10,7 +10,7 @@ import Button from '@/components/atoms/Button/Button';
 
 const SearchForm = () => {
   return (
-    <div className="bg-purple_dark w-full flex flex-col -mt-[1px]">
+    <div className="w-full flex flex-col xs:-mt-[3.4rem] md:-mt-[6.3rem]">
       <div className="sm:px-10 md:px-40 2xl:px-96 pt-12 bg-white rounded-t-[80px] flex flex-col gap-6">
         <SearchBox onSearch={() => {}} />
 

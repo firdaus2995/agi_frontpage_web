@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { NavbarMenuItemContent } from '../../types';
+import TriangleMarker from '../TriangleMarker';
 import NAV6IMAGE5 from '@/assets/images/agi/about/karir.svg';
 import NAV6IMAGE4 from '@/assets/images/agi/about/laporan-penting.svg';
 import NAV6IMAGE2 from '@/assets/images/agi/about/menagemen.svg';
@@ -48,6 +49,7 @@ type NavCardProps = {
   title: string;
   indexData: number;
   skipUrl?: boolean;
+  xPosition?: number;
 };
 
 const ICON_MAPPING = [
@@ -72,7 +74,8 @@ const NavCard: React.FC<NavCardProps> = ({
   customClass,
   indexData,
   title,
-  skipUrl
+  skipUrl,
+  xPosition
 }) => {
   // This component has become a client component even when there's not a "use client" withint this file.
   // This is because this component has been imported into a Header component that is a client component.
@@ -84,18 +87,24 @@ const NavCard: React.FC<NavCardProps> = ({
     <div
       className={`${shouldForceHideBanner ? '!opacity-0 !invisible' : ''} font-karla w-full bg-white rounded-b-[72px] gap-4 shadow-xl text-gray_body ${customClass ?? ''}`}
     >
-      <div className="w-full max-w-[89rem] m-auto flex items-stretch justify-between gap-6 pr-16 divide-x-2">
+      <div className="w-full flex flex-row py-[3.125rem] justify-between px-[8.5rem] divide-x-2 m-auto">
         {content.map((val, idx) => (
           <div
             key={idx}
-            className="w-full flex flex-col pl-12 py-16 my-5"
+            className={`w-full flex flex-col ${idx === 0 ? 'pr-[2.25rem]' : 'pl-[2.25rem]'}`}
           >
-            <div className="mt-8 flex flex-col gap-10">
-              <h2 className="text-3xl font-bold text-gray_title">
+            {xPosition ? (
+              <div className="absolute top-[-16px]" style={{ left: xPosition }}>
+                <TriangleMarker />
+              </div>
+            ) : null}
+
+            <div className="flex flex-col gap-6">
+              <h2 className="text-[2rem] font-bold text-gray_title font-karla">
                 {val.title}
               </h2>
               <div
-                className={`${val.title === '' && 'mt-10'} ${val.subMenus.length > 3 ? 'grid grid-cols-2' : 'flex flex-col justify-between'} gap-4 w-full`}
+                className={`${val.title === '' && 'mt-10'} flex flex-col justify-between gap-6 w-full cursor-pointer`}
               >
                 {val?.subMenus?.map((item, index) =>
                   item?.listMenu ? (
@@ -110,9 +119,9 @@ const NavCard: React.FC<NavCardProps> = ({
                           }
                         }}
                       >
-                        <div className="flex flex-row gap-2 items-center">
+                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
                           <Image
-                            className="w-4"
+                            className="w-[2.25rem] h-[2.25rem]"
                             src={ICON_MAPPING[indexData][item.icon]}
                             alt={item.title}
                           />
@@ -146,7 +155,7 @@ const NavCard: React.FC<NavCardProps> = ({
                                 }, 700);
                               }}
                             >
-                              <div className="flex flex-row gap-2 items-center whitespace-nowrap">
+                              <div className="flex flex-row gap-2 items-center whitespace-nowrap hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
                                 {value}
                               </div>
                             </Link>
@@ -160,6 +169,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           pathname: `${!skipUrl ? `/${convertToKebabCase(title)}` : ''}/${camelToKebabCase(val.title !== '' ? val.title : content[0].title)}`,
                           query: { tab: item.title }
                         }}
+                        target={item.customUrl ? '_blank' : '_self'}
                         className={`flex flex-row justify-between`}
                         onClick={() => {
                           setShouldForceHideBanner(true);
@@ -168,12 +178,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           }, 700);
                         }}
                       >
-                        <div className="flex flex-row gap-2 items-center">
-                          <Image
-                            className="w-4"
-                            src={ICON_MAPPING[indexData][item.icon]}
-                            alt={item.title}
-                          />
+                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
                           {item.title}
                         </div>
                         <span className="mt-[3px]">

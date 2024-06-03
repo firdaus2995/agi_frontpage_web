@@ -5,10 +5,6 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 
 import Search from '@/assets/images/common/search.svg';
-import ProdukClaim from '@/assets/images/produk-claim.svg';
-import ProdukPolis from '@/assets/images/produk-polis.svg';
-import ProdukRumahSakit from '@/assets/images/produk-rumah-sakit.svg';
-import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 
 import Icon from '@/components/atoms/Icon';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
@@ -35,7 +31,34 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     titleAltText: '',
     bannerAltText: '',
     footerInfoAltText: '',
-    footerInfoImageUrl: ''
+    footerInfoImageUrl: '',
+    footerText: '',
+    footerBtnLabel: '',
+    footerBtnUrl: '',
+    cta41: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta42: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta43: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta44: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    }
   };
   const [data, setData] = useState<IDataPage>(initialData);
   const [dataContent, setDataContent] = useState<IDataContent[]>();
@@ -78,13 +101,53 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         const titleImage = singleImageTransformer(content['title-image']);
         const bannerImage = singleImageTransformer(content['banner-image']);
         const footerImage = singleImageTransformer(content['cta1-image']);
+        const footerText = contentStringTransformer(content['cta1-teks']);
+        const footerBtnLabel = contentStringTransformer(
+          content['cta1-label-button']
+        );
+        const footerBtnUrl = contentStringTransformer(
+          content['cta1-link-button']
+        );
+
+        const cta41 = {
+          icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-1-nama']),
+          subtitle: contentStringTransformer(content['cta4-1-label-link']),
+          url: contentStringTransformer(content['cta4-1-link'])
+        };
+        const cta42 = {
+          icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-2-nama']),
+          subtitle: contentStringTransformer(content['cta4-2-label-link']),
+          url: contentStringTransformer(content['cta4-2-link'])
+        };
+        const cta43 = {
+          icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-3-nama']),
+          subtitle: contentStringTransformer(content['cta4-3-label-link']),
+          url: contentStringTransformer(content['cta4-3-link'])
+        };
+        const cta44 = {
+          icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-4-nama']),
+          subtitle: contentStringTransformer(content['cta4-4-label-link']),
+          url: contentStringTransformer(content['cta4-4-link'])
+        };
+
         setData({
           titleImageUrl: titleImage.imageUrl,
           bannerImageUrl: bannerImage.imageUrl,
           titleAltText: titleImage.altText,
           bannerAltText: bannerImage.altText,
           footerInfoAltText: footerImage.altText,
-          footerInfoImageUrl: footerImage.imageUrl
+          footerInfoImageUrl: footerImage.imageUrl,
+          footerText,
+          footerBtnLabel,
+          footerBtnUrl,
+          cta41,
+          cta42,
+          cta43,
+          cta44
         });
       } catch (error) {
         console.error('Error:', error);
@@ -285,42 +348,41 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
-          <p className="text-[36px] sm:text-[56px] text-center sm:text-left">
-            <span className="font-bold text-purple_dark">Hello,</span> Ada yang
-            bisa <span className="font-bold text-purple_dark">Avrista</span>{' '}
-            bantu?
-          </p>
+          <p
+            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: data.footerText ?? '' }}
+          />
         }
-        buttonTitle="Tanya Avrista"
+        buttonTitle={data.footerBtnLabel}
         image={data.footerInfoImageUrl}
-        href={'/tanya-avrista'}
+        href={data.footerBtnUrl}
       />
       <RoundedFrameTop bgColor="bg-white" />
       <FooterCards
         cards={[
           {
-            title: 'Rumah Sakit Rekanan',
-            icon: ProdukRumahSakit,
-            subtitle: 'Lebih Lanjut',
-            href: '/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan'
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
           },
           {
-            title: 'Klaim & Layanan',
-            icon: ProdukClaim,
-            subtitle: 'Lebih Lanjut',
-            href: '/klaim-layanan/klaim?tab=Informasi+Klaim'
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
           },
           {
-            title: 'Kelola Polis',
-            icon: ProdukPolis,
-            subtitle: 'Login Akun',
-            href: 'https://my.avrist.com/welcome'
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
           },
           {
-            title: 'Testimonial',
-            icon: ProdukTestimoni,
-            subtitle: 'Lebih Lanjut',
-            href: '/promo-berita/berita?tab=Testimonial'
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
           }
         ]}
       />
@@ -337,6 +399,33 @@ export interface IDataPage {
   bannerAltText: string;
   footerInfoImageUrl: string;
   footerInfoAltText: string;
+  footerText?: string;
+  footerBtnLabel?: string;
+  footerBtnUrl?: string;
+  cta41: {
+    icon: string;
+    title: string;
+    subtitle: string;
+    url: string;
+  };
+  cta42: {
+    icon: string;
+    title: string;
+    subtitle: string;
+    url: string;
+  };
+  cta43: {
+    icon: string;
+    title: string;
+    subtitle: string;
+    url: string;
+  };
+  cta44: {
+    icon: string;
+    title: string;
+    subtitle: string;
+    url: string;
+  };
 }
 
 export interface IDataContent {

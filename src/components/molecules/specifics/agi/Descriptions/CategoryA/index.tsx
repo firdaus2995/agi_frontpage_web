@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 
@@ -18,6 +19,7 @@ const DescriptionCategoryA = ({
   tagLineProduk = '',
   deskripsiLengkapProduk = ''
 }: IDescriptionCategoryA) => {
+  const [showMoreTags, setShowMoreTags] = useState(false);
   return (
     <div className="flex flex-col gap-[24px] font-karla">
       <div className="flex flex-col gap-[8px]">
@@ -45,13 +47,25 @@ const DescriptionCategoryA = ({
           dangerouslySetInnerHTML={{ __html: deskripsiLengkapProduk ?? '' }}
         />
         <div className="flex flex-row flex-wrap gap-[8px] font-opensans">
-          {tags.map((item: string, index: number) => (
-            <MediumTag
-              key={index}
-              title={item}
-              customClass="font-semibold text-[14px]"
-            />
-          ))}
+          {tags
+            .slice(0, showMoreTags ? tags.length : 10)
+            .map((item: string, index: number) => (
+              <MediumTag
+                key={index}
+                title={item}
+                customClass="font-semibold text-[14px]"
+              />
+            ))}
+          {tags.length > 10 && (
+            <a
+              className="font-bold cursor-pointer"
+              onClick={() => {
+                setShowMoreTags(!showMoreTags);
+              }}
+            >
+              {showMoreTags ? 'Sembunyikan sisa tag' : 'Tampilkan sisa tag'}
+            </a>
+          )}
         </div>
       </div>
     </div>

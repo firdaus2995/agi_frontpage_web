@@ -43,16 +43,18 @@ const CardCategoryA = ({
           height={24}
           className="hidden"
         />
-        <p className="text-purple_dark font-bold text-sm">{title}</p>
+        <p className="text-purple_dark font-bold text-sm line-clamp-1">
+          {title}
+        </p>
       </div>
-      <p className="text-[32px] font-bold">{summary}</p>
+      <p className="text-[32px] font-bold line-clamp-3">{summary}</p>
       <p
         className="line-clamp-3 my-[0.75rem]"
         dangerouslySetInnerHTML={{ __html: description ?? '' }}
       />
       <div className="flex flex-col justify-between grow gap-4">
         <div className="flex flex-row flex-wrap gap-[12px]">
-          {tags.map((item: string, index: number) => (
+          {tags.slice(0, 4).map((item: string, index: number) => (
             <MediumTag key={index} title={item} />
           ))}
         </div>

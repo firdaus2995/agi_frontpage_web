@@ -2,6 +2,7 @@
 import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ICategorySideBySideSixCards {
   leftSide: {
@@ -14,22 +15,33 @@ interface ICategorySideBySideSixCards {
     description: string;
     hasDownloadButton?: boolean;
     urlDownload?: string;
+    btnLabel?: string;
   }[];
+  title?: string;
   leftTitleClassname?: string;
   rightTitleClassname?: string;
   buttonClassname?: string;
   customLeftSideClassname?: string;
   customRightSideClassname?: string;
+  extraBox?: {
+    title: string;
+    icon: StaticImport | string;
+    buttonTitle: string;
+    url: string;
+    footnote: string;
+  };
 }
 
 const CategorySideBySideSixCards = ({
   leftSide,
   rightSide,
+  title,
   leftTitleClassname = 'text-purple_dark',
   rightTitleClassname = 'text-purple_dark',
   buttonClassname = 'text-purple_dark border-purple_dark',
   customLeftSideClassname = 'border-b-purple_light',
-  customRightSideClassname = 'border-b-purple_light'
+  customRightSideClassname = 'border-b-purple_light',
+  extraBox
 }: ICategorySideBySideSixCards) => {
   const renderedDescription = (description: string, isRightSide: boolean) => {
     const isOrdered = description.includes('<ol>');
@@ -44,7 +56,7 @@ const CategorySideBySideSixCards = ({
           dangerouslySetInnerHTML={{
             __html: description.replace(
               '<ol>',
-              `<ol class="list-decimal pl-2 ${defaultClassName}">`
+              `<ol class="list-decimal pl-6 ${defaultClassName}">`
             )
           }}
         />
@@ -56,7 +68,7 @@ const CategorySideBySideSixCards = ({
           dangerouslySetInnerHTML={{
             __html: description.replace(
               '<ul>',
-              `<ul class="list-disc pl-2 ${defaultClassName}">`
+              `<ul class="list-disc pl-6 ${defaultClassName}">`
             )
           }}
         />
@@ -80,7 +92,7 @@ const CategorySideBySideSixCards = ({
           <p
             className={`${leftTitleClassname} text-[36px] font-bold font-karla`}
           >
-            Ringkasan Produk
+            {title ?? 'Ringkasan Produk'}
           </p>
           <div className="flex flex-col gap-[24px]">
             {leftSide.map(
@@ -126,12 +138,13 @@ const CategorySideBySideSixCards = ({
                 description: string;
                 hasDownloadButton?: boolean;
                 urlDownload?: string;
+                btnLabel?: string;
               },
               index: number
             ) => (
               <div
                 key={index}
-                className={`${item.urlDownload ? '' : 'hidden'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
+                className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
               >
                 <p
                   className={`${rightTitleClassname} font-bold text-4xl font-karla`}
@@ -146,11 +159,37 @@ const CategorySideBySideSixCards = ({
                     onClick={() => window.open(item.urlDownload, '_blank')}
                     className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans`}
                   >
-                    <p>Unduh</p>
+                    <p>{item.btnLabel}</p>
                   </button>
                 )}
               </div>
             )
+          )}
+          {extraBox && extraBox.title && (
+            <div className="flex flex-col gap-[1.5rem] bg-purple_superlight py-[2.25rem] px-[1.5rem] rounded-xl items-center">
+              <p className="xs:text-[1.5rem] md:text-[2.25rem] font-karla text-purple_dark font-bold">
+                {extraBox.title}
+              </p>
+              <Link
+                className="flex flex-row gap-[0.5rem bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem]"
+                href={extraBox.url}
+              >
+                <Image
+                  width={28}
+                  height={28}
+                  alt="symbol"
+                  src={extraBox?.icon}
+                />
+                <p className="font-opensans font-semibold text-purple_dark text-xl">
+                  {extraBox?.buttonTitle}
+                </p>
+              </Link>
+
+              <p
+                className="font-opensans text-sm"
+                dangerouslySetInnerHTML={{ __html: extraBox.footnote ?? '' }}
+              />
+            </div>
           )}
         </div>
       </div>

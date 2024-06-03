@@ -3,10 +3,6 @@ import React, { Suspense, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { IDataContent } from '../page';
-import ProdukClaim from '@/assets/images/produk-claim.svg';
-import ProdukPolis from '@/assets/images/produk-polis.svg';
-import ProdukRumahSakit from '@/assets/images/produk-rumah-sakit.svg';
-import ProdukTestimoni from '@/assets/images/produk-testimoni.svg';
 import GiveHeartSymbol from '@/assets/symbols/giveheart-symbol.svg';
 import HeartChatSymbol from '@/assets/symbols/heartchat-symbol.svg';
 import InfoRedSymbol from '@/assets/symbols/info-red-symbol.svg';
@@ -43,7 +39,34 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   const [dataRekomendasi, setDataRekomendasi] = useState<IDataContent[]>();
   const [data, setData] = useState<any>({
     titleImage: '',
-    footerImage: ''
+    footerImage: '',
+    footerText: '',
+    footerBtnLabel: '',
+    footerBtnUrl: '',
+    cta41: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta42: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta43: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta44: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    }
   });
   const [dataDetail, setDataDetail] = useState<any>();
   const [bannerImg, setBannerImg] = useState<any>();
@@ -66,7 +89,50 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         const { content } = pageTransformer(data);
         const titleImage = singleImageTransformer(content['title-image']);
         const footerImage = singleImageTransformer(content['cta1-image']);
-        setData({ titleImage, footerImage });
+        const footerText = contentStringTransformer(content['cta1-teks']);
+        const footerBtnLabel = contentStringTransformer(
+          content['cta1-label-button']
+        );
+        const footerBtnUrl = contentStringTransformer(
+          content['cta1-link-button']
+        );
+
+        const cta41 = {
+          icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-1-nama']),
+          subtitle: contentStringTransformer(content['cta4-1-label-link']),
+          url: contentStringTransformer(content['cta4-1-link'])
+        };
+        const cta42 = {
+          icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-2-nama']),
+          subtitle: contentStringTransformer(content['cta4-2-label-link']),
+          url: contentStringTransformer(content['cta4-2-link'])
+        };
+        const cta43 = {
+          icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-3-nama']),
+          subtitle: contentStringTransformer(content['cta4-3-label-link']),
+          url: contentStringTransformer(content['cta4-3-link'])
+        };
+        const cta44 = {
+          icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-4-nama']),
+          subtitle: contentStringTransformer(content['cta4-4-label-link']),
+          url: contentStringTransformer(content['cta4-4-link'])
+        };
+
+        setData({
+          titleImage,
+          footerImage,
+          footerText,
+          footerBtnLabel,
+          footerBtnUrl,
+          cta41,
+          cta42,
+          cta43,
+          cta44
+        });
       } catch (error) {
         console.error('Error:', error);
       }
@@ -120,6 +186,46 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       const fileRiplay = singleImageTransformer(content['file-riplay']);
       const fileBrosur = singleImageTransformer(content['file-brosur']);
       const formProduk = contentStringTransformer(content['form-produk']);
+      const kotak1 = {
+        judul: contentStringTransformer(content['judul-kotak-1']),
+        icon1: singleImageTransformer(content['icon-1-kotak-1']).imageUrl,
+        subjudul1: contentStringTransformer(content['subjudul-1-kotak-1']),
+        deskripsi1: contentStringTransformer(content['deskripsi-1-kotak-1']),
+        icon2: singleImageTransformer(content['icon-2-kotak-1']).imageUrl,
+        subjudul2: contentStringTransformer(content['subjudul-2-kotak-1']),
+        deskripsi2: contentStringTransformer(content['deskripsi-2-kotak-1']),
+        icon3: singleImageTransformer(content['icon-3-kotak-1']).imageUrl,
+        subjudul3: contentStringTransformer(content['subjudul-3-kotak-1']),
+        deskripsi3: contentStringTransformer(content['deskripsi-3-kotak-1'])
+      };
+      const kotak2 = {
+        judul: contentStringTransformer(content['judul-kotak-2']),
+        deskripsi: contentStringTransformer(content['deskripsi-kotak-2'])
+      };
+      const kotak3 = {
+        icon: singleImageTransformer(content['icon-kotak-3']).imageUrl,
+        judul: contentStringTransformer(content['judul-kotak-3']),
+        btnLabel: contentStringTransformer(content['label-button-kotak-3']),
+        url: contentStringTransformer(content['url-button-kotak-3'])
+      };
+      const kotak4 = {
+        judul: contentStringTransformer(content['judul-kotak-4']),
+        deskripsi: contentStringTransformer(content['deskripsi-kotak-4']),
+        btnLabel: contentStringTransformer(content['label-button-kotak-4']),
+        url: singleImageTransformer(content['file-kotak-4']).imageUrl
+      };
+      const kotak5 = {
+        judul: contentStringTransformer(content['judul-kotak-5']),
+        icon: singleImageTransformer(content['icon-button-kotak-5']).imageUrl,
+        btnLabel: contentStringTransformer(content['label-button-kotak-5']),
+        url: contentStringTransformer(content['url-button-kotak-5']),
+        footnote: contentStringTransformer(content['Footnote-kotak-5'])
+      };
+      const kotak6 = {
+        judul: contentStringTransformer(content['judul-kotak-6']),
+        icon: singleImageTransformer(content['icon-kotak-6']).imageUrl,
+        deskripsi: contentStringTransformer(content['deskripsi-kotak-6'])
+      };
 
       const detailData = {
         namaProduk,
@@ -143,7 +249,13 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         fileRiplay,
         fileBrosur,
         categoryTitle: jsonData.data.categoryName,
-        formId: jsonData.data?.formId || formProduk || '6979'
+        formId: jsonData.data?.formId || formProduk || '6979',
+        kotak1,
+        kotak2,
+        kotak3,
+        kotak4,
+        kotak5,
+        kotak6
       };
 
       setBannerImg(singleImageTransformer(content['produk-image']));
@@ -252,11 +364,14 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
     }
   }, [dataDetail]);
 
-  let titleImage, footerImage;
+  let titleImage, footerImage, footerText, footerBtnLabel, footerBtnUrl;
 
   if (data && data.footerImage) {
     titleImage = data.titleImage.imageUrl;
     footerImage = data.footerImage.imageUrl;
+    footerText = data.footerText;
+    footerBtnLabel = data.footerBtnLabel;
+    footerBtnUrl = data.footerBtnUrl;
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -328,47 +443,55 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
                 />
               )}
               <CategorySideBySideSixCards
+                title={dataDetail?.kotak1.judul}
                 leftSide={[
                   {
-                    symbol: ShieldSymbol,
-                    title: 'Keunggulan Produk',
-                    description: dataDetail?.deskripsiKeunggulanProduk
+                    symbol: dataDetail?.kotak1?.icon1 ?? ShieldSymbol,
+                    title: dataDetail?.kotak1?.subjudul1 ?? '',
+                    description: dataDetail?.kotak1?.deskripsi1
                   },
                   {
-                    symbol: HeartChatSymbol,
-                    title: 'Manfaat Produk',
-                    description: dataDetail?.deskripsiManfaatProduk
+                    symbol: dataDetail?.kotak1?.icon2 ?? HeartChatSymbol,
+                    title: dataDetail?.kotak1?.subjudul2 ?? '',
+                    description: dataDetail?.kotak1?.deskripsi2
                   },
                   {
-                    symbol: GiveHeartSymbol,
-                    title: 'Fitur Produk',
-                    description: dataDetail?.deskripsiFiturProduk
+                    symbol: dataDetail?.kotak1?.icon3 ?? GiveHeartSymbol,
+                    title: dataDetail?.kotak1?.subjudul3 ?? '',
+                    description: dataDetail?.kotak1?.deskripsi3
                   }
                 ]}
                 rightSide={[
                   {
-                    title: 'Informasi Penting',
-                    description: dataDetail?.deskripsiInformasiPenting
+                    title: dataDetail?.kotak2.judul ?? '',
+                    description: dataDetail?.kotak2.deskripsi ?? ''
                   },
                   {
-                    title: 'Ringkasan Informasi Produk',
-                    description: dataDetail?.deskripsiRiplay,
+                    title: dataDetail?.kotak3.judul ?? '',
+                    description: dataDetail?.kotak3.deskripsi ?? '',
                     hasDownloadButton: true,
-                    urlDownload: dataDetail?.fileRiplay.imageUrl
+                    urlDownload: dataDetail?.kotak3.url
                   },
                   {
-                    title: 'Download Brosur',
-                    description: dataDetail?.deskripsiBrosur,
+                    title: dataDetail?.kotak4.judul ?? '',
+                    description: dataDetail?.kotak4.deskripsi,
                     hasDownloadButton: true,
-                    urlDownload: dataDetail?.fileBrosur.imageUrl
+                    urlDownload: dataDetail?.kotak4.url
                   }
                 ]}
+                extraBox={{
+                  title: dataDetail?.kotak5.judul ?? '',
+                  icon: dataDetail?.kotak5.icon ?? '',
+                  buttonTitle: dataDetail?.kotak5.btnLabel ?? '',
+                  url: dataDetail?.kotak5.url,
+                  footnote: dataDetail?.kotak5.footnote ?? ''
+                }}
               />
-              {dataDetail?.deskripsiJalurPemasaran && (
+              {dataDetail?.kotak6 && (
                 <InfoError
-                  symbol={InfoRedSymbol}
-                  title="Informasi Jalur Pemasaran"
-                  description={dataDetail?.deskripsiJalurPemasaran}
+                  symbol={dataDetail?.kotak6.icon ?? InfoRedSymbol}
+                  title={dataDetail?.kotak6.judul ?? ''}
+                  description={dataDetail?.kotak6.deskripsi ?? ''}
                 />
               )}
             </>
@@ -449,42 +572,41 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
-          <p className="sm:text-[3.5rem] xs:text-[2.25rem]">
-            <span className="font-bold text-purple_dark">Hello,</span> Ada yang
-            bisa <span className="font-bold text-purple_dark">Avrista</span>{' '}
-            bantu?
-          </p>
+          <p
+            className="sm:text-[3.5rem] xs:text-[2.25rem] text-center sm:text-left line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
+          />
         }
-        buttonTitle="Tanya Avrista"
+        buttonTitle={footerBtnLabel}
         image={footerImage}
-        href="/tanya-avrista"
+        href={footerBtnUrl}
       />
       <RoundedFrameTop bgColor="bg-white" />
       <FooterCards
         cards={[
           {
-            title: 'Rumah Sakit Rekanan',
-            icon: ProdukRumahSakit,
-            subtitle: 'Lebih Lanjut',
-            href: '/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan'
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
           },
           {
-            title: 'Klaim & Layanan',
-            icon: ProdukClaim,
-            subtitle: 'Lebih Lanjut',
-            href: '/klaim-layanan/klaim?tab=Informasi+Klaim'
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
           },
           {
-            title: 'Kelola Polis',
-            icon: ProdukPolis,
-            subtitle: 'Login Akun',
-            href: 'https://my.avrist.com/welcome'
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
           },
           {
-            title: 'Testimonial',
-            icon: ProdukTestimoni,
-            subtitle: 'Lebih Lanjut',
-            href: '/promo-berita/berita?tab=Testimonial'
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
           }
         ]}
       />

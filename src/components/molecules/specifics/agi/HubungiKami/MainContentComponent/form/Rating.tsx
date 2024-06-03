@@ -13,6 +13,7 @@ import VERY_HAPPY from '@/assets/images/rating/very-happy.svg';
 
 type RatingEmojiProps = {
   title: string;
+  onChange: (e: string) => void;
 };
 
 const listEmoji = [
@@ -23,11 +24,11 @@ const listEmoji = [
   { id: 'VERY_BAD', active: VERY_BAD_ACTIVE, inactive: VERY_BAD }
 ];
 export const RatingEmoji = (props: RatingEmojiProps) => {
-  const { title } = props;
+  const { title, onChange } = props;
   const [active, setActive] = React.useState('');
   return (
     <div>
-      <div className="flex flex-row">
+      <div className="sm:flex flex-row flex-wrap xs:hidden">
         {listEmoji.map((i) => (
           <Image
             key={i.id}
@@ -35,12 +36,31 @@ export const RatingEmoji = (props: RatingEmojiProps) => {
             alt={i.id}
             width={85}
             height={85}
-            className="mr-[64px] cursor-pointer"
-            onClick={() => setActive(i.id)}
+            className="mr-[4rem] cursor-pointer"
+            onClick={() => {
+              setActive(i.id)
+              onChange(i.id)
+            }}
           />
         ))}
       </div>
-      <p className="font-bold text-[16px] mt-[24px]">{title}</p>
+      <div className="flex flex-row flex-wrap sm:hidden justify-between">
+        {listEmoji.map((i) => (
+          <Image
+            key={i.id}
+            src={i.id === active ? i.active : i.inactive}
+            alt={i.id}
+            width={48}
+            height={48}
+            className="cursor-pointer"
+            onClick={() => {
+              setActive(i.id)
+              onChange(i.id)
+            }}
+          />
+        ))}
+      </div>
+      <p className="font-bold mt-[1.5rem]">{title}</p>
     </div>
   );
 };

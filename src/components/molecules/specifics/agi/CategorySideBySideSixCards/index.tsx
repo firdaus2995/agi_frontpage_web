@@ -3,6 +3,7 @@ import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import Link from 'next/link';
+import { handleDownload } from '@/utils/helpers';
 
 interface ICategorySideBySideSixCards {
   leftSide: {
@@ -16,6 +17,7 @@ interface ICategorySideBySideSixCards {
     hasDownloadButton?: boolean;
     urlDownload?: string;
     btnLabel?: string;
+    icon?: string;
   }[];
   title?: string;
   leftTitleClassname?: string;
@@ -130,7 +132,7 @@ const CategorySideBySideSixCards = ({
         </div>
       </div>
       <div className="col-span-1">
-        <div className="grid grid-rows-3 gap-[24px]">
+        <div className="flex flex-col gap-[24px]">
           {rightSide.map(
             (
               item: {
@@ -139,6 +141,7 @@ const CategorySideBySideSixCards = ({
                 hasDownloadButton?: boolean;
                 urlDownload?: string;
                 btnLabel?: string;
+                icon?: string;
               },
               index: number
             ) => (
@@ -146,21 +149,43 @@ const CategorySideBySideSixCards = ({
                 key={index}
                 className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
               >
-                <p
-                  className={`${rightTitleClassname} font-bold text-4xl font-karla`}
-                >
-                  {item.title}
-                </p>
+                <span className="flex flex-row gap-[1.188rem] items-center">
+                  <Image
+                    width={61}
+                    height={61}
+                    alt="symbol"
+                    src={item?.icon ?? ''}
+                    className={`${!item?.icon ? 'hidden' : 'block'}`}
+                  />
+                  <p
+                    className={`${rightTitleClassname} font-bold text-4xl font-karla h-auto`}
+                  >
+                    {item.title}
+                  </p>
+                </span>
+
                 {item.description &&
                   renderedDescription(item.description, true)}
-                {item.hasDownloadButton && (
+                {item.hasDownloadButton ? (
                   <button
                     type="button"
-                    onClick={() => window.open(item.urlDownload, '_blank')}
+                    onClick={async () =>
+                      item.urlDownload &&
+                      (await handleDownload(item.urlDownload))
+                    }
                     className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans`}
                   >
                     <p>{item.btnLabel}</p>
                   </button>
+                ) : (
+                  item.urlDownload && (
+                    <Link
+                      href={item.urlDownload}
+                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans text-center`}
+                    >
+                      <p>{item.btnLabel}</p>
+                    </Link>
+                  )
                 )}
               </div>
             )
@@ -171,7 +196,7 @@ const CategorySideBySideSixCards = ({
                 {extraBox.title}
               </p>
               <Link
-                className="flex flex-row gap-[0.5rem bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem]"
+                className="flex flex-row gap-[0.5rem] bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem] items-center"
                 href={extraBox.url}
               >
                 <Image
@@ -186,7 +211,7 @@ const CategorySideBySideSixCards = ({
               </Link>
 
               <p
-                className="font-opensans text-sm"
+                className="font-opensans"
                 dangerouslySetInnerHTML={{ __html: extraBox.footnote ?? '' }}
               />
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Modal } from '../component/modal/modal';
 import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
@@ -199,27 +200,32 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full">
-        <FooterInformation
-          title={
-            <p className="text-[48px]">
-              Kami ada untuk membantu Anda.{' '}
-              <span className="text-purple_dark font-bold">Hubungi Kami</span>
+      <FooterInformation
+        bgColor="bg-gray_bglightgray"
+        title={
+          <div className="flex flex-col items-center justify-center gap-4 bg-gray_bglightgray">
+            <p className="xs:text-[2.25rem] md:text-[3.5rem] font-extrabold font-karla">
+              Hubungi Kami
             </p>
-          }
-          buttonTitle="0811 1960 1000"
-          buttonVariant="secondary"
-          image={BlankImage}
-          buttonImage={WHATSAPP}
-          customButtonTextClass="text-4xl"
-          subtitle={
-            <p>
+            <div>
+              <Link
+                href="tel:02157898188"
+                role="button"
+                className="py-4 px-[3.25rem] border border-purple_dark rounded-xl w-full flex flex-row items-center justify-center gap-2 text-purple_dark xs:text-[1.25rem] md:text-[2.25rem] font-bold bg-white font-karla"
+              >
+                <Image src={WHATSAPP} alt="phone" className="w-10" />
+                <p>021 5789 8188</p>
+              </Link>
+            </div>
+
+            <p className="text-xl">
               <span className="font-bold">Waktu Operasional:</span> Senin -
               Jumat, 08.00 - 17.00 WIB
             </p>
-          }
-        />
-      </div>
+          </div>
+        }
+        image={BlankImage}
+      />
       <div className="w-full h-full bg-purple_superlight">
         <FooterCards
           bgColor="bg-purple_superlight"

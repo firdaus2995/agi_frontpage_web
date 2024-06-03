@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { IDAta } from '../../RSRekanan/Content';
 import { Card } from './Card';
 import { CardAddress } from './CardAddress';
 import { SearchInput } from './form/Input';
@@ -108,3 +107,12 @@ export const BranchOffice = () => {
     )
   );
 };
+
+export interface IDAta {
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
+  lat: number;
+  lng: number;
+}

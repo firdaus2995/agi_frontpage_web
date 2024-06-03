@@ -26,7 +26,7 @@ const FooterInformation = ({
 }: IFooterInformation) => {
   return (
     <div
-      className={`w-full md:pt-[6.25rem] md:pb-[7.5rem] xs:py-[3.125rem] xs:px-[2rem] md:px-[8.5rem] bg-avrast_product_bg justify-center ${outerClassName}`}
+      className={`w-full md:px-[8.5rem] md:pt-[6.25rem] md:pb-[7.5rem] xs:px-[2rem] xs:py-[3.125rem] bg-avrast_product_bg justify-center ${outerClassName}`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
         <div
@@ -83,9 +83,9 @@ const FooterInformation = ({
         <div className="flex rounded-r-[24px]">
           <Image
             height={0}
-            width={392}
+            width={0}
             alt="footerInformationImage"
-            className="min-h-[212px] md:h-[392px] w-full object-contain sm:object-cover"
+            className="min-h-[212px] md:min-h-[392px] w-full object-contain sm:object-cover"
             src={image}
           />
         </div>

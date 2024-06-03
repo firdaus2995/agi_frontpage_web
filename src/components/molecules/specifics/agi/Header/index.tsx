@@ -1,41 +1,127 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Menu } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { EmailSubscribeModal } from '../Modal';
 import NavCard from './components/NavCard';
 import NavDropdownMenus from './components/NavDropdownMenus';
-import TriangleMarker from './components/TriangleMarker';
 
 import DUMMY_DATA from './sample-data.json';
 
 import styles from './styles.module.css';
 import { NavbarMenuItem } from './types';
+import AVRIST_LOGO from '@/assets/images/agi/logo.svg';
 import VectorLogo from '@/assets/images/agi/vector-logo.svg';
-import AGI_LOGO from '@/assets/images/agi-logo.svg';
 
 import BlackOverlay from '@/components/atoms/BlackOverlay';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
+import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import { EXTERNAL_URL } from '@/utils/baseUrl';
 
 const Header = () => {
-  const pathname = usePathname();
+  const menuRef: any = useRef(null);
+  const listRef: any = useRef([]);
   const menus: NavbarMenuItem[] = DUMMY_DATA['menus']['navbar'];
+  const [isDropdownHeaderVisible, setIsDropdownHeaderVisible] = useState(false);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isShowEmailSubs, setIsShowEmailSubs] = useState(false);
+  const [xPositions, setXPositions] = useState<number[]>([]);
+
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsDropdownHeaderVisible(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const totalMiddlePositions: number[] = [];
+
+    listRef.current.forEach((ref: any) => {
+      const rect = ref.getBoundingClientRect();
+      const leftPosition = rect.x;
+      const itemWidth = rect.width / 2.5;
+      const middlePositions = leftPosition + itemWidth;
+
+      totalMiddlePositions.push(middlePositions);
+    });
+
+    setXPositions(totalMiddlePositions);
+  }, []);
 
   return (
     <nav className="isolate sticky z-50 top-0">
       {/* White Section */}
-      <div className="flex flex-row justify-between items-center px-4 md:px-16 py-4 text-gray_black bg-white">
-        <div className="flex flex-row gap-2 items-center">
-          <Image className="h-auto w-7" src={VectorLogo} alt="vector-logo" />
-          <p className="text-md font-bold text-black">Avrist Group</p>
-          <Icon width={10} height={10} name="chevronDown" color="black" />
-        </div>
-        <div className="flex flex-row gap-4 flex flex-row gap-4 md:divide-x-2">
+      <SimpleContainer
+        className="flex !flex-row justify-between items-center text-gray_black bg-white"
+        paddingY="py-[1.25rem]"
+      >
+        <Menu>
+          <div ref={menuRef}>
+            <Menu.Button
+              className="flex flex-row gap-2 items-center relative cursor-pointer w-auto"
+              onClick={() => {
+                setIsDropdownHeaderVisible(!isDropdownHeaderVisible);
+              }}
+            >
+              <Image
+                className="h-auto w-7"
+                src={VectorLogo}
+                alt="vector-logo"
+              />
+              <p className="text-md font-bold text-black">Avrist Group</p>
+              <span
+                className={`transform transition-transform ${
+                  isDropdownHeaderVisible ? 'rotate-180' : ''
+                }`}
+              >
+                <Icon width={10} height={10} name="chevronDown" color="black" />
+              </span>
+
+              <Menu.Items
+                className={`shadow-lg z-[99] rounded-md bg-white flex flex-col p-4 gap-4 w-[150%] h-auto absolute top-full left-0 text-start`}
+              >
+                <Menu.Item>
+                  <Link
+                    href="/produk/individu"
+                    className="font-karla hover:text-purple_dark hover:font-medium"
+                  >
+                    Avrist Life Insurance
+                  </Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link
+                    href={EXTERNAL_URL.agiUrl}
+                    target="blank"
+                    className="font-karla hover:text-purple_dark hover:font-medium"
+                  >
+                    Avrist General Insurance
+                  </Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link
+                    href={EXTERNAL_URL.avramUrl}
+                    target="blank"
+                    className="font-karla hover:text-purple_dark hover:font-medium"
+                  >
+                    Avrist Asset Management
+                  </Link>
+                </Menu.Item>
+              </Menu.Items>
+            </Menu.Button>
+          </div>
+        </Menu>
+
+        <div className="flex flex-row justify-between gap-4 md:divide-x-2  justify-center items-center">
           <Link
             href={`/tanya-avgen`}
             className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden"
@@ -44,40 +130,40 @@ const Header = () => {
             <p className="font-bold text-sm">Tanya AvGen</p>
           </Link>
           <div
-            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden pl-2"
+            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden pl-3"
             onClick={() => setIsShowEmailSubs(true)}
           >
             <Icon name="mail" color="gray_black" />
             <p className="font-bold text-sm">Subscribe</p>
           </div>
-          <div className="flex flex-row gap-2 cursor-pointer pl-2">
+          <div className="flex flex-row gap-2 cursor-pointer pl-3">
             <Link href={`/pencarian`}>
               <Icon name="search" />
             </Link>
           </div>
         </div>
-      </div>
+      </SimpleContainer>
 
       {/* Purple Section */}
-
-      {pathname !== '/' ? (
-        <div className="bg-gradient-to-b  from-purple_dark to-purple_light w-full m-0 text-white py-3 px-4 md:px-8 relative">
-          <div className="flex justify-between items-center w-full max-w-[90rem] m-auto gap-8">
-            <ul className="md:flex gap-8 items-center hidden">
-              <Link href={`/`}>
-                <Button.IconButton>
-                  <Icon name="homeIcon" color="white" width={20} isSquare />
-                </Button.IconButton>
-              </Link>
-              {menus.map((item, idx) => (
+      <SimpleContainer
+        className="bg-gradient-to-b from-purple_dark to-purple_light w-full m-0 text-white relative"
+        paddingY="py-[1.25rem]"
+      >
+        <div className="flex justify-between items-center w-full gap-8">
+          <ul className="md:flex gap-[2.5rem] items-center hidden">
+            <Link href={`/`}>
+              <Button.IconButton>
+                <Icon name="homeIcon" color="white" width={20} isSquare />
+              </Button.IconButton>
+            </Link>
+            {menus.map((item, idx) => {
+              return (
                 <React.Fragment key={item.title}>
                   <li
-                    className={`font-medium cursor-pointer relative ${styles['nav-list-item']}`}
+                    className={`font-opensans cursor-pointer relative ${styles['nav-list-item']}`}
+                    ref={(el) => (listRef.current[idx] = el)}
                   >
-                    {item.title}
-                    <TriangleMarker
-                      customClass={`absolute bottom-0 left-1/2 -translate-x-1/2 top-[60px] cursor-default ${styles['nav-transition']}`}
-                    />
+                    {item.title}{' '}
                   </li>
                   <NavCard
                     customClass={`${styles['nav-card-animation']} absolute cursor-default left-0 duration-300`}
@@ -85,31 +171,28 @@ const Header = () => {
                     title={item.title}
                     skipUrl={item.skipUrl}
                     indexData={idx}
+                    xPosition={xPositions[idx]}
                   />
                 </React.Fragment>
-              ))}
-            </ul>
-            <Button.IconButton
-              customButtonClass="inline-block md:hidden"
-              onClick={() => setIsDropdownVisible((prevState) => !prevState)}
-            >
-              <Icon name="hamburgerMenuIcon" color="white" />
-            </Button.IconButton>
-            <Link href={`/`}>
-              <Image alt="Agi Logo" src={AGI_LOGO} width={120} />
-            </Link>
-          </div>
-          <NavDropdownMenus
-            isVisible={isDropdownVisible}
-            menus={menus}
-            setVisibility={(newValue: boolean) =>
-              setIsDropdownVisible(newValue)
-            }
-          />
+              );
+            })}
+          </ul>
+          <Button.IconButton
+            customButtonClass="inline-block md:hidden"
+            onClick={() => setIsDropdownVisible((prevState) => !prevState)}
+          >
+            <Icon name="hamburgerMenuIcon" color="white" />
+          </Button.IconButton>
+          <Link href={`/`}>
+            <Image alt="Avrist Logo" src={AVRIST_LOGO} width={94} height={48} />
+          </Link>
         </div>
-      ) : (
-        <></>
-      )}
+        <NavDropdownMenus
+          isVisible={isDropdownVisible}
+          menus={menus}
+          setVisibility={(newValue: boolean) => setIsDropdownVisible(newValue)}
+        />
+      </SimpleContainer>
 
       <BlackOverlay
         isVisible={isDropdownVisible}

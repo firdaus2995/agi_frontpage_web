@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import HERO_IMAGE from '@/assets/images/hero-image.svg';
+import { breakWords } from '@/utils/helpers';
 
 interface IHero {
   title: string;
@@ -13,9 +14,9 @@ interface IHero {
     title: string;
     href: string;
   }[];
-  bottomImage?: StaticImport;
+  bottomImage?: StaticImport | string;
   imageUrl?: string;
-  isRounded?: boolean;
+  customClassName?: string;
 }
 
 const Hero: React.FC<IHero> = ({
@@ -23,30 +24,33 @@ const Hero: React.FC<IHero> = ({
   breadcrumbsData,
   bottomImage,
   imageUrl,
-  isRounded
+  customClassName
 }) => {
   return (
     <div
-      className={`relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[740px] sm:h-[840px]' : 'h-[200px]'}`}
+      className={`${customClassName} relative w-full md:auto z-1 overflow-hidden ${bottomImage ? 'h-[46.25rem] sm:h-[52.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
     >
       <div className="w-full flex items-center">
         <div
-          className={`w-full flex flex-row justify-between px-10 md:px-20 xl:px-40 items-center ${bottomImage ? 'pt-[40px] sm:pt-[70px]' : 'pt-[50px]'}`}
+          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between items-center px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[3.75rem]`}
         >
-          <p className="hidden sm:block font-karla text-white text-[18px] sm:text-[48px] font-light">
-            {title}
-          </p>
-          <span className="flex flex-row gap-2">
+          <div className="line-clamp-1 md:w-[60%]">
+            <p className="hidden sm:block font-karla text-white text-[1.125rem] sm:text-[3rem] font-light">
+              {title}
+            </p>
+          </div>
+
+          <span className="flex flex-row gap-2 md:w-[40%] md:justify-end items-center h-full">
             {breadcrumbsData.map((item, index) => (
               <React.Fragment key={index}>
                 <Link
                   href={item.href}
-                  className={`font-opensans text-white ${index === breadcrumbsData.length - 1 ? 'font-bold' : ''}`}
+                  className={`font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default' : ''}`}
                 >
-                  {item.title}
+                  {breakWords(item.title, 5)}
                 </Link>
                 {index < breadcrumbsData.length - 1 && (
-                  <span className="w-[1px] h-auto bg-[#AA95B4]" />
+                  <span className="w-[0.063rem] h-[1.125rem] bg-[#AA95B4]" />
                 )}
               </React.Fragment>
             ))}
@@ -54,16 +58,19 @@ const Hero: React.FC<IHero> = ({
         </div>
       </div>
       <Image
-        className={`-z-[2] w-full top-0 absolute object-cover ${bottomImage ? 'h-[150px] sm:h-[280px]' : 'h-[200px]'}`}
+        className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[9.375rem] sm:h-[17.5rem]' : 'lg:h-[15.625rem] xs:h-[150px]'}`}
         alt="Avrist"
         src={imageUrl ?? HERO_IMAGE}
-        layout="fill"
+        width={100}
+        height={100}
       />
       {bottomImage && (
-        <div className="-z-[1] w-full top-[100px] sm:top-[200px] absolute">
+        <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute">
           <Image
-            className={`${isRounded ? 'rounded-t-[60px]' : ''} w-full object-cover h-[640px]`}
+            className="rounded-t-[3.75rem] w-full object-cover h-[40rem] xs:max-md:object-cover"
             alt="gambar-produk-individu"
+            width={100}
+            height={100}
             src={bottomImage}
           />
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface IMediumTag {
   title: string;
@@ -12,12 +13,19 @@ const MediumTag = ({
 }: IMediumTag &
   Omit<React.HTMLAttributes<HTMLParagraphElement>, 'className'>) => {
   return (
-    <p
-      className={`px-2 py-1 bg-purple_dark/[.06] rounded-sm text-purple_dark/[.8] text-sm font-semibold ${customClass ?? ''}`}
-      {...rest}
+    <Link
+      href={{
+        pathname: `/pencarian`,
+        query: { searchValue: title }
+      }}
     >
-      {title}
-    </p>
+      <p
+        className={`px-2 py-1 bg-purple_dark/[.06] rounded-sm text-purple_dark/[.8] text-sm font-semibold ${customClass ?? ''}`}
+        {...rest}
+      >
+        {title}
+      </p>
+    </Link>
   );
 };
 

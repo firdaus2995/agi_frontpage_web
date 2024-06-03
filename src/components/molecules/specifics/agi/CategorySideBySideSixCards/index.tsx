@@ -1,6 +1,8 @@
+'use client';
 import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ICategorySideBySideSixCards {
   leftSide: {
@@ -12,31 +14,85 @@ interface ICategorySideBySideSixCards {
     title: string;
     description: string;
     hasDownloadButton?: boolean;
+    urlDownload?: string;
+    btnLabel?: string;
   }[];
+  title?: string;
   leftTitleClassname?: string;
   rightTitleClassname?: string;
   buttonClassname?: string;
   customLeftSideClassname?: string;
   customRightSideClassname?: string;
+  extraBox?: {
+    title: string;
+    icon: StaticImport | string;
+    buttonTitle: string;
+    url: string;
+    footnote: string;
+  };
 }
 
 const CategorySideBySideSixCards = ({
   leftSide,
   rightSide,
+  title,
   leftTitleClassname = 'text-purple_dark',
   rightTitleClassname = 'text-purple_dark',
   buttonClassname = 'text-purple_dark border-purple_dark',
   customLeftSideClassname = 'border-b-purple_light',
-  customRightSideClassname = 'border-b-purple_light'
+  customRightSideClassname = 'border-b-purple_light',
+  extraBox
 }: ICategorySideBySideSixCards) => {
+  const renderedDescription = (description: string, isRightSide: boolean) => {
+    const isOrdered = description.includes('<ol>');
+    const isUnordered = description.includes('<ul>');
+    const defaultClassName = isRightSide
+      ? 'text-sm font-opensans'
+      : 'text-2xl font-light font-karla';
+
+    if (isOrdered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              '<ol>',
+              `<ol class="list-decimal pl-6 ${defaultClassName}">`
+            )
+          }}
+        />
+      );
+    }
+    if (isUnordered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              '<ul>',
+              `<ul class="list-disc pl-6 ${defaultClassName}">`
+            )
+          }}
+        />
+      );
+    }
+
+    return (
+      <p
+        className={defaultClassName}
+        dangerouslySetInnerHTML={{ __html: description }}
+      ></p>
+    );
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-[64px]">
+    <div className="grid grid-cols-1 sm:grid-cols-3 xs:gap-[1.5rem] md:gap-[4rem] h-full">
       <div className="col-span-1 sm:col-span-2">
         <div
           className={`${customLeftSideClassname} h-full flex flex-col gap-[36px] p-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
         >
-          <p className={`${leftTitleClassname} text-[36px] font-bold`}>
-            Ringkasan Produk
+          <p
+            className={`${leftTitleClassname} text-[36px] font-bold font-karla`}
+          >
+            {title ?? 'Ringkasan Produk'}
           </p>
           <div className="flex flex-col gap-[24px]">
             {leftSide.map(
@@ -57,9 +113,12 @@ const CategorySideBySideSixCards = ({
                         alt="symbol"
                         src={item.symbol}
                       />
-                      <p className="font-semibold text-[20px]">{item.title}</p>
+                      <p className="font-semibold text-[1.25rem] font-opensans">
+                        {item.title}
+                      </p>
                     </div>
-                    <p className="text-[24px] font-light">{item.description}</p>
+                    {item.description &&
+                      renderedDescription(item.description, false)}
                   </div>
                   {index !== leftSide.length - 1 && (
                     <div className="border-b border-b-gray_light" />
@@ -78,34 +137,59 @@ const CategorySideBySideSixCards = ({
                 title: string;
                 description: string;
                 hasDownloadButton?: boolean;
+                urlDownload?: string;
+                btnLabel?: string;
               },
               index: number
             ) => (
               <div
                 key={index}
-                className={`${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
+                className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
               >
-                <p className={`${rightTitleClassname}  font-bold text-[36px]`}>
+                <p
+                  className={`${rightTitleClassname} font-bold text-4xl font-karla`}
+                >
                   {item.title}
                 </p>
-                <p className="text-[14px] sm:text=[16px]">
-                  {item.description.split('\n').map((line, i, arr) => (
-                    <React.Fragment key={i}>
-                      {line.trim()}
-                      {i < arr.length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </p>
+                {item.description &&
+                  renderedDescription(item.description, true)}
                 {item.hasDownloadButton && (
                   <button
-                    type='button'
-                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold`}
+                    type="button"
+                    onClick={() => window.open(item.urlDownload, '_blank')}
+                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans`}
                   >
-                    <p>Unduh</p>
+                    <p>{item.btnLabel}</p>
                   </button>
                 )}
               </div>
             )
+          )}
+          {extraBox && extraBox.title && (
+            <div className="flex flex-col gap-[1.5rem] bg-purple_superlight py-[2.25rem] px-[1.5rem] rounded-xl items-center">
+              <p className="xs:text-[1.5rem] md:text-[2.25rem] font-karla text-purple_dark font-bold">
+                {extraBox.title}
+              </p>
+              <Link
+                className="flex flex-row gap-[0.5rem bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem]"
+                href={extraBox.url}
+              >
+                <Image
+                  width={28}
+                  height={28}
+                  alt="symbol"
+                  src={extraBox?.icon}
+                />
+                <p className="font-opensans font-semibold text-purple_dark text-xl">
+                  {extraBox?.buttonTitle}
+                </p>
+              </Link>
+
+              <p
+                className="font-opensans text-sm"
+                dangerouslySetInnerHTML={{ __html: extraBox.footnote ?? '' }}
+              />
+            </div>
           )}
         </div>
       </div>

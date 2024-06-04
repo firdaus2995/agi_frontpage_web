@@ -8,8 +8,6 @@ import HeartChatSymbol from '@/assets/symbols/heartchat-symbol.svg';
 import InfoRedSymbol from '@/assets/symbols/info-red-symbol.svg';
 import ShieldSymbol from '@/assets/symbols/shield-symbol.svg';
 
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
 import CategorySideBySideSixCards from '@/components/molecules/specifics/agi/CategorySideBySideSixCards';
 import GridContainer from '@/components/molecules/specifics/agi/Containers/Grid';
@@ -597,7 +595,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
               />
             ))}
       </GridContainer>
-      <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
           <p
@@ -609,7 +606,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         image={footerImage}
         href={footerBtnUrl}
       />
-      <RoundedFrameTop bgColor="bg-white" />
       <FooterCards
         cards={[
           {

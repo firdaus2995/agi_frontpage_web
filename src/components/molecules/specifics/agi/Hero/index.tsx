@@ -33,13 +33,13 @@ const Hero: React.FC<IHero> = ({
         <div
           className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between px-[2rem] md:px-[8.5rem] items-center xs:pt-[2.5rem] md:pt-[3.75rem]`}
         >
-          <div className="line-clamp-1">
+          <div className="line-clamp-1 md:w-[60%]">
             <p className="hidden sm:block font-karla text-white text-[1.125rem] sm:text-[3rem] font-light">
               {title}
             </p>
           </div>
 
-          <span className="flex flex-row gap-2">
+          <span className="flex flex-row gap-2 md:w-[40%] md:justify-end items-center h-full">
             {breadcrumbsData.map((item, index) => (
               <React.Fragment key={index}>
                 <Link
@@ -49,7 +49,7 @@ const Hero: React.FC<IHero> = ({
                   {item.title}
                 </Link>
                 {index < breadcrumbsData.length - 1 && (
-                  <span className="w-[0.063rem] h-auto bg-[#AA95B4]" />
+                  <span className="w-[0.063rem] h-auto md:h-[1.125rem] bg-[#AA95B4]" />
                 )}
               </React.Fragment>
             ))}
@@ -66,7 +66,7 @@ const Hero: React.FC<IHero> = ({
       {bottomImage && (
         <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute">
           <Image
-            className="rounded-t-[3.75rem] w-full object-cover h-[40rem] xs:max-md:object-cover"
+            className="w-full object-cover h-[40rem] xs:max-md:object-cover"
             alt="gambar-produk-individu"
             width={100}
             height={100}

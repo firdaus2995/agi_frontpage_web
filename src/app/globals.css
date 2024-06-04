@@ -35,10 +35,6 @@
   overflow: hidden;
 }
 
-.slick-slider .slick-slide {
-  padding: 0 15px;
-}
-
 .tab-header-container {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

@@ -7,8 +7,6 @@ import { useSearchParams } from 'next/navigation';
 import Search from '@/assets/images/common/search.svg';
 
 import Icon from '@/components/atoms/Icon';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import ButtonSelection from '@/components/molecules/specifics/agi/ButtonSelection';
 import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
@@ -344,8 +342,6 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
           </div>
         </div>
       </div>
-
-      <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
           <p
@@ -357,7 +353,6 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         image={data.footerInfoImageUrl}
         href={data.footerBtnUrl}
       />
-      <RoundedFrameTop bgColor="bg-white" />
       <FooterCards
         cards={[
           {

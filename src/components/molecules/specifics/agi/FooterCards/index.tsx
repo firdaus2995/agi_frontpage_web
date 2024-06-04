@@ -59,7 +59,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
     <div className="overflow-hidden">
       {/* Desktop */}
       <div className={`xs:hidden md:block ${bgColor ?? ''}`}>
-        <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] pb-[5rem] pt-[0.375rem] h-full">
+        <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] py-[5rem] h-full">
           {cards.map((item, index) => {
             const href =
               item?.hrefType === 'phone'
@@ -83,8 +83,6 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                   alt={index.toString()}
                   src={item.icon}
                   className="w-[6.25rem] h-[6.25rem]" // 100px = 6.25rem
-                  width={100}
-                  height={100}
                 />
                 <span className="flex flex-col grow justify-between">
                   <p className="font-bold text-[1.5rem]">{item.title}</p>
@@ -106,7 +104,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
 
       {/* Mobile */}
       <div className={`${bgColor ?? ''}`}>
-        <div className="md:hidden pb-[5rem] pt-[0.375rem] flex flex-col gap-[2.25rem]">
+        <div className="md:hidden py-[5rem] flex flex-col gap-[2.25rem]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => {
               const href =
@@ -132,8 +130,6 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                           alt={index.toString()}
                           src={item.icon}
                           className="w-[6.25rem] h-[6.25rem]" // 100px = 6.25rem
-                          width={100}
-                          height={100}
                         />
                       </div>
                       <div className="text-center pb-[2rem]">

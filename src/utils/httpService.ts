@@ -7,6 +7,7 @@ type Environment =
   | 'content/category'
   | 'content-detail'
   | 'form'
+  | 'cms'
   | '';
 
 export interface QueryParams {
@@ -58,6 +59,8 @@ function getBaseUrl(env: Environment): string {
       return BASE_URL.contentDetail;
     case 'form':
       return BASE_URL.formUrl;
+    case 'cms':
+      return BASE_URL.cms;
     default:
       throw new Error(`Unknown environment: ${env}`);
   }

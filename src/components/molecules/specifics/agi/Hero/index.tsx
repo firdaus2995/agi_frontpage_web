@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import HERO_IMAGE from '@/assets/images/hero-image.svg';
-import { breakWords } from '@/utils/helpers';
 
 interface IHero {
   title: string;
@@ -28,29 +27,29 @@ const Hero: React.FC<IHero> = ({
 }) => {
   return (
     <div
-      className={`${customClassName} relative w-full md:auto z-1 overflow-hidden ${bottomImage ? 'h-[46.25rem] sm:h-[52.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
+      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[46.25rem] sm:h-[52.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
     >
       <div className="w-full flex items-center">
         <div
-          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between items-center px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[3.75rem]`}
+          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between px-[2rem] md:px-[8.5rem] items-center xs:pt-[2.5rem] md:pt-[3.75rem]`}
         >
-          <div className="line-clamp-1 md:w-[60%]">
+          <div className="line-clamp-1">
             <p className="hidden sm:block font-karla text-white text-[1.125rem] sm:text-[3rem] font-light">
               {title}
             </p>
           </div>
 
-          <span className="flex flex-row gap-2 md:w-[40%] md:justify-end items-center h-full">
+          <span className="flex flex-row gap-2">
             {breadcrumbsData.map((item, index) => (
               <React.Fragment key={index}>
                 <Link
                   href={item.href}
                   className={`font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default' : ''}`}
                 >
-                  {breakWords(item.title, 5)}
+                  {item.title}
                 </Link>
                 {index < breadcrumbsData.length - 1 && (
-                  <span className="w-[0.063rem] h-[1.125rem] bg-[#AA95B4]" />
+                  <span className="w-[0.063rem] h-auto bg-[#AA95B4]" />
                 )}
               </React.Fragment>
             ))}

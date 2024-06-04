@@ -1,109 +1,119 @@
-import React from 'react';
+'use client';
+import React, { Suspense, useEffect, useState } from 'react';
 
-import { notFound } from 'next/navigation';
 import CONTACTS from '@/assets/images/common/contacts.svg';
 import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
 import HOSPITAL from '@/assets/images/common/hospital.svg';
 import MESSAGE from '@/assets/images/common/message.svg';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import ArtikelTanyaAvrista from '@/components/molecules/specifics/agi/TanyaAvrista/Artikel';
-import { getDetailTanyaAvrista } from '@/services/detail-tanya-avrista.api';
 import {
+  handleGetContentDetail,
+  handleGetContentPage
+} from '@/services/content-page.api';
+import {
+  contentDetailTransformer,
   contentStringTransformer,
   pageTransformer,
   singleImageTransformer
 } from '@/utils/responseTransformer';
 
-const handleGetDetail = async (slug: string) => {
-  try {
-    const data = await getDetailTanyaAvrista(slug);
-    return data;
-  } catch (error) {
-    return notFound();
-  }
-};
+const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
+  const [bannerImage, setBannerImage] = useState({ imageUrl: '', altText: '' });
+  const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
+  const [titleContent, setTitleContent] = useState('');
+  const [mainContent, setMainContent] = useState('');
 
-const DetailTanyaAvrista = async ({
-  params
-}: {
-  params: { detail: string };
-}) => {
-  const data = await handleGetDetail(params.detail);
-  const { title, content } = pageTransformer(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await handleGetContentPage('hal-tanya-avgen');
+        const detail = await handleGetContentDetail(params.detail);
+        // page
+        const { content } = pageTransformer(data);
+        setBannerImage(singleImageTransformer(content['title-image']));
+        setFooterImage(singleImageTransformer(content['cta1-image']));
+        // contrent
+        const { content: contentDetail } = contentDetailTransformer(detail);
+        setTitleContent(
+          contentStringTransformer(contentDetail['pertanyaan-tanya-avgen'])
+        );
+        setMainContent(
+          contentStringTransformer(contentDetail['jawaban-tanya-avgen'])
+        );
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
-  const artikel = contentStringTransformer(content['body-jawaban']);
-  const bannerImage = singleImageTransformer(content['title-image']);
-  const footerImage = singleImageTransformer(content['cta1-image']);
-
-  if (data.status !== 'OK') return notFound();
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <Hero
-        title={title}
-        imageUrl={bannerImage.imageUrl}
-        breadcrumbsData={[
-          { title: 'Beranda', href: '/' },
-          { title: 'Tanya Avrista', href: '/tanya-avrista' },
-          {
-            title: title,
-            href: '#'
-          },
-          {
-            title: 'Detail',
-            href: '#'
+    <div className="bg-purple_superlight">
+      <Suspense>
+        <Hero
+          title={titleContent}
+          imageUrl={bannerImage.imageUrl}
+          breadcrumbsData={[
+            { title: 'Beranda', href: '/' },
+            {
+              title: 'Detail',
+              href: '#'
+            }
+          ]}
+        />
+        <div className="xs:-mt-[3.4rem] md:-mt-[6.3rem] relative z-[10]">
+          <ArtikelTanyaAvrista
+            title={titleContent}
+            content={mainContent as string}
+          />
+        </div>
+        <FooterInformation
+          title={
+            <p className="font-karla text-[2.5rem] md:text-[3.5rem] md:tracking-[-0.3%] md:leading-[61.6px]">
+              Ada yang bisa <span className="font-bold text-purple_dark">AvGen</span> bantu untuk Anda?
+            </p>
           }
-        ]}
-      />
-      <ArtikelTanyaAvrista title={title} content={artikel as string} />
-      <RoundedFrameBottom />
-      <FooterInformation
-        title={
-          <p className="font-karla text-[56px]">
-            <span className="font-bold text-purple_dark">Komitmen</span> Kami,
-            proses klaim yang{' '}
-            <span className="font-bold text-purple_dark">efisien</span> dan{' '}
-            <span className="font-bold text-purple_dark">solusi</span>
-          </p>
-        }
-        buttonTitle="Panduan Klaim"
-        href="/under-construction"
-        image={footerImage.imageUrl}
-      />
-      <RoundedFrameTop />
-      <FooterCards
-        cards={[
-          {
-            title: 'Kelola Polis',
-            subtitle: 'Pengkinian Data',
-            href: 'https://my.avrist.com/welcome',
-            icon: CONTACTS
-          },
-          {
-            title: 'Rumah Sakit \n \n Rekanan',
-            href: '/under-construction',
-            icon: HOSPITAL
-          },
-          {
-            title: 'Tanya Avrista',
-            subtitle: 'Lebih Lanjut',
-            href: '/tanya-avrista',
-            icon: MESSAGE
-          },
-          {
-            title: 'Prosedur Pengaduan',
-            subtitle: 'Lihat Prosedur',
-            href: 'avrast/klaim-layanan/layanan/penanganan-pengaduan/aturan-asuransi',
-            icon: DOCUMENT_SEARCH
-          }
-        ]}
-      />
-    </>
+          buttonTitle="Tanya AvGen"
+          href="/tanya-avgen"
+          image={footerImage.imageUrl}
+        />
+        <FooterCards
+          bgColor="bg-purple_superlight"
+          cards={[
+            {
+              title: 'Kelola Polis',
+              subtitle: 'Pengkinian Data',
+              href: 'https://my.avrist.com/welcome',
+              openInNewTab: true,
+              icon: CONTACTS
+            },
+            {
+              title: 'Rumah Sakit \n \n Rekanan',
+              subtitle: 'Lebih Lanjut',
+              href: '/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan',
+              icon: HOSPITAL
+            },
+            {
+              title: 'Tanya Avrista',
+              subtitle: 'Lebih Lanjut',
+              href: '/tanya-avrista',
+              icon: MESSAGE
+            },
+            {
+              title: 'Prosedur Pengaduan',
+              subtitle: 'Lihat Prosedur',
+              href: '/klaim-layanan/layanan/penanganan-pengaduan',
+              icon: DOCUMENT_SEARCH
+            }
+          ]}
+        />
+      </Suspense>
+    </div>
   );
 };
 
-export default DetailTanyaAvrista;
+export default DetailTanyaAvgen;

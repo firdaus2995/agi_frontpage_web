@@ -7,6 +7,15 @@ export const BASE_SLUG = {
   // Modul 2
 
   // Modul 3
+  PRODUK: {
+    CONTENT: {
+      PRODUK: 'Produk AGI'
+    },
+    PAGE: {
+      PRODUK: 'hal-produk-agi',
+      PRODUK_DETAIL: 'hal-produk-detail-agi'
+    }
+  },
 
   // Modul 4
 

@@ -9,15 +9,15 @@ import MediumTag from '@/components/atoms/Tag/MediumTag';
 
 const Detail = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-      <div className="flex flex-col gap-10 w-[80%] p-10">
-        <div className="flex flex-col gap-5">
+    <div className="w-full px-[2rem] md:px-[23.281rem] xs:py-[3.125rem] md:pb-[1rem]">
+      <div className="flex flex-col gap-[3rem]">
+        <div className="flex flex-col gap-[1rem]">
           <p className="text-purple_dark font-semibold">Pusat Informasi</p>
-          <p className="font-semibold text-[48px]">
+          <p className="font-bold font-karla xs:text-[2.25rem] md:text-[3.5rem]">
             Avrist Assurance: Edukasi Keuangan pada Komunitas
           </p>
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-col gap-2">
+          <div className="flex flex-row justify-between items-center font-opensans">
+            <div className="flex flex-col gap-[1rem]">
               <p>23 Februari 2024 | Budi Rahman</p>
               <div className="flex flex-row gap-2">
                 <MediumTag title="Asuransi" />
@@ -80,9 +80,9 @@ const Detail = () => {
             <Image src={BlankImage} key={index} alt="img" className="w-full" />
           ))}
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <p className="font-semibold">Artikel ini telah di liput di: </p>
-          <div className="flex flex-row gap-4 pl-2">
+          <div className="flex flex-col md:flex-row gap-4 pl-2">
             <div className="flex flex-row gap-2 items-center font-medium text-purple_dark">
               Kompas
               <Icon name="externalLink" color="purple_dark" width={10} />
@@ -112,7 +112,7 @@ const Detail = () => {
               Head of Corporate & Marketing Communications
             </p>
           </div>
-          <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
             <div className="flex flex-row gap-2 items-center">
               <Image alt={'email'} className="w-6" src={Email} />
               <p className="font-bold">corcom@avrist.com</p>

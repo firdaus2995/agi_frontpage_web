@@ -92,7 +92,7 @@ const Header = () => {
               >
                 <Menu.Item>
                   <Link
-                    href="/produk/individu"
+                    href={`${EXTERNAL_URL.avrasUrl}/produk/individu?tab=Asuransi+Jiwa`}
                     className="font-karla hover:text-purple_dark hover:font-medium"
                   >
                     Avrist Life Insurance
@@ -100,7 +100,7 @@ const Header = () => {
                 </Menu.Item>
                 <Menu.Item>
                   <Link
-                    href={EXTERNAL_URL.agiUrl}
+                    href="/produk?tab=Kendaraan"
                     target="blank"
                     className="font-karla hover:text-purple_dark hover:font-medium"
                   >

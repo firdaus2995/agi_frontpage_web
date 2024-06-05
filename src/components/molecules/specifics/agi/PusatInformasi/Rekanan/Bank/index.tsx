@@ -32,7 +32,7 @@ const Bank = () => {
         <Image src={BANK_MEGA} alt="anz" className="rounded-xl" />
         <Image src={OCBC} alt="anz" className="rounded-xl" />
       </div>
-      <div className="px-4 flex flex-row justify-between">
+      <div className="px-4 flex flex-col md:flex-row justify-between">
         <p className="text-xl">
           Menampilkan <span className="font-bold text-purple_dark">1-5</span>{' '}
           dari <span className="font-bold">50</span> hasil

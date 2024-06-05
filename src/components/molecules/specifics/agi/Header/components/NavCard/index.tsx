@@ -4,41 +4,29 @@ import Link from 'next/link';
 
 import { NavbarMenuItemContent } from '../../types';
 import TriangleMarker from '../TriangleMarker';
-import NAV6IMAGE5 from '@/assets/images/agi/about/karir.svg';
-import NAV6IMAGE4 from '@/assets/images/agi/about/laporan-penting.svg';
-import NAV6IMAGE2 from '@/assets/images/agi/about/menagemen.svg';
-import NAV6IMAGE3 from '@/assets/images/agi/about/penghargaan.svg';
-import NAV6IMAGE1 from '@/assets/images/agi/about/sekilas-perusahaan.svg';
-import NAV4IMAGE1 from '@/assets/images/agi/avrist-syariah/about.svg';
-
-import NAV4IMAGE6 from '@/assets/images/agi/avrist-syariah/faq.svg';
-import NAV4IMAGE5 from '@/assets/images/agi/avrist-syariah/klaim-layanan.svg';
-import NAV4IMAGE2 from '@/assets/images/agi/avrist-syariah/manfaat-utama.svg';
-import NAV4IMAGE3 from '@/assets/images/agi/avrist-syariah/pengawas-syariah.svg';
-import NAV4IMAGE4 from '@/assets/images/agi/avrist-syariah/produk.svg';
-import NAV5IMAGE1 from '@/assets/images/agi/dplk/about.svg';
-import NAV5IMAGE6 from '@/assets/images/agi/dplk/faq.svg';
-import NAV5IMAGE5 from '@/assets/images/agi/dplk/klaim-layanan.svg';
-import NAV5IMAGE2 from '@/assets/images/agi/dplk/manfaat-utama.svg';
-import NAV5IMAGE3 from '@/assets/images/agi/dplk/pengawas-dplk.svg';
-import NAV5IMAGE4 from '@/assets/images/agi/dplk/produk.svg';
-import NAV2IMAGE6 from '@/assets/images/agi/klaim-layanan/buku-panduan.svg';
-import NAV2IMAGE1 from '@/assets/images/agi/klaim-layanan/informasi-klaim.svg';
-import NAV2IMAGE4 from '@/assets/images/agi/klaim-layanan/informasi-nasabah.svg';
-import NAV2IMAGE3 from '@/assets/images/agi/klaim-layanan/login-polis.svg';
-import NAV2IMAGE2 from '@/assets/images/agi/klaim-layanan/panduan-pengajuan.svg';
-import NAV2IMAGE7 from '@/assets/images/agi/klaim-layanan/performa-investasi.svg';
-import NAV2IMAGE5 from '@/assets/images/agi/klaim-layanan/rumah-sakit-rekanan.svg';
-import NAV1IMAGE1 from '@/assets/images/agi/produk/asuransi-jiwa.svg';
-import NAV1IMAGE3 from '@/assets/images/agi/produk/asuransi-kecelakaan.svg';
-import NAV1IMAGE2 from '@/assets/images/agi/produk/asuransi-kesehatan.svg';
-import NAV1IMAGE4 from '@/assets/images/agi/produk/asuransi-tambahan.svg';
-import NAV1IMAGE5 from '@/assets/images/agi/produk/employee-benefit.svg';
-
-import NAV3IMAGE2 from '@/assets/images/agi/promo-berita/avrist-terkini.svg';
-import NAV3IMAGE4 from '@/assets/images/agi/promo-berita/berita-pers.svg';
-import NAV3IMAGE1 from '@/assets/images/agi/promo-berita/promo-terbaru.svg';
-import NAV3IMAGE3 from '@/assets/images/agi/promo-berita/testimonial.svg';
+import NAV1IMAGE1 from '@/assets/images/agi/component/header/nav-1-img-1.svg';
+import NAV1IMAGE2 from '@/assets/images/agi/component/header/nav-1-img-2.svg';
+import NAV1IMAGE3 from '@/assets/images/agi/component/header/nav-1-img-3.svg';
+import NAV2IMAGE1 from '@/assets/images/agi/component/header/nav-2-img-1.svg';
+import NAV2IMAGE2 from '@/assets/images/agi/component/header/nav-2-img-2.svg';
+import NAV2IMAGE3 from '@/assets/images/agi/component/header/nav-2-img-3.svg';
+import NAV2IMAGE4 from '@/assets/images/agi/component/header/nav-2-img-4.svg';
+import NAV2IMAGE5 from '@/assets/images/agi/component/header/nav-2-img-5.svg';
+import NAV2IMAGE6 from '@/assets/images/agi/component/header/nav-2-img-6.svg';
+import NAV2IMAGE7 from '@/assets/images/agi/component/header/nav-2-img-7.svg';
+import NAV2IMAGE8 from '@/assets/images/agi/component/header/nav-2-img-8.svg';
+import NAV2IMAGE9 from '@/assets/images/agi/component/header/nav-2-img-9.svg';
+import NAV3IMAGE1 from '@/assets/images/agi/component/header/nav-3-img-1.svg';
+import NAV3IMAGE2 from '@/assets/images/agi/component/header/nav-3-img-2.svg';
+import NAV3IMAGE3 from '@/assets/images/agi/component/header/nav-3-img-3.svg';
+import NAV3IMAGE4 from '@/assets/images/agi/component/header/nav-3-img-4.svg';
+import NAV3IMAGE5 from '@/assets/images/agi/component/header/nav-3-img-5.svg';
+import NAV3IMAGE6 from '@/assets/images/agi/component/header/nav-3-img-6.svg';
+import NAV4IMAGE1 from '@/assets/images/agi/component/header/nav-4-img-1.svg';
+import NAV4IMAGE2 from '@/assets/images/agi/component/header/nav-4-img-2.svg';
+import NAV4IMAGE3 from '@/assets/images/agi/component/header/nav-4-img-3.svg';
+import NAV5IMAGE1 from '@/assets/images/agi/component/header/nav-5-img-1.svg';
+import NAV5IMAGE2 from '@/assets/images/agi/component/header/nav-5-img-2.svg';
 
 import Icon from '@/components/atoms/Icon';
 import { camelToKebabCase, convertToKebabCase } from '@/utils/helpers';
@@ -53,7 +41,7 @@ type NavCardProps = {
 };
 
 const ICON_MAPPING = [
-  [NAV1IMAGE1, NAV1IMAGE2, NAV1IMAGE3, NAV1IMAGE4, NAV1IMAGE5],
+  [NAV1IMAGE1, NAV1IMAGE2, NAV1IMAGE3],
   [
     NAV2IMAGE1,
     NAV2IMAGE2,
@@ -61,12 +49,13 @@ const ICON_MAPPING = [
     NAV2IMAGE4,
     NAV2IMAGE5,
     NAV2IMAGE6,
-    NAV2IMAGE7
+    NAV2IMAGE7,
+    NAV2IMAGE8,
+    NAV2IMAGE9
   ],
-  [NAV3IMAGE1, NAV3IMAGE2, NAV3IMAGE3, NAV3IMAGE4],
-  [NAV4IMAGE1, NAV4IMAGE2, NAV4IMAGE3, NAV4IMAGE4, NAV4IMAGE5, NAV4IMAGE6],
-  [NAV5IMAGE1, NAV5IMAGE2, NAV5IMAGE3, NAV5IMAGE4, NAV5IMAGE5, NAV5IMAGE6],
-  [NAV6IMAGE1, NAV6IMAGE2, NAV6IMAGE3, NAV6IMAGE4, NAV6IMAGE5]
+  [NAV3IMAGE1, NAV3IMAGE2, NAV3IMAGE3, NAV3IMAGE4, NAV3IMAGE5, NAV3IMAGE6],
+  [NAV4IMAGE1, NAV4IMAGE2, NAV4IMAGE3],
+  [NAV5IMAGE1, NAV5IMAGE2]
 ];
 
 const NavCard: React.FC<NavCardProps> = ({
@@ -179,6 +168,11 @@ const NavCard: React.FC<NavCardProps> = ({
                         }}
                       >
                         <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
+                          <Image
+                            className="w-[2.25rem] h-[2.25rem]"
+                            src={ICON_MAPPING[indexData][item.icon]}
+                            alt={item.title}
+                          />
                           {item.title}
                         </div>
                         <span className="mt-[3px]">

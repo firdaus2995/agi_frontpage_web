@@ -1,11 +1,27 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import IconWrapper from './components/IconWrapper';
 import AGI_LOGO from '@/assets/images/agi-logo.svg';
 import FOOTER_IMAGE from '@/assets/images/footer-image.svg';
 import Icon from '@/components/atoms/Icon';
+
+const additionalInfo = [
+  {
+    title: 'Syarat Penggunaan',
+    href: '/syarat-penggunaan'
+  },
+  {
+    title: 'Keamanan Online',
+    href: '/keamanan-online'
+  },
+  {
+    title: 'Kebijakan Cookie',
+    href: '/kebijakan-cookies'
+  }
+];
 
 const Footer = () => {
   const pathname = usePathname();
@@ -47,7 +63,12 @@ const Footer = () => {
             <p className="font-bold">Hubungi AvGen</p>
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
-                <a href="tel:+6281119601000" className="font-semibold text-base">0811 1960 1000</a>
+                <a
+                  href="tel:+6281119601000"
+                  className="font-semibold text-base"
+                >
+                  0811 1960 1000
+                </a>
               </div>
               <div>
                 <p className="font-semibold text-base">Layanan Nasabah</p>
@@ -57,7 +78,9 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-semibold text-base">Email</p>
-                <a href="mailto:avrist.general@avrist.com">avrist.general@avrist.com</a>
+                <a href="mailto:avrist.general@avrist.com">
+                  avrist.general@avrist.com
+                </a>
               </div>
             </div>
           </div>
@@ -66,36 +89,51 @@ const Footer = () => {
           <div className="flex flex-col gap-4">
             <p className="font-bold">Produk</p>
             <div className="flex flex-col gap-1 h-full text-sm font-light">
-              <div>
-                <p>Asuransi Kendaraan</p>
-              </div>
-              <div>
-                <p>Asuransi Harta Benda</p>
-              </div>
-              <div>
-                <p>Asuransi Kecelakaan Diri</p>
-              </div>
-              <div>
-                <p>Asuransi Rekayasa</p>
-              </div>
-              <div>
-                <p>Asuransi Pengangkutan Barang</p>
-              </div>
-              <div>
-                <p>Asuransi Aneka</p>
-              </div>
-              <div>
-                <p>Asuransi Tanggung Gugat</p>
-              </div>
-              <div>
-                <p>Asuransi Harta Benda</p>
-              </div>
-              <div>
-                <p>Asuransi Mikro</p>
-              </div>
-              <div>
-                <p>Asuransi Perjalanan</p>
-              </div>
+              <Link href={'/produk?tab=Asuransi+Kendaraan'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Kendaraan
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Harta+Benda'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Harta Benda
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Kecelakaan+Diri'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Kecelakaan Diri
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Rekayasa'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Rekayasa
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Pengangkutan+Barang'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Pengangkutan Barang
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Aneka'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Aneka
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Tanggung+Gugat'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Tanggung Gugat
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Mikro'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Mikro
+                </p>
+              </Link>
+              <Link href={'/produk?tab=Asuransi+Perjalanan'}>
+                <p className="hover:text-purple_light cursor-pointer">
+                  Asuransi Perjalanan
+                </p>
+              </Link>
             </div>
           </div>
 
@@ -103,43 +141,51 @@ const Footer = () => {
           <div className="flex flex-col gap-4">
             <p className="font-bold">Quick Links</p>
             <div className="flex flex-col gap-2 h-full">
-              <div className="text-xs flex flex-col gap-2 font-light whitespace-nowrap">
-                <p className="text-base font-semibold">Tanya AvGen</p>
-              </div>
-              <div>
+              <Link href="/tanya-avgen">
+                <div className="text-xs flex flex-col gap-2 font-light whitespace-nowrap">
+                  <p className="text-base font-semibold">Tanya AvGen</p>
+                </div>
+              </Link>
+              <Link href="/pusat-informasi/pusat-informasi?tab=Formulir+Penutupan">
                 <p className="font-semibold">Formulir</p>
-              </div>
-              <div>
+              </Link>
+              <Link href="/hubungi-kami/hubungi-kami?tab=Karir">
                 <p className="font-semibold">Karir</p>
-              </div>
+              </Link>
             </div>
           </div>
-
         </div>
         {/* Separator */}
         <div className="border-solid border-purple_separator border-b my-8"></div>
         {/* Bottom content */}
         <div className="flex md:flex-row flex-col justify-between md:gap-4 gap-8 flex-wrap">
           {/* Additional information */}
-          <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-4 md:items-center items-start">
-            {['Syarat Penggunaan', 'Keamanan Online', 'Kebijakan Cookie'].map(
-              (item, index) => (
-                <React.Fragment key={index}>
-                  <span className="font-semibold">{item}</span>
-                  {index < 2 && (
-                    <div className="opacity-1 border-solid border-l border-white opacity-50 self-stretch" />
-                  )}
-                </React.Fragment>
-              )
-            )}
+          <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-4 md:items-center items-start sm:divide-x-2 sm:divide-x-0">
+            {additionalInfo.map((item, index) => (
+              <React.Fragment key={index}>
+                <Link href={item.href}>
+                  <span className="font-bold text-lg ml-4">{item.title}</span>
+                </Link>
+              </React.Fragment>
+            ))}
           </div>
           {/* Social media */}
           <div className="flex items-center gap-4">
             <IconWrapper>
-              <Icon name="linkedInIcon" color="white" />
+              <Link
+                href={'https://id.linkedin.com/company/avristassurance'}
+                target="blank"
+              >
+                <Icon name="linkedInIcon" color="white" />
+              </Link>
             </IconWrapper>
             <IconWrapper>
-              <Icon name="instaIcon" color="white" />
+              <Link
+                href={'https://www.instagram.com/avristsolution/'}
+                target="blank"
+              >
+                <Icon name="instaIcon" color="white" />
+              </Link>
             </IconWrapper>
           </div>
         </div>

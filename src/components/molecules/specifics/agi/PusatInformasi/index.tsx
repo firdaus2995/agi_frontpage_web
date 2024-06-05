@@ -13,21 +13,22 @@ import WordingPolis from './WordingPolis';
 const MainContent = () => {
   const searchParams = useSearchParams();
   const params = searchParams.get('tab') ?? '';
-
-  console.log(params);
+  const content = searchParams.get('content');
 
   return (
-    <div>
-      <ButtonMenu
-        buttonList={[
-          'Formulir Penutupan',
-          'Klaim',
-          'Rekanan',
-          'Kantor Cabang',
-          'Wording Polis & Klausula Asuransi ',
-          'Agency'
-        ]}
-      />
+    <div className="pt-[3.125rem] md:pt-[6.25rem]">
+      {!content && (
+        <ButtonMenu
+          buttonList={[
+            'Formulir Penutupan',
+            'Klaim',
+            'Rekanan',
+            'Kantor Cabang',
+            'Wording Polis & Klausula Asuransi ',
+            'Agency'
+          ]}
+        />
+      )}
 
       {params.includes('Formulir') ? (
         <Formulir />

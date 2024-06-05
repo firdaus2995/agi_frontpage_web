@@ -49,7 +49,7 @@ const Hero: React.FC<IHero> = ({
                   {item.title}
                 </Link>
                 {index < breadcrumbsData.length - 1 && (
-                  <span className="w-[0.063rem] h-auto md:h-[1.125rem] bg-[#AA95B4]" />
+                  <span className="w-[0.063rem] h-[1.125rem] bg-[#AA95B4]" />
                 )}
               </React.Fragment>
             ))}

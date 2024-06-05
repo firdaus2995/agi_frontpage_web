@@ -2,12 +2,16 @@ interface IButtonSmall {
   title: string;
   variant?: string;
   customClassName?: string;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const ButtonSmall = ({
   title,
   variant = 'filled',
-  customClassName
+  customClassName,
+  onClick,
+  type = 'button'
 }: IButtonSmall) => {
   const variantButtonClassName =
     variant === 'outlined'
@@ -18,8 +22,9 @@ const ButtonSmall = ({
 
   return (
     <button
-      type="button"
-      className={`px-[19px] py-[7px] rounded-[6px] ${variantButtonClassName} ${customClassName}`}
+      type={type}
+      className={`px-[20px] py-[8px] rounded-[6px] ${variantButtonClassName} ${customClassName}`}
+      onClick={onClick}
     >
       <span className={`font-semibold ${variantTextClassName}`}>{title}</span>
     </button>

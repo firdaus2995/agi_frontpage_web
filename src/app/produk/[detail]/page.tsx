@@ -514,9 +514,9 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
               />
               {dataDetail?.kotak6 && (
                 <InfoError
-                  symbol={data?.kotak6.icon ?? InfoRedSymbol}
-                  title={data?.kotak6.judul ?? ''}
-                  description={dataDetail?.kotak6.deskripsi ?? ''}
+                  symbol={data?.kotak6?.icon ?? InfoRedSymbol}
+                  title={data?.kotak6?.judul ?? ''}
+                  description={dataDetail?.kotak6?.deskripsi ?? ''}
                 />
               )}
             </>

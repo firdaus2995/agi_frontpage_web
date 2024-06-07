@@ -1,12 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import love from '@/assets/images/common/heart-check.svg';
-import home from '@/assets/images/common/home-add.svg';
-import hospital from '@/assets/images/common/hospital.svg';
-import homeYellow from '@/assets/images/common/person-home-yellow.svg';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
+import { notFound, useSearchParams } from 'next/navigation';
+import Karir from './tabs/karir';
+import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
+import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
+import EMAIL from '@/assets/images/common/email.svg';
+import MESSAGE from '@/assets/images/common/message.svg';
+import WHATSAPP from '@/assets/images/wa.svg';
+import ButtonMenu from '@/components/molecules/specifics/agi/ButtonMenu';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -28,11 +31,13 @@ const handleGetContent = async (slug: string) => {
 };
 
 const CallMe = () => {
+  const params = useSearchParams();
   const [titleImage, setTitleImage] = useState({ imageUrl: '', altText: '' });
   const [bannerImage, setBannerImage] = useState({ imageUrl: '', altText: '' });
   const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
   const [formId, setFormId] = useState('');
   const [formSaranId, setFormSaranId] = useState('');
+  const [tab, setTab] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,8 +57,14 @@ const CallMe = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const tab = params.get('tab') ?? '';
+    setTab(tab);
+  }, [params]);
+
   return (
-    <div className="flex flex-col bg-purple_superlight">
+    <div className="flex flex-col">
       <Hero
         title="Hubungi Kami"
         breadcrumbsData={[
@@ -66,63 +77,84 @@ const CallMe = () => {
         imageUrl={titleImage.imageUrl}
         bottomImage={bannerImage.imageUrl}
       />
-      <MainContent formId={formId} formSaranId={formSaranId} />
-      <FooterInformation
-        title={
-          <div
-            className={`md:w-full xs:w-full p-5 flex h-full flex-col md:items-start xs:items-center justify-center gap-10`}
-          >
-            <p className="sm:text-[3.5rem] xs:text-[2.5rem] md:text-left xs:text-center">
-              <span className="font-bold text-purple_dark">
-                Bijak Berasuransi.
-              </span>{' '}
-              Pahami Kewajiban Sebagai{' '}
-              <span className="font-bold text-purple_dark">Nasabah</span>
-            </p>
-            <Link
-              role="button"
-              className="px-[2.5rem] py-[0.75rem] bg-purple_dark rounded-xl text-xl font-semibold text-white flex flex-row gap-2"
-              href={'/klaim-layanan/klaim?tab=Informasi+Klaim'}
-            >
-              Standar Pelayanan
-            </Link>
-          </div>
-        }
-        image={footerImage.imageUrl}
-      />
-      <RoundedFrameTop />
-      <div className="flex w-full items-center justify-center bg-purple_superlight">
-        <FooterCards
-          bgColor="bg-purple_superlight"
-          cards={[
-            {
-              icon: love,
-              title: 'Asuransi Individu',
-              subtitle: 'Lihat Produk',
-              href: '/produk/individu?tab=Asuransi+Jiwa'
-            },
-            {
-              icon: home,
-              title: 'Asuransi Korporasi',
-              subtitle: 'Lihat Produk',
-              href: '/produk/korporasi'
-            },
-            {
-              icon: homeYellow,
-              title: 'AVRIST DPLK',
-              subtitle: 'Lihat Produk',
-              href: '/avrist-dplk?tab=Produk',
-              textColor: 'text-dplk_yellow'
-            },
-            {
-              icon: hospital,
-              title: 'Rumah Sakit',
-              subtitle: 'Rekanan',
-              href: '/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan'
-            }
-          ]}
-        />
+      <div className="pt-[3.125rem] md:pt-[6.25rem]">
+        <ButtonMenu buttonList={['Pengaduan Nasabah', 'Karir']} />
       </div>
+
+      {tab === 'Karir' ? (
+        <Karir />
+      ) : (
+        <MainContent formId={formId} formSaranId={formSaranId} />
+      )}
+
+      {tab === 'Pengaduan Nasabah' ? (
+        <FooterInformation
+          title={
+            <div className="flex flex-col xs:items-center md:items-start xs:justify-center md:justify-start gap-4">
+              <p className="xs:text-[2.25rem] md:text-[3.5rem] font-karla md:w-[80%]">
+                <span className="font-light">
+                  Kami ada untuk membantu Anda.
+                </span>
+                <br />
+                <span className="font-bold text-purple_dark">Hubungi Kami</span>
+              </p>
+              <div className="flex flex-col items-center gap-[0.5rem]">
+                <Link
+                  href="tel:02157898188"
+                  role="button"
+                  className="py-4 px-[3.25rem] border border-purple_dark rounded-xl flex flex-row items-center justify-center gap-2 text-purple_dark xs:text-[1.25rem] md:text-[2.25rem] font-bold bg-white font-karla"
+                >
+                  <Image src={WHATSAPP} alt="phone" className="w-10" />
+                  <p>021 5789 8188</p>
+                </Link>
+                <p className="text-sm font-opensans">
+                  <span className="font-bold">Waktu Operasional:</span> Senin -
+                  Jumat, 08.00 - 17.00 WIB
+                </p>
+              </div>
+            </div>
+          }
+          image={footerImage.imageUrl}
+        />
+      ) : (
+        <FooterInformation
+          title={
+            <p className="text-[1.5rem] md:text-[3rem]">
+              Ada yang bisa{' '}
+              <span className="text-purple_dark font-bold">AvGen</span> bantu
+              untuk Anda?
+            </p>
+          }
+          image={footerImage.imageUrl}
+          buttonTitle="Tanya AvGen"
+        />
+      )}
+
+      <FooterCards
+        bgColor="md:bg-purple_superlight"
+        cards={[
+          {
+            title: 'Layanan Nasabah',
+            icon: CUSTOMER_SERVICE,
+            subtitle: '021 5789 8188'
+          },
+          {
+            title: 'Tanya Avrista',
+            icon: MESSAGE,
+            subtitle: 'Lebih Lanjut'
+          },
+          {
+            title: 'Tanya Lewat Email',
+            icon: EMAIL,
+            subtitle: 'Kirim Email'
+          },
+          {
+            title: 'Prosedur Pengaduan',
+            icon: DOCUMENT_SEARCH,
+            subtitle: 'Lihat Prosedur'
+          }
+        ]}
+      />
     </div>
   );
 };

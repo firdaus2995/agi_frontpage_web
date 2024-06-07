@@ -32,18 +32,18 @@ const purposeData = [
 const Karir = () => {
   const [category, setCategory] = useState('Karyawan');
   return (
-    <div className="w-full flex flex-col gap-4 bg-white justify-center">
+    <div className="w-full flex flex-col gap-4 bg-white justify-center xs:pt-[3.125rem] md:pt-[6.25rem]">
       <div className="flex flex-col gap-4">
-        <div className="w-full flex flex-col items-center justify-center py-2 text-center">
-          <p className="font-karla font-bold text-[56px] text-center text-purple_dark flex flex-col mt-3">
+        <div className="w-full flex flex-col items-center justify-center text-center">
+          <p className="font-karla font-bold text-[56px] text-center text-purple_dark flex flex-col">
             Berkembang bersama Avrist General Insurance
             <span className="text-[36px] text-black font-normal">
               Kami memberi kesempatan yang tak terbatas untuk berkembang.
             </span>
           </p>
         </div>
-        <div className="mx-[32px] md:mx-[136px] my-10 flex flex-col gap-10 items-center justify-center">
-          <div className="grid grid-cols-3 gap-5">
+        <div className="px-[2rem] md:px-[8.5rem] pt-[4rem] flex flex-col gap-10 items-center justify-center xs:pb-[3.125rem] md:pb-[6.25rem]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {purposeData.map((val, idx) => (
               <PurposeCard
                 key={idx}
@@ -55,8 +55,8 @@ const Karir = () => {
             ))}
           </div>
         </div>
-        <div className="bg-purple_superlight">
-          <h2 className="text-[56px] text-center font-semibold mb-6 mt-20">
+        <div className="bg-purple_superlight px-[2rem] md:px-[8.5rem] py-[2.5rem] md:py-[5rem]">
+          <h2 className="text-[2.25rem] md:text-[3.5rem] text-center font-semibold">
             Lihat Lowongan di{' '}
             <span className="text-purple_dark">Avrist General Insurance</span>
           </h2>
@@ -79,7 +79,7 @@ const Karir = () => {
               }
             ]}
             customContent={
-              <div className="grid grid-cols-3 gap-[24px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
                 {[...Array(3)].map((_, index) => (
                   <div
                     key={index}

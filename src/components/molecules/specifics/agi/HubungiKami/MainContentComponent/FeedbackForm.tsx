@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import CustomForm from '../../CustomForm/Index';
 import { SuccessModal } from '../../Modal';
-import { DividerRainbow } from './Divider';
+import { DividerPurple } from './Divider';
 import { RatingEmoji } from './form/Rating';
 import { handleSendEmail } from '@/services/form.api';
 
@@ -76,8 +76,8 @@ export const FeedbackForm = (props: Props) => {
   };
 
   return (
-    <div className="bg-white sm:px-[8.5rem] sm:py-[4rem] xs:py-[1.875rem] xs:px-[1.3125rem]">
-      <div className="border rounded-xl flex flex-col justify-between overflow-hidden">
+    <div className="bg-purple_superlight sm:px-[8.5rem] sm:py-[4rem] xs:py-[1.875rem] xs:px-[1.3125rem]">
+      <div className="bg-white border rounded-xl flex flex-col justify-between overflow-hidden">
         <div className="p-[2.25rem]">
           <p className="font-bold font-karla text-[2.25rem] text-purple_dark">
             Bagikan Saran Anda
@@ -113,7 +113,7 @@ export const FeedbackForm = (props: Props) => {
             </button>
           </div>
         </div>
-        <DividerRainbow />
+        <DividerPurple />
       </div>
       <div className="absolute">
         <SuccessModal

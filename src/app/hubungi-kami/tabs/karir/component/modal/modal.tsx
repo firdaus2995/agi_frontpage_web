@@ -5,10 +5,10 @@ import Radio from '@/components/atoms/Radio';
 export function Modal() {
   return (
     <div className="fixed z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
-      <div className="p-10 border shadow-lg rounded-md bg-white overflow-y-auto h-[80%] px-24">
+      <div className="p-10 border shadow-lg rounded-md bg-white overflow-y-auto h-[80%] md:px-24">
         <div className="text-left flex flex-col gap-10">
           <div className="flex flex-row justify-between gap-20">
-            <h3 className="text-[56px] font-bold text-gray-900">
+            <h3 className="text-[2.25rem] md:text-[3.5rem] font-bold text-gray-900">
               Job Application Form
             </h3>
             <Link href="/hubungi-kami/tabs/karir/detail">

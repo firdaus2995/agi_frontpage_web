@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
-import Button from '@/components/atoms/Button/Button';
 
 interface IButtonMenu {
   buttonList: string[];
@@ -32,35 +31,9 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
   }, [params, buttonList]);
 
   return (
-    <>
-      <div className="xs:hidden md:flex flex-row justify-between gap-4 my-10 mx-[32px] md:mx-[136px]">
-        {buttonList.map((i) => (
-          <Link
-            href={{
-              pathname: path,
-              query: { tab: i }
-            }}
-            scroll={false}
-            key={i}
-            className="w-full"
-          >
-            <Button
-              key={i}
-              title={i}
-              customButtonClass={`w-full flex-1 h-full ${params === i ? 'bg-purple_dark' : ''}`}
-              customTextClass={`${params === i ? 'text-white' : ''}`}
-            />
-          </Link>
-        ))}
-      </div>
-
-      <div className="md:hidden">
-        <Slider
-          ref={(slider) => {
-            sliderRef.current = slider;
-          }}
-          {...sliderSettings}
-        >
+    <div className="xs:px-[2rem] md:px-[8.5rem]">
+      <div className="w-full xs:hidden md:block">
+        <div className="flex sm:w-full xs:w-[90%] md:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
           {buttonList.map((i) => (
             <Link
               href={{
@@ -69,19 +42,42 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
               }}
               scroll={false}
               key={i}
-              className="w-full"
+              className={`grow flex p-2 items-center justify-center rounded-lg border border-purple_dark text-[1rem] font-semibold ${params === i ? 'text-white bg-purple_dark' : 'text-purple_dark bg-white'}`}
             >
-              <Button
-                key={i}
-                title={i}
-                customButtonClass={`w-full h-full ${params === i ? 'bg-purple_dark' : ''}`}
-                customTextClass={`${params === i ? 'text-white' : ''} line-clamp-1`}
-              />
+              {i}
             </Link>
           ))}
-        </Slider>
+        </div>
       </div>
-    </>
+
+      <div className="w-[100%] md:hidden">
+        <div>
+          <Slider
+            {...sliderSettings}
+            ref={(slider) => {
+              sliderRef.current = slider;
+            }}
+          >
+            {buttonList.map((i, idx) => (
+              <Link
+                key={idx}
+                href={{
+                  pathname: path,
+                  query: { tab: i }
+                }}
+              >
+                <div
+                  role="button"
+                  className={`mx-[10px] p-2 border border-purple_dark rounded-lg text-center ${params === i ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold line-clamp-1`}
+                >
+                  {i}
+                </div>
+              </Link>
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </div>
   );
 };
 

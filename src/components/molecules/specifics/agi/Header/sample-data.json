@@ -75,6 +75,7 @@
       },
       {
         "title": "Hubungi Kami",
+        "skipUrl": true,
         "content": [
           {
             "title": "Hubungi Kami",

@@ -23,9 +23,9 @@ const Rekanan = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 mb-10 mx-[32px] md:mx-[136px]">
-      <section className="w-full flex flex-col items-center text-center my-[60px]">
-        <h1 className="font-karla text-[48px] 2xl:text-[56px]">
+    <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.125rem] md:pb-[6.25rem]">
+      <section className="w-full flex flex-col items-center text-center my-[30px] md:my-[60px]">
+        <h1 className="font-karla text-[2.25rem] md:text-[3.5rem]">
           Temukan{' '}
           <span className="font-medium text-purple_dark">
             Daftar Rekanan yang Anda butuhkan

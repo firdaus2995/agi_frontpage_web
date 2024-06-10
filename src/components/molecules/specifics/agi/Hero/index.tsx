@@ -44,12 +44,12 @@ const Hero: React.FC<IHero> = ({
               <React.Fragment key={index}>
                 <Link
                   href={item.href}
-                  className={`font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default' : ''}`}
+                  className={`font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default pointer-events-none' : ''}`}
                 >
                   {item.title}
                 </Link>
                 {index < breadcrumbsData.length - 1 && (
-                  <span className="w-[0.063rem] h-auto md:h-[1.125rem] bg-[#AA95B4]" />
+                  <span className="w-[0.063rem] h-[1.125rem] bg-[#AA95B4]" />
                 )}
               </React.Fragment>
             ))}

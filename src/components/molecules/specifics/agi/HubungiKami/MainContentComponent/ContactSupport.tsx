@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import CLOCK from '@/assets/images/agi/hubungi-kami/clock.svg';
-import cs from '@/assets/images/common/customer-service.svg';
-import EMAIL from '@/assets/images/common/email.svg';
-import phone from '@/assets/images/common/phone.svg';
+import CLOCK from '@/assets/images/agi/hubungi-kami/clock-gray.svg';
+import cs from '@/assets/images/common/customer-service-gray.svg';
+import EMAIL from '@/assets/images/common/email-gray.svg';
+import phone from '@/assets/images/common/phone-gray.svg';
 
 export const ContactSupport = () => {
   return (
     <div className="grid grid-rows-1 md:grid-cols-5 gap-[1.5rem]">
-      <div className="h-[20.1875rem] col-span-1 md:col-span-2 border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
-        <div className="p-[2.25rem] gap-[1.5rem] flex flex-col h-full">
+      <div className="md:h-[20.1875rem] col-span-1 md:col-span-2 border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
+        <div className="p-[2.25rem] gap-[1.5rem] flex flex-col h-full items-center md:items-start">
           <Image src={phone} alt="phone" width={100} height={100} />
           <p className="font-karla font-extrabold text-[1.5rem] md:text-[3rem] leading-10 md:leading-[3.125rem] ">
             Hubungi Kami

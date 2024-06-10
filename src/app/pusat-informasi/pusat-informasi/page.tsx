@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import BLANK_IMAGE from '@/assets/images/blank-image.svg';
 import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
@@ -19,7 +19,7 @@ const PusatInformasi = () => {
   const content = searchParams.get('content') ?? '';
 
   return (
-    <>
+    <Suspense>
       <Hero
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
@@ -90,7 +90,7 @@ const PusatInformasi = () => {
           }
         ]}
       />
-    </>
+    </Suspense>
   );
 };
 

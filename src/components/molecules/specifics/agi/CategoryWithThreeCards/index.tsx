@@ -12,6 +12,7 @@ import Icon from '@/components/atoms/Icon';
 interface IOption {
   label: string;
   value: string;
+  onClick?: () => void;
 }
 interface ICategoryWithThreeCards {
   categories: string[];
@@ -26,6 +27,11 @@ interface ICategoryWithThreeCards {
   searchPlaceholder?: string;
   onCategoryChange?: (value: string) => void;
   hideSearchBar?: boolean;
+  searchValue?: string;
+  onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch?: () => void;
+  hidePagination?: boolean;
+  outerClass?: string;
 }
 
 interface DropdownProps {
@@ -50,7 +56,11 @@ const CategoryWithThreeCards = ({
   customRightContent,
   searchPlaceholder,
   onCategoryChange,
-  hideSearchBar
+  hideSearchBar,
+  onSearchChange,
+  onSearch,
+  hidePagination,
+  outerClass
 }: ICategoryWithThreeCards) => {
   const [selectedCategory, setSelectedCategory] = useState(
     defaultSelectedCategory
@@ -96,7 +106,7 @@ const CategoryWithThreeCards = ({
               <div
                 key={index}
                 onClick={() => handleSelect(item)}
-                className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-[18px] ${
+                className={`border-l-4 px-[15px] py-[12px] cursor-pointer font-bold text-[18px] ${
                   selected === item
                     ? 'border-purple_dark text-purple_dark'
                     : 'border-purple_mediumlight text-purple_mediumlight'
@@ -120,7 +130,7 @@ const CategoryWithThreeCards = ({
         selectedCategory === item ? (
           <div
             key={index}
-            className="border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer text-left"
+            className="border-l-4 border-purple_dark px-[15px] py-[12px] cursor-pointer text-left"
           >
             <span className="font-bold text-purple_dark text-[18px]">
               {item}
@@ -131,7 +141,7 @@ const CategoryWithThreeCards = ({
             key={index}
             role="button"
             onClick={() => handleCategoryChange(item)}
-            className="border-l-4 border-purple_mediumlight px-[15px] py-[10px] cursor-pointer text-left"
+            className="border-l-4 border-purple_mediumlight px-[15px] py-[12px] cursor-pointer text-left"
           >
             <span className="font-bold text-purple_mediumlight text-[18px]">
               {item}
@@ -143,16 +153,23 @@ const CategoryWithThreeCards = ({
   );
 
   return (
-    <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:py-[72px] gap-[36px] sm:gap-[48px] sm:flex-row">
+    <div
+      className={`${outerClass} w-full flex flex-col py-[12px] sm:py-[72px] gap-[36px] sm:gap-[48px] md:flex-row`}
+    >
       {/* CATEGORIES */}
-      <Dropdown categories={categories} selectedCategory={selectedCategory} />
-      <div className="flex flex-col sm:block hidden">
-        {!hiddenCategory && (
-          <CategoryList
+      {!hiddenCategory && (
+        <span className="hidden">
+          <Dropdown
             categories={categories}
             selectedCategory={selectedCategory}
           />
-        )}
+        </span>
+      )}
+      <div className={`flex flex-col ${hiddenCategory ? 'hidden' : ''}`}>
+        <CategoryList
+          categories={categories}
+          selectedCategory={selectedCategory}
+        />
         {customLeftContent ?? null}
       </div>
 
@@ -161,17 +178,10 @@ const CategoryWithThreeCards = ({
         {customRightContent ?? null}
         {!hideSearchBar && (
           <div
-            className={`flex ${filterRowLayout ? 'flex-row-reverse' : 'flex-col'}  gap-5 justify-between`}
+            className={`flex ${filterRowLayout ? 'flex-row' : 'flex-col'} xs:max-lg:flex-wrap  gap-5 justify-between`}
           >
-            <div className="flex flex-row gap-[12px] ">
-              <input
-                placeholder={searchPlaceholder ?? 'Cari'}
-                className="focus:outline-none w-[600px] px-[16px] py-[8px] rounded-[12px] bg-purple_dark/[.06]"
-              />
-              <ButtonSmall title="Cari" />
-            </div>
-            <div className="flex flex-nowrap overflow-x-scroll sm:overflow-x-hidden py-1">
-              <div className="flex flex-row gap-[12px]">
+            <div className="flex flex-nowrap overflow-x-hidden sm:overflow-x-hidden py-1">
+              <div className="flex flex-row gap-[12px] w-full">
                 {tabs.map(
                   (
                     item: { type: string; label: string; options?: IOption[] },
@@ -186,8 +196,20 @@ const CategoryWithThreeCards = ({
                         title={item.label}
                       />
                     ) : item.type === 'dropdown' ? (
-                      <div className='p-2 border rounded-xl border-purple_dark text-purple_dark'>
-                        <select key={index}>
+                      <div className="py-[8px] px-[12px] border rounded-xl border-purple_dark text-purple_dark">
+                        <select
+                          key={index}
+                          onChange={(e) => {
+                            const selectedValue = e.target.value;
+                            const selectedData = item?.options?.find(
+                              (i) => i.value === selectedValue
+                            );
+
+                            if (selectedData && selectedData.onClick) {
+                              selectedData.onClick();
+                            }
+                          }}
+                        >
                           {item?.options?.map((val, idx) => (
                             <option
                               defaultValue={val.label}
@@ -204,6 +226,15 @@ const CategoryWithThreeCards = ({
                     )
                 )}
               </div>
+            </div>
+            <div className="flex flex-row gap-[12px] xs:w-full md:w-auto">
+              <input
+                placeholder={searchPlaceholder ?? 'Cari'}
+                className="focus:outline-none xs:w-full md:w-96 px-[16px] py-[12px] rounded-[12px] bg-purple_dark/[.06]"
+                onChange={onSearchChange}
+                onKeyDown={onSearch}
+              />
+              <ButtonSmall title="Cari" onClick={onSearch} />
             </div>
           </div>
         )}
@@ -231,22 +262,24 @@ const CategoryWithThreeCards = ({
         ) : (
           customContent
         )}
-        <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <div>
-            <p className="text-[20px]">
-              Menampilkan{' '}
-              <span className="font-bold text-purple_dark">1-9</span> dari{' '}
-              <span className="font-bold">20</span> hasil
-            </p>
+        {!hidePagination && (
+          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+            <div>
+              <p className="text-[20px]">
+                Menampilkan{' '}
+                <span className="font-bold text-purple_dark">1-9</span> dari{' '}
+                <span className="font-bold">20</span> hasil
+              </p>
+            </div>
+            <div className="flex flex-row gap-[8px] items-center">
+              <p className="text-[20px] text-purple_dark font-bold">1</p>
+              <p className="text-[20px]">2</p>
+              <p className="text-[20px]">3</p>
+              <p className="text-[20px]">4</p>
+              <Icon name="chevronRight" color="purple_dark" />
+            </div>
           </div>
-          <div className="flex flex-row gap-[8px] items-center">
-            <p className="text-[20px] text-purple_dark font-bold">1</p>
-            <p className="text-[20px]">2</p>
-            <p className="text-[20px]">3</p>
-            <p className="text-[20px]">4</p>
-            <Icon name="chevronRight" color="purple_dark" />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

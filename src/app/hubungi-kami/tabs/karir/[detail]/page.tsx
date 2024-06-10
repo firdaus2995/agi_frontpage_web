@@ -29,7 +29,7 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
   return (
     <>
       <Hero
-        title="Karir Bersama Avrist"
+        title="Karir"
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
           {
@@ -39,10 +39,12 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
         ]}
       />
 
-      <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col gap-5 w-2/3 p-10">
+      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[3.125rem] md:[6.25rem]">
+        <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-5">
-            <p className="font-semibold text-[48px]">Marketing Manager</p>
+            <p className="font-semibold xs:text-[2.5rem] md:text-[5rem]">
+              Marketing Manager
+            </p>
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-row gap-4 text-nowrap text-md">
                 <div className="flex w-full flex-row items-center gap-2">
@@ -180,22 +182,10 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
             <Link href="/hubungi-kami/tabs/karir/detail?show=true">
               <Button
                 title="Apply For This Job"
-                customButtonClass="rounded-xl bg-purple_dark"
-                customTextClass="text-white"
+                customButtonClass="rounded-xl white"
+                customTextClass="text-purple_dark"
               />
             </Link>
-          </div>
-          <div className="w-full flex flex-row justify-between items-center p-4 border rounded-xl">
-            <div className="flex flex-row gap-2 items-center">
-              <p className="font-bold text-purple_dark">
-                Belum tertarik dengan lowongan ini?
-              </p>
-            </div>
-            <Button
-              title="List Lowongan"
-              customButtonClass="rounded-xl bg-purple_dark"
-              customTextClass="text-white"
-            />
           </div>
         </div>
       </div>
@@ -203,25 +193,26 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
       <FooterInformation
         bgColor="bg-gray_bglightgray"
         title={
-          <div className="flex flex-col items-center justify-center gap-4 bg-gray_bglightgray">
-            <p className="xs:text-[2.25rem] md:text-[3.5rem] font-extrabold font-karla">
-              Hubungi Kami
+          <div className="flex flex-col xs:items-center md:items-start xs:justify-center md:justify-start gap-4">
+            <p className="xs:text-[2.25rem] md:text-[3.5rem] font-karla md:w-[80%]">
+              <span className="font-light">Kami ada untuk membantu Anda.</span>
+              <br />
+              <span className="font-bold text-purple_dark">Hubungi Kami</span>
             </p>
-            <div>
+            <div className="flex flex-col items-center gap-[0.5rem]">
               <Link
                 href="tel:02157898188"
                 role="button"
-                className="py-4 px-[3.25rem] border border-purple_dark rounded-xl w-full flex flex-row items-center justify-center gap-2 text-purple_dark xs:text-[1.25rem] md:text-[2.25rem] font-bold bg-white font-karla"
+                className="py-4 px-[3.25rem] border border-purple_dark rounded-xl flex flex-row items-center justify-center gap-2 text-purple_dark xs:text-[1.25rem] md:text-[2.25rem] font-bold bg-white font-karla"
               >
                 <Image src={WHATSAPP} alt="phone" className="w-10" />
                 <p>021 5789 8188</p>
               </Link>
+              <p className="text-sm font-opensans">
+                <span className="font-bold">Waktu Operasional:</span> Senin -
+                Jumat, 08.00 - 17.00 WIB
+              </p>
             </div>
-
-            <p className="text-xl">
-              <span className="font-bold">Waktu Operasional:</span> Senin -
-              Jumat, 08.00 - 17.00 WIB
-            </p>
           </div>
         }
         image={BlankImage}

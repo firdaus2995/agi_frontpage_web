@@ -81,7 +81,7 @@ const CompanySection = (props: CompanySection) => {
   };
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center py-32 gap-16 bg-purple_dark">
+    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-10 gap-16 bg-purple_dark">
       <div>
         <p className="md:text-[4rem] xs:text-3xl text-center font-extrabold text-white px-10 font-karla">
           {contentStringTransformer(content['why-us-title-section'])}

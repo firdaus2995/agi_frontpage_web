@@ -81,6 +81,7 @@ const TotalSolution = (props: TotalSolution) => {
             src={val.icon.imageUrl}
             width={100}
             height={100}
+            className='w-[6.25rem] h-[6.25rem]'
           />
           <p className="font-bold text-2xl">{val.title}</p>
         </div>

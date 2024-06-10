@@ -158,7 +158,7 @@ const LayananNasabah = (props: LayananNasabah) => {
   );
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center py-32 gap-16 bg-white relative">
+    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-10 gap-16 bg-white relative">
       <div>
         <p className="md:text-5xl xs:text-3xl text-center font-bold text-purple_dark px-10">
           {contentStringTransformer(content['layanan-nasabah-title'])}

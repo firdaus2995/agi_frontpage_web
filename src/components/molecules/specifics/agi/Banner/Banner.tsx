@@ -159,7 +159,7 @@ const BannerAvrast = (
                             : BlankImage
                         }
                         fill
-                        className="w-full h-auto object-cover object-right-bottom"
+                        className="w-full h-full object-cover object-right-bottom"
                       />
                     </div>
                     <div className="md:block xs:hidden">
@@ -171,9 +171,8 @@ const BannerAvrast = (
                                 .imageUrl
                             : BlankImage
                         }
-                        width={100}
-                        height={100}
-                        className="w-screen h-[40rem] object-cover"
+                        fill
+                        className="w-screen h-auto"
                       />
                     </div>
                     <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">

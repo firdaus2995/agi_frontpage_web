@@ -253,7 +253,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       />
       <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:pt-[80px] sm:pb-[100px] gap-[36px] sm:gap-[48px] sm:flex-row">
         <div className="flex flex-col gap-[24px] grow">
-          <div className="flex flex-row gap-5 justify-between">
+          <div className="flex flex-col md:flex-row gap-5 justify-between">
             <div className="w-full">
               <ButtonSelection
                 buttonHelper={[]}

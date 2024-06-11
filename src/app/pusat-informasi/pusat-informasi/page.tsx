@@ -1,45 +1,179 @@
 'use client';
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import BLANK_IMAGE from '@/assets/images/blank-image.svg';
-import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
-import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
-import EMAIL from '@/assets/images/common/email.svg';
-import MESSAGE from '@/assets/images/common/message.svg';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import MainContent from '@/components/molecules/specifics/agi/PusatInformasi';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import { BASE_URL } from '@/utils/baseUrl';
+import {
+  contentStringTransformer,
+  singleImageTransformer,
+  pageTransformer
+} from '@/utils/responseTransformer';
+
+const initialData = {
+  titleImageUrl: '',
+  bannerImageUrl: '',
+  titleAltText: '',
+  bannerAltText: '',
+  footerInfoAltText: '',
+  footerInfoImageUrl: '',
+  footerText: '',
+  footerBtnLabel: '',
+  footerBtnUrl: '',
+  cta41: {
+    icon: '',
+    title: '',
+    subtitle: '',
+    url: ''
+  },
+  cta42: {
+    icon: '',
+    title: '',
+    subtitle: '',
+    url: ''
+  },
+  cta43: {
+    icon: '',
+    title: '',
+    subtitle: '',
+    url: ''
+  },
+  cta44: {
+    icon: '',
+    title: '',
+    subtitle: '',
+    url: ''
+  }
+};
 
 const PusatInformasi = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab') ?? '';
   const content = searchParams.get('content') ?? '';
 
+  const [data, setData] = useState<typeof initialData>(initialData);
+
+  const tabs = [
+    {
+      name: 'Formulir Penutupan',
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+    },
+    { name: 'Klaim', url: BASE_SLUG.PUSAT_INFORMASI.PAGE.KLAIM },
+    {
+      name: 'Rekanan',
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+    },
+    {
+      name: 'Kantor Cabang',
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+    },
+    {
+      name: 'Wording Polis & Klausula Asuransi',
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+    },
+    {
+      name: 'Agency',
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+    }
+  ];
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${BASE_URL.apiPage}/${tabs.find((item: any) => item.name === tab)?.url}`
+      );
+      const data = await response.json();
+
+      const { content } = pageTransformer(data);
+      const titleImage = singleImageTransformer(content['title-image']);
+      const bannerImage = singleImageTransformer(content['banner-image']);
+      const footerImage = singleImageTransformer(content['cta1-image']);
+      const footerText = contentStringTransformer(content['cta1-teks']);
+      const footerBtnLabel = contentStringTransformer(
+        content['cta1-label-button']
+      );
+      const footerBtnUrl = contentStringTransformer(
+        content['cta1-link-button']
+      );
+
+      const cta41 = {
+        icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+        title: contentStringTransformer(content['cta4-1-nama']),
+        subtitle: contentStringTransformer(content['cta4-1-label-link']),
+        url: contentStringTransformer(content['cta4-1-link'])
+      };
+      const cta42 = {
+        icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+        title: contentStringTransformer(content['cta4-2-nama']),
+        subtitle: contentStringTransformer(content['cta4-2-label-link']),
+        url: contentStringTransformer(content['cta4-2-link'])
+      };
+      const cta43 = {
+        icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+        title: contentStringTransformer(content['cta4-3-nama']),
+        subtitle: contentStringTransformer(content['cta4-3-label-link']),
+        url: contentStringTransformer(content['cta4-3-link'])
+      };
+      const cta44 = {
+        icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+        title: contentStringTransformer(content['cta4-4-nama']),
+        subtitle: contentStringTransformer(content['cta4-4-label-link']),
+        url: contentStringTransformer(content['cta4-4-link'])
+      };
+
+      setData({
+        titleImageUrl: titleImage.imageUrl,
+        bannerImageUrl: bannerImage.imageUrl,
+        titleAltText: titleImage.altText,
+        bannerAltText: bannerImage.altText,
+        footerInfoAltText: footerImage.altText,
+        footerInfoImageUrl: footerImage.imageUrl,
+        footerText,
+        footerBtnLabel,
+        footerBtnUrl,
+        cta41,
+        cta42,
+        cta43,
+        cta44
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [tab]);
+
   return (
     <Suspense>
       <Hero
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
-          { title: tab, href: tab }
+          { title: tab, href: '#' }
         ]}
         title="Pusat Informasi"
-        bottomImage={BLANK_IMAGE}
+        bottomImage={data.bannerImageUrl}
+        imageUrl={data.titleImageUrl}
       />
       <MainContent />
       {!content ? (
         <FooterInformation
           title={
-            <p className="text-[48px]">
-              Ada yang bisa{' '}
-              <span className="text-purple_dark font-bold">AvGen</span> bantu
-              untuk Anda?
-            </p>
+            <p
+              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+              dangerouslySetInnerHTML={{ __html: data.footerText ?? '' }}
+            />
           }
-          image={BLANK_IMAGE}
-          buttonTitle="Tanya AvGen"
+          buttonTitle={data.footerBtnLabel}
+          image={data.footerInfoImageUrl}
+          href={data.footerBtnUrl}
         />
       ) : (
         <FooterInformation
@@ -66,27 +200,30 @@ const PusatInformasi = () => {
       )}
 
       <FooterCards
-        bgColor="bg-purple_superlight"
         cards={[
           {
-            title: 'Layanan Nasabah',
-            subtitle: '021 5789 8188',
-            icon: CUSTOMER_SERVICE
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
           },
           {
-            title: 'Tanya Avrista',
-            subtitle: 'Lebih Lanjut',
-            icon: MESSAGE
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
           },
           {
-            title: 'Tanya Lewat Email',
-            subtitle: 'Kirim Email',
-            icon: EMAIL
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
           },
           {
-            title: 'Prosedur Pengaduan',
-            subtitle: 'Lihat Prosedur',
-            icon: DOCUMENT_SEARCH
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
           }
         ]}
       />

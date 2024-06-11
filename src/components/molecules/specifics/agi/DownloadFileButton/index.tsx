@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@/components/atoms/Button/Button';
 import { handleDownload } from '@/utils/helpers';
 
 interface IDownloadFileButton {
@@ -30,12 +29,12 @@ const DownloadFileButton: React.FC<IDownloadFileButton> = ({
         </p>
       </div>
       <div className="xs:w-full md:w-auto px-5 py-2">
-        <Button
-          title="Unduh"
-          customButtonClass="bg-purple_dark rounded-lg px-6 py-1"
-          customTextClass="text-white"
+        <button
+          className={`w-[8.5rem] h-auto px-[2.594rem] py-[0.5rem] rounded-lg border border-purple_dark text-purple_dark font-opensans font-semibold hover:bg-purple_dark hover:text-white`}
           onClick={handleClickUnduh}
-        />
+        >
+          Unduh
+        </button>
       </div>
     </div>
   );

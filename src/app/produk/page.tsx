@@ -9,6 +9,7 @@ import Search from '@/assets/images/common/search.svg';
 import Icon from '@/components/atoms/Icon';
 import ButtonSelection from '@/components/molecules/specifics/agi/ButtonSelection';
 import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA';
+import DropdownMenu from '@/components/molecules/specifics/agi/DropdownMenu';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -75,10 +76,10 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
   const searchParams = useSearchParams();
 
-  const tabs = ['Asuransi Jiwa', 'Asuransi Kesehatan'];
+  const [categoryList, setCategoryList] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [activeTab, setActiveTab] = useState(
-    searchParams.get('tab') ?? tabs[0]
+    searchParams.get('tab') ?? categoryList[0]
   );
   const [isCategoryChange, setIsCategoryChange] = useState(true);
 
@@ -164,15 +165,16 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             activeTab
           );
 
+          const fetchCategoryList = await fetch(`/api/produk/content-category`);
+          const categoryData = await fetchCategoryList.json();
+          setCategoryList(Object.keys(categoryData.data.categoryList));
+
           const dataContentValues = transformedDataContent?.map(
             ({ content, id }) => {
-              const namaProduk = contentStringTransformer(
-                content['nama-produk']
-              );
+              const namaProduk = transformedDataContent[0].title;
               const tags = contentStringTransformer(content['tags']);
-              const deskripsiSingkatProduk = contentStringTransformer(
-                content['deskripsi-singkat-produk']
-              );
+              const deskripsiSingkatProduk =
+                transformedDataContent[0].shortDesc;
               const deskripsiLengkapProduk = contentStringTransformer(
                 content['deskripsi-lengkap-produk']
               );
@@ -240,6 +242,13 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     setSearchValue(value);
   };
 
+  const btnVerticalData = categoryList?.map((item: any) => {
+    return {
+      title: item,
+      onClick: () => setActiveTab(item)
+    };
+  });
+
   return (
     <div className="flex flex-col">
       <Hero
@@ -272,6 +281,10 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               />
             </div>
           </div>
+          {btnVerticalData && (
+            <DropdownMenu item={btnVerticalData} outerClass="w-full" />
+          )}
+
           {dataContent && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
               {paginatedData.map((item: any, index: number) => (

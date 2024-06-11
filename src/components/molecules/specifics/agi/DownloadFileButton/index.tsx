@@ -1,32 +1,40 @@
 import React from 'react';
 import Button from '@/components/atoms/Button/Button';
+import { handleDownload } from '@/utils/helpers';
 
 interface IDownloadFileButton {
   title: string;
   fileType: string;
   bgColor?: string;
+  filePath?: string;
 }
 
 const DownloadFileButton: React.FC<IDownloadFileButton> = ({
   title,
   fileType,
-  bgColor
+  bgColor,
+  filePath
 }) => {
+  const handleClickUnduh = () => {
+    filePath && handleDownload(filePath);
+  };
+
   return (
     <div
       className={`flex xs:flex-col md:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-6 ${bgColor ?? 'bg-white'}`}
     >
-      <div className="flex flex-row flex-wrap items-center justify-between w-[65%]">
-        <h1 className="font-bold text-xl 2xl:text-2xl">{title}</h1>
-        <p className="bg-purple_superlight text-purple_dark text-xs 2xl:text-sm p-1 font-semibold">
+      <div className="flex flex-row gap-4 items-center">
+        <h1 className="font-bold 2xl:text-2xl">{title}</h1>
+        <p className="bg-purple_superlight text-purple_dark text-xs 2xl:text-sm p-1 font-semibold uppercase">
           {fileType}
         </p>
       </div>
       <div className="xs:w-full md:w-auto px-5 py-2">
         <Button
           title="Unduh"
-          customButtonClass="bg-white rounded-lg w-full md:w-auto"
-          customTextClass="text-purple_dark"
+          customButtonClass="bg-purple_dark rounded-lg px-6 py-1"
+          customTextClass="text-white"
+          onClick={handleClickUnduh}
         />
       </div>
     </div>

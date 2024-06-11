@@ -18,6 +18,14 @@ export const BASE_SLUG = {
   },
 
   // Modul 4
+  PUSAT_INFORMASI: {
+    CONTENT: {
+      KLAIM: 'List-klaim-AGI'
+    },
+    PAGE: {
+      KLAIM: 'halaman-klaim-agi'
+    }
+  },
 
   // Modul 5
   PROMO_BERITA: {

@@ -1,9 +1,18 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Bank from './Bank';
 import Bengkel from './Bengkel';
 import ButtonMenuVertical from '@/components/molecules/specifics/agi/ButtonMenuVertical';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
+import {
+  handleGetContentCategory,
+  handleGetContentDetail
+} from '@/services/content-page.api';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import {
+  contentDetailTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const Rekanan = () => {
   const [tab, setTab] = useState('Bengkel');
@@ -22,6 +31,53 @@ const Rekanan = () => {
     }
   ];
 
+  const [contentData, setContentData] = useState<any>();
+  const [search, setSearch] = useState('');
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    itemsPerPage: 5
+  });
+  const totalPages = contentData
+    ? Math.ceil(contentData?.length / pagination.itemsPerPage)
+    : 0;
+
+  const handlePageChange = (page: number) => {
+    setPagination({ ...pagination, currentPage: page });
+  };
+
+  const fetchContent = async () => {
+    try {
+      const apiContent = await handleGetContentCategory(
+        BASE_SLUG.PUSAT_INFORMASI.CONTENT.BENGKEL,
+        {
+          searchFilter: search
+        }
+      );
+      const transformedContent = apiContent.data.categoryList[tab] ?? [];
+      const transformedData = await Promise.all(
+        transformedContent?.map(async (item: any) => {
+          const apiDetailContent = await handleGetContentDetail(item.id);
+          const { content } = contentDetailTransformer(apiDetailContent);
+
+          const title = item.title;
+          const file = singleImageTransformer(content['file']).imageUrl;
+          const fileType = singleImageTransformer(content['file'])
+            .imageUrl.split('.')
+            .pop();
+          return { title, file, fileType };
+        })
+      );
+
+      setContentData(transformedData);
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+  }, [search]);
+
   return (
     <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.125rem] md:pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center my-[30px] md:my-[60px]">
@@ -35,14 +91,25 @@ const Rekanan = () => {
       </section>
 
       {tab === 'Bengkel' && (
-        <SearchBox onSearch={() => {}} placeHolder="Cari Formulir" />
+        <SearchBox
+          onSearch={(key) => setSearch(key)}
+          placeHolder="Cari Formulir"
+        />
       )}
       <div className="flex xs:flex-col md:flex-row gap-10">
         <div className="xs:w-[100%] md:w-[23%] h-full bg-purple_light_bg rounded-xl">
           <ButtonMenuVertical item={btnVerticalData} />
         </div>
         <div className="xs:w-[100%] md:w-[77%]">
-          {tab === 'Bengkel' ? <Bengkel /> : <Bank />}
+          {tab === 'Bengkel' ? (
+            <Bengkel
+              data={contentData}
+              handlePageChange={handlePageChange}
+              totalPages={totalPages}
+            />
+          ) : (
+            <Bank />
+          )}
         </div>
       </div>
     </div>

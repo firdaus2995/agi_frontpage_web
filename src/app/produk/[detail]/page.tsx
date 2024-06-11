@@ -188,7 +188,8 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       const jsonData: ContentDetailResponse = await response.json();
 
       const { content } = contentDetailTransformer(jsonData);
-      const namaProduk = contentStringTransformer(content['nama-produk']);
+
+      const namaProduk = jsonData.data.title;
       const tags = contentStringTransformer(content['tags']);
       const deskripsiSingkatProduk = contentStringTransformer(
         content['deskripsi-singkat-produk']
@@ -293,26 +294,31 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
             ...handleTransformedContent(item.contentData, item.title),
             categoryName: item.categoryName,
             createdAt: item.createdAt,
-            id: item.id
+            id: item.id,
+            shortDesc: item.shortDesc,
+            title: item.title
           };
         });
+
         const dataContentValues = newDataContent.map(
           ({
             content,
             categoryName,
             id,
-            createdAt
+            createdAt,
+            shortDesc,
+            title
           }: {
             content: any;
             categoryName: string;
             id: number;
             createdAt: string;
+            shortDesc: string;
+            title: string;
           }) => {
-            const namaProduk = contentStringTransformer(content['nama-produk']);
+            const namaProduk = title;
             const tags = contentStringTransformer(content['tags']);
-            const deskripsiSingkatProduk = contentStringTransformer(
-              content['deskripsi-singkat-produk']
-            );
+            const deskripsiSingkatProduk = shortDesc;
             const deskripsiLengkapProduk = contentStringTransformer(
               content['deskripsi-lengkap-produk']
             );
@@ -436,6 +442,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         title={dataDetail?.namaProduk || 'Product Title'}
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
+          {
+            title: 'Produk',
+            href: `/produk/?tab=${dataDetail?.categoryTitle}`
+          },
           {
             title: dataDetail?.namaProduk || 'Product Title',
             href: '#'

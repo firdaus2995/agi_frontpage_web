@@ -20,10 +20,15 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   return (
     <div className="w-auto flex md:flex-row flex-col items-stretch gap-2 py-3">
       <Input
-        customInputClass="grow !bg-gray_bglightgray !border-none"
+        customInputClass="grow !bg-gray_bglightgray !border-none px-[16px]"
         placeholder={placeHolder}
         value={keyword}
         onChange={(ev) => setKeyword(ev.target.value)}
+        onKeyDown={(e: any) => {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            onSearch(e.target.value);
+          }
+        }}
       />
       <Button
         title={buttonText}

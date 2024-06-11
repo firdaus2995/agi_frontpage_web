@@ -18,8 +18,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onSearch
 }) => {
   const [keyword, setKeyword] = useState('');
+
   return (
-    <div className="flex flex-row items-center gap-[12px]">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSearch ? onSearch(keyword) : {};
+      }}
+      className="flex flex-row items-center gap-[12px]"
+    >
       <input
         type="text"
         placeholder={placeholder}
@@ -29,11 +36,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
       />
       <button
         className={`${searchButtonClassname} px-[20px] py-[8px] rounded-[6px]`}
-        onClick={() => (onSearch ? onSearch(keyword) : {})}
+        type="submit"
       >
         {searchButtonTitle}
       </button>
-    </div>
+    </form>
   );
 };
 

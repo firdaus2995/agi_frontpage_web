@@ -6,20 +6,23 @@ type Props = {
   address?: string;
   workHour?: string;
   contact?: string;
+  withNavigation?: boolean;
 };
 export const CardAddress = (props: Props) => {
-  const { title, address, contact, workHour } = props;
+  const { title, address, contact, workHour, withNavigation } = props;
   return (
     <CardPurple>
-      <div className="p-[24px]">
+      <div className="p-[24px] pb-[36px]">
         <div className="flex flex-row justify-between items-center">
           <span className="font-bold text-[24px]">{title}</span>
-          <Icon
-            name="navigation"
-            height={24}
-            width={24}
-            color="purple_verylight"
-          />
+          {withNavigation && (
+            <Icon
+              name="navigation"
+              height={24}
+              width={24}
+              color="purple_verylight"
+            />
+          )}
         </div>
         {address && (
           <div className="flex flex-row items mt-[24px]">
@@ -31,7 +34,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px]">{address}</span>
+            <span className="font-opensans text-[18px] font-normal">
+              {address}
+            </span>
           </div>
         )}
         {workHour && (
@@ -44,7 +49,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px]">{workHour}</span>
+            <span className="font-opensans text-[18px] font-normal">
+              {workHour}
+            </span>
           </div>
         )}
         {contact && (
@@ -57,7 +64,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px]">{contact}</span>
+            <span className="font-opensans text-[18px] font-normal">
+              {contact}
+            </span>
           </div>
         )}
       </div>

@@ -27,6 +27,7 @@ const KantorCabang = () => {
                 title="RSIA Bunda Jakarta"
                 address="Jl. Teuku Cik Ditiro No.28, Menteng, Jakarta Pusat"
                 contact="(021) 5789 8188"
+                workHour="Senin - Jumat 10.00 - 14:00 WIB"
               />
             ))}
           </div>
@@ -43,6 +44,7 @@ const KantorCabang = () => {
             address="World Trade Center II Lt. 7 & 8, Jl. Jenderal Sudirman Jl. Setiabudi Raya Kav 29-31, RT.8/RW.3"
             workHour="Senin-Jumat 10.00 - 14.00 WIB"
             contact="(021) 5789 8188"
+            withNavigation={true}
           />
 
           <Card className="md:col-span-2">

@@ -36,7 +36,9 @@ const DescriptionCategoryA = ({
             {categoryTitle}
           </p>
         </div>
-        <p className="font-bold text-[36px] sm:text-[56px]">{productTitle}</p>
+        <p className="font-bold text-[36px] sm:text-[56px] text-purple_dark">
+          {productTitle}
+        </p>
       </div>
       <div className="flex flex-col gap-[12px]">
         <p

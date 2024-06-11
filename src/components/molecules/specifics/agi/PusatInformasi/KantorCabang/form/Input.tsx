@@ -193,9 +193,9 @@ export const SearchInput = (props: SearchInputProps) => {
     <div className="flex flex-row">
       <input
         placeholder={placeholder}
-        className="w-full rounded-xl p-[16px] bg-purple_dark/5 mr-[12px]"
+        className="w-full rounded-xl px-[16px] py-3 bg-purple_dark/5 mr-[12px]"
       />
-      <button className="bg-purple_dark rounded-lg font-opensans font-semibold text-white px-[40px]">
+      <button className="bg-purple_dark rounded-lg font-opensans font-semibold text-white px-[40px] py-3">
         Cari
       </button>
     </div>

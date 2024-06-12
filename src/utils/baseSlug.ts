@@ -22,12 +22,14 @@ export const BASE_SLUG = {
     CONTENT: {
       FORMULIR: 'List-Formulir-AGI',
       KLAIM: 'List-klaim-AGI',
-      BENGKEL: 'list-rekanan-bengkel-agi'
+      BENGKEL: 'list-rekanan-bengkel-agi',
+      KANTOR_CABANG: 'List-Kantor-Cabang-AGI'
     },
     PAGE: {
       FORMULIR: 'halaman-formulir-agi',
       KLAIM: 'halaman-klaim-agi',
-      BENGKEL: 'halaman-rekanan-bengkel-agi'
+      BENGKEL: 'halaman-rekanan-bengkel-agi',
+      KANTOR_CABANG: 'halaman-kantor-cabang-agi'
     }
   },
 

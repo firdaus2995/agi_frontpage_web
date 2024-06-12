@@ -273,24 +273,22 @@ const BannerAvrast = (
               )}
             </button>
           </div>
-          <div className={`${dropdownVisible && 'mb-[80px]'}`}>
             {dropdownVisible && (
               <div
-                className={`absolute flex flex-col xs:top-[200px] md:top-[160px] right-0 rounded-md bg-white w-[90%] xs:right-[1.25rem] xs:left-[1.25rem] duration-300 transform z-100`}
+                className={`absolute flex flex-col xs:top-[300px] xs:mx-10 sm:top-[120px] sm:right-[1rem] rounded-md bg-white xs:right-[1.25rem] xs:left-0 sm:left-[40rem] sm:w-[31.25rem]`}
                 ref={dropdownRef}
               >
                 {dropdownData?.item?.map((item, index) => (
                   <Link
                     key={index}
                     href={item.link}
-                    className="font-karla rounded-tl-md text-gray-400 hover:text-purple_dark hover:font-medium p-[24px] md:text-[20px] xs:text-[11px]"
+                    className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium p-[24px] md:text-[36px] xs:text-[11px]"
                   >
                     {item.label}
                   </Link>
                 ))}
               </div>
             )}
-          </div>
         </div>
       </div>
     </div>

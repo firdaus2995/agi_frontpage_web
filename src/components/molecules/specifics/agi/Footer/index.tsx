@@ -65,14 +65,14 @@ const Footer = () => {
               <div>
                 <a
                   href="tel:+6281119601000"
-                  className="font-semibold text-base"
+                  className="font-semibold text-[1.5rem]"
                 >
                   0811 1960 1000
                 </a>
               </div>
               <div>
                 <p className="font-semibold text-base">Layanan Nasabah</p>
-                <a href="tel:+62215740381" className="text-lg">
+                <a href="tel:+62215740381" className="text-[0.875rem]">
                   (021) 574 0381
                 </a>
               </div>

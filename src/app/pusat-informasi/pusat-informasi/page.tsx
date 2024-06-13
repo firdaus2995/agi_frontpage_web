@@ -67,11 +67,11 @@ const PusatInformasi = () => {
     { name: 'Klaim', url: BASE_SLUG.PUSAT_INFORMASI.PAGE.KLAIM },
     {
       name: 'Rekanan',
-      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.BENGKEL
     },
     {
       name: 'Kantor Cabang',
-      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.KANTOR_CABANG
     },
     {
       name: 'Wording Polis & Klausula Asuransi',
@@ -159,8 +159,8 @@ const PusatInformasi = () => {
           { title: tab, href: '#' }
         ]}
         title="Pusat Informasi"
-        bottomImage={data.bannerImageUrl}
-        imageUrl={data.titleImageUrl}
+        bottomImage={data?.bannerImageUrl}
+        imageUrl={data?.titleImageUrl}
       />
       <MainContent />
       {!content ? (
@@ -168,12 +168,12 @@ const PusatInformasi = () => {
           title={
             <p
               className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
-              dangerouslySetInnerHTML={{ __html: data.footerText ?? '' }}
+              dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }
-          buttonTitle={data.footerBtnLabel}
-          image={data.footerInfoImageUrl}
-          href={data.footerBtnUrl}
+          buttonTitle={data?.footerBtnLabel}
+          image={data?.footerInfoImageUrl}
+          href={data?.footerBtnUrl}
         />
       ) : (
         <FooterInformation

@@ -21,11 +21,15 @@ export const BASE_SLUG = {
   PUSAT_INFORMASI: {
     CONTENT: {
       FORMULIR: 'List-Formulir-AGI',
-      KLAIM: 'List-klaim-AGI'
+      KLAIM: 'List-klaim-AGI',
+      BENGKEL: 'list-rekanan-bengkel-agi',
+      KANTOR_CABANG: 'List-Kantor-Cabang-AGI'
     },
     PAGE: {
       FORMULIR: 'halaman-formulir-agi',
-      KLAIM: 'halaman-klaim-agi'
+      KLAIM: 'halaman-klaim-agi',
+      BENGKEL: 'halaman-rekanan-bengkel-agi',
+      KANTOR_CABANG: 'halaman-kantor-cabang-agi'
     }
   },
 

@@ -149,7 +149,7 @@ const Footer = () => {
               <Link href="/pusat-informasi/pusat-informasi?tab=Formulir+Penutupan">
                 <p className="font-semibold">Formulir</p>
               </Link>
-              <Link href="/hubungi-kami/hubungi-kami?tab=Karir">
+              <Link href="/hubungi-kami?tab=Karir">
                 <p className="font-semibold">Karir</p>
               </Link>
             </div>

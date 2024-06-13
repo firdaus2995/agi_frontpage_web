@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import Icon from '@/components/atoms/Icon';
 
@@ -186,16 +186,28 @@ export const SelectDropdown = (props: SelectProps) => {
 
 type SearchInputProps = {
   placeholder?: string;
+  onClick?: any;
 };
 export const SearchInput = (props: SearchInputProps) => {
-  const { placeholder } = props;
+  const { placeholder, onClick } = props;
+  const [keyword, setKeyword] = useState('');
   return (
     <div className="flex flex-row">
       <input
         placeholder={placeholder}
         className="w-full rounded-xl px-[16px] py-3 bg-purple_dark/5 mr-[12px]"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={(e: any) => {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            onClick(e.target.value);
+          }
+        }}
       />
-      <button className="bg-purple_dark rounded-lg font-opensans font-semibold text-white px-[40px] py-3">
+      <button
+        onClick={() => onClick(keyword)}
+        className="bg-purple_dark rounded-lg font-opensans font-semibold text-white px-[40px] py-3"
+      >
         Cari
       </button>
     </div>

@@ -1,12 +1,132 @@
-import React from 'react';
-import Image from 'next/image';
+'use client';
+import React, { useEffect, useState } from 'react';
+import L from 'leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import { Card } from './Card';
 import { CardAddress } from './CardAddress';
 import { SearchInput } from './form/Input';
-import { Paginate } from './Paginate';
-import MAPS from '@/assets/images/maps.svg';
+import maps from '@/assets/images/Map-Pin.svg';
+import Icon from '@/components/atoms/Icon';
+import {
+  handleGetContentCategory,
+  handleGetContentDetail
+} from '@/services/content-page.api';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import { contentDetailTransformer } from '@/utils/responseTransformer';
 
 const KantorCabang = () => {
+  const [contentData, setContentData] = useState<any>();
+  const [search, setSearch] = useState('');
+  const [selectedMarker, setSelectedMarker] = useState<any>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    itemsPerPage: 5
+  });
+  const totalPages = contentData
+    ? Math.ceil(contentData?.length / pagination.itemsPerPage)
+    : 0;
+
+  const handlePageChange = (page: number) => {
+    setPagination({ ...pagination, currentPage: page });
+  };
+
+  const fetchContent = async () => {
+    try {
+      const apiContent = await handleGetContentCategory(
+        BASE_SLUG.PUSAT_INFORMASI.CONTENT.KANTOR_CABANG,
+        {
+          searchFilter: search
+        }
+      );
+      const transformedContent = apiContent.data.categoryList[''] ?? [];
+      const transformedData = await Promise.all(
+        transformedContent?.map(async (item: any) => {
+          const apiDetailContent = await handleGetContentDetail(item.id);
+          const { content } = contentDetailTransformer(apiDetailContent);
+          const title = item.title;
+          const addressOffice = content['alamat-ho'].value;
+          const operationalHourOffice = content['jam-operasional-ho'].value;
+          const branchOffice = content['kantor-cabang'].value;
+          const cityOffice = content['kota-ho'].value;
+          const latOffice = content['latitude-ho'].value;
+          const longOffice = content['longitude-ho'].value;
+          const phoneOffice = content['nomor-telepon-ho'].value;
+          return {
+            title,
+            addressOffice,
+            operationalHourOffice,
+            branchOffice,
+            cityOffice,
+            latOffice,
+            longOffice,
+            phoneOffice
+          };
+        })
+      );
+      setSelectedMarker(transformedData[0]);
+      setContentData(transformedData);
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  const RenderMap = () => {
+    const highOfficeCoordinate = {
+      lat: -6.214663280751351,
+      lng: 106.82071668189862
+    };
+    const defaultProps = {
+      center: highOfficeCoordinate,
+      zoom: 4.5
+    };
+
+    const eventHandlers = (item: any) => {
+      setSelectedMarker(item);
+    };
+
+    return (
+      <MapContainer
+        center={defaultProps.center}
+        zoom={defaultProps.zoom}
+        scrollWheelZoom={false}
+        style={{ width: '100%', height: '25.5rem', zIndex: 0 }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {contentData?.map((item: any, index: number) => {
+          const position = {
+            lat: item.latOffice,
+            lng: item.longOffice
+          };
+          return (
+            <div key={index} onClick={() => alert('dsadasa')}>
+              <Marker
+                eventHandlers={{ click: () => eventHandlers(item) }}
+                position={position}
+                icon={
+                  new L.Icon({
+                    iconUrl: maps.src,
+                    iconSize: [30, 25]
+                  })
+                }
+              ></Marker>
+            </div>
+          );
+        })}
+      </MapContainer>
+    );
+  };
+
+  useEffect(() => {
+    fetchContent();
+  }, [search]);
   return (
     <div className="flex flex-col gap-10 w-full">
       <div className="px-[2rem] md:px-[8.5rem]">
@@ -18,20 +138,61 @@ const KantorCabang = () => {
             <span className="font-opensans font-bold text-[24px]">
               Kantor Cabang
             </span>
-            <SearchInput placeholder="Cari Lokasi Kantor Cabang" />
+            <SearchInput
+              onClick={(key: any) => setSearch(key)}
+              placeholder="Cari Lokasi Kantor Cabang"
+            />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-x-[12px] gap-y-[24px] mt-[24px]">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
+            {contentData?.map((i: any, index: number) => (
               <CardAddress
-                key={i.toString()}
-                title="RSIA Bunda Jakarta"
-                address="Jl. Teuku Cik Ditiro No.28, Menteng, Jakarta Pusat"
-                contact="(021) 5789 8188"
-                workHour="Senin - Jumat 10.00 - 14:00 WIB"
+                key={index}
+                title={i?.title}
+                address={i?.addressOffice}
+                contact={i?.phoneOffice}
+                workHour={i?.operationalHourOffice}
               />
             ))}
           </div>
-          <Paginate className="mt-[24px]" />
+          <div className="flex flex-col gap-4 sm:flex-row justify-between mt-5">
+            <div>
+              <p className="text-[20px]">
+                Menampilkan{' '}
+                <span className="font-bold text-purple_dark">
+                  {contentData?.length === 0 ? 0 : startIndex + 1}-
+                  {Math.min(endIndex, contentData ? contentData.length : 0)}
+                </span>{' '}
+                dari <span className="font-bold">{contentData?.length}</span>{' '}
+                hasil
+              </p>
+            </div>
+            <div className="flex flex-row gap-[12px] items-center">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <div
+                    key={page}
+                    role="button"
+                    onClick={() => {
+                      setCurrentPage(page);
+                      handlePageChange(page);
+                    }}
+                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                      currentPage === page ? 'text-purple_dark font-bold' : ''
+                    }`}
+                  >
+                    {pagination.currentPage}
+                  </div>
+                )
+              )}
+              <span
+                className="mt-[3px]"
+                role="button"
+                onClick={() => handlePageChange(totalPages)}
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+            </div>
+          </div>
         </Card>
       </div>
       <div className="bg-gray_bglightgray px-[2rem] md:px-[8.5rem] py-[3.125rem] md:py-[6.25rem] flex flex-col gap-[2rem] md:gap-[4rem]">
@@ -40,19 +201,15 @@ const KantorCabang = () => {
         </p>
         <Card className="bg-white p-[1.5rem] grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           <CardAddress
-            title="Kantor Pusat Jakarta"
-            address="World Trade Center II Lt. 7 & 8, Jl. Jenderal Sudirman Jl. Setiabudi Raya Kav 29-31, RT.8/RW.3"
-            workHour="Senin-Jumat 10.00 - 14.00 WIB"
-            contact="(021) 5789 8188"
+            title={selectedMarker?.title}
+            address={selectedMarker?.addressOffice}
+            workHour={selectedMarker?.operationalHourOffice}
+            contact={selectedMarker?.phoneOffice}
             withNavigation={true}
           />
 
-          <Card className="md:col-span-2">
-            <Image
-              src={MAPS}
-              className="w-full h-full object-cover"
-              alt="maps"
-            />
+          <Card className="md:col-span-2 min-h-[100%] w-full">
+            {RenderMap()}
           </Card>
         </Card>
       </div>

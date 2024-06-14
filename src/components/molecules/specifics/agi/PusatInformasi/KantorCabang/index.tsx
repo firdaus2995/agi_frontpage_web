@@ -1,8 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import L from 'leaflet';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import dynamic from 'next/dynamic';
 import { Card } from './Card';
 import { CardAddress } from './CardAddress';
 import { SearchInput } from './form/Input';
@@ -14,6 +12,13 @@ import {
 } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { contentDetailTransformer } from '@/utils/responseTransformer';
+
+// Import Leaflet dynamically
+const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
+
+const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
   const [contentData, setContentData] = useState<any>();
@@ -106,18 +111,17 @@ const KantorCabang = () => {
             lng: item.longOffice
           };
           return (
-            <div key={index} onClick={() => alert('dsadasa')}>
-              <Marker
-                eventHandlers={{ click: () => eventHandlers(item) }}
-                position={position}
-                icon={
-                  new L.Icon({
-                    iconUrl: maps.src,
-                    iconSize: [30, 25]
-                  })
-                }
-              ></Marker>
-            </div>
+            <Marker
+              key={index}
+              eventHandlers={{ click: () => eventHandlers(item) }}
+              position={position}
+              icon={
+                new L.Icon({
+                  iconUrl: maps.src,
+                  iconSize: [30, 25]
+                })
+              }
+            ></Marker>
           );
         })}
       </MapContainer>
@@ -127,6 +131,7 @@ const KantorCabang = () => {
   useEffect(() => {
     fetchContent();
   }, [search]);
+
   return (
     <div className="flex flex-col gap-10 w-full">
       <div className="px-[2rem] md:px-[8.5rem]">
@@ -144,7 +149,7 @@ const KantorCabang = () => {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
-            {contentData?.map((i: any, index: number) => (
+            {contentData?.slice(startIndex, endIndex).map((i: any, index: number) => (
               <CardAddress
                 key={index}
                 title={i?.title}
@@ -180,7 +185,7 @@ const KantorCabang = () => {
                       currentPage === page ? 'text-purple_dark font-bold' : ''
                     }`}
                   >
-                    {pagination.currentPage}
+                    {page}
                   </div>
                 )
               )}
@@ -207,7 +212,6 @@ const KantorCabang = () => {
             contact={selectedMarker?.phoneOffice}
             withNavigation={true}
           />
-
           <Card className="md:col-span-2 min-h-[100%] w-full">
             {RenderMap()}
           </Card>

@@ -36,10 +36,6 @@ const Avrist = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(contentData)
-  }, [contentData])
-
   return (
     <div className="flex flex-col items-center justify-center bg-purple_light_bg">
       {contentData !== null && (

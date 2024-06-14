@@ -1,12 +1,14 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import IconWrapper from './components/IconWrapper';
 import AGI_LOGO from '@/assets/images/agi-logo.svg';
 import FOOTER_IMAGE from '@/assets/images/footer-image.svg';
+import WHATSAPP_IMAGE from '@/assets/images/whatsapp-image.svg';
 import Icon from '@/components/atoms/Icon';
+import { getListGlobalConfig } from '@/services/global-config.api';
 
 const additionalInfo = [
   {
@@ -25,6 +27,27 @@ const additionalInfo = [
 
 const Footer = () => {
   const pathname = usePathname();
+  const [globalConfig, setGlobalConfig] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const globalConfig = await getListGlobalConfig();
+      setGlobalConfig(globalConfig.data.configs);
+    };
+
+    fetchData();
+  }, []);
+
+  const getLink = (value: string) => {
+    if (globalConfig.length === 0) {
+      return '';
+    }
+
+    return globalConfig?.filter(
+      (item: { variable: string }) => item.variable === value
+    )[0].value;
+  };
+
   if (pathname.includes('/under-construction')) return null;
   return (
     <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
@@ -190,6 +213,15 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <Link href={`https://wa.me/${getLink('phoneAGI')}`} target='_blank'>
+        <Image
+          alt="Whatsapp"
+          height={0}
+          width={0}
+          className="absolute bottom-full right-10 translate-y-1/2 aspect-square w-[6rem] sm:w-[10rem]"
+          src={WHATSAPP_IMAGE.src}
+        />
+      </Link>
     </footer>
   );
 };

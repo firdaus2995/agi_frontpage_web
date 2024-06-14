@@ -34,7 +34,6 @@ const LayananNasabah = (props: LayananNasabah) => {
     dots: false,
     infinite: false,
     arrows: false,
-    centerMode: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
@@ -76,80 +75,82 @@ const LayananNasabah = (props: LayananNasabah) => {
     href2: string;
     href3: string;
   }) => (
-    <div
-      className={`w-full max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-foamy_milk items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark pt-[24px] px-[32px] pb-[36px]`}
-    >
-      <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
-        <Image src={val.icon} alt={val.title} width={64} height={64} />
-      </div>
+    <div className="w-full flex items-center justify-center">
       <div
-        className={`w-full md:pt-[24px] md:px-[32px] md:pb-[36px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+        className={`w-[90%] max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-foamy_milk items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark pt-[24px] px-[32px] pb-[36px]`}
       >
-        <div className="flex flex-row items-center gap-4">
-          <div className="xs:hidden md:block">
-            <Image
-              src={val.icon}
-              alt={val.title}
-              width={100} height={100}
-            />
-          </div>
-          <div className="flex flex-col gap-4">
-            <p className="md:text-[32px] xs:text-[1.5rem] font-bold text-left w-full mb-2">
-              {val.title}
-            </p>
-            <div className="flex flex-row items-center gap-2 flex-wrap">
-              <Link
-                role="button"
-                className="flex flex-row items-center gap-4 whitespace-nowrap"
-                href={val.href1}
-              >
-                <p className={`font-semibold md:text-lg xs:text-xs`}>
-                  {val.link1}
-                </p>
-                <Image
-                  src={val.linkIcon}
-                  alt={val.link1}
-                  width={24}
-                  height={24}
-                  className="w-4 mix-blend-multiply"
-                />
-              </Link>
+        <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
+          <Image src={val.icon} alt={val.title} width={64} height={64} />
+        </div>
+        <div
+          className={`w-full md:pt-[24px] md:px-[32px] md:pb-[36px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+        >
+          <div className="flex flex-row items-center gap-4">
+            <div className="xs:hidden md:block">
+              <Image
+                src={val.icon}
+                alt={val.title}
+                width={100} height={100}
+              />
             </div>
-            <div className="flex flex-row items-center gap-2 flex-wrap">
-              <Link
-                role="button"
-                className="flex flex-row items-center gap-4 whitespace-nowrap"
-                href={val.href2}
-              >
-                <p className={`font-semibold md:text-lg xs:text-xs`}>
-                  {val.link2}
-                </p>
-                <Image
-                  src={val.linkIcon}
-                  alt={val.link2}
-                  width={24}
-                  height={24}
-                  className="w-4 mix-blend-multiply"
-                />
-              </Link>
-            </div>
-            <div className="flex flex-row items-center gap-2 flex-wrap">
-              <Link
-                role="button"
-                className="flex flex-row items-center gap-4 whitespace-nowrap"
-                href={val.href3}
-              >
-                <p className={`font-semibold md:text-lg xs:text-xs`}>
-                  {val.link3}
-                </p>
-                <Image
-                  src={val.linkIcon}
-                  alt={val.link3}
-                  width={24}
-                  height={24}
-                  className="w-4 mix-blend-multiply"
-                />
-              </Link>
+            <div className="flex flex-col gap-4">
+              <p className="md:text-[32px] xs:text-[1.5rem] font-bold text-left w-full mb-2">
+                {val.title}
+              </p>
+              <div className="flex flex-row items-center gap-2 flex-wrap">
+                <Link
+                  role="button"
+                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  href={val.href1}
+                >
+                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                    {val.link1}
+                  </p>
+                  <Image
+                    src={val.linkIcon}
+                    alt={val.link1}
+                    width={24}
+                    height={24}
+                    className="w-4 mix-blend-multiply"
+                  />
+                </Link>
+              </div>
+              <div className="flex flex-row items-center gap-2 flex-wrap">
+                <Link
+                  role="button"
+                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  href={val.href2}
+                >
+                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                    {val.link2}
+                  </p>
+                  <Image
+                    src={val.linkIcon}
+                    alt={val.link2}
+                    width={24}
+                    height={24}
+                    className="w-4 mix-blend-multiply"
+                  />
+                </Link>
+              </div>
+              <div className="flex flex-row items-center gap-2 flex-wrap">
+                <Link
+                  role="button"
+                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  href={val.href3}
+                >
+                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                    {val.link3}
+                  </p>
+                  <Image
+                    src={val.linkIcon}
+                    alt={val.link3}
+                    width={24}
+                    height={24}
+                    className="w-4 mix-blend-multiply"
+                  />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -182,7 +183,7 @@ const LayananNasabah = (props: LayananNasabah) => {
           {...sliderSettings}
         >
           {data.map((val, idx) => (
-            <div className="px-2" key={idx}>
+            <div className="p-2" key={idx}>
               {renderCard(val)}
             </div>
           ))}

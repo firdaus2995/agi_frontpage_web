@@ -57,12 +57,11 @@ const CompanySection = (props: CompanySection) => {
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}
-            target="_blank"
           >
             <Button
               title={contentStringTransformer(val['why-us-button-label'])}
               customButtonClass="bg-purple_dark"
-              customTextClass="text-white"
+              customTextClass="text-white text-[1rem]"
             />
           </Link>
         </div>

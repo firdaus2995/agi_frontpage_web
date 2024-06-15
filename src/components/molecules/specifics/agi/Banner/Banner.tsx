@@ -149,7 +149,7 @@ const BannerAvrast = (
                     key={index}
                     className="flex w-full xs:h-[49rem] md:h-[40rem] relative"
                   >
-                    <div className="md:hidden">
+                    <div className="sm:hidden">
                       <Image
                         alt="loop-image"
                         src={
@@ -162,7 +162,7 @@ const BannerAvrast = (
                         className="w-full h-full object-cover object-right-bottom"
                       />
                     </div>
-                    <div className="md:block xs:hidden">
+                    <div className="sm:block xs:hidden">
                       <Image
                         alt="loop-image"
                         src={
@@ -197,7 +197,8 @@ const BannerAvrast = (
                             title={contentStringTransformer(
                               data['hero-lblbutton']
                             )}
-                            customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none text-[1.25rem] xs:py-[12px] xs:px-[40px]`}
+                            customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none xs:py-[12px] xs:px-[40px]`}
+                            customTextClass='text-[1.25rem]'
                           />
                         </Link>
                       </div>
@@ -275,14 +276,14 @@ const BannerAvrast = (
           </div>
             {dropdownVisible && (
               <div
-                className={`absolute flex flex-col xs:top-[300px] xs:mx-10 sm:top-[120px] sm:right-[1rem] rounded-md bg-white xs:right-[1.25rem] xs:left-0 sm:left-[40rem] sm:w-[31.25rem]`}
+                className={`absolute flex flex-col xs:top-[300px] sm:top-[120px] sm:right-[1rem] rounded-md bg-white xs:right-[1.25rem] xs:left-0 sm:left-[40rem] sm:w-[31.25rem]`}
                 ref={dropdownRef}
               >
                 {dropdownData?.item?.map((item, index) => (
                   <Link
                     key={index}
                     href={item.link}
-                    className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium p-[24px] md:text-[36px] xs:text-[11px]"
+                    className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium py-[24px] pr-[24px] pl-[32px] md:text-[36px] xs:text-[20px]"
                   >
                     {item.label}
                   </Link>

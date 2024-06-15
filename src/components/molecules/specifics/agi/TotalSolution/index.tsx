@@ -81,7 +81,7 @@ const TotalSolution = (props: TotalSolution) => {
             src={val.icon.imageUrl}
             width={100}
             height={100}
-            className='w-[6.25rem] h-[6.25rem]'
+            className="w-[6.25rem] h-[6.25rem]"
           />
           <p className="font-bold text-2xl">{val.title}</p>
         </div>
@@ -110,10 +110,11 @@ const TotalSolution = (props: TotalSolution) => {
     btnText?: string;
     btnLink: string;
   }) => (
-    <div
-      className={`w-[95%] h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl p-4`}
-    >
-      <div className="flex flex-col items-center gap-[24px]">
+    <div className="w-full flex items-center justify-center">
+      <div
+        className={`w-[90%] h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl p-4`}
+      >
+        <div className="flex flex-col items-center gap-[24px]">
           <Image
             alt="loop-image"
             src={val.icon.imageUrl}
@@ -129,9 +130,10 @@ const TotalSolution = (props: TotalSolution) => {
             }}
           />
           <Link href={val.btnLink}>
-            <Button title={val.btnText} />
+            <Button title={val.btnText} customTextClass="text-[1rem]" />
           </Link>
         </div>
+      </div>
     </div>
   );
 
@@ -169,11 +171,16 @@ const TotalSolution = (props: TotalSolution) => {
               },
               idx: React.Key | null | undefined
             ) => (
-              <div key={idx} className='w-full flex items-center justify-centers'>{renderMobileCard(val)}</div>
+              <div
+                key={idx}
+                className="w-full flex items-center justify-centers"
+              >
+                {renderMobileCard(val)}
+              </div>
             )
           )}
         </Slider>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row w-full justify-between">
           <Image alt="prev" src={ARROW_LEFT} role="button" onClick={previous} />
           <Image alt="next" src={ARROW_RIGHT} role="button" onClick={next} />
         </div>

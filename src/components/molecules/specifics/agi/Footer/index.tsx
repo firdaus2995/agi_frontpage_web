@@ -105,6 +105,9 @@ const Footer = () => {
                   avrist.general@avrist.com
                 </a>
               </div>
+              <div>
+                <a href='/pusat-informasi/pusat-informasi?tab=Kantor+Cabang' className="font-semibold text-base">Lokasi Avrist General Insurance</a>
+              </div>
             </div>
           </div>
 

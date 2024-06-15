@@ -10,7 +10,12 @@ import Klaim from './Klaim';
 import Rekanan from './Rekanan';
 import WordingPolis from './WordingPolis';
 
-const MainContent = () => {
+type mainContentProps = {
+  pageData: any;
+};
+
+const MainContent = (props: mainContentProps) => {
+  const { pageData } = props;
   const searchParams = useSearchParams();
   const params = searchParams.get('tab') ?? '';
   const content = searchParams.get('content');
@@ -41,7 +46,7 @@ const MainContent = () => {
       ) : params.includes('Wording Polis & Klausula Asuransi ') ? (
         <WordingPolis />
       ) : params.includes('Agency') ? (
-        <Agency />
+        <Agency pageData={pageData} />
       ) : (
         <Formulir />
       )}

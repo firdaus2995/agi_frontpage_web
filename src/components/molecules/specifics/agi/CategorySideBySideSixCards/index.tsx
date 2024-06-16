@@ -58,7 +58,7 @@ const CategorySideBySideSixCards = ({
           dangerouslySetInnerHTML={{
             __html: description.replace(
               '<ol>',
-              `<ol class="list-decimal pl-6 ${defaultClassName}">`
+              `<ol class="list-decimal pl-6 text-base font-normal font-opensans ${defaultClassName}">`
             )
           }}
         />
@@ -70,7 +70,7 @@ const CategorySideBySideSixCards = ({
           dangerouslySetInnerHTML={{
             __html: description.replace(
               '<ul>',
-              `<ul class="list-disc pl-6 ${defaultClassName}">`
+              `<ul class="list-disc pl-6 text-base font-normal font-opensans ${defaultClassName}">`
             )
           }}
         />

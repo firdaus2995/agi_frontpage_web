@@ -38,14 +38,14 @@ export const BASE_SLUG = {
   BERITA: {
     CONTENT: {
       BERITA_ACARA: 'Berita-dan-Acara-AGI',
-      PENGHARGAAN: '',
+      PENGHARGAAN: 'Penghargaan-AGI',
       CSR: ''
     },
     PAGE: {
       BERITA_ACARA: 'hal-berita-dan-acara-agi-new',
       BERITA_ACARA_DETAIL: 'hal-berita-dan-acara-detail-agi-new',
-      PENGHARGAAN: '',
-      PENGHARGAAN_DETAIL: '',
+      PENGHARGAAN: 'halaman-penghargaan-agi',
+      PENGHARGAAN_DETAIL: 'halaman-penghargaan-agi',
       CSR: '',
       CSR_DETAIL: ''
     }

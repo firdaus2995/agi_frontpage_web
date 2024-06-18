@@ -73,12 +73,6 @@ const CategoryWithThreeCards = ({
     }
   };
 
-  const handleKeyDown = (e: { key: string }) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch();
-    }
-  };
-
   const Dropdown: React.FC<DropdownProps> = ({
     categories,
     selectedCategory

@@ -196,8 +196,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
                   </div>
                   <Link
                     href={{
-                      pathname: `/promo-berita/berita/berita-dan-kegiatan/`,
-                      query: { id: item.id }
+                      pathname: `/berita/berita/tabs/berita-acara/${item.id}`
                     }}
                     className="flex flex-row items-center flex-wrap gap-[12px] font-bold text-purple_dark"
                   >

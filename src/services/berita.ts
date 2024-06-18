@@ -14,6 +14,16 @@ export const getBeritaAcara = async (query: QueryParams) => {
   );
 };
 
+export const getPenghargaan = async (query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/category',
+    BASE_SLUG.BERITA.CONTENT.PENGHARGAAN,
+    {
+      method: 'GET',
+      queryParams: filterAttributes(query)
+    }
+  );
+};
 // export const getAvriStory = async (query: QueryParams) => {
 //   return await httpService<ContentCategoryResponse>(
 //     'content/category',

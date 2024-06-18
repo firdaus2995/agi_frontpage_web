@@ -213,7 +213,12 @@ const Berita: React.FC<ParamsProps> = () => {
           description={data?.descriptionBody ?? ''}
         />
       )}
-      {tab === 'Penghargaan' && <Penghargaan />}
+      {tab === 'Penghargaan' && (
+        <Penghargaan
+          title={data?.judulBody ?? ''}
+          description={data?.descriptionBody ?? ''}
+        />
+      )}
       {tab === 'CSR' && <CSR />}
 
       <div className="flex flex-col">

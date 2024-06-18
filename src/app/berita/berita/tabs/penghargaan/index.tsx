@@ -1,15 +1,52 @@
-import { useRef } from 'react';
+'use client';
+import { FC, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
-import BlankImage from '@/assets/images/blank-image.svg';
+import {
+  yearDropdown,
+  monthDropdown
+} from '@/app/berita/berita/components/dropdown-filter';
+import Paginate from '@/app/berita/berita/components/paginate';
 import Icon from '@/components/atoms/Icon';
+import NotFound from '@/components/atoms/NotFound';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CardCategoryC from '@/components/molecules/specifics/agi/Cards/CategoryC';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 import SliderInformation from '@/components/molecules/specifics/agi/SliderInformation';
+import { getPenghargaan } from '@/services/berita';
+import { mergeAllData } from '@/utils/helpers';
+import {
+  handleTransformedContent,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-const Penghargaan = () => {
+interface IPenghargaan {
+  title: string;
+  description: string;
+}
+
+const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
   const sliderRef = useRef<Slider | null>(null);
+  const [contentData, setContentData] = useState<any>();
+  const [search, setSearch] = useState('');
+  const [params, setParams] = useState({
+    yearFilter: '',
+    monthFilter: '',
+    searchFilter: ''
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    itemsPerPage: 6
+  });
+  const startIndex = (pagination.currentPage - 1) * pagination.itemsPerPage;
+  const endIndex = startIndex + pagination.itemsPerPage;
+  const paginatedData = contentData
+    ? contentData?.slice(startIndex, endIndex)
+    : [];
+  const totalPages = contentData
+    ? Math.ceil(contentData?.length / pagination.itemsPerPage)
+    : 0;
+
   const next = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
@@ -20,6 +57,7 @@ const Penghargaan = () => {
       sliderRef.current.slickPrev();
     }
   };
+
   const sliderSettings = {
     dots: true,
     infinite: false,
@@ -27,69 +65,152 @@ const Penghargaan = () => {
     centerMode: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          centerMode: false
+        }
+      }
+    ]
   };
-  return (
-    <div className="w-full flex flex-col items-center justify-center py-2 text-center mt-44">
-      <h2 className="text-[56px] font-bold mb-6 text-purple_dark">
-        Penghargaan Avrist General Insurance
-      </h2>
-      <h2 className="text-[36px] mb-6">
-        Informasi terkini dari siaran pers hingga aktivitas sosial.
-      </h2>
 
-      <div className="w-full p-10">
+  const fetchContent = async () => {
+    try {
+      const fetchContentCategory = await getPenghargaan({
+        includeAttributes: 'true',
+        searchFilter: params.searchFilter,
+        yearFilter: params.yearFilter,
+        monthFilter: params.monthFilter
+      });
+
+      const categoryList = fetchContentCategory.data.categoryList;
+
+      // merge  all category data
+      const mergedData = mergeAllData(categoryList);
+      const sorted = mergedData.sort(
+        //@ts-ignore
+        (a: any, b: any) => new Date(b?.createdAt) - new Date(a?.createdAt)
+      );
+
+      const transformedData = sorted?.map((item: any) => {
+        const { content } = handleTransformedContent(
+          item.contentData,
+          item.title
+        );
+
+        const judul = item.title;
+        const waktu = `${
+          monthDropdown(params, setParams).find(
+            (item) =>
+              item.value === content['bulan'].value ||
+              item.label === content['bulan'].value
+          )?.label
+        } ${content['tahun'].value}`;
+        const deskripsi = content['artikel-looping'].contentData[0].details;
+        const image = singleImageTransformer(
+          content['artikel-thumbnail']
+        ).imageUrl;
+        const id = item.id;
+        const tags = content['tags'].value;
+        const date = new Date(item.createdAt).getDate();
+        const artikelTopic = 'Berita dan Acara';
+
+        return {
+          judul,
+          waktu,
+          deskripsi,
+          image,
+          id,
+          tags,
+          date,
+          artikelTopic
+        };
+      });
+
+      setContentData(transformedData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+  }, [params]);
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, [contentData]);
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center py-2">
+      <div className="text-center px-[2rem] md:px-[8.5rem] flex flex-col gap-[0.75rem]">
+        <h2 className="text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
+          {title ?? 'Berita dan Acara Avrist General Insurance'}
+        </h2>
+        <h2 className="text-[1.125rem] md:text-[2.25rem]">
+          {description ??
+            'Informasi terkini dari siaran pers hingga aktivitas sosial.'}
+        </h2>
+      </div>
+
+      <div className="w-full h-full px-[2rem]">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;
           }}
           {...sliderSettings}
         >
-          {[...Array(5)].map((_, index) => (
+          {contentData?.slice(0, 5)?.map((item: any, index: number) => (
             <SliderInformation
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left">
+                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px]">
                   <p className="text-[14px]">
-                    <span className="font-bold text-purple_dark">
-                      Tanggung Jawab Sosial
+                    <span className="font-bold text-purple_dark text-sm">
+                      {item.artikelTopic}
                     </span>{' '}
-                    | 2 Januari 2024
+                    | {`${item.date} ${item.waktu}`}
                   </p>
-                  <p className="text-[36px] font-bold">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                  <p className="text-[16px] line-clamp-2">
-                    Lorem ipsum dolor sit amet consectetur. Et non nulla elit
-                    eget. Integer non a varius viverra. Amet proin libero augue
-                    amet nunc et. Ultrices habitasse diam quam consequat
-                    commodo. Amet tempor nam cras id egestas pulvinar egestas
-                    egestas vitae. Etiam tincidunt sit amet ultricies pharetra
-                    ultrices nisl nec tincidunt. Tincidunt gravida orci feugiat
-                    amet. At ridiculus dolor augue gravida. Risus ut neque leo
-                    fringilla tincidunt suspendisse fusce eu arcu. Blandit
-                    fermentum faucibus tempus varius quis at. Vulputate elit
-                    lorem purus faucibus blandit non ut. Ornare tortor pulvinar
-                    eget facilisis mi tortor vulputate.
-                  </p>
-                  <div className="text-[14px] flex flex-row gap-2">
-                    <MediumTag title="Avrist Life Insurance" />
-                    <MediumTag title="Tanggung Jawab Sosial" />
+                  <p
+                    className="text-[1.5rem] md:text-[2.25rem] font-bold line-clamp-3 "
+                    dangerouslySetInnerHTML={{
+                      __html: item.judul
+                    }}
+                  />
+                  <p
+                    className="text-[16px] line-clamp-2"
+                    dangerouslySetInnerHTML={{
+                      __html: item.deskripsi
+                        ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
+                        : '-'
+                    }}
+                  />
+
+                  <div className="flex flex-row flex-wrap gap-[12px]">
+                    <MediumTag title={item.tags} />
                   </div>
-                  <p className="cursor-pointer font-bold text-purple_dark flex gap-2 items-center">
-                    Selengkapnya{' '}
-                    <span className="mt-[3px]">
-                      <Icon name="chevronRight" color="purple_dark" />
-                    </span>
-                  </p>
+                  <Link
+                    href={{
+                      pathname: `/berita/berita/tabs/penghargaan/${item.id}`
+                    }}
+                    className="flex flex-row items-center flex-wrap gap-[12px] font-bold text-purple_dark"
+                  >
+                    Selengkapnya
+                    <Icon name="chevronRight" color="purple_dark" />
+                  </Link>
                 </div>
               }
-              image={BlankImage}
+              image={item.image}
+              imageClassName="rounded-r-2xl"
             />
           ))}
         </Slider>
-        <div className="flex flex-row justify-between w-full px-20">
+        <div className="flex flex-row justify-between w-full mt-10 md:mb-0 md:px-[6.5rem]">
           <div
             className="p-2 border-2 rounded-full border-purple_dark"
             role="button"
@@ -108,64 +229,64 @@ const Penghargaan = () => {
       </div>
 
       <CategoryWithThreeCards
+        outerClass="px-[2rem] md:px-[8.5rem] w-full"
         defaultSelectedCategory={'Berita dan Kegiatan'}
         filterRowLayout={true}
         hiddenCategory
+        hidePagination
         categoryCard="B"
         categories={['Berita dan Kegiatan', 'AvriStory', 'Avrist Life Guide']}
+        searchPlaceholder="Cari Kegiatan"
+        onSearchChange={(e) => {
+          setSearch(e.target.value);
+        }}
+        onSearch={() => {
+          setParams({ ...params, searchFilter: search });
+        }}
         tabs={[
           {
             type: 'dropdown',
             label: 'tahun',
-            options: [
-              { label: 'Pilih Tahun', value: 'option1' },
-              { label: 'Option 2', value: 'option2' },
-              { label: 'Option 3', value: 'option3' }
-            ]
+            options: yearDropdown(2009, params, setParams)
           },
           {
             type: 'dropdown',
             label: 'Bulan',
-            options: [
-              { label: 'Pilih Bulan', value: 'option1' },
-              { label: 'Option 2', value: 'option2' },
-              { label: 'Option 3', value: 'option3' }
-            ]
+            options: monthDropdown(params, setParams)
           }
         ]}
         customContent={
-          <div className="grid grid-cols-2 gap-[24px]">
-            {[...Array(4)].map((_, index) => (
-              <Link
-                key={index}
-                href={'/berita/berita/tabs/penghargaan/detail'}
-              >
-                <CardCategoryC
-                  key={index}
-                  customContent={
-                    <div className="flex flex-col gap-2 text-left p-2">
-                      <p className="text-[14px]">10 January 2023</p>
-                      <p className="text-[24px] font-bold">
-                        Best Mutual Fund Awards 2023
-                      </p>
-                      <p className="text-[24px]">Reksa Dana Terbaik 2023</p>
-                      <p className="text-[16px] line-clamp-2">
-                        Avrist IDX30 (Reksa Dana Indeks & ETF Pasif Periode 5
-                        Tahun) & Avrist Ada Kas Mutiara (Reksa Dana Pasar Uang
-                        Periode 5 Tahun Aset di Atas Rp10 Miliar - Rp100 Miliar)
-                      </p>
-                      <p className="cursor-pointer font-bold text-purple_dark flex gap-2 items-center">
-                        Baca Berita Pers{' '}
-                        <span className="mt-[3px]">
-                          <Icon name="chevronRight" color="purple_dark" />
-                        </span>
-                      </p>
-                    </div>
-                  }
-                />
-              </Link>
-            ))}
-          </div>
+          paginatedData.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
+                {paginatedData?.map((item: any, index: number) => (
+                  <Link
+                    key={index}
+                    href={{
+                      pathname: `/berita/berita/tabs/penghargaan/${item.id}`
+                    }}
+                  >
+                    <CardCategoryC
+                      summary={item.judul}
+                      name=""
+                      position={`${item.date} ${item.waktu}`}
+                      image={item.image}
+                    />
+                  </Link>
+                ))}
+              </div>
+              <Paginate
+                data={contentData}
+                startIndex={startIndex}
+                endIndex={endIndex}
+                totalPages={totalPages}
+                pagination={pagination}
+                setPagination={setPagination}
+              />
+            </>
+          ) : (
+            <NotFound />
+          )
         }
       />
     </div>

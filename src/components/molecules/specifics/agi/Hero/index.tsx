@@ -66,7 +66,7 @@ const Hero: React.FC<IHero> = ({
       {bottomImage && (
         <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute">
           <Image
-            className="w-full h-[20rem] md:h-[40rem] object-cover"
+            className="w-full h-[20rem] md:h-[40rem] object-fill"
             alt="gambar-produk-individu"
             width={100}
             height={100}

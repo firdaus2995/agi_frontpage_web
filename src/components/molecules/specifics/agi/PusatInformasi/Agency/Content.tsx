@@ -363,7 +363,7 @@ const Content = (props: contentProps) => {
                     ) => (
                       <Link
                         key={index}
-                        href={`/pusat-informasi/pusat-informasi?tab=Agency/${item.id}`}
+                        href={`/pusat-informasi/pusat-informasi?tab=Agency&content=${item.id}`}
                       >
                         <CardCategoryB
                           summary={item.title !== '-' ? item.title : ''}

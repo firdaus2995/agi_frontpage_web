@@ -169,7 +169,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px]">
+                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px] md:h-[330px]">
                   <p className="text-[14px]">
                     <span className="font-bold text-purple_dark text-sm">
                       {item.artikelTopic}

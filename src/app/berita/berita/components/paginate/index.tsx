@@ -28,7 +28,7 @@ const Paginate: FC<IPaginate> = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 sm:flex-row justify-between">
+    <div className="flex flex-col md:flex-row gap-4 sm:flex-row justify-between mb-10 md:mb-0">
       <div>
         <p className="text-[1.25rem]">
           Menampilkan{' '}

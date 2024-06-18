@@ -219,9 +219,14 @@ const Berita: React.FC<ParamsProps> = () => {
           description={data?.descriptionBody ?? ''}
         />
       )}
-      {tab === 'CSR' && <CSR />}
+      {tab === 'CSR' && (
+        <CSR
+          title={data?.judulBody ?? ''}
+          description={data?.descriptionBody ?? ''}
+        />
+      )}
 
-      <div className="flex flex-col">
+      <div className="w-full flex flex-col">
         <FooterInformation
           title={
             <div className="flex flex-col gap-4">

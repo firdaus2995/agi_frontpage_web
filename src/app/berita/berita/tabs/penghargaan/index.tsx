@@ -149,7 +149,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
     <div className="w-full flex flex-col items-center justify-center py-2">
       <div className="text-center px-[2rem] md:px-[8.5rem] flex flex-col gap-[0.75rem]">
         <h2 className="text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
-          {title ?? 'Berita dan Acara Avrist General Insurance'}
+          {title ?? 'Penghargaan Avrist General Insurance'}
         </h2>
         <h2 className="text-[1.125rem] md:text-[2.25rem]">
           {description ??
@@ -169,7 +169,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px]">
+                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px] md:h-[330px]">
                   <p className="text-[14px]">
                     <span className="font-bold text-purple_dark text-sm">
                       {item.artikelTopic}

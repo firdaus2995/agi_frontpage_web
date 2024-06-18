@@ -24,60 +24,17 @@ export const getPenghargaan = async (query: QueryParams) => {
     }
   );
 };
-// export const getAvriStory = async (query: QueryParams) => {
-//   return await httpService<ContentCategoryResponse>(
-//     'content/category',
-//     BASE_SLUG.BERITA.CONTENT.AVRISTORY,
-//     {
-//       method: 'GET',
-//       queryParams: filterAttributes(query)
-//     }
-//   );
-// };
 
-// export const getAvristLifeGuide = async (query: QueryParams) => {
-//   return await httpService<ContentCategoryResponse>(
-//     'content/category',
-//     BASE_SLUG.BERITA.CONTENT.AVRIST_LIFE_GUIDE,
-//     {
-//       method: 'GET',
-//       queryParams: filterAttributes(query)
-//     }
-//   );
-// };
-
-// export const getBeritaPers = async (query: QueryParams) => {
-//   return await httpService<ContentCategoryResponse>(
-//     'content/category',
-//     BASE_SLUG.BERITA.CONTENT.KUMPULAN_BERITA_PERS_NEW,
-//     {
-//       method: 'GET',
-//       queryParams: filterAttributes(query)
-//     }
-//   );
-// };
-
-// export const getTestimoni = async (query: QueryParams) => {
-//   return await httpService<ContentCategoryResponse>(
-//     'content/category',
-//     BASE_SLUG.BERITA.CONTENT.TESTIMONI,
-//     {
-//       method: 'GET',
-//       queryParams: filterAttributes(query)
-//     }
-//   );
-// };
-
-// export const getPenawaran = async (query: QueryParams) => {
-//   return await httpService<ContentCategoryResponse>(
-//     'content/category',
-//     BASE_SLUG.BERITA.CONTENT.PENAWARAN,
-//     {
-//       method: 'GET',
-//       queryParams: filterAttributes(query)
-//     }
-//   );
-// };
+export const getCSR = async (query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/category',
+    BASE_SLUG.BERITA.CONTENT.CSR,
+    {
+      method: 'GET',
+      queryParams: filterAttributes(query)
+    }
+  );
+};
 
 export const subscribeApi = async (query: QueryParams) => {
   return await httpService('default', 'subscribe', {

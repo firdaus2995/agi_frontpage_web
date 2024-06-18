@@ -39,15 +39,15 @@ export const BASE_SLUG = {
     CONTENT: {
       BERITA_ACARA: 'Berita-dan-Acara-AGI',
       PENGHARGAAN: 'Penghargaan-AGI',
-      CSR: ''
+      CSR: 'CSR-AGI'
     },
     PAGE: {
       BERITA_ACARA: 'hal-berita-dan-acara-agi-new',
       BERITA_ACARA_DETAIL: 'hal-berita-dan-acara-detail-agi-new',
       PENGHARGAAN: 'halaman-penghargaan-agi',
       PENGHARGAAN_DETAIL: 'halaman-penghargaan-agi',
-      CSR: '',
-      CSR_DETAIL: ''
+      CSR: 'halaman-csr-agi',
+      CSR_DETAIL: 'halaman-csr-agi'
     }
   },
   // Modul 6

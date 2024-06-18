@@ -1,15 +1,17 @@
-import React, { ReactElement } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 import BlankImage from '@/assets/images/blank-image.svg';
 import PlayButton from '@/assets/images/play-button.svg';
+import { VideoModal } from '@/components/molecules/specifics/agi/Modal/VideoModal';
+import { getYouTubeId } from '@/utils/helpers';
 
 interface ICardCategoryC {
-  summary?: string;
-  name?: string;
-  position?: string;
+  summary: string;
+  name: string;
+  position: string;
+  image: string;
   isVideo?: boolean;
-  customContent?: ReactElement;
 }
 
 const CardCategoryC = ({
@@ -17,32 +19,53 @@ const CardCategoryC = ({
   name,
   position,
   isVideo,
-  customContent
+  image
 }: ICardCategoryC) => {
+  const imageUrl = isVideo
+    ? `https://img.youtube.com/vi/${getYouTubeId(image)}/hqdefault.jpg`
+    : image;
+
+  const [show, setShow] = useState(false);
+
   return (
-    <div className="flex flex-col gap-[18px] border border-gray_light border-b-8 border-b-purple_dark rounded-[12px]">
-      <div className="flex relative">
-        <Image
-          alt="blank-image"
-          width={0}
-          height={170}
-          src={BlankImage}
-          className="w-full object-cover"
-        />
-        {isVideo && (
-          <div className="w-full h-full absolute flex items-center justify-center">
-            <Image alt={'play-button'} className="w-16" src={PlayButton} />
-          </div>
-        )}
+    <>
+      {' '}
+      <div className="flex flex-col h-full gap-[18px] border border-gray_light border-b-8 border-b-purple_dark rounded-[12px]">
+        <div
+          className={`flex relative ${isVideo && 'cursor-pointer'}`}
+          onClick={() => {
+            isVideo && setShow(true);
+          }}
+        >
+          <Image
+            alt="blank-image"
+            width={0}
+            height={190}
+            src={imageUrl ?? BlankImage}
+            className="w-full h-[190px] object-cover rounded-t-xl"
+          />
+          {isVideo && (
+            <div className="w-full h-full absolute flex items-center justify-center md:justify-between">
+              <Image alt={'play-button'} className="w-16" src={PlayButton} />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col gap-4 px-[24px] pb-[36px] h-full">
+          <p className="text-[24px] font-bold text-left">{summary}</p>
+          <p className="text-[14px] text-left h-full flex items-end">
+            <span className="font-bold text-purple_dark">{name}</span>{' '}
+            {position}
+          </p>
+        </div>
       </div>
-      {customContent}
-      <div className="flex flex-col gap-4 p-5">
-        <p className="text-[20px] font-bold text-left">{summary}</p>
-        <p className="text-[14px] text-left">
-          <span className="font-bold text-purple_dark">{name}</span> {position}
-        </p>
-      </div>
-    </div>
+      <VideoModal
+        show={show}
+        onClose={() => {
+          setShow(!show);
+        }}
+        videoUrl={getYouTubeId(image) ?? ''}
+      />
+    </>
   );
 };
 

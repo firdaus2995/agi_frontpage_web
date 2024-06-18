@@ -86,14 +86,14 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
 
   const fetchData = () => {
     try {
-      handleGetContentPage(BASE_SLUG.BERITA.PAGE.BERITA_ACARA).then(
+      handleGetContentPage(BASE_SLUG.BERITA.PAGE.PENGHARGAAN).then(
         (res: any) => {
           const { content } = pageTransformer(res);
           const titleImage = singleImageTransformer(content['title-image']);
           const judul = contentStringTransformer(content['title-judul']);
           const bannerImage = singleImageTransformer(content['banner-image']);
           const footerImage = singleImageTransformer(content['cta1-image']);
-          const footerText = contentStringTransformer(content['cta-1-teks']);
+          const footerText = contentStringTransformer(content['cta1-teks']);
           const footerBtnLabel = contentStringTransformer(
             content['cta1-label-button']
           );

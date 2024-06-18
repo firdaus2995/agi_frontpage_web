@@ -29,7 +29,8 @@ export const BASE_SLUG = {
       FORMULIR: 'halaman-formulir-agi',
       KLAIM: 'halaman-klaim-agi',
       BENGKEL: 'halaman-rekanan-bengkel-agi',
-      KANTOR_CABANG: 'halaman-kantor-cabang-agi'
+      KANTOR_CABANG: 'halaman-kantor-cabang-agi',
+      AGENCY: 'halaman-agency-agi'
     }
   },
 

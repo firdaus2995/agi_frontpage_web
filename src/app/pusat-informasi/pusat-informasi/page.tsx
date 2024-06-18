@@ -56,6 +56,7 @@ const PusatInformasi = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab') ?? '';
   const content = searchParams.get('content') ?? '';
+  const [pageData, setPageData] = useState<any>([]);
 
   const [data, setData] = useState<typeof initialData>(initialData);
 
@@ -79,7 +80,7 @@ const PusatInformasi = () => {
     },
     {
       name: 'Agency',
-      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.AGENCY
     }
   ];
 
@@ -91,6 +92,7 @@ const PusatInformasi = () => {
       const data = await response.json();
 
       const { content } = pageTransformer(data);
+      setPageData(content);
       const titleImage = singleImageTransformer(content['title-image']);
       const bannerImage = singleImageTransformer(content['banner-image']);
       const footerImage = singleImageTransformer(content['cta1-image']);
@@ -162,7 +164,7 @@ const PusatInformasi = () => {
         bottomImage={data?.bannerImageUrl}
         imageUrl={data?.titleImageUrl}
       />
-      <MainContent />
+      <MainContent pageData={pageData} />
       {!content ? (
         <FooterInformation
           title={

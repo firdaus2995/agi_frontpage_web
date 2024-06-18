@@ -19,16 +19,16 @@ const Agency = (props: agencyProps) => {
 
   return (
     <div
-      className={`flex flex-col gap-4 ${tab.includes('Agency') && content.includes('detail') ? '' : 'px-[2rem] md:px-[8.5rem] pb-[3.25rem]'}`}
+      className={`flex flex-col gap-4 ${tab.includes('Agency') && content ? '' : 'px-[2rem] md:px-[8.5rem] pb-[3.25rem]'}`}
     >
       {tab.includes('Agency') && content ? (
-        <Detail />
+        <Detail pageData={pageData} />
       ) : (
         <Content pageData={pageData} />
       )}
 
       <div
-        className={`flex xs:flex-col md:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-4 ${tab.includes('Agency') && content.includes('detail') ? 'mx-[2rem] md:mx-[8.5rem] mb-[3.25rem]' : ''}`}
+        className={`flex xs:flex-col md:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-4 ${tab.includes('Agency') && content ? 'mx-[2rem] md:mx-[8.5rem] mb-[3.25rem]' : ''}`}
       >
         <div className="flex flex-row gap-4 items-center">
           <h1 className="font-bold text-xl 2xl:text-2xl text-purple_dark">

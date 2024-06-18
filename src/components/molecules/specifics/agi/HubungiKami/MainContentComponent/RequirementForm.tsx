@@ -1,155 +1,120 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import CustomForm from '../../CustomForm/Index';
+import { SuccessModal } from '../../Modal';
+import { ReportForm } from '../../PenangananPengaduan/MainContentComponent';
+import { handleSendEmail } from '@/services/form.api';
 
-import Image from 'next/image';
+type Props = {
+  Id?: string;
+};
 
-import { DividerPurple } from './Divider';
+export const RequirementForm = (props: Props) => {
+  const router = useRouter();
+  const { Id } = props;
+  const [dataForm, setDataForm] = useState<any>();
+  const [formId, setFormId] = useState<any>();
+  const [formPic, setFormPic] = useState<any>();
+  const [formValue, setFormValue] = useState([{ name: '', value: '' }]);
+  const [formIsValid, setFormIsValid] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [attachmentFile, setAttachmentFile] = useState('');
 
-import {
-  SelectRadio,
-  TextInput,
-  TextInputArea,
-  TextInputPhone,
-  UploadInput
-} from './form/Input';
+  useEffect(() => {
+    if (Id) {
+      const fetchDataForm = async () => {
+        try {
+          const contentResponse = await fetch(`/api/form?id=${Id}`);
+          const dataFormJson = await contentResponse.json();
 
-import CAPTCHA from '@/assets/images/captcha.svg';
-import CLOCK from '@/assets/images/common/clock-gray.svg';
-import CUSTOMER_SERVICE from '@/assets/images/common/customer-service-gray.svg';
-import EMAIL from '@/assets/images/common/email-gray.svg';
+          setFormId(dataFormJson.data.id);
+          setFormPic(dataFormJson.data.pic);
+          setDataForm(dataFormJson.data.attributeList);
+        } catch (error: any) {
+          throw new Error('Error fetching form data: ', error.message);
+        }
+      };
 
-export const RequirementForm = () => {
+      fetchDataForm().then();
+    }
+  }, [Id]);
+
+  const receiveData = (
+    data: any,
+    isValid: boolean | ((prevState: boolean) => boolean)
+  ) => {
+    setFormIsValid(isValid);
+    setFormValue(data);
+  };
+
+  const onSubmitData = async () => {
+    let queryParams = {};
+    if (attachmentFile === '') {
+      queryParams = {
+        id: formId,
+        pic: formPic,
+        placeholderValue: formValue
+      };
+    } else {
+      queryParams = {
+        id: formId,
+        pic: formPic,
+        placeholderValue: formValue,
+        attachment: true,
+        attachment_path: attachmentFile
+      };
+    }
+
+    const data = await handleSendEmail(queryParams);
+    if (data.status === 'OK') {
+      setShowSuccess(true);
+    }
+
+    if (data.status !== 'OK') {
+      console.error('Error:', data.errors.message);
+      router.refresh();
+    }
+  };
+
+  const handleChangeAttachment = (value: string) => {
+    if (value) {
+      setAttachmentFile(value);
+    }
+  };
+
   return (
-    <div className="bg-white border rounded-xl border-gray_light overflow-hidden">
-      <div className="p-[36px]">
-        <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem]">
-          Pengaduan Anda
-        </p>
-        <form className="mt-[36px]">
-          {/* radio */}
-          <SelectRadio
-            title="Waktu yang dapat dihubungi"
-            data={[
-              { id: 'pagi', label: '8 am - 12 pm' },
-              { id: 'sore', label: '1 pm - 5 pm' }
-            ]}
-            flexType="columns"
-          />
-          <SelectRadio
-            title="Pemegang Polis"
-            data={[
-              { id: 'ya', label: 'Ya' },
-              { id: 'tidak', label: 'Tidak' }
-            ]}
-            require
-          />
-          {/* name & email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-[36px]">
-            <TextInput
-              title="Nama"
-              placeholder="Masukkan Nama Anda"
-              onChangeText={() => {}}
-              require
+    <div className="bg-purple_superlight">
+      <div className="bg-white mx-auto border rounded-xl border-gray_light overflow-hidden">
+        <div className="p-[2.25rem]">
+          <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem]">
+            Diskusikan kebutuhan Anda disini!
+          </p>
+          <p className="mt-[1.5rem] md:mt-[2.25rem] font-opensans text-[0.875rem] md:text-[1rem]">
+            isi data berikut dan Kami akan menghubungi Anda.
+          </p>
+          {dataForm && (
+            <CustomForm
+              dataForm={dataForm}
+              customFormClassname="border-none p-[0rem]"
+              title=" "
+              type="Hubungi Kami"
+              resultData={receiveData}
             />
-            <TextInput
-              title="Alamat Email"
-              placeholder="Masukkan alamat e-mail anda"
-              onChangeText={() => {}}
-              require
-            />
-          </div>
-          {/* no phone & domisili */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-[36px]">
-            <TextInputPhone
-              title="No. Telepon"
-              placeholder="Masukkan Nomor Telepon"
-              onChangeText={() => {}}
-              require
-            />
-            <TextInput
-              title="Domisili"
-              placeholder="Masukkan Domisili Anda"
-              onChangeText={() => {}}
-              require
-            />
-          </div>
-          {/* Text area */}
-          <div className="grid grid-cols-1 gap-8 mt-[36px]">
-            <TextInputArea
-              title="Detail Pengaduan"
-              placeholder="Tulis detail pengaduan anda"
-              onChangeText={() => {}}
-              require
-              maxLength={500}
-            />
-          </div>
-          {/* Upload & Contact */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="h-[150px] flex flex-col gap-4">
-              <p className="font-opensans font-bold text-[16px]">
-                Upload Dokumen
-              </p>
-              <div className="h-full grid grid-cols-1 md:grid-cols-3 gap-4">
-                <UploadInput title="Upload KTP" />
-                <UploadInput title="Upload Formulir" />
-                <UploadInput title="Dokumen Penting" />
-              </div>
-            </div>
-            <div className="h-auto border rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between mt-[136px] md:mt-0">
-              <div className="p-4 h-full flex flex-col justify-between">
-                <div className="flex flex-col md:flex-row">
-                  <div className="w-[40px]">
-                    <Image
-                      src={CUSTOMER_SERVICE}
-                      alt="Layanan Nasabah"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-
-                  <p className="font-opensans font-semibold w-[180px]">
-                    Layanan Nasabah
-                  </p>
-                  <p className="font-opensans text-purple_dark w-[250px]">
-                    021 5789 8188
-                  </p>
-                </div>
-                <div className="flex flex-col md:flex-row">
-                  <div className="w-[40px]">
-                    <Image src={EMAIL} alt="Email" width={24} height={24} />
-                  </div>
-
-                  <p className="font-opensans font-semibold w-[180px]">Email</p>
-                  <p className="font-opensans text-purple_dark w-[250px]">
-                    customer@avrist.com
-                  </p>
-                </div>
-                <div className="flex flex-col md:flex-row">
-                  <div className="w-[40px]">
-                    <Image
-                      src={CLOCK}
-                      alt="Waktu Operasional"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-
-                  <p className="font-opensans font-semibold w-[180px]">
-                    Waktu Operasional
-                  </p>
-                  <p className="font-opensans text-purple_dark w-[250px]">
-                    Senin - Jumat, 08.00 - 17.00 WIB
-                  </p>
-                </div>
-              </div>
-              <DividerPurple />
-            </div>
-          </div>
-          {/* snk */}
-          <div className="flex flex-row mt-[36px]">
+          )}
+          <ReportForm onChangeData={handleChangeAttachment} />
+          <div className="flex flex-row mt-[1.5rem] md:mt-[2.25rem]">
             <div>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => {
+                  setIsChecked(e.target.checked);
+                }}
+              />
             </div>
-            <span className="ml-[12px]">
+            <span className="ml-[0.75rem]">
               Saya /kami telah membaca, memahami dan memberikan persetujuan
               saya/kami kepada Avrist Life Insurance untuk mengumpulkan,
               menggunakan dan mengungkapkan data pribadi saya/kami sesuai dengan{' '}
@@ -159,15 +124,30 @@ export const RequirementForm = () => {
             </span>
           </div>
           {/* submit */}
-          <div className="mt-[36px] flex flex-col md:flex-row justify-between items-center">
-            <Image src={CAPTCHA} alt="captha" width={277} height={84} />
-            <button className="bg-purple_dark text-white h-[64px] w-[132px] rounded-lg">
+          <div className="mt-[1.5rem] md:mt-[2.25rem] flex flex-col md:flex-row md:justify-end md:items-center">
+            {/* <img src={CaptchaPicture} alt="captha" className="md:w-auto" /> */}
+            {/* <Image alt="captcha" src={CaptchaPicture} className="md:w-auto" /> */}
+            <button
+              type="submit"
+              disabled={formIsValid ? (isChecked ? false : true) : true}
+              onClick={() => onSubmitData()}
+              className={`${formIsValid ? (isChecked ? 'bg-purple_dark' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[2.75rem] md:h-[4rem] w-full md:w-[8.25rem] rounded-lg mt-[0.75rem] md:mt-0`}
+            >
               Kirim
             </button>
           </div>
-        </form>
+        </div>
+        <div className="h-[0.5rem] bg-purple_dark" />
       </div>
-      <div className="h-[8px] bg-purple_dark" />
+      <div className="absolute">
+        <SuccessModal
+          show={showSuccess}
+          onClose={() => {
+            setShowSuccess(false);
+            router.refresh();
+          }}
+        />
+      </div>
     </div>
   );
 };

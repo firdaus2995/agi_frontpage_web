@@ -40,7 +40,6 @@ export const FeedbackForm = (props: Props) => {
 
       fetchDataForm().then();
     }
-    console.log(Id);
   }, [Id]);
 
   const receiveData = (

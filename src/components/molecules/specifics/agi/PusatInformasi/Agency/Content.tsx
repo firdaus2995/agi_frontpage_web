@@ -285,7 +285,7 @@ const Content = (props: contentProps) => {
                             : null}
                         </div>
                         <Link
-                          href={`/pusat-informasi/pusat-informasi?tab=Agency/${item.id}`}
+                          href={`/pusat-informasi/pusat-informasi?tab=Agency&content=${item.id}`}
                         >
                           <div className="flex flex-row items-center flex-wrap gap-[12px] font-bold text-purple_dark">
                             Selengkapnya
@@ -363,7 +363,7 @@ const Content = (props: contentProps) => {
                     ) => (
                       <Link
                         key={index}
-                        href={`/pusat-informasi/pusat-informasi?tab=Agency/${item.id}`}
+                        href={`/pusat-informasi/pusat-informasi?tab=Agency&content=${item.id}`}
                       >
                         <CardCategoryB
                           summary={item.title !== '-' ? item.title : ''}

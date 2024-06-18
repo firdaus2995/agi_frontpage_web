@@ -81,7 +81,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ url, thumbnail }) => {
           width={0}
           height={0}
           className="absolute h-full w-full"
-          src={thumbnail}
+          src={
+            thumbnail === ''
+              ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+              : thumbnail
+          }
           onClick={handleThumbnailClick}
         />
       </div>

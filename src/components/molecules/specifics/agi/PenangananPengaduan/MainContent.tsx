@@ -25,7 +25,9 @@ export const MainContent = () => {
           <ContentReportList />
           <ReportList />
         </div>
-        <ReportForm />
+        <ReportForm onChangeData={function (): void {
+          throw new Error('Function not implemented.');
+        } } />
       </div>
       <Image
         alt="border-bottom"

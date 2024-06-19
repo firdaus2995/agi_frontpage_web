@@ -31,7 +31,6 @@ const CompanySection = (props: CompanySection) => {
     dots: true,
     infinite: false,
     arrows: false,
-    centerMode: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -57,7 +56,8 @@ const CompanySection = (props: CompanySection) => {
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}
-          >
+            className='flex w-full items-center xs:justify-center sm:justify-start'
+>
             <Button
               title={contentStringTransformer(val['why-us-button-label'])}
               customButtonClass="bg-purple_dark"

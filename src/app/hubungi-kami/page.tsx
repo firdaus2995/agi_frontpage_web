@@ -38,17 +38,27 @@ const CallMe = () => {
   const [formId, setFormId] = useState('');
   const [formSaranId, setFormSaranId] = useState('');
   const [tab, setTab] = useState('');
+  const [pageData, setPageData] = useState<any>([]);
 
   useEffect(() => {
+    const tab = params.get('tab') ?? '';
+    setTab(tab);
+
     const fetchData = async () => {
       try {
-        const data = await handleGetContent('halaman-hubungi-kami');
+        let data = undefined;
+        if (tab === 'Pengaduan Nasabah') {
+          data = await handleGetContent('hal-pengaduan-nasabah-agi-new');
+        } else {
+          data = await handleGetContent('hal-karir-agi-new');
+        }
         const { content } = pageTransformer(data);
 
+        setPageData(content);
         setTitleImage(singleImageTransformer(content['title-image']));
         setBannerImage(singleImageTransformer(content['banner-image']));
         setFooterImage(singleImageTransformer(content['cta1-image']));
-        setFormId(contentStringTransformer(content['form-hubungikami']));
+        setFormId(contentStringTransformer(content['form-pengaduan']));
         setFormSaranId(contentStringTransformer(content['form-saran']));
       } catch (error) {
         console.error('Error:', error);
@@ -56,11 +66,6 @@ const CallMe = () => {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const tab = params.get('tab') ?? '';
-    setTab(tab);
   }, [params]);
 
   return (
@@ -84,7 +89,11 @@ const CallMe = () => {
       {tab === 'Karir' ? (
         <Karir />
       ) : (
-        <MainContent formId={formId} formSaranId={formSaranId} />
+        <MainContent
+          formId={formId}
+          formSaranId={formSaranId}
+          pageData={pageData}
+        />
       )}
 
       {tab === 'Pengaduan Nasabah' ? (

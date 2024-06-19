@@ -73,12 +73,6 @@ const CategoryWithThreeCards = ({
     }
   };
 
-  const handleKeyDown = (e: { key: string; }) => {
-    if (e.key === 'Enter' && onSearch) {
-      onSearch();
-    }
-  };
-
   const Dropdown: React.FC<DropdownProps> = ({
     categories,
     selectedCategory
@@ -238,9 +232,16 @@ const CategoryWithThreeCards = ({
                 placeholder={searchPlaceholder ?? 'Cari'}
                 className="focus:outline-none xs:w-full md:w-96 px-[16px] py-[12px] rounded-[12px] bg-purple_dark/[.06]"
                 onChange={onSearchChange}
-                onKeyDown={handleKeyDown}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    onSearch ? onSearch() : null;
+                  }
+                }}
               />
-              <ButtonSmall title="Cari" onClick={onSearch ? onSearch : () => {}} />
+              <ButtonSmall
+                title="Cari"
+                onClick={onSearch ? onSearch : () => {}}
+              />
             </div>
           </div>
         )}

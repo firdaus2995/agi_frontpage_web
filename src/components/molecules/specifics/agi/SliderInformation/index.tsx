@@ -29,13 +29,13 @@ const SliderInformation = ({
   const [show, setShow] = useState(false);
 
   return (
-    <div>
+    <div className="xs:mx-[5px] md:mx-[5px]">
       {/* Desktop */}
       <div className="flex lg:px-[40px] py-[72px] bg-white w-full sm:px-0 xs:hidden md:block">
         <div
           className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-md:flex-wrap xs:max-md:flex xs:max-md:grid-cols-1`}
         >
-          <div className="flex flex-col gap-[24px] items-start justify-center p-[36px]">
+          <div className="flex flex-col gap-[24px] items-start justify-center py-[36px] px-[24px]">
             <div>{title}</div>
             {buttonTitle && <Button title={buttonTitle} />}
           </div>
@@ -47,7 +47,7 @@ const SliderInformation = ({
               height={0}
               width={0}
               alt="sliderInformationImage"
-              className={`min-h-[400px] w-full object-cover ${imageClassName} rounded-r-3xl`}
+              className={`h-[470px] w-full object-cover ${imageClassName} rounded-r-3xl`}
               src={imageUrl}
             />
             {isVideo && (
@@ -60,7 +60,7 @@ const SliderInformation = ({
       </div>
 
       {/* Mobile */}
-      <div className="flex pt-[72px] pb-[1.5rem] bg-white w-full md:hidden">
+      <div className="flex py-[1.5rem] bg-white w-full md:hidden">
         <div
           className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-sm:flex-wrap xs:max-sm:flex xs:max-sm:grid-cols-1`}
         >

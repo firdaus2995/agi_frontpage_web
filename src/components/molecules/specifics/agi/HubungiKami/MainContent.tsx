@@ -3,27 +3,29 @@ import {
   ContactSupport,
   FeedbackForm
 } from './MainContentComponent';
+import { contentStringTransformer } from '@/utils/responseTransformer';
 
 type Props = {
   formId?: string;
   formSaranId?: string;
+  pageData?: any;
 };
 
 export const MainContent = (props: Props) => {
-  const { formSaranId } = props;
+  const { formSaranId, pageData, formId } = props;
   return (
     <div className="w-full flex flex-col">
       <div className=" flex flex-col sm:gap-[4rem] xs:gap-[2.25rem] xs:py-[3.125rem] xs:px-[2rem] sm:p-0 sm:px-[8.5rem] sm:py-[6.25rem] xs:px-[1.3125rem]">
         <div className="font-karla mx-[2rem] md:mx-[8.5rem] flex flex-col text-center">
           <p className="font-bold sm:text-[3.5rem] xs:text-[2.25rem] text-purple_dark">
-            Pengaduan Nasabah
+            {contentStringTransformer(pageData['body-judul'])}
           </p>
           <p className="text-[1.125rem] sm:text-[2.25rem]">
-            Kami mempermudah Anda untuk mengajukan pengaduan
+            {contentStringTransformer(pageData['body-sub-judul'])}
           </p>
         </div>
-        <RequirementForm />
-        <ContactSupport />
+        <RequirementForm Id={formId} />
+        <ContactSupport pageData={pageData} />
       </div>
       <FeedbackForm Id={formSaranId} />
     </div>

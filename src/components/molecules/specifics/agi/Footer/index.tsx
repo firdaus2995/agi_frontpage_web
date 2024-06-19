@@ -216,7 +216,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <Link href={`https://wa.me/${getLink('phoneAGI')}`} target='_blank'>
+      <Link href={`https://api.whatsapp.com/send?phone=${getLink('phoneAGI')}`} target='_blank'>
         <Image
           alt="Whatsapp"
           height={0}

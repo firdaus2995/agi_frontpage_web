@@ -48,7 +48,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
     if (dataForm) {
       setFormData(
         dataForm
-          ?.filter((data) => data.fieldType !== 'LABEL')
+          ?.filter((data) => data.fieldType !== 'LABEL' && data.fieldType !== 'DOCUMENT' && data.fieldType !== 'TNC' && data.fieldType !== 'IMAGE')
           .map((item) => ({ name: item.name, value: '' }))
       );
     }
@@ -100,9 +100,12 @@ const CustomForm: React.FC<CustomFormProps> = ({
             {attributeList?.map((attribute: Attribute, idx) => (
               <div
                 key={attribute.id}
-                className={`pt-1 ${idx === 0 || attribute.fieldType === 'LABEL' ? 'col-span-2' : ''} ${longTextArea ? (attribute.fieldType === 'TEXT_AREA' ? 'col-span-2' : '') : ''}`}
+                className={`pt-1 ${idx === 0 || idx === 1 || attribute.fieldType === 'LABEL' ? 'col-span-2' : ''} ${longTextArea ? (attribute.fieldType === 'TEXT_AREA' ? 'col-span-2' : '') : ''}`}
               >
-                {attribute.fieldType === 'LABEL' ? (
+                {attribute.fieldType === 'TNC' ||
+                attribute.fieldType === 'DOCUMENT' ||
+                attribute.fieldType === 'IMAGE' ? null : attribute.fieldType ===
+                  'LABEL' ? (
                   <p>{attribute.name}</p>
                 ) : (
                   <div>

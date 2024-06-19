@@ -1,50 +1,88 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import CLOCK from '@/assets/images/agi/hubungi-kami/clock-gray.svg';
-import cs from '@/assets/images/common/customer-service-gray.svg';
-import EMAIL from '@/assets/images/common/email-gray.svg';
-import phone from '@/assets/images/common/phone-gray.svg';
+import {
+  contentStringTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-export const ContactSupport = () => {
+type Props = {
+  pageData?: any;
+};
+
+export const ContactSupport = (props: Props) => {
+  const { pageData } = props;
   return (
     <div className="grid grid-rows-1 md:grid-cols-5 gap-[1.5rem]">
       <div className="md:h-[20.1875rem] col-span-1 md:col-span-2 border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
         <div className="p-[2.25rem] gap-[1.5rem] flex flex-col h-full items-center md:items-start">
-          <Image src={phone} alt="phone" width={100} height={100} />
+          <Image
+            src={singleImageTransformer(pageData['informasi-1-icon']).imageUrl}
+            alt={singleImageTransformer(pageData['informasi-1-icon']).altText}
+            width={100}
+            height={100}
+          />
           <p className="font-karla font-extrabold text-[1.5rem] md:text-[3rem] leading-10 md:leading-[3.125rem] ">
-            Hubungi Kami
+            {contentStringTransformer(pageData['informasi-1-nama'])}
           </p>
         </div>
       </div>
       <div className="h-auto md:h-[20.1875rem] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
         <Link
-          href="tel:021-5789-8188"
-          className="h-full font-opensans font-bold text-[1.5rem] flex flex-col items-center px-[1.5rem] py-[2.25rem]"
+          href={contentStringTransformer(pageData['informasi-2-link'])}
+          className="h-full font-opensans font-bold text-[1.5rem] flex flex-col items-center px-[1.5rem] py-[2.25rem] text-center"
         >
-          <Image src={cs} alt="cs" width={100} height={100} />
-          <p className="">Layanan Nasabah</p>
-          <p className="text-purple_dark">021 5789 8188</p>
+          <Image
+            src={singleImageTransformer(pageData['informasi-2-icon']).imageUrl}
+            alt={singleImageTransformer(pageData['informasi-2-icon']).altText}
+            width={100}
+            height={100}
+          />
+          <p className="">
+            {contentStringTransformer(pageData['informasi-2-nama'])}
+          </p>
+          <p className="text-purple_dark">
+            {contentStringTransformer(pageData['informasi-2-label-link'])}
+          </p>
         </Link>
       </div>
       <div className="h-auto md:h-[20.1875rem] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
         <Link
-          href="mailto:customer-service@avrist.com"
-          className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center px-[1.5rem] py-[2.25rem]"
+          href={contentStringTransformer(pageData['informasi-3-link'])}
+          className="h-full font-opensans font-bold text-[1.5rem] flex flex-col items-center px-[1.5rem] py-[2.25rem] text-center"
         >
-          <Image src={EMAIL} alt="email" width={100} height={100} />
-          <p className="">Email</p>
-          <p className="text-purple_dark">customer</p>
-          <p className="text-purple_dark">@avrist.com</p>
+          <Image
+            src={singleImageTransformer(pageData['informasi-3-icon']).imageUrl}
+            alt={singleImageTransformer(pageData['informasi-3-icon']).altText}
+            width={100}
+            height={100}
+          />
+          <p className="">
+            {contentStringTransformer(pageData['informasi-3-nama'])}
+          </p>
+          <p className="text-purple_dark break-all">
+            {contentStringTransformer(pageData['informasi-3-label-link'])}
+          </p>
         </Link>
       </div>
       <div className="h-auto md:h-[20.1875rem] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
-        <div className="h-full font-opensans font-bold text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem]">
-          <Image src={CLOCK} alt="clock" width={100} height={100} />
-          <p className="">Waktu Operasional</p>
-          <p className="text-purple_dark">Senin - Jumat,</p>
-          <p className="text-purple_dark">08.00 - 17.00 WIB</p>
-        </div>
+        <Link
+          href={contentStringTransformer(pageData['informasi-4-link'])}
+          className="h-full font-opensans font-bold text-[1.5rem] flex flex-col items-center px-[1.5rem] py-[2.25rem] text-center"
+        >
+          <Image
+            src={singleImageTransformer(pageData['informasi-4-icon']).imageUrl}
+            alt={singleImageTransformer(pageData['informasi-4-icon']).altText}
+            width={100}
+            height={100}
+          />
+          <p className="">
+            {contentStringTransformer(pageData['informasi-4-nama'])}
+          </p>
+          <p className="text-purple_dark">
+            {contentStringTransformer(pageData['informasi-4-label-link'])}
+          </p>
+        </Link>
       </div>
     </div>
   );

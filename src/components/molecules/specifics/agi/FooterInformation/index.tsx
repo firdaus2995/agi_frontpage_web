@@ -11,6 +11,7 @@ interface IFooterInformation {
   bgColor?: string;
   href?: string;
   outerClassName?: string;
+  openInNewTab?: boolean;
 }
 
 // button variants: primary, secondary
@@ -22,7 +23,8 @@ const FooterInformation = ({
   buttonVariant,
   href,
   bgColor,
-  outerClassName
+  outerClassName,
+  openInNewTab
 }: IFooterInformation) => {
   return (
     <div
@@ -35,7 +37,10 @@ const FooterInformation = ({
           <div>{title}</div>
           {buttonTitle && (
             <div className="w-auto">
-              <Link href={href ?? ''}>
+              <Link
+                href={href ?? ''}
+                target={openInNewTab ? '_blank' : '_self'}
+              >
                 {/* <Button
                 customButtonClass={
                   !buttonVariant || buttonVariant === 'primary'

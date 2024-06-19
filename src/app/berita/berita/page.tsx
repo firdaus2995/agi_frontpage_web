@@ -8,14 +8,11 @@ import BeritaAcara from './tabs/berita-acara';
 import CSR from './tabs/csr';
 import Penghargaan from './tabs/penghargaan';
 import BlankImage from '@/assets/images/blank-image.svg';
-import Button from '@/components/atoms/Button/Button';
-import Input from '@/components/atoms/Input';
 import ButtonMenu from '@/components/molecules/specifics/agi/ButtonMenu';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import { SubmittedFormModal } from '@/components/molecules/specifics/agi/Modal/SubmittedFormModal';
-import { subscribeApi } from '@/services/berita';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { BASE_URL } from '@/utils/baseUrl';
 import { ParamsProps } from '@/utils/globalTypes';
@@ -80,7 +77,6 @@ const Berita: React.FC<ParamsProps> = () => {
   const [tab, setTab] = useState('');
   const [visibleSubscribeModal, setVisibleSubscribeModal] =
     useState<boolean>(false);
-  const [emailContent, setEmailContent] = useState('');
   const [data, setData] = useState<typeof initialData>(initialData);
 
   const fetchData = async () => {
@@ -99,7 +95,11 @@ const Berita: React.FC<ParamsProps> = () => {
       );
       const bannerImage = singleImageTransformer(content['banner-image']);
       const footerImage = singleImageTransformer(content['cta1-image']);
-      const footerText = contentStringTransformer(content['cta-1-teks']);
+      const footerText = contentStringTransformer(
+        tab === 'Berita dan Acara'
+          ? content['cta-1-teks']
+          : content['cta1-teks']
+      );
       const footerBtnLabel = contentStringTransformer(
         content['cta1-label-button']
       );
@@ -169,21 +169,6 @@ const Berita: React.FC<ParamsProps> = () => {
     fetchData();
   }, [tab]);
 
-  const handleSubscribeContentButton = async () => {
-    try {
-      const response: any = await subscribeApi({
-        email: emailContent,
-        entity: 'avrist'
-      });
-      if (response?.code === 200) {
-        setVisibleSubscribeModal(true);
-        setEmailContent('');
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center bg-white relative">
       <div className="absolute">
@@ -229,34 +214,18 @@ const Berita: React.FC<ParamsProps> = () => {
       <div className="w-full flex flex-col">
         <FooterInformation
           title={
-            <div className="flex flex-col gap-4">
-              <p className="text-[2.25rem] md:text-[3.5rem] font-karla">
-                Subscribe Informasi Terkini!
-              </p>
-              <Button
-                title="Avrist General Insurance"
-                customButtonClass="bg-agi_grey border-none rounded-xl"
-                customTextClass="text-white font-bold"
-              />
-              <div className="flex flex-row gap-2">
-                <Input
-                  type="text"
-                  placeholder="Masukkan email Anda"
-                  customInputClass="w-[90%]"
-                  value={emailContent}
-                  onChange={(e) => setEmailContent(e.target.value)}
-                />
-                <Button
-                  title="Subscribe"
-                  customButtonClass="rounded-xl"
-                  onClick={handleSubscribeContentButton}
-                />
-              </div>
-            </div>
+            <p
+              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+              dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
+            />
           }
-          image={data?.footerInfoImageUrl ?? BlankImage}
+          buttonTitle={data?.footerBtnLabel}
+          image={data?.footerInfoImageUrl}
+          href={data?.footerBtnUrl}
+          openInNewTab={tab === 'Berita dan Acara'}
         />
       </div>
+
       <div className="w-full h-full md:bg-purple_superlight">
         <FooterCards
           cards={[

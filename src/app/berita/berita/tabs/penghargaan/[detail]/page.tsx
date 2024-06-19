@@ -6,14 +6,12 @@ import { usePathname } from 'next/navigation';
 import ContentPopover from '@/app/berita/berita/components/popover';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon from '@/components/atoms/Icon';
-// import Input from '@/components/atoms/Input';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import VideoPlayer from '@/components/molecules/specifics/agi/Klaim/VideoPlayer';
 import { SubmittedFormModal } from '@/components/molecules/specifics/agi/Modal/SubmittedFormModal';
-// import { subscribeApi } from '@/services/berita';
 import { handleGetContentPage } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import {
@@ -258,21 +256,6 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
     fetchDetailData();
   }, []);
 
-  // const handleSubscribeContentButton = async () => {
-  //   try {
-  //     const response: any = await subscribeApi({
-  //       email: emailContent,
-  //       entity: 'avrist'
-  //     });
-  //     if (response?.code === 200) {
-  //       setVisibleSubscribeModal(true);
-  //       setEmailContent('');
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
   return (
     <>
       <div className="absolute">
@@ -390,39 +373,10 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
       </div>
 
       <div className="flex flex-col">
-        {/* <FooterInformation
-          title={
-            <div className="flex flex-col gap-4">
-              <p className="text-[2.25rem] md:text-[3.5rem] font-karla">
-                {data?.footerText}
-              </p>
-              <Button
-                title="Avrist General Insurance"
-                customButtonClass="bg-agi_grey border-none rounded-xl"
-                customTextClass="text-white font-bold"
-              />
-              <div className="flex flex-row gap-2">
-                <Input
-                  type="text"
-                  placeholder="Masukkan email Anda"
-                  customInputClass="w-[90%]"
-                  value={emailContent}
-                  onChange={(e) => setEmailContent(e.target.value)}
-                />
-                <Button
-                  title="Subscribe"
-                  customButtonClass="rounded-xl"
-                  onClick={handleSubscribeContentButton}
-                />
-              </div>
-            </div>
-          }
-          image={BlankImage}
-        /> */}
         <FooterInformation
           title={
             <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
               dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }

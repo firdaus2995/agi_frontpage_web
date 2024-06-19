@@ -1,115 +1,148 @@
-import Link from 'next/link';
+'use client';
+import { FC, Fragment, useEffect, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import Icon from '@/components/atoms/Icon';
-import Radio from '@/components/atoms/Radio';
+import CustomForm from '@/components/molecules/specifics/agi/CustomForm/Index';
+import { handleSendEmail } from '@/services/form.api';
 
-export function Modal() {
+type Props = {
+  isOpen: boolean;
+  formId: any;
+  onClose: () => void;
+  setIsSuccess: (value: boolean) => void;
+};
+
+export const ApplyJobModal: FC<Props> = ({ isOpen, onClose, formId, setIsSuccess }) => {
+  const [dataForm, setDataForm] = useState<any>();
+  const [idForm, setFormId] = useState<any>();
+  const [formPic, setFormPic] = useState<any>();
+  const [formValue, setFormValue] = useState([{ name: '', value: '' }]);
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  useEffect(() => {
+    setFormValue([{ name: '', value: '' }]);
+    if (formId) {
+      const fetchDataForm = async () => {
+        try {
+          const contentResponse = await fetch(`/api/form?id=${formId}`);
+          const dataFormJson = await contentResponse.json();
+          setDataForm(dataFormJson.data.attributeList);
+          setFormId(dataFormJson.data.id);
+          setFormPic(dataFormJson.data.pic);
+        } catch (error: any) {
+          throw new Error('Error fetching form data: ', error.message);
+        }
+      };
+
+      fetchDataForm().then();
+    }
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormValue((prevState) => ({
+      ...prevState,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const receiveData = (
+    data: any,
+    isValid: boolean | ((prevState: boolean) => boolean)
+  ) => {
+    setFormIsValid(isValid);
+    setFormValue(data);
+  };
+
+  const onSubmitData = async () => {
+    const queryParams = {
+      id: idForm,
+      pic: formPic,
+      placeholderValue: formValue
+    };
+
+    const data = await handleSendEmail(queryParams);
+    if (data.status === 'OK') {
+      onClose();
+      setIsSuccess(true);
+    }
+
+    if (data.status !== 'OK') {
+      console.error('Error:', data.errors.message);
+      setIsSuccess(false);
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
-      <div className="p-10 border shadow-lg rounded-md bg-white overflow-y-auto h-[80%] md:px-24">
-        <div className="text-left flex flex-col gap-10">
-          <div className="flex flex-row justify-between gap-20">
-            <h3 className="text-[2.25rem] md:text-[3.5rem] font-bold text-gray-900">
-              Job Application Form
-            </h3>
-            <Link href="/hubungi-kami/tabs/karir/detail">
-              <Icon name="close" width={24} height={24} color="black" />
-            </Link>
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">
-              First Name <span className="text-reddist">*</span>
-            </p>
-            <input
-              className="w-full px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]"
-              placeholder="Masukkan nama depan Anda"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">
-              Last Name <span className="text-reddist">*</span>
-            </p>
-            <input
-              className="w-full px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]"
-              placeholder="Masukkan nama belakang Anda"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">
-              Email Address <span className="text-reddist">*</span>
-            </p>
-            <input
-              className="w-full px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]"
-              placeholder="Masukkan alamat e-mail Anda"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">What position are you applying for?</p>
-            <Radio id="manager" name="manager" label="Manager" />
-            <Radio id="supervisor" name="supervisor" label="Supervisor" />
-            <Radio id="admin" name="admin" label="Admin" />
-            <Radio id="other" name="other" label="Other" />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">Education</p>
-            <Radio id="manager" name="manager" label="Manager" />
-            <Radio id="high_school" name="high_school" label="High School" />
-            <Radio id="associates" name="associates" label="associates" />
-            <Radio id="bachelors" name="bachelors" label="Bachelor’s" />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">What is your current employment status?</p>
-            <Radio id="employed" name="employed" label="Employed" />
-            <Radio
-              id="self_employed"
-              name="self_employed"
-              label="Self-Employed"
-            />
-            <Radio id="unemployed" name="unemployed" label="Unemployed" />
-            <Radio id="student" name="student" label="Student" />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">Work Experience</p>
-            <input
-              className="w-full px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]"
-              placeholder="0"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">References</p>
-            <input
-              className="w-full px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]"
-              placeholder="Masukkan referensi"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">Availability to start work:</p>
-            <div className="w-full flex flex-row items-center gap-4 px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px]">
-              <Icon name="calendarIcon" width={24} height={24} color="black" />
-              <input className="w-full" placeholder="dd/mm/yyyy" />
-            </div>
-          </div>
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold">
-              Submit your resume by providing your resume
-            </p>
-            <div className=" flex flex-row items-center gap-4 px-[16px] py-[10px] border border-gray_light rounded-[14px] text-[14px] relative">
-              <input className="w-full" placeholder="dd/mm/yyyy" />
-              <div className="h-full flex items-center justify-center text-white font-semibold px-10 bg-purple_dark absolute right-0 rounded-r-[14px]">
-                Upload
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-start mt-4">
-            {/* Navigates back to the base URL - closing the modal */}
-            <Link
-              href="/tentang-avrist-life/tentang-avrist-life/tabs/karir/detail"
-              className="px-8 py-4 bg-purple_dark text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-[99]" onClose={onClose}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black/25 z-999" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
             >
-              Kirim
-            </Link>
+              <Dialog.Panel className="w-full rounded-lg sm:w-[792px] transform overflow-hidden transition-all">
+                <div className=" bg-white ">
+                  <div
+                    onClick={onClose}
+                    className="cursor-pointer  flex justify-end pr-[30px] pt-[30px]"
+                  >
+                    <Icon width={24} height={24} name="close" />
+                  </div>
+                  <div className="flex flex-col items-baseline sm:px-[72px] sm:py-[100px]">
+                    <h2 className="text-[56px] font-karla text-gray_body font-bold">
+                      Job Application Form
+                    </h2>
+                    <div className="w-full">
+                      {dataForm && (
+                        <CustomForm
+                          customFormClassname="border-none p-[0px] rounded-[12px]"
+                          onChange={handleChange}
+                          dataForm={dataForm}
+                          resultData={receiveData}
+                          type="Karir"
+                          title=" "
+                        />
+                      )}
+                      <div className="bg-white py-[2rem] w-full flex justify-end p-4">
+                        <button
+                          type="submit"
+                          disabled={!formIsValid}
+                          onClick={() => onSubmitData()}
+                          className={`${formIsValid ? 'bg-purple_dark' : 'bg-dark-grey'} text-white py-[1.125rem] w-full md:w-[132px] rounded-lg mt-[12px] md:mt-0`}
+                        >
+                          Kirim
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
         </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
-}
+};
+
+export default ApplyJobModal;

@@ -1,31 +1,108 @@
-import React from 'react';
-
+'use client';
+import React, { useEffect, useState } from 'react';
+import { formatDistanceToNow, parseISO } from 'date-fns';
+import { id as idTime } from 'date-fns/locale';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Modal } from '../component/modal/modal';
-import Icon1 from '@/assets/images/agi/component/informasi-klaim/bantuan.svg';
-import Icon2 from '@/assets/images/agi/component/proses-klaim/step-4-icon-4.svg';
-import BlankImage from '@/assets/images/blank-image.svg';
-import Icon3 from '@/assets/images/common/email.svg';
-import Icon4 from '@/assets/images/common/procedure.svg';
-import WHATSAPP from '@/assets/images/wa.svg';
+import ApplyJobModal from '../component/modal/modal';
+import ContentPopover from '@/app/berita/berita/components/popover';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
+import { SuccessModal } from '@/components/molecules/specifics/agi/Modal';
+import {
+  handleGetContentDetail,
+  handleGetContentPage
+} from '@/services/content-page.api';
+import {
+  contentDetailTransformer,
+  contentStringTransformer,
+  pageTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-export const generateStaticParams = () => {
-  return [{ detail: 'detail', show: true }];
-};
+const DetailKarir = ({ params }: { params: { detail: string } }) => {
+  const [titleImage, setTitleImage] = useState({ imageUrl: '', altText: '' });
+  const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
+  const [listBanner, setListBanner] = useState<any[]>([]);
+  const [footerText, setFooterText] = useState('');
+  const [footerBtnLabel, setFooterBtnLabel] = useState('');
+  const [footerBtnUrl, setFooterBtnUrl] = useState('');
+  const [formId, setFormId] = useState('');
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [detailData, setDetailData] = useState<any>({});
+  const [isOpenPopover, setIsOPenPopover] = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-type SearchParamProps = {
-  searchParams: Record<string, string> | null | undefined;
-};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await handleGetContentPage('hal-karir-agi-new');
+        const { content } = pageTransformer(data);
 
-const DetailKarir = ({ searchParams }: SearchParamProps) => {
-  console.log(searchParams);
-  const show = searchParams?.show;
+        setTitleImage(singleImageTransformer(content['title-image']));
+        setFooterImage(singleImageTransformer(content['cta1-image']));
+        setFooterText(contentStringTransformer(content['cta1-teks']));
+        setFooterBtnLabel(
+          contentStringTransformer(content['cta1-label-button'])
+        );
+        setFooterBtnUrl(contentStringTransformer(content['cta1-link-button']));
+        setFormId(contentStringTransformer(content['form-karir']));
+
+        const cta4Data = [];
+        for (let i = 0; i < 4; i++) {
+          const icon = singleImageTransformer(content[`cta4-${i + 1}-icon`]);
+          const title = contentStringTransformer(content[`cta4-${i + 1}-nama`]);
+          const subtitle = contentStringTransformer(
+            content[`cta4-${i + 1}-label-link`]
+          );
+          const href = contentStringTransformer(content[`cta4-${i + 1}-link`]);
+
+          if (icon && title && subtitle) {
+            cta4Data.push({
+              icon: icon.imageUrl,
+              title: title,
+              subtitle: subtitle,
+              href: href
+            });
+          }
+        }
+
+        setListBanner(cta4Data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await handleGetContentDetail(params?.detail);
+        const { content } = contentDetailTransformer(data);
+
+        setTitle(data.data.title);
+        setDetailData(content);
+        const parsedDate = parseISO(data.data.createdAt);
+        const infoTambahan3 = formatDistanceToNow(parsedDate, {
+          addSuffix: true,
+          locale: idTime
+        });
+        setDate(infoTambahan3);
+        console.log(content);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Hero
@@ -37,46 +114,56 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
             href: '/hubungi-kami?tab=Karir'
           }
         ]}
+        imageUrl={titleImage.imageUrl}
       />
 
       <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[3.125rem] md:[6.25rem]">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-5">
             <p className="font-semibold xs:text-[2.5rem] md:text-[5rem]">
-              Marketing Manager
+              {title}
             </p>
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-row gap-4 text-nowrap text-md">
                 <div className="flex w-full flex-row items-center gap-2">
-                  <Icon
-                    name="mapsPin"
-                    color="purple_verylight"
+                  <Image
+                    src={singleImageTransformer(detailData['icon-1']).imageUrl}
+                    alt={singleImageTransformer(detailData['icon-1']).altText}
                     width={24}
-                    isSquare
+                    height={24}
                   />
-                  <p>Jakarta, Indonesia</p>
+                  <p>
+                    {contentStringTransformer(detailData['info-tambahan-1'])}
+                  </p>
                 </div>
                 <div className="flex w-full flex-row items-center gap-2">
-                  <Icon
-                    name="briefcase"
-                    color="purple_verylight"
+                  <Image
+                    src={singleImageTransformer(detailData['icon-2']).imageUrl}
+                    alt={singleImageTransformer(detailData['icon-2']).altText}
                     width={24}
-                    isSquare
+                    height={24}
                   />
-                  <p>Full time</p>
+                  <p>
+                    {contentStringTransformer(detailData['info-tambahan-2'])}
+                  </p>
                 </div>
                 <div className="flex w-full flex-row items-center gap-2">
-                  <Icon
-                    name="clock"
-                    color="purple_verylight"
+                  <Image
+                    src={singleImageTransformer(detailData['icon-3']).imageUrl}
+                    alt={singleImageTransformer(detailData['icon-3']).altText}
                     width={24}
-                    isSquare
+                    height={24}
                   />
-                  <p>6 hari lalu</p>
+                  <p>{date}</p>
                 </div>
               </div>
               <div className="flex flex-col gap-1 items-center">
-                <div className="flex items-center" role="button">
+                <div
+                  className="flex items-center"
+                  role="button"
+                  id="PopoverFocus"
+                  onClick={() => setIsOPenPopover(!isOpenPopover)}
+                >
                   <Icon
                     width={16}
                     height={16}
@@ -86,165 +173,73 @@ const DetailKarir = ({ searchParams }: SearchParamProps) => {
                 </div>
 
                 <div className="text-xs font-bold">Share</div>
+                <ContentPopover
+                  isOpenPopover={isOpenPopover}
+                  setIsOPenPopover={() => setIsOPenPopover(false)}
+                  message={''}
+                />
               </div>
             </div>
           </div>
-          <p className="text-[32px] font-bold text-purple_dark pt-5 w-full">
-            Deskripsi Pekerjaan
-          </p>
-          <p>
-            We are currently seeking an experienced and dedicated IT Project
-            Manager to join our team. As an IT Project Manager, you will be
-            responsible for the planning, management, and execution of IT
-            projects to ensure successful achievement of business and technical
-            goals. You will collaborate with various functional teams and
-            possess strong leadership skills to ensure project smoothness.
-          </p>
-          <p className="text-[32px] font-bold text-purple_dark pt-5 w-full">
-            Responsibilities
-          </p>
-          <div>
-            <ul className="list-inside list-disc">
-              <li>
-                Develop a comprehensive project plan, including goals, schedule,
-                budget, resources, and risks.
-              </li>
-              <li>
-                Assess project needs and resources, identifying critical success
-                factors.
-              </li>
-              <li>
-                Manage the project team to ensure timely and quality
-                deliverables.
-              </li>
-              <li>
-                Coordinate with internal and external stakeholders to ensure
-                project implementation flows seamlessly.
-              </li>
-              <li>
-                Compile regular project progress reports for relevant
-                stakeholders.
-              </li>
-              <li>
-                Identify and evaluate project risks, developing mitigation
-                strategies.
-              </li>
-              <li>
-                Responsible for change management and project scope changes.
-              </li>
-              <li>
-                Foster and develop team members to enhance skills and work
-                efficiency.
-              </li>
-              <li>
-                Provide guidance and motivation to ensure optimal team
-                performance.
-              </li>
-              <li>
-                Communicate effectively with stakeholders, including the project
-                team, senior management, and other relevant parties.
-              </li>
-              <li>
-                Address project questions, issues, or roadblocks promptly and
-                efficiently.
-              </li>
-            </ul>
-          </div>
-          <p className="text-[32px] font-bold text-purple_dark pt-5 w-full">
-            Kualifikasi
-          </p>
-          <div>
-            <ul className="list-inside list-disc">
-              <li>
-                Minimum of a Bachelor`s degree in Information Technology,
-                Project Management, or a related field.
-              </li>
-              <li>
-                Minimum of 5 years of experience as an IT Project Manager or in
-                a related role.
-              </li>
-              <li>
-                In-depth understanding of project life cycles and best project
-                management practices.
-              </li>
-              <li>
-                Strong leadership skills, excellent communication abilities, and
-                adaptability in a dynamic environment.
-              </li>
-              <li>
-                PMP (Project Management Professional) certification is
-                considered an advantage.
-              </li>
-              <li>Strong analytical and problem-solving skills.</li>
-            </ul>
-          </div>
-          <div className="py-10">
-            <Link href="/hubungi-kami/tabs/karir/detail?show=true">
-              <Button
-                title="Apply For This Job"
-                customButtonClass="rounded-xl white"
-                customTextClass="text-purple_dark"
-              />
-            </Link>
+          <p
+            className="career-content"
+            dangerouslySetInnerHTML={{
+              __html:
+                contentStringTransformer(detailData['isi-lowongan-1']) ?? ''
+            }}
+          />
+          <div
+            className="career-content"
+            dangerouslySetInnerHTML={{
+              __html:
+                contentStringTransformer(detailData['isi-lowongan-2']) ?? ''
+            }}
+          />
+          <div
+            className="career-content"
+            dangerouslySetInnerHTML={{
+              __html:
+                contentStringTransformer(detailData['isi-lowongan-3']) ?? ''
+            }}
+          />
+          <div className="p-4">
+            <Button onClick={() => setOpenDialog(true)}>
+              Apply For This job
+            </Button>
           </div>
         </div>
       </div>
 
       <FooterInformation
-        bgColor="bg-gray_bglightgray"
         title={
-          <div className="flex flex-col xs:items-center md:items-start xs:justify-center md:justify-start gap-4">
-            <p className="xs:text-[2.25rem] md:text-[3.5rem] font-karla md:w-[80%]">
-              <span className="font-light">Kami ada untuk membantu Anda.</span>
-              <br />
-              <span className="font-bold text-purple_dark">Hubungi Kami</span>
-            </p>
-            <div className="flex flex-col items-center gap-[0.5rem]">
-              <Link
-                href="tel:02157898188"
-                role="button"
-                className="py-4 px-[3.25rem] border border-purple_dark rounded-xl flex flex-row items-center justify-center gap-2 text-purple_dark xs:text-[1.25rem] md:text-[2.25rem] font-bold bg-white font-karla"
-              >
-                <Image src={WHATSAPP} alt="phone" className="w-10" />
-                <p>021 5789 8188</p>
-              </Link>
-              <p className="text-sm font-opensans">
-                <span className="font-bold">Waktu Operasional:</span> Senin -
-                Jumat, 08.00 - 17.00 WIB
-              </p>
-            </div>
-          </div>
+          <p
+            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
+          />
         }
-        image={BlankImage}
+        buttonTitle={footerBtnLabel}
+        image={footerImage.imageUrl}
+        href={footerBtnUrl}
       />
-      <div className="w-full h-full bg-purple_superlight">
-        <FooterCards
-          bgColor="bg-purple_superlight"
-          cards={[
-            {
-              title: 'Layanan Nasabah',
-              subtitle: '021 5789 8188',
-              icon: Icon1
-            },
-            {
-              title: 'Tanya Avrista',
-              subtitle: 'Lebih Lanjut',
-              icon: Icon2
-            },
-            {
-              title: 'Tanya Lewat Email',
-              subtitle: 'Kirim Email',
-              icon: Icon3
-            },
-            {
-              title: 'Prosedur Pengaduan',
-              subtitle: 'Lihat Prosedur',
-              icon: Icon4
-            }
-          ]}
+
+      <FooterCards bgColor="md:bg-purple_superlight" cards={listBanner} />
+      {openDialog && (
+        <ApplyJobModal
+          isOpen={openDialog}
+          formId={formId}
+          onClose={() => setOpenDialog(false)}
+          setIsSuccess={(e) => setShowSuccess(e)}
+        />
+      )}
+      <div className="absolute">
+        <SuccessModal
+          show={showSuccess}
+          onClose={() => {
+            setShowSuccess(false);
+            window.location.reload();
+          }}
         />
       </div>
-      {show && <Modal />}
     </>
   );
 };

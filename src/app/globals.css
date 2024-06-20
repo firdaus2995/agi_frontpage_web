@@ -42,3 +42,12 @@
 .tab-header-container::-webkit-scrollbar {
   display: none;
 }
+
+.career-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.career-content li {
+  margin-bottom: 8px;
+}

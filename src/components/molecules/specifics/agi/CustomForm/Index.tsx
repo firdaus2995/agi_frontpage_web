@@ -1,8 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import CaptchaPicture from '@/assets/images/form-captcha.svg';
+import Icon from '@/components/atoms/Icon';
 import Radio from '@/components/atoms/Radio';
+import { handleUploadDocument } from '@/services/upload-document-service.api';
 import { Attribute } from '@/types/form.type';
 import { validateEmail, isNumber } from '@/utils/validation';
 
@@ -31,6 +33,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
   longTextArea
 }) => {
   const [formData, setFormData] = useState([{ name: '', value: '' }]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const updateFormDataByName = (name: string, value: string) => {
     setFormData((prevData) => {
@@ -48,7 +51,13 @@ const CustomForm: React.FC<CustomFormProps> = ({
     if (dataForm) {
       setFormData(
         dataForm
-          ?.filter((data) => data.fieldType !== 'LABEL' && data.fieldType !== 'DOCUMENT' && data.fieldType !== 'TNC' && data.fieldType !== 'IMAGE')
+          ?.filter(
+            (data) =>
+              data.fieldType !== 'LABEL' &&
+              data.fieldType !== 'DOCUMENT' &&
+              data.fieldType !== 'TNC' &&
+              data.fieldType !== 'IMAGE'
+          )
           .map((item) => ({ name: item.name, value: '' }))
       );
     }
@@ -78,6 +87,35 @@ const CustomForm: React.FC<CustomFormProps> = ({
     return attribute?.config
       ? JSON.parse(attribute.config).required === 'true'
       : false;
+  };
+
+  const handleUploadClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const files = Array.from(event.target.files);
+
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+      formData.append('fileType', 'DOCUMENT');
+      formData.append('fileName', files[0].name);
+
+      try {
+        const response = await handleUploadDocument(formData);
+        updateFormDataByName(name, response.data);
+      } catch (error) {
+        console.error('Error uploading files:', error);
+      }
+    }
   };
 
   const RenderFetchedForm = () => {
@@ -289,6 +327,159 @@ const CustomForm: React.FC<CustomFormProps> = ({
                           (JSON.parse(attribute.config).max_length === '0'
                             ? 500
                             : JSON.parse(attribute.config).max_length)}
+                      </div>
+                    ) : attribute.name.includes('Telepon') ? (
+                      <div className="flex justify-between gap-[0.5rem]">
+                        <input
+                          className="w-[3rem] sm:w-1/5 px-[0.625rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                          defaultValue={'+62'}
+                          readOnly
+                        />
+                        <input
+                          className="w-4/5 sm:w-4/5 px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                          placeholder="Masukan nomor telepon"
+                          name={attribute.name}
+                          type="number"
+                          onChange={(e) =>
+                            updateFormDataByName(
+                              attribute.name,
+                              '+62' + e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <input
+                        className="w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                        placeholder={JSON.parse(attribute.config).placeholder}
+                        name={attribute.name}
+                        onChange={(e) =>
+                          updateFormDataByName(attribute.name, e.target.value)
+                        }
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : type === 'Karir' ? (
+          <div className="grid grid-cols-1 gap-[2rem] p-4">
+            {attributeList?.map((attribute: Attribute) => (
+              <div key={attribute.id}>
+                {attribute.fieldType === 'LABEL' ? (
+                  <p>{attribute.name}</p>
+                ) : (
+                  <div>
+                    <p className="font-bold mb-2 text-left">
+                      {attribute.name} <span className="text-reddist">*</span>
+                    </p>
+                    {attribute.fieldType === 'RADIO_BUTTON' ? (
+                      <div className="flex flex-col gap-1">
+                        {attribute.value
+                          ?.split(';')
+                          .map((option, optionIndex) => (
+                            <Radio
+                              key={optionIndex}
+                              id={`${attribute.fieldId}_${optionIndex}`}
+                              name={attribute.name}
+                              label={option}
+                              value={option}
+                              onChange={(e) =>
+                                updateFormDataByName(
+                                  attribute.name,
+                                  e.target.value
+                                )
+                              }
+                            />
+                          ))}
+                      </div>
+                    ) : attribute.fieldType === 'DROPDOWN' ? (
+                      <select
+                        onChange={(e) =>
+                          updateFormDataByName(attribute.name, e.target.value)
+                        }
+                        className="w-full px-[1rem] py-[0.625rem] border border-purple_dark text-purple_dark rounded-md focus:outline-none focus:border-blue-500"
+                      >
+                        <option value={''}>Pilih</option>
+                        {attribute.value?.split(';').map((option, idx) => (
+                          <option
+                            key={idx}
+                            value={option}
+                            selected={
+                              option ===
+                              formData?.find(
+                                (item) => item.name === attribute.name
+                              )?.value
+                            }
+                          >
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    ) : attribute.fieldType === 'TEXT_AREA' ? (
+                      <div className="flex flex-col justify-end items-end">
+                        <textarea
+                          className="w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                          placeholder={JSON.parse(attribute.config).placeholder}
+                          name={attribute.name}
+                          rows={4}
+                          maxLength={
+                            JSON.parse(attribute.config).max_length === '0'
+                              ? 500
+                              : JSON.parse(attribute.config).max_length
+                          }
+                          onChange={(e) =>
+                            updateFormDataByName(attribute.name, e.target.value)
+                          }
+                        />
+                        {formData?.find((item) => item.name === attribute.name)
+                          ?.value.length +
+                          '/' +
+                          (JSON.parse(attribute.config).max_length === '0'
+                            ? 500
+                            : JSON.parse(attribute.config).max_length)}
+                      </div>
+                    ) : attribute.fieldType === 'DOCUMENT' ? (
+                      <div className="flex flex-col justify-end items-start">
+                        <div
+                          className="border border-light-grey rounded-[14px] flex flex-col items-center justify-center h-[50px] cursor-pointer py-[10px] px-[1rem] gap-[8px]"
+                          onClick={handleUploadClick}
+                        >
+                          <Icon
+                            name="UploadIcon"
+                            height={24}
+                            width={24}
+                            color="purple_dark"
+                          />
+                          <input
+                            type="file"
+                            ref={fileInputRef}
+                            style={{ display: 'none' }}
+                            onChange={(e) =>
+                              handleFileChange(e, attribute.name)
+                            }
+                          />
+                          <p>
+                            {formData
+                              .filter((val) => val.name === attribute.name)[0]
+                              ?.value.split('/')
+                              .pop() ?? ''}
+                          </p>
+                        </div>
+                      </div>
+                    ) : JSON.parse(attribute.config).placeholder ===
+                      'dd/mm/yyyy' || attribute.name.includes('start work') ? (
+                      <div className="flex justify-between gap-[0.5rem]">
+                        <input
+                          className="w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                          placeholder={JSON.parse(attribute.config).placeholder}
+                          name={attribute.name}
+                          type="date"
+                          onChange={(e) =>
+                            updateFormDataByName(attribute.name, e.target.value)
+                          }
+                        />
                       </div>
                     ) : attribute.name.includes('Telepon') ? (
                       <div className="flex justify-between gap-[0.5rem]">

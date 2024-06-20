@@ -70,14 +70,15 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
                     {val.subMenus.map((el, index) => (
                       <div key={index} className="mt-4">
                         <Link
+                          // href={{
+                          //   pathname: `/${convertToKebabCase(item.title)}/${!item.skipUrl ? camelToKebabCase(val.title) : ''}`,
+                          //   query: { tab: el.title }
+                          // }}
                           href={{
-                            pathname: `/${convertToKebabCase(item.title)}/${!item.skipUrl ? camelToKebabCase(val.title) : ''}`,
+                            pathname: `${!item.skipUrl ? `/${convertToKebabCase(item.title)}` : ''}/${camelToKebabCase(val.title !== '' ? val.title : item.content[0].title)}`,
                             query: { tab: el.title }
                           }}
                           onClick={() => setVisibility(false)}
-                          target={
-                            index === 2 || el.icon === 2 ? '_blank' : '_self'
-                          }
                           className="text-xs cursor-pointer rounded transition-all hover:bg-white/20 outline-none p-2"
                         >
                           {el.title}

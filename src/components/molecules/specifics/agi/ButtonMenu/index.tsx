@@ -19,8 +19,9 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
     arrows: false,
     centerMode: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToShow: 1.25,
+    slidesToScroll: 1,
+    centerPadding: '0px'
   };
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
               >
                 <div
                   role="button"
-                  className={`mx-[10px] p-2 border border-purple_dark rounded-lg text-center ${params === i ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold line-clamp-1`}
+                  className={`w-[95%] mx-[10px] p-2 border border-purple_dark rounded-lg text-center ${params === i ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold line-clamp-1`}
                 >
                   {i}
                 </div>

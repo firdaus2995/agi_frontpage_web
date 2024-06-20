@@ -162,6 +162,7 @@ const SekilasPerusahaan = () => {
               desc={val.desc}
               link={val.link}
               icon={val.icon}
+              route={''}
             />
           ))}
         </div>

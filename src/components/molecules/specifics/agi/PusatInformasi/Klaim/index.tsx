@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NotFound from '@/components/atoms/NotFound';
 import Accordion from '@/components/molecules/specifics/agi/Accordion';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
@@ -36,8 +37,7 @@ const Klaim = () => {
         placeHolder="Cari Formulir"
       />
       <div className="flex flex-col gap-3">
-        {transformedData &&
-          categoryList &&
+        {transformedData && categoryList.length > 0 ? (
           categoryList?.map((element: any, idx: number) => {
             const currentData =
               transformedData[Object.keys(transformedData)[idx]];
@@ -75,7 +75,10 @@ const Klaim = () => {
                 </Accordion.Item>
               </Accordion>
             );
-          })}
+          })
+        ) : (
+          <NotFound />
+        )}
       </div>
     </div>
   );

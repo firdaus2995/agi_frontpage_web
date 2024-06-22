@@ -1,6 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
 import Icon from '@/components/atoms/Icon';
+import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
 import {
@@ -16,21 +18,27 @@ import {
 const Formulir = () => {
   const [contentData, setContentData] = useState<any>();
   const [search, setSearch] = useState('');
-  const [pagination, setPagination] = useState({
-    currentPage: 1,
-    itemsPerPage: 5
-  });
-  const startIndex = (pagination.currentPage - 1) * pagination.itemsPerPage;
-  const endIndex = startIndex + pagination.itemsPerPage;
-  const paginatedData = contentData
-    ? contentData?.slice(startIndex, endIndex)
-    : [];
-  const totalPages = contentData
-    ? Math.ceil(contentData?.length / pagination.itemsPerPage)
-    : 0;
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [itemsPerPage] = useState(5);
 
-  const handlePageChange = (page: number) => {
-    setPagination({ ...pagination, currentPage: page });
+  // PAGINATION STATE
+  const [paginatedData, setPaginatedData] = useState<any[]>([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  // PAGINATION LOGIC HOOK
+  useEffect(() => {
+    if (!contentData?.length) return; // check if contentaData already present
+
+    const endOffset = itemOffset + itemsPerPage;
+    setPaginatedData(contentData.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(contentData.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, contentData]);
+
+  // PAGINATION LOGIC HANDLER
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * itemsPerPage) % contentData.length;
+    setItemOffset(newOffset);
   };
 
   const fetchContent = async () => {
@@ -59,8 +67,10 @@ const Formulir = () => {
         })
       );
 
+      setIsEmpty(false);
       setContentData(transformedData);
     } catch (error: any) {
+      setIsEmpty(true);
       throw new Error(error.message);
     }
   };
@@ -88,53 +98,52 @@ const Formulir = () => {
         placeHolder="Cari Formulir"
       />
       <div className="flex flex-col gap-3">
-        {paginatedData.map((item: any, index: number) => (
-          <DownloadFileButton
-            title={item.title}
-            fileType={item.fileType}
-            key={index}
-            filePath={item.file}
-          />
-        ))}
+        {!isEmpty ? (
+          paginatedData.map((item: any, index: number) => (
+            <DownloadFileButton
+              title={item.title}
+              fileType={item.fileType}
+              key={index}
+              filePath={item.file}
+            />
+          ))
+        ) : (
+          <NotFound />
+        )}
       </div>
-      <div className="flex flex-col gap-4 sm:flex-row justify-between">
+      <div
+        className={`flex flex-col gap-4 md:flex-row justify-between ${isEmpty && 'hidden'}`}
+      >
         <div>
-          <p className="text-[1.25rem]">
+          <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">
-              {contentData ? startIndex + 1 : 0}-
-              {Math.min(endIndex, contentData ? contentData.length : 0)}
+              {contentData?.length === 0 || contentData === undefined
+                ? 0
+                : itemOffset + 1}
+              -
+              {Math.min(
+                (itemOffset + 1) * itemsPerPage,
+                contentData ? contentData.length : 0
+              )}
             </span>{' '}
             dari{' '}
             <span className="font-bold">
-              {contentData ? contentData.length : 0}
+              {contentData && contentData.length}
             </span>{' '}
             hasil
           </p>
         </div>
-        <div className="flex flex-row gap-[8px] items-center">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <div
-              key={page}
-              role="button"
-              onClick={() => handlePageChange(page)}
-              className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
-                pagination.currentPage === page
-                  ? 'text-purple_dark font-bold'
-                  : ''
-              }`}
-            >
-              {page}
-            </div>
-          ))}
-          <span
-            className="mt-[3px]"
-            role="button"
-            onClick={() => handlePageChange(totalPages)}
-          >
-            <Icon name="chevronRight" color="purple_dark" />
-          </span>
-        </div>
+        <ReactPaginate
+          pageCount={pageCount}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          nextLabel={<Icon name="chevronRight" color="purple_dark" />}
+          previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
+          containerClassName="flex flex-row gap-[8px] items-center"
+          activeClassName="text-purple_dark font-bold"
+          pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
+        />
       </div>
     </div>
   );

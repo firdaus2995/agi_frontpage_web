@@ -43,9 +43,19 @@ const Footer = () => {
       return '';
     }
 
-    return globalConfig?.filter(
+    const foundItem = globalConfig.filter(
       (item: { variable: string }) => item.variable === value
-    )[0].value;
+    )[0];
+
+    if (foundItem) {
+      let linkValue = foundItem.value;
+      if (linkValue.startsWith('0')) {
+        linkValue = '62' + linkValue.slice(1);
+      }
+      return linkValue;
+    }
+
+    return '';
   };
 
   if (pathname.includes('/under-construction')) return null;
@@ -106,7 +116,12 @@ const Footer = () => {
                 </a>
               </div>
               <div>
-                <a href='/pusat-informasi/pusat-informasi?tab=Kantor+Cabang' className="font-semibold text-base">Lokasi Avrist General Insurance</a>
+                <a
+                  href="/pusat-informasi/pusat-informasi?tab=Kantor+Cabang"
+                  className="font-semibold text-base"
+                >
+                  Lokasi Avrist General Insurance
+                </a>
               </div>
             </div>
           </div>
@@ -216,7 +231,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <Link href={`https://api.whatsapp.com/send?phone=${getLink('phoneAGI')}`} target='_blank'>
+      <Link
+        href={`https://api.whatsapp.com/send?phone=${getLink('phoneAGI')}`}
+        target="_blank"
+      >
         <Image
           alt="Whatsapp"
           height={0}

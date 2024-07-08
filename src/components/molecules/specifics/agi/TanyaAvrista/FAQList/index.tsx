@@ -32,19 +32,19 @@ const FAQList = ({ selected, data }: ICardsProps) => {
 
   return (
     <div className="w-full bg-white flex flex-col sm:gap-[7.5rem] xs:gap-[2.25rem] items-center sm:px-[8.5rem] sm:pt-[3.125rem] xs:pb-[1.625rem] xs:py-[3rem] xs:px-[2.25rem]">
-      <h1 className="font-karla sm:text-[3.5rem] xs:text-[2.25rem] text-purple_dark font-extrabold">
+      <h1 className="font-karla text-heading-1-mobile lg:text-heading-1-desktop text-purple_dark font-extrabold">
         {selected}
       </h1>
       {paginatedData?.length > 0 ? (
         <div className="w-full">
-          <div className="w-full flex flex-col gap-[3rem]">
+          <div className="w-full flex flex-col gap-[12px]">
             {paginatedData.map((item, index) => (
               <Link
                 href={item.href}
                 key={index}
-                className="w-full border border-gray_light rounded-xl px-[0.25rem] py-[0.375rem] sm:px-[0.5rem] sm:py-[0.75rem] flex flex-row justify-between items-center"
+                className="w-full border border-gray_light rounded-xl p-6 flex flex-row justify-between items-center"
               >
-                <p className="text-xl font-bold">{item.title}</p>
+                <p className="text-[1.5rem] font-semibold">{item.title}</p>
                 <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
               </Link>
             ))}

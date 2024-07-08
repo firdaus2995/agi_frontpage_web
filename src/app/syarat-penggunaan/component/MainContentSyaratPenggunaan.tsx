@@ -57,7 +57,7 @@ const MainContentSyaratPenggunaan = () => {
                     key={idx}
                     className="border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer text-left"
                   >
-                    <span className="font-bold text-purple_dark text-[18px]">
+                    <span className="font-bold text-purple_dark text-footer-subtitle font-opensanspro">
                       {val}
                     </span>
                   </div>
@@ -68,7 +68,7 @@ const MainContentSyaratPenggunaan = () => {
                     onClick={() => handleTabClick(val)}
                     className="border-l-4 border-purple_mediumlight px-[15px] py-[10px] cursor-pointer text-left"
                   >
-                    <span className="font-bold text-purple_mediumlight text-[18px]">
+                    <span className="font-bold text-purple_mediumlight text-footer-subtitle font-opensanspro">
                       {val}
                     </span>
                   </div>
@@ -76,7 +76,7 @@ const MainContentSyaratPenggunaan = () => {
               )}
             </div>
           </div>
-          <div className="relative sm:hidden block">
+          <div className="relative lg:hidden block">
             <div
               className="flex justify-between items-center border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer rounded-lg font-bold text-purple_dark bg-purple_light_bg text-[18px]"
               onClick={() => setIsOpen(!isOpen)}
@@ -96,7 +96,7 @@ const MainContentSyaratPenggunaan = () => {
                   <div
                     key={idx}
                     onClick={() => handleTabClick(val)}
-                    className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-[18px] ${
+                    className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-footer-subtitle font-opensanspro ${
                       tab === val
                         ? 'border-purple_dark text-purple_dark'
                         : 'border-purple_mediumlight text-purple_mediumlight'

@@ -71,7 +71,7 @@ const Pencarian = () => {
       <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
-          <p className="text-[48px]" dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />
+          <p dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />
         }
         buttonTitle={cta1Label}
         href={cta1Link}

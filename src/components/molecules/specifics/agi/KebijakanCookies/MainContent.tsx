@@ -19,13 +19,13 @@ export const MainContent = () => {
             onClick={() => {}}
           />
           <div className="ml-[48px]">
-            <p className="font-karla font-bold text-[56px]">
+            <p className="font-karla font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop">
               Kebijakan Cookie Online Avrist Life Insurance
             </p>
-            <p className="font-karla font-bold text-[36px] text-purple_dark mt-[24px]">
+            <p className="font-karla font-bold text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark mt-[24px]">
               Definisi Cookies
             </p>
-            <p className="font-opensans font-normal text-[20px] text-gray_body mt-[24px]">
+            <p className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]">
               Lorem ipsum dolor sit amet consectetur. Nec in ipsum est vitae
               libero non placerat integer nunc. Nulla tincidunt enim luctus id
               in. Risus fames integer diam tristique. Nunc at suscipit ornare

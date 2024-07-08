@@ -23,14 +23,14 @@ const breadcrumbsData = [
 ];
 
 const topics = [
-  { iconKey: 'topik1-icon', textKey: 'topik1-teks' },
-  { iconKey: 'topik2-icon', textKey: 'topik2-teks' },
-  { iconKey: 'topik3-icon', textKey: 'topik3-teks' },
-  { iconKey: 'topik4-icon', textKey: 'topik4-teks' },
-  { iconKey: 'topik5-icon', textKey: 'topik5-teks' },
-  { iconKey: 'topik6-icon', textKey: 'topik6-teks' },
-  { iconKey: 'topik7-icon', textKey: 'topik7-teks' },
-  { iconKey: 'topik8-icon', textKey: 'topik8-teks' }
+  { iconKey: 'icon-topik-1', textKey: 'nama-topik-1' },
+  { iconKey: 'icon-topik-2', textKey: 'nama-topik-2' },
+  { iconKey: 'icon-topik-3', textKey: 'nama-topik-3' },
+  { iconKey: 'icon-topik-4', textKey: 'nama-topik-4' },
+  { iconKey: 'icon-topik-5', textKey: 'nama-topik-5' },
+  { iconKey: 'icon-topik-6', textKey: 'nama-topik-6' },
+  { iconKey: 'icon-topik-7', textKey: 'nama-topik-7' },
+  { iconKey: 'icon-topik-8', textKey: 'nama-topik-8' }
 ];
 
 const handleGetContent = async (slug: string) => {
@@ -90,7 +90,6 @@ const TanyaAvgen = () => {
           title: contentStringTransformer(content[topic.textKey]),
           icon: singleImageTransformer(content[topic.iconKey]).imageUrl
         }));
-
         setCards(listCards);
         setSelectedCards(listCards[0].title);
 

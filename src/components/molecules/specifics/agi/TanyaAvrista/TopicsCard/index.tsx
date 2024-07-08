@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import ArrowCarouselLeft from '@/assets/images/common/arrow-carousel-left.svg';
 import ArrowCarouselRight from '@/assets/images/common/arrow-carousel-right.svg';
 interface ITopicsCard {
-  cards: { title: string; icon: string; }[];
+  cards: { title: string; icon: string }[];
   onClickCards: (title: string) => void;
 }
 
@@ -22,7 +22,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
     infinite: false,
     swipeToSlide: false,
     beforeChange: (oldIndex: number, newIndex: number) =>
-      setCurrentSlide(Math.ceil(newIndex)),
+      setCurrentSlide(Math.ceil(newIndex))
   };
 
   const next = () => {
@@ -35,37 +35,43 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
 
   return (
     <div className="w-full bg-white flex flex-col sm:gap-[7.5rem] xs:gap-[2.25rem] items-center bg-[#F7F4F8] sm:px-[5rem] sm:py-[3.90625rem] xs:py-[1.875rem] xs:px-[1.3125rem]">
-      <h1 className="font-karla sm:text-[3.5rem] xs:text-[2.25rem] text-purple_dark text-center">
+      <h1 className="font-karla text-tanya-avgen-title-mobile lg:text-tanya-avgen-title-desktop text-purple_dark text-center">
         Apa yang ingin <span className="font-bold">Anda </span> ketahui?
       </h1>
       <div className="xs:hidden sm:grid xs:grid-rows-1 xs:grid-cols-2 sm:grid-cols-4 gap-[1.5rem]">
-        {cards.map((item, index) => (
-          <div
-            key={index}
-            role="button"
-            onClick={() => onClickCards(item.title)}
-            className="flex flex-col items-center"
-          >
-            <div
-              className={`xs:w-[11.25rem] bg-white sm:w-[17.125rem] xs:h-[11.625rem] sm:h-[16.25rem] flex flex-col items-center justify-center px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-xl border-b-[0.5rem] border-b-purple_dark`}
-            >
-              <Image
-                alt={item.title}
-                src={item.icon}
-                className="xs:w-[3.75rem] xs:h-[3.75rem] sm:w-[6.25rem] sm:h-[6.25rem]"
-                width={60}
-                height={60}
-              />
-              <p className="text-center font-bold xs:text-[2rem] sm:text-[1.5rem] leading-[2.4rem]">
-                {item.title.split('\n').map((line, index) => (
-                  <p key={index}>{line}</p>
-                ))}
-              </p>
-            </div>
-          </div>
-        ))}
+        {cards.map(
+          (item, index) =>
+            item.title !== '' && (
+              <div
+                key={index}
+                role="button"
+                onClick={() => onClickCards(item.title)}
+                className="flex flex-col items-center"
+              >
+                <div
+                  className={`xs:w-[11.25rem] bg-white sm:w-[17.125rem] xs:h-[11.625rem] sm:h-[16.25rem] flex flex-col items-center justify-center px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-xl border-b-[0.5rem] border-b-purple_dark`}
+                >
+                  {!item.icon.includes('no-image') && (
+                    <Image
+                      alt={item.title}
+                      src={item.icon}
+                      className="xs:w-[3.75rem] xs:h-[3.75rem] sm:w-[6.25rem] sm:h-[6.25rem]"
+                      width={60}
+                      height={60}
+                    />
+                  )}
+
+                  <p className="text-center font-bold font-karla text-menu-header-title">
+                    {item.title.split('\n').map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            )
+        )}
       </div>
-      <div className='w-full'>
+      <div className="w-full">
         <div className="md:hidden py-[0.375rem] flex flex-col gap-[2.25rem]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => (
@@ -76,9 +82,9 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
                 className="flex flex-col items-center justify-center w-full"
               >
                 <div
-                key={index}
-                role="button"
-                onClick={() => onClickCards(item.title)}
+                  key={index}
+                  role="button"
+                  onClick={() => onClickCards(item.title)}
                   className={`w-[95%] bg-white h-[16.25rem] pb-[2.25rem] px-[1.5rem] pt-[1.5rem] flex flex-col items-center justify-center gap-[0.5rem] border border-gray_light rounded-xl border-b-[0.5rem] border-b-purple_dark`}
                 >
                   <Image
@@ -88,7 +94,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
                     width={60}
                     height={60}
                   />
-                  <p className="text-center font-bold xs:text-[2rem] sm:text-[1.5rem] leading-[2.4rem]">
+                  <p className="text-center font-bold font-karla text-menu-header-title">
                     {item.title.split('\n').map((line, index) => (
                       <p key={index}>{line}</p>
                     ))}

@@ -94,7 +94,7 @@ const LayananNasabah = (props: LayananNasabah) => {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <p className="md:text-[32px] xs:text-[1.5rem] font-bold text-left w-full mb-2">
+              <p className="text-footer-card-title font-bold text-left w-full mb-2">
                 {val.title}
               </p>
               <div className="flex flex-row items-center gap-2 flex-wrap">
@@ -103,7 +103,7 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row items-center gap-4 whitespace-nowrap"
                   href={val.href1}
                 >
-                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                  <p className={`font-semibold text-footer-card-subtitle`}>
                     {val.link1}
                   </p>
                   <Image
@@ -121,7 +121,7 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row items-center gap-4 whitespace-nowrap"
                   href={val.href2}
                 >
-                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                  <p className={`font-semibold text-footer-card-subtitle`}>
                     {val.link2}
                   </p>
                   <Image
@@ -139,7 +139,7 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row items-center gap-4 whitespace-nowrap"
                   href={val.href3}
                 >
-                  <p className={`font-semibold md:text-lg xs:text-xs`}>
+                  <p className={`font-semibold text-footer-card-subtitle`}>
                     {val.link3}
                   </p>
                   <Image
@@ -161,14 +161,14 @@ const LayananNasabah = (props: LayananNasabah) => {
   return (
     <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-10 gap-16 bg-white relative">
       <div>
-        <p className="md:text-5xl xs:text-3xl text-center font-bold text-purple_dark px-10">
+        <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark px-10">
           {contentStringTransformer(content['layanan-nasabah-title'])}
         </p>
         <p dangerouslySetInnerHTML={{
             __html: contentStringTransformer(
               content['layanan-nasabah-description']
             )
-          }} className="md:text-4xl xs:text-2xl text-gray_bold_dark text-center px-10" />
+          }} className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_bold_dark text-center px-10" />
       </div>
       <div className="w-full sm:flex sm:flex-row items-center justify-center gap-10 xs:hidden md:flex xs:grid xs:grid-cols-1">
         {data.map((val, idx) => (

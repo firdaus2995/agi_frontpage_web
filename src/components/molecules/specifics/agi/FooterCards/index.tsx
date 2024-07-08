@@ -87,11 +87,11 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                   height={100}
                 />
                 <span className="flex flex-col grow justify-between">
-                  <p className="font-bold text-[1.5rem]">{item.title}</p>
+                  <p className="font-bold text-[1.5rem] font-opensanspro">{item.title}</p>
                   {item.subtitle && (
                     <div className="flex items-end justify-center">
                       <p
-                        className={`text-center items font-bold text-[1.5rem] ${item.textColor ? item.textColor : 'text-purple_dark'}`}
+                        className={`font-opensanspro text-center items font-bold text-[1.5rem] ${item.textColor ? item.textColor : 'text-purple_dark'}`}
                       >
                         {item.subtitle}
                       </p>

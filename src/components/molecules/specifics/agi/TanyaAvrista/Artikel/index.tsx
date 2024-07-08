@@ -13,11 +13,11 @@ const ArtikelTanyaAvrista = (props: Props) => {
     <div className="w-full">
       <div className="w-full bg-white rounded-t-[76px] xs:py-[3.125rem] md:py-[6.25rem] px-[2rem] md:px-[8.5rem] flex flex-row">
         <section className="w-full flex flex-col gap-8">
-          <h1 className="font-karla xs:text-[2.25rem] md:text-[3.5rem] font-bold">
+          <h1 className="font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold">
             {title}
           </h1>
           <p
-            className="font-opensans text-xl"
+            className="font-opensans text-tanya-avgen-detail-subtitle"
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </section>

@@ -19,7 +19,7 @@ export const LeftMenu = (props: LeftMenuProps) => {
               onClick={() => {
                 onClick(val);
               }}
-              className={`${idx === 0 && 'rounded-tl-lg'} ${idx + 1 === data.length && 'rounded-bl-lg'} ${active !== val.id && 'opacity-50'} border-l-8 border-l-purple_dark p-4 font-semibold text-purple_dark`}
+              className={`${idx === 0 && 'rounded-tl-lg'} ${idx + 1 === data.length && 'rounded-bl-lg'} ${active !== val.id && 'opacity-50'} border-l-8 border-l-purple_dark p-4 font-semibold text-purple_dark text-footer-subtitle font-opensanspro`}
             >
               {val.label}
             </div>

@@ -78,7 +78,7 @@ const Header = () => {
                 src={VectorLogo}
                 alt="vector-logo"
               />
-              <p className="text-md font-bold text-black">Avrist Group</p>
+              <p className="text-top-heading-group font-bold text-black">Avrist Group</p>
               <span
                 className={`transform transition-transform ${
                   isDropdownHeaderVisible ? 'rotate-180' : ''
@@ -127,14 +127,14 @@ const Header = () => {
             className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden"
           >
             <Icon name="helpcircle" color="gray_black" />
-            <p className="font-bold text-sm">Tanya AvGen</p>
+            <p className="font-bold text-top-heading-group">Tanya AvGen</p>
           </Link>
           <div
             className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden pl-3"
             onClick={() => setIsShowEmailSubs(true)}
           >
             <Icon name="mail" color="gray_black" />
-            <p className="font-bold text-sm">Subscribe</p>
+            <p className="font-bold text-top-heading-group">Subscribe</p>
           </div>
           <div className="flex flex-row gap-2 cursor-pointer pl-3">
             <Link href={`/pencarian`}>
@@ -153,14 +153,14 @@ const Header = () => {
           <ul className="md:flex gap-[2.5rem] items-center hidden">
             <Link href={`/`}>
               <Button.IconButton>
-                <Icon name="homeIcon" color="white" width={20} isSquare />
+                <Icon name="homeIcon" color="white" width={24} isSquare />
               </Button.IconButton>
             </Link>
             {menus.map((item, idx) => {
               return (
                 <React.Fragment key={item.title}>
                   <li
-                    className={`font-opensans cursor-pointer relative ${styles['nav-list-item']}`}
+                    className={`font-opensans cursor-pointer font-semibold text-list-menu-header-desktop relative ${styles['nav-list-item']}`}
                     ref={(el) => (listRef.current[idx] = el)}
                   >
                     {item.title}{' '}

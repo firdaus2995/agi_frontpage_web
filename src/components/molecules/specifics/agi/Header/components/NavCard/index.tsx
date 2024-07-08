@@ -89,7 +89,7 @@ const NavCard: React.FC<NavCardProps> = ({
             ) : null}
 
             <div className="flex flex-col gap-6">
-              <h2 className="text-[2rem] font-bold text-gray_title font-karla">
+              <h2 className="text-menu-header-title-desktop font-bold text-gray_title font-karla">
                 {val.title}
               </h2>
               <div
@@ -108,7 +108,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           }
                         }}
                       >
-                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
+                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-menu-header-subtitle font-opensans">
                           <Image
                             className="w-[2.25rem] h-[2.25rem]"
                             src={ICON_MAPPING[indexData][item.icon]}
@@ -144,7 +144,7 @@ const NavCard: React.FC<NavCardProps> = ({
                                 }, 700);
                               }}
                             >
-                              <div className="flex flex-row gap-2 items-center whitespace-nowrap hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
+                              <div className="flex flex-row gap-2 items-center whitespace-nowrap hover:text-purple_dark font-semibold text-menu-header-subtitle font-opensans">
                                 {value}
                               </div>
                             </Link>
@@ -167,7 +167,7 @@ const NavCard: React.FC<NavCardProps> = ({
                           }, 700);
                         }}
                       >
-                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-[1.25rem] font-opensans">
+                        <div className="flex flex-row gap-4 items-center hover:text-purple_dark font-semibold text-menu-header-subtitle font-opensans">
                           <Image
                             className="w-[2.25rem] h-[2.25rem]"
                             src={ICON_MAPPING[indexData][item.icon]}

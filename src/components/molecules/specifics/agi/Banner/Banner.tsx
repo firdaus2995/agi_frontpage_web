@@ -177,12 +177,12 @@ const BannerAvrast = (
                     </div>
                     <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">
                       <p
-                        className={`xs:text-[1.5rem] md:text-[28px] text-purple_dark whitespace-nowrap font-karla font-medium`}
+                        className={`text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark whitespace-nowrap font-karla font-medium`}
                       >
                         {contentStringTransformer(data['hero-teks1'])}
                       </p>
                       <div
-                        className="xs:px-[2rem] md:px-0 xs:text-[2.813rem] md:text-[1.5rem] xl:text-[2.25rem] xs:text-center md:text-left font-karla md:font-normal leading-[3rem] bg-none"
+                        className=" font-karla text-banner-subtitle-mobile lg:text-banner-subtitle-desktop bg-none text-center lg:text-left"
                         dangerouslySetInnerHTML={{
                           __html: contentStringTransformer(data['hero-teks2'])
                         }}
@@ -198,7 +198,7 @@ const BannerAvrast = (
                               data['hero-lblbutton']
                             )}
                             customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none xs:py-[12px] xs:px-[40px]`}
-                            customTextClass='text-[1.25rem]'
+                            customTextClass='text-banner-btn-label'
                           />
                         </Link>
                       </div>
@@ -230,13 +230,13 @@ const BannerAvrast = (
           <div className="flex py-10 px-[2rem] md:px-[8.5rem] items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-dark-purple">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text1 }}
-              className="font-karla font-light xs:w-full md:w-[200px] xs:text-[1.25rem]"
+              className="font-karla font-light xs:w-full text-banner-footer-1-mobile lg:text-banner-footer-1-desktop"
             />
           </div>
           <div className="flex xs:py-10 xs:px-[32px] md:pl-[4rem] md:pr-[8.5rem] flex-row justify-between items-center text-white md:text-[48px] xs:text-[24px] w-full bg-purple_light relative">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text2 }}
-              className="font-karla font-bold text-[2.25rem]"
+              className="font-karla font-bold text-banner-footer-2-mobile lg:text-banner-footer-2-desktop"
             />
             <button
               className="text-white font-medium rounded-full text-sm p-2 text-center border-2 xs:w-[2rem] xs:h-[2rem] md:w-[2.5rem] md:h-[2.5rem] xs:max-md:mr-4"

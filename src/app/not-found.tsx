@@ -9,21 +9,21 @@ export default function NotFound() {
     return (
       <div>
         <div className="my-[96px] w-full flex flex-col items-center">
-          <p className="font-karla font-bold text-[240px] text-purple_verylight">
+          <p className="font-karla font-bold text-404-title-mobile lg:text-404-title-desktop text-purple_verylight">
             404
           </p>
           <div className="w-[324px] text-center">
-            <p className="font-karla font-bold text-[24px]">
+            <p className="font-karla font-bold text-banner-title-mobile">
               Halaman tidak ditemukan
             </p>
-            <p className="font-opensans text-[14px] mt-[12px]">
+            <p className="font-opensans text-card-subtitle-desktop mt-[12px]">
               Sepertinya halaman yang Anda cari tidak tersedia. Silakan periksa
               kembali URL atau kembali ke halaman utama kami.{' '}
             </p>
           </div>
           <Link
             href="/"
-            className="bg-purple_dark text-white font-opensans font-semibold text-[20px] rounded-lg py-[18px] px-[40px] mt-[36px]"
+            className="bg-purple_dark text-white font-opensans font-semibold text-banner-btn-label rounded-lg py-[18px] px-[40px] mt-[36px]"
           >
             Kembali Ke Beranda
           </Link>

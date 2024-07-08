@@ -83,16 +83,17 @@ const TotalSolution = (props: TotalSolution) => {
             height={100}
             className="w-[6.25rem] h-[6.25rem]"
           />
-          <p className="font-bold text-2xl">{val.title}</p>
+          <p className="font-bold text-card-title-desktop">{val.title}</p>
         </div>
         <div className="flex flex-col grow items-center justify-between gap-[24px]">
           <p
+            className='text-card-subtitle-desktop'
             dangerouslySetInnerHTML={{
               __html: val.content
             }}
           />
           <Link href={val.btnLink}>
-            <Button title={val.btnText} />
+            <Button title={val.btnText} customTextClass='text-card-btn-label' />
           </Link>
         </div>
       </div>
@@ -121,16 +122,17 @@ const TotalSolution = (props: TotalSolution) => {
             width={100}
             height={100}
           />
-          <p className="font-bold text-2xl">{val.title}</p>
+          <p className="font-bold text-card-title-mobile">{val.title}</p>
         </div>
         <div className="flex flex-col grow items-center justify-between gap-[24px]">
           <p
+            className='text-card-subtitle-mobile'
             dangerouslySetInnerHTML={{
               __html: val.content
             }}
           />
           <Link href={val.btnLink}>
-            <Button title={val.btnText} customTextClass="text-[1rem]" />
+            <Button title={val.btnText} customTextClass="text-card-btn-label" />
           </Link>
         </div>
       </div>
@@ -140,7 +142,7 @@ const TotalSolution = (props: TotalSolution) => {
   return (
     <div className="flex flex-col self-stretch items-center justify-center sm:py-[100px] sm:px-[136px] sm:gap-[64px] xs:gap-[24px] xs:p-4 bg-white rounded-b-[65px] relative">
       <div>
-        <p className="md:text-5xl xs:text-3xl text-center font-bold text-purple_dark">
+        <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark">
           {contentStringTransformer(content['produk-unggulan-title'])}
         </p>
         <p
@@ -149,7 +151,7 @@ const TotalSolution = (props: TotalSolution) => {
               content['produk-unggulan-description']
             )
           }}
-          className="md:text-4xl xs:text-2xl text-gray_black_dark text-center"
+          className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_black_dark text-center"
         />
       </div>
       <div className="lg:hidden" style={{ width: '90vw' }}>

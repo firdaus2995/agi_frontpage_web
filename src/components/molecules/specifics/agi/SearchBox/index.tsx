@@ -20,7 +20,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   return (
     <div className="w-auto flex md:flex-row flex-col items-stretch gap-2 py-3">
       <Input
-        customInputClass="grow !bg-gray_bglightgray !border-none px-[16px]"
+        customInputClass="grow !bg-gray_bglightgray !border-none px-[16px] text-card-subtitle-desktop"
         placeholder={placeHolder}
         value={keyword}
         onChange={(ev) => setKeyword(ev.target.value)}
@@ -34,7 +34,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         title={buttonText}
         onClick={() => onSearch(keyword)}
         customButtonClass="!border-none !bg-purple_dark rounded-lg"
-        customTextClass="text-white"
+        customTextClass="text-white text-footer-card-subtitle"
       />
     </div>
   );

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
 import Link from 'next/link';
 
+import { EmailSubscribeModal } from '../../../Modal';
 import { NavbarMenuItem } from '../../types';
 import styles from './styles.module.css';
 import Icon from '@/components/atoms/Icon';
@@ -19,6 +20,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
   menus,
   setVisibility
 }) => {
+  const [isShowEmailSubs, setIsShowEmailSubs] = useState(false);
   return (
     <div
       className={`
@@ -35,7 +37,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
         <Disclosure key={index}>
           <div>
             <div className="flex w-full">
-              <Disclosure.Button className="top- text-[black] font-medium w-full text-base text-start p-2 transition-all rounded hover:bg-white/20 outline-none focus:bg-white/20">
+              <Disclosure.Button className="top- text-[black] font-medium w-full text-list-menu-header-mobile text-start p-2 transition-all rounded hover:bg-white/20 outline-none focus:bg-white/20">
                 {item.title}
               </Disclosure.Button>
               <Disclosure.Button>
@@ -64,7 +66,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
               <Disclosure.Panel className="p-2 text-[black] items-stretch gap-4 pl-2">
                 {item.content.map((val, idx) => (
                   <div key={idx} className="pt-4">
-                    <span className="text-md cursor-pointer rounded font-bold outline-none p-2">
+                    <span className="text-menu-header-title cursor-pointer rounded font-bold outline-none p-2">
                       {val.title}
                     </span>
                     {val.subMenus.map((el, index) => (
@@ -79,7 +81,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
                             query: { tab: el.title }
                           }}
                           onClick={() => setVisibility(false)}
-                          className="text-xs cursor-pointer rounded transition-all hover:bg-white/20 outline-none p-2"
+                          className="text-menu-header-subtitle cursor-pointer rounded transition-all hover:bg-white/20 outline-none p-2"
                         >
                           {el.title}
                         </Link>
@@ -92,6 +94,48 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
           </div>
         </Disclosure>
       ))}
+      <div className="grid grid-cols-2 gap-[20px] mt-[17.5px] border-t-2 pt-[2.25rem]">
+        <Link
+          href={`/tanya-avrista`}
+          className="flex flex-row gap-2 cursor-pointer ml-2 ml-2"
+          onClick={() => setVisibility(false)}
+        >
+          <Icon name="helpcircle" color="gray_black" />
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Tanya Avrista</p>
+        </Link>
+        <Link
+          href={'https://shop.avrist.com/'}
+          target="blank"
+          className="flex flex-row gap-2 cursor-pointer ml-2"
+          onClick={() => setVisibility(false)}
+        >
+          <Icon name="shoppingCart" color="gray_black" />
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Beli Online</p>
+        </Link>
+        <a
+          href={'https://my.avrist.com/welcome'}
+          target="_blank"
+          className="flex flex-row gap-2 cursor-pointer ml-2"
+          onClick={() => setVisibility(false)}
+        >
+          <Icon name="lightBulb" color="gray_black" />
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Avrist Solution</p>
+        </a>
+        <div
+          className="flex flex-row gap-2 cursor-pointer ml-2"
+          onClick={() => {
+            setIsShowEmailSubs(true);
+            setVisibility(false);
+          }}
+        >
+          <Icon name="mail" color="gray_black" />
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Subscribe</p>
+        </div>
+      </div>
+      <EmailSubscribeModal
+        show={isShowEmailSubs}
+        onClose={() => setIsShowEmailSubs(false)}
+      />
     </div>
   );
 };

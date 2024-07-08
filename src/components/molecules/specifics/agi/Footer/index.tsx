@@ -73,7 +73,7 @@ const Footer = () => {
         <div className="lg:grid lg:grid-cols-[minmax(10rem,_30rem)_minmax(8rem,_1fr)_1fr_1fr] mt-8 lg:gap-16 gap-10 flex flex-col">
           {/* Opening content */}
           <div className="flex flex-col gap-4 lg:gap-10">
-            <p className="font-semibold">
+            <p className="font-bold font-opensanspro text-footer-title">
               PT Avrist General Insurance berizin dan diawasi oleh Otoritas Jasa
               Keuangan.
             </p>
@@ -93,32 +93,32 @@ const Footer = () => {
 
           {/* Communication content */}
           <div className="flex flex-col gap-4 whitespace-nowrap">
-            <p className="font-bold">Hubungi AvGen</p>
+            <p className="font-bold font-opensanspro text-footer-title">Hubungi AvGen</p>
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
                 <a
                   href="tel:+6281119601000"
-                  className="font-semibold text-[1.5rem]"
+                  className="font-semibold font-karla text-footer-phone"
                 >
                   0811 1960 1000
                 </a>
               </div>
               <div>
-                <p className="font-semibold text-base">Layanan Nasabah</p>
-                <a href="tel:+62215740381" className="text-[0.875rem]">
+                <p className="font-semibold font-opensanspro text-footer-subtitle">Layanan Nasabah</p>
+                <a href="tel:+62215740381" className="text-footer-list">
                   (021) 574 0381
                 </a>
               </div>
               <div>
-                <p className="font-semibold text-base">Email</p>
-                <a href="mailto:avrist.general@avrist.com">
+                <p className="font-semibold font-opensanspro text-footer-subtitle">Email</p>
+                <a href="mailto:avrist.general@avrist.com" className='text-footer-list'>
                   avrist.general@avrist.com
                 </a>
               </div>
               <div>
                 <a
                   href="/pusat-informasi/pusat-informasi?tab=Kantor+Cabang"
-                  className="font-semibold text-base"
+                  className="font-semibold font-opensanspro text-footer-subtitle"
                 >
                   Lokasi Avrist General Insurance
                 </a>
@@ -128,50 +128,50 @@ const Footer = () => {
 
           {/* Product content */}
           <div className="flex flex-col gap-4">
-            <p className="font-bold">Produk</p>
-            <div className="flex flex-col gap-1 h-full text-sm font-light">
+            <p className="font-bold font-opensanspro text-footer-title">Produk</p>
+            <div className="flex flex-col gap-2 h-full text-sm font-light">
               <Link href={'/produk?tab=Asuransi+Kendaraan'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Kendaraan
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Harta+Benda'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Harta Benda
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Kecelakaan+Diri'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Kecelakaan Diri
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Rekayasa'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Rekayasa
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Pengangkutan+Barang'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Pengangkutan Barang
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Aneka'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Aneka
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Tanggung+Gugat'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Tanggung Gugat
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Mikro'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Mikro
                 </p>
               </Link>
               <Link href={'/produk?tab=Asuransi+Perjalanan'}>
-                <p className="hover:text-purple_light cursor-pointer">
+                <p className="hover:text-purple_light cursor-pointer text-footer-list">
                   Asuransi Perjalanan
                 </p>
               </Link>
@@ -180,18 +180,18 @@ const Footer = () => {
 
           {/* Investation content */}
           <div className="flex flex-col gap-4">
-            <p className="font-bold">Quick Links</p>
+            <p className="font-bold font-opensanspro text-footer-title">Quick Links</p>
             <div className="flex flex-col gap-2 h-full">
               <Link href="/tanya-avgen">
                 <div className="text-xs flex flex-col gap-2 font-light whitespace-nowrap">
-                  <p className="text-base font-semibold">Tanya AvGen</p>
+                  <p className="text-base font-semibold font-opensanspro text-footer-subtitle">Tanya AvGen</p>
                 </div>
               </Link>
               <Link href="/pusat-informasi/pusat-informasi?tab=Formulir+Penutupan">
-                <p className="font-semibold">Formulir</p>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">Formulir</p>
               </Link>
               <Link href="/hubungi-kami?tab=Karir">
-                <p className="font-semibold">Karir</p>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">Karir</p>
               </Link>
             </div>
           </div>
@@ -205,7 +205,7 @@ const Footer = () => {
             {additionalInfo.map((item, index) => (
               <React.Fragment key={index}>
                 <Link href={item.href}>
-                  <span className="font-bold text-lg ml-4">{item.title}</span>
+                  <span className="font-bold text-footer-link ml-4">{item.title}</span>
                 </Link>
               </React.Fragment>
             ))}

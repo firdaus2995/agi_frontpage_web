@@ -11,10 +11,10 @@ const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
         <div className="w-full h-full grid grid-cols-2">
           <span />
           <div className="flex flex-col md:justify-center sm:gap-1 md:gap-4 md:ml-20 sm:ml-0">
-            <p className="font-karla md:text-4xl 2xl:text-5xl font-bold text-white">
+            <p className="font-karla text-banner-footer-2-desktop font-bold text-white">
               Halo, apa kabar?
             </p>
-            <p className="font-karla md:text-3xl 2xl:text-5xl text-white">
+            <p className="font-karla text-banner-footer-2-desktop text-white">
               Ada yang AvGen bisa bantu?
             </p>
             <div className="w-full sm:mt-2 mt-6">

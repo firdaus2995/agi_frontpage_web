@@ -21,6 +21,7 @@ const TotalSolution = (props: TotalSolution) => {
   const { content } = props;
   const sliderRef = useRef<Slider | null>(null);
   const [data, setData] = useState<any>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     if (content) {
@@ -87,13 +88,13 @@ const TotalSolution = (props: TotalSolution) => {
         </div>
         <div className="flex flex-col grow items-center justify-between gap-[24px]">
           <p
-            className='text-card-subtitle-desktop'
+            className="text-card-subtitle-desktop"
             dangerouslySetInnerHTML={{
               __html: val.content
             }}
           />
           <Link href={val.btnLink}>
-            <Button title={val.btnText} customTextClass='text-card-btn-label' />
+            <Button title={val.btnText} customTextClass="text-card-btn-label" />
           </Link>
         </div>
       </div>
@@ -126,7 +127,7 @@ const TotalSolution = (props: TotalSolution) => {
         </div>
         <div className="flex flex-col grow items-center justify-between gap-[24px]">
           <p
-            className='text-card-subtitle-mobile'
+            className="text-card-subtitle-mobile"
             dangerouslySetInnerHTML={{
               __html: val.content
             }}
@@ -159,6 +160,7 @@ const TotalSolution = (props: TotalSolution) => {
           ref={(slider) => {
             sliderRef.current = slider;
           }}
+          beforeChange={(_, index) => setCurrentSlide(index)}
           {...sliderSettings}
         >
           {data.map(
@@ -183,8 +185,22 @@ const TotalSolution = (props: TotalSolution) => {
           )}
         </Slider>
         <div className="flex flex-row w-full justify-between">
-          <Image alt="prev" src={ARROW_LEFT} role="button" onClick={previous} />
-          <Image alt="next" src={ARROW_RIGHT} role="button" onClick={next} />
+          <Image
+            alt="prev"
+            src={ARROW_LEFT}
+            role="button"
+            onClick={previous}
+            className={currentSlide === 0 ? 'opacity-50' : 'opacity-100'}
+          />
+          <Image
+            alt="next"
+            src={ARROW_RIGHT}
+            role="button"
+            onClick={next}
+            className={
+              currentSlide === data.length - 1 ? 'opacity-50' : 'opacity-100'
+            }
+          />
         </div>
       </div>
       <div className="xs:max-lg:hidden grid grid-cols-3 gap-[24px]">

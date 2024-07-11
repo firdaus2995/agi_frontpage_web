@@ -77,20 +77,21 @@ const LayananNasabah = (props: LayananNasabah) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`w-[90%] max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-foamy_milk items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark pt-[24px] px-[32px] pb-[36px]`}
+        className={`xs:w-[90%] lg:w-full max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-foamy_milk items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
       >
         <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
           <Image src={val.icon} alt={val.title} width={64} height={64} />
         </div>
         <div
-          className={`w-full md:pt-[24px] md:px-[32px] md:pb-[36px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+          className={`w-full md:py-[24px] md:px-[32px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
         >
-          <div className="flex flex-row items-center gap-4">
+          <div className="flex flex-row items-center gap-8">
             <div className="xs:hidden md:block">
               <Image
                 src={val.icon}
                 alt={val.title}
                 width={100} height={100}
+                className='w-[100px] h-[100px]'
               />
             </div>
             <div className="flex flex-col gap-4">

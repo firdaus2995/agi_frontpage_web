@@ -1,16 +1,13 @@
 version: '3'
 services:
-  avrist-frontpage-web:
-    container_name: avrist-frontpage-web-app
-    image: avrist-frontpage-web
+  agi-frontpage-web:
+    container_name: agi-frontpage-web-app
+    image: agi-frontpage-web
     build:
-      context: .                          
-      dockerfile: Dockerfile  
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3031:80"
-    volumes:
-      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - '3033:80'
     networks:
       - avrist-network
 networks:

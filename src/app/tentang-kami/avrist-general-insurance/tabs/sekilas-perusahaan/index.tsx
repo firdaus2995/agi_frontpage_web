@@ -1,179 +1,211 @@
-import Icon1 from '@/assets/images/common/heart-check.svg';
-import Icon2 from '@/assets/images/common/home-add.svg';
-import MisiIcon from '@/assets/images/common/misi.svg';
-import Icon6 from '@/assets/images/common/money-hand.svg';
-import Icon5 from '@/assets/images/common/money-leaf.svg';
-import Icon3 from '@/assets/images/common/store.svg';
-import VisiIcon from '@/assets/images/common/visi.svg';
-import Icon4 from '@/assets/images/common/wallet.svg';
+'use client';
+import { Key, useEffect, useState } from 'react';
+import { ISetData } from '../../page';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import PurposeCard from '@/components/molecules/specifics/agi/Cards/PurposeCard';
 import Timeline from '@/components/molecules/specifics/agi/TimeLine';
 import VisiMisi from '@/components/molecules/specifics/agi/VisiMisi';
+import {
+  handleGetContent,
+  handleGetContentPage
+} from '@/services/content-page.api';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import {
+  contentStringTransformer,
+  handleTransformedContent,
+  pageTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-// button variants: primary, secondary
+const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
+  const [contentDataTitle, setContentDataTitle] = useState('');
+  const [section2Title, setSection2Title] = useState('');
+  const [section3Title, setSection3Title] = useState('');
+  const [section3Link, setSection3Link] = useState('');
+  const [contentData, setContentData] = useState<any>();
+  const [tagline, setTagline] = useState('');
+  const [desc, setDesc] = useState('');
+  const [visiMisi, setVisiMisi] = useState<any>();
+  const [purposeData, setPurposeData] = useState<any>();
 
-const data = {
-  title: 'Sejarah',
-  data: [
-    {
-      year: '2019',
-      title: 'Lorem ipsum dolor sit amet consectetur 1',
-      desc: 'Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt.'
-    },
-    {
-      year: '2020',
-      title: 'Lorem ipsum dolor sit amet consectetur 2',
-      desc: 'Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt.'
-    },
-    {
-      year: '2021',
-      title: 'Lorem ipsum dolor sit amet consectetur 3',
-      desc: 'Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt.'
-    },
-    {
-      year: '2022',
-      title: 'Lorem ipsum dolor sit amet consectetur 4',
-      desc: 'Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt.'
-    },
-    {
-      year: '2023',
-      title: 'Lorem ipsum dolor sit amet consectetur 5',
-      desc: 'Lorem ipsum dolor sit amet consectetur. Et non nulla elit eget. Integer non a varius viverra. Amet proin libero augue amet nunc et. Ultrices habitasse diam quam consequat commodo. Amet tempor nam cras id egestas pulvinar egestas egestas vitae. Etiam tincidunt sit amet ultricies pharetra ultrices nisl nec tincidunt.'
-    }
-  ]
-};
+  useEffect(() => {
+    const groupedData: any = {};
 
-const visiMisi = [
-  {
-    title: 'Visi',
-    icon: VisiIcon,
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.'
-  },
-  {
-    title: 'Misi',
-    icon: MisiIcon,
-    desc: [
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.',
-      'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti. Tincidunt nibh ac purus viverra urna bibendum fusce nec.'
-    ]
-  }
-];
+    handleGetContentPage(
+      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.SEKILAS_PERUSAHAAN
+    ).then((res: any) => {
+      setData(res);
+      const { content } = pageTransformer(res);
 
-const purposeData = [
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon1
-  },
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon2
-  },
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon3
-  },
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon4
-  },
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon5
-  },
-  {
-    title: 'Lorem ipsum',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Purus tortor praesent feugiat ultricies aliquam lacinia pretium potenti tincidunt nibh ac purus.',
-    link: 'Pelajari Lebih Lanjut',
-    icon: Icon6
-  }
-];
+      setTagline(
+        contentStringTransformer(content['sekilasperusahaan-tagline'])
+      );
+      setDesc(contentStringTransformer(content['sekilasperusahaan-deskripsi']));
 
-const SekilasPerusahaan = () => {
+      const descMisi: any = [];
+      content['misi'].contentData.map((val: { details: { value: any }[] }) =>
+        descMisi.push(val.details[0].value)
+      );
+      const tempVisiMisi = [
+        {
+          title: contentStringTransformer(content['nama-visi']),
+          icon: singleImageTransformer(content['icon-visi']).imageUrl,
+          desc: contentStringTransformer(content['isi-visi'])
+        },
+        {
+          title: contentStringTransformer(content['nama-misi']),
+          icon: singleImageTransformer(content['icon-misi']).imageUrl,
+          desc: descMisi
+        }
+      ];
+      setVisiMisi(tempVisiMisi);
+
+      const purposeTemp = [];
+      for (let i = 0; i < 6; i++) {
+        const icon = singleImageTransformer(content[`icon-card-${i + 1}`]);
+        const title = contentStringTransformer(content[`nama-card-${i + 1}`]);
+        const subtitle = contentStringTransformer(
+          content[`deskripsi-card-${i + 1}`]
+        );
+        const link = contentStringTransformer(
+          content[`label-hyperlink-card-${i + 1}`]
+        );
+        const href = contentStringTransformer(
+          content[`url-hyperlink-card-${i + 1}`]
+        );
+
+        if (icon && title && subtitle) {
+          purposeTemp.push({
+            icon: icon.imageUrl,
+            title: title,
+            desc: subtitle,
+            link: link,
+            href: href
+          });
+        }
+      }
+
+      setPurposeData(purposeTemp);
+      setSection2Title(contentStringTransformer(content['nama-section-2']));
+      setSection3Title(contentStringTransformer(content['nama-section-3']));
+      setSection3Link(contentStringTransformer(content['isi-section-3']));
+    });
+
+    handleGetContent(BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.SEKILAS_PERUSAHAAN, {
+      includeAttributes: 'true'
+    }).then((res) => {
+      const newDataContent = res.data.contentDataList.map((item: any) => {
+        return {
+          ...handleTransformedContent(item.contentData, item.title),
+          categoryName: item.categoryName,
+          id: item.id
+        };
+      });
+
+      const keyValuePairs = Object.entries(newDataContent[0].content);
+
+      const arrayOfObjects: any = keyValuePairs.map(([key, value]) => {
+        if (typeof value === 'object' && value !== null) {
+          return {
+            section: key,
+            ...value
+          };
+        } else {
+          console.error(`Cannot spread non-object value for key: ${key}`);
+        }
+      });
+
+      const transformData = (data: any) => {
+        const transformed = data.map((entry: any) => {
+          // Extract relevant information from the details
+          const tag = entry.details.find(
+            (detail: any) => detail.name === 'Tahun Timeline'
+          );
+          const title = entry.details.find(
+            (detail: any) => detail.name === 'Judul Timeline'
+          );
+          const desc = entry.details.find(
+            (detail: any) => detail.name === 'Deskripsi Timeline'
+          );
+
+          return {
+            year: tag.value,
+            title: title.value,
+            desc: desc.value
+          };
+        });
+
+        return {
+          title: 'History', // Constant title for the structure
+          data: transformed // The transformed array
+        };
+      };
+
+      const transformedData = transformData(arrayOfObjects[1]?.contentData);
+
+      transformedData?.data.forEach((item: any) => {
+        const year = item.year;
+        if (!groupedData[year]) {
+          groupedData[year] = { year: year, data: [] };
+        }
+        groupedData[year]['data'].push({
+          title: item.title,
+          desc: item.desc
+        });
+      });
+
+      const mergedData = Object.values(groupedData);
+      setContentDataTitle(arrayOfObjects[0].value);
+      setContentData(mergedData);
+    });
+  }, []);
   return (
     <div className="w-full flex flex-col bg-white justify-center">
       <div className="flex flex-col gap-4 px-[32px] py-[50px] sm:px-[136px] sm:py-[72px]">
-        <p className="text-[48px]">
-          Avrist General Insurance bergerak dibidang asuransi selama{' '}
-          <span className="font-bold text-purple_dark">
-            lebih dari 40 tahun.
-          </span>
-        </p>
-        <p>
-          Avrist General Insurance merupakan perusahaan keuangan yang bergerak
-          di bidang pengelolaan investasi di pasar modal. Avram memiliki izin
-          sebagai perusahaan Pengelola Aset berdasarkan KEP-07/BL/MI/2012 oleh
-          BAPEPAM-LK pada tahun 2012 & Izin Penasihat Investasi oleh OJK pada
-          tahun 2017.
-        </p>
-        <p>
-          Avrist General Insurance merupakan perusahaan keuangan yang bergerak
-          di bidang pengelolaan investasi di pasar modal. Avram memiliki izin
-          sebagai perusahaan Pengelola Aset berdasarkan KEP-07/BL/MI/2012 oleh
-          BAPEPAM-LK pada tahun 2012 & Izin Penasihat Investasi oleh OJK pada
-          tahun 2017.
-        </p>
-        <p>
-          Avrist General Insurance merupakan perusahaan keuangan yang bergerak
-          di bidang pengelolaan investasi di pasar modal. Avram memiliki izin
-          sebagai perusahaan Pengelola Aset berdasarkan KEP-07/BL/MI/2012 oleh
-          BAPEPAM-LK pada tahun 2012 & Izin Penasihat Investasi oleh OJK pada
-          tahun 2017.
-        </p>
-        <p>
-          Avrist General Insurance merupakan perusahaan keuangan yang bergerak
-          di bidang pengelolaan investasi di pasar modal. Avram memiliki izin
-          sebagai perusahaan Pengelola Aset berdasarkan KEP-07/BL/MI/2012 oleh
-          BAPEPAM-LK pada tahun 2012 & Izin Penasihat Investasi oleh OJK pada
-          tahun 2017.
-        </p>
-        <div className="mt-20">
-          <Timeline data={data.data} title={data.title} />
+        <p
+          className="xs:text-[30px] lg:text-sekilas-perusahaan-title font-light"
+          dangerouslySetInnerHTML={{
+            __html: tagline
+          }}
+        />
+
+        <p
+          className="text-[20px] lg:text-sekilas-perusahaan-text"
+          dangerouslySetInnerHTML={{
+            __html: desc
+          }}
+        />
+        <div className="w-full my-[5rem]">
+          {contentData && (
+            <Timeline data={contentData} title={contentDataTitle} />
+          )}
         </div>
-        <VisiMisi data={visiMisi} />
+        {visiMisi && <VisiMisi data={visiMisi} />}
       </div>
 
-      <div className="flex flex-col gap-4 items-center justify-center bg-purple_superlight w-full p-20">
+      <div className="flex flex-col gap-4 items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-0 lg:py-[5rem] px-[32px] lg:px-[136px]">
         <div className="flex justify-center items-center p-10">
-          <p className="text-[56px] font-bold text-purple_dark">
-            Mengapa Avrist Life Insurance?
+          <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
+            {section2Title}
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-5">
-          {purposeData.map((val, idx) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {purposeData?.map((val: any, idx: Key | null | undefined) => (
             <PurposeCard
               key={idx}
               title={val.title}
               desc={val.desc}
               link={val.link}
               icon={val.icon}
-              route={''}
+              route={val.href}
             />
           ))}
         </div>
         <div className="flex w-full flex-col p-5 gap-4 bg-white border rounded-xl mt-10">
-          <p className="text-[36px] font-bold text-purple_dark">
-            Izin usaha Avrist dari OJK
+          <p className="font-karla font-bold text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark">
+            {section3Title}
           </p>
-          <p className="text-[20px]">
-            PT Avrist Assurance nomor: KEP-037/KM.11/1986 tertanggal 10 Maret
-            1986.
-          </p>
+          <p className="text-xl">{section3Link}</p>
         </div>
       </div>
       <RoundedFrameBottom frameColor="bg-purple_superlight" />

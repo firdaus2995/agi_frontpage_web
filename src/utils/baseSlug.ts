@@ -62,17 +62,17 @@ export const BASE_SLUG = {
   // Modul 8
   TENTANG_AVRIST_LIFE: {
     CONTENT: {
-      SEKILAS_PERUSAHAAN: 'sejarah-sekilas-perusahaan',
+      SEKILAS_PERUSAHAAN: 'Sejarah-Sekilas-Perusahaan-AGI',
       LIST_PENGHARGAAN: 'Artikel-penghargaan',
-      LAPORAN_PERUSAHAAN: 'lap-perusahaan',
-      MANAJEMEN: 'Profil-Manajemen',
+      LAPORAN_PERUSAHAAN: 'List-Laporan-Perusahaan-AGI',
+      MANAJEMEN: 'Halaman-Manajemen-AGI-New',
       KARIR: 'List-loker'
     },
     PAGE: {
-      SEKILAS_PERUSAHAAN: 'halaman-sekilas-perusahaan',
-      MANAJEMEN: 'halaman-manajemen-avras',
+      SEKILAS_PERUSAHAAN: 'hal-sekilas-perusahaan-agi',
+      MANAJEMEN: 'hal-manajemen-agi',
       PENGHARGAAN: 'halaman-penghargaan-avras',
-      LAPORAN_PERUSAHAAN: 'halaman-laporan-perusahaan',
+      LAPORAN_PERUSAHAAN: 'halaman-laporan-perusahaan-agi',
       KARIR: 'halaman-karir',
       DETAIL_KARIR: 'halaman-detail-karir-avras'
     }

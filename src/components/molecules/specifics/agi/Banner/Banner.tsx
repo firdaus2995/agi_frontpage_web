@@ -18,9 +18,7 @@ type BannerAvrastPopUp = {
   content: any;
 };
 
-const BannerAvrast = (
-  props: BannerAvrastPopUp
-) => {
+const BannerAvrast = (props: BannerAvrastPopUp) => {
   const { content } = props;
   const sliderRef = useRef<Slider | null>(null);
   const dropdownRef = useRef<any>(null);
@@ -83,6 +81,8 @@ const BannerAvrast = (
   }, [dropdownVisible]);
 
   const sliderSettings = {
+    autoplay: true,
+    autoplaySpeed: 3000,
     dots: true,
     infinite: bannerData.length > 1 ? true : false,
     slidesToShow: 1,
@@ -101,7 +101,7 @@ const BannerAvrast = (
       <div
         style={{
           position: 'absolute',
-          left: 126,
+          left: window.innerWidth > 480 ? 136 : 156,
           width: 150,
           bottom: 50
         }}
@@ -137,7 +137,7 @@ const BannerAvrast = (
               sliderRef.current = slider;
             }}
             {...sliderSettings}
-            className="w-screen"
+            className="w-screen max-w-screen-2xl 3xl:max-w-screen-3xl"
           >
             {bannerData.length > 0 &&
               bannerData.map(
@@ -147,9 +147,11 @@ const BannerAvrast = (
                 ) => (
                   <div
                     key={index}
-                    className="flex w-full xs:h-[49rem] md:h-[40rem] relative"
+                    className="flex w-full h-[49rem] md:h-[40rem] relative"
                   >
-                    <div className="sm:hidden">
+                    <div className="md:hidden relative">
+                      <div className="h-[49rem] absolute bg-gradient-to-b from-white from-40% via-white via-10% to-transparent to-60% z-10 w-full"></div>
+                      <div className="h-[19rem]" />
                       <Image
                         alt="loop-image"
                         src={
@@ -158,11 +160,12 @@ const BannerAvrast = (
                                 .imageUrl
                             : BlankImage
                         }
-                        fill
-                        className="w-full h-full object-cover object-right-bottom"
+                        width={100}
+                        height={100}
+                        className="w-full h-[30rem] object-cover object-right-bottom"
                       />
                     </div>
-                    <div className="sm:block xs:hidden">
+                    <div className="md:block xs:hidden">
                       <Image
                         alt="loop-image"
                         src={
@@ -171,8 +174,9 @@ const BannerAvrast = (
                                 .imageUrl
                             : BlankImage
                         }
-                        fill
-                        className="w-screen h-auto"
+                        width={100}
+                        height={100}
+                        className="w-screen h-[40rem] object-cover"
                       />
                     </div>
                     <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">
@@ -198,7 +202,7 @@ const BannerAvrast = (
                               data['hero-lblbutton']
                             )}
                             customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none xs:py-[12px] xs:px-[40px]`}
-                            customTextClass='text-banner-btn-label'
+                            customTextClass="text-banner-btn-label"
                           />
                         </Link>
                       </div>
@@ -226,8 +230,8 @@ const BannerAvrast = (
             </div>
           </div>
         </div>
-        <div className="w-full -mt-[6px] flex md:flex-row xs:flex-col relative mb-24">
-          <div className="flex py-10 px-[2rem] md:px-[8.5rem] items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-dark-purple">
+        <div className="w-full -mt-[6px] flex md:flex-row xs:flex-col mb-[5rem]">
+          <div className="flex py-10 px-[2rem] md:px-[8.5rem] md:pr-0 items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-dark-purple">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text1 }}
               className="font-karla font-light xs:w-full text-banner-footer-1-mobile lg:text-banner-footer-1-desktop"
@@ -239,6 +243,7 @@ const BannerAvrast = (
               className="font-karla font-bold text-banner-footer-2-mobile lg:text-banner-footer-2-desktop"
             />
             <button
+              id="drop-down"
               className="text-white font-medium rounded-full text-sm p-2 text-center border-2 xs:w-[2rem] xs:h-[2rem] md:w-[2.5rem] md:h-[2.5rem] xs:max-md:mr-4"
               type="button"
               onClick={toggleDropdown}
@@ -274,22 +279,23 @@ const BannerAvrast = (
               )}
             </button>
           </div>
-            {dropdownVisible && (
-              <div
-                className={`absolute flex flex-col xs:top-[300px] sm:top-[120px] sm:right-[1rem] rounded-md bg-white xs:right-[1.25rem] xs:left-0 sm:left-[40rem] sm:w-[31.25rem]`}
-                ref={dropdownRef}
-              >
-                {dropdownData?.item?.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.link}
-                    className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium py-[24px] pr-[24px] pl-[32px] md:text-[36px] xs:text-[20px]"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+          {dropdownVisible && (
+            <div
+              aria-label="drop-down"
+              className={`absolute shadow-xl flex flex-col sm:top-[1220px] md:top-[1050px] lg:top-[950px] xl:top-[920px] rounded-md bg-white xs:left-0 md:left-[10rem] lg:left-[25rem] xl:left-[50rem] w-full md:w-[31.25rem] z-30 md:text-[36px]/[43.2px] md:-tracking-[1.44px] xs:text-[1.5rem] text-[#1A141F]`}
+              ref={dropdownRef}
+            >
+              {dropdownData?.item?.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.link}
+                  className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium py-[24px] pr-[24px] pl-[32px] md:text-[36px] xs:text-[20px]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

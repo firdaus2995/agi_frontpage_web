@@ -59,7 +59,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
     <div className="overflow-hidden">
       {/* Desktop */}
       <div className={`xs:hidden md:block ${bgColor ?? ''}`}>
-        <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] py-[5rem] h-full">
+        <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] pb-[5rem] pt-[20px] h-full">
           {cards.map((item, index) => {
             const href =
               item?.hrefType === 'phone'
@@ -106,7 +106,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
 
       {/* Mobile */}
       <div className={`${bgColor ?? ''}`}>
-        <div className="md:hidden py-[5rem] flex flex-col gap-[2.25rem]">
+        <div className="md:hidden pb-[5rem] pt-[20px] flex flex-col gap-[2.25rem]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => {
               const href =
@@ -156,7 +156,6 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
           </Slider>
           <div className="w-full flex flex-row justify-between px-[2.5rem]">
             <Image
-              style={{ rotate: '-90deg' }}
               width={36}
               height={36}
               alt="next"
@@ -165,7 +164,6 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
               className={currentSlide === 0 ? 'opacity-50' : 'opacity-100'}
             />
             <Image
-              style={{ rotate: '90deg' }}
               width={36}
               height={36}
               alt="next"

@@ -1,18 +1,33 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useCallback, Key } from 'react';
 import Image from 'next/image';
-import People1 from '@/assets/images/agi/management-1.svg';
-import People2 from '@/assets/images/agi/management-2.svg';
-import People3 from '@/assets/images/agi/management-3.svg';
-import People4 from '@/assets/images/agi/management-4.svg';
-import People5 from '@/assets/images/agi/management-5.svg';
-import People6 from '@/assets/images/agi/management-6.svg';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Button from '@/components/atoms/Button/Button';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
+import { handleGetContent } from '@/services/content-page.api';
+import { ContentResponse } from '@/types/content.type';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import { BASE_URL } from '@/utils/baseUrl';
+import {
+  singleImageTransformer,
+  contentStringTransformer,
+  contentTransformer
+} from '@/utils/responseTransformer';
 
-const Manajemen = () => {
+interface ManagementComponentProps {
+  setPageData: React.Dispatch<
+    React.SetStateAction<ContentResponse | undefined>
+  >;
+}
+
+const Manajemen: React.FC<ManagementComponentProps> = ({
+  setPageData
+}) => {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [showDetail, setShowDetail] = useState(false);
   const [detailData, setDetailData] = useState({
     image: BlankImage,
@@ -21,169 +36,202 @@ const Manajemen = () => {
     desc: <p></p>
   });
 
+  const [contentData, setContentData] = useState<any>();
+  const [managementList, setManagementList] = useState<any>();
+
+  useEffect(() => {
+    handleGetContent(BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.MANAJEMEN, {
+      includeAttributes: 'true'
+    }).then((res) => {
+      setPageData(res);
+      const { content } = contentTransformer(res);
+
+      const managementList = [];
+      for (let i = 0; i < 4; i++) {
+        const title = contentStringTransformer(
+          content[`nama-section-${i + 1}`]
+        );
+        const cards = content[`looping-section-${i + 1}`].contentData.map(
+          (item: { details: any[] }) => ({
+            name:
+              item.details.find(
+                (detail: { fieldId: string }) =>
+                  detail.fieldId === 'manajemen-nama'
+              )?.value || '',
+            role:
+              item.details.find(
+                (detail: { fieldId: string }) =>
+                  detail.fieldId === 'manajemen-title'
+              )?.value || '',
+            image: `${BASE_URL.image}/${
+              JSON.parse(
+                item.details.find(
+                  (detail: { fieldId: string }) =>
+                    detail.fieldId === 'manajemen-image'
+                )?.value || '[{}]'
+              )[0].imageUrl || ''
+            }`,
+            desc:
+              item.details.find(
+                (detail: { fieldId: string }) =>
+                  detail.fieldId === 'manajemen-biografi'
+              )?.value || '',
+            onClick: handleCardClick
+          })
+        );
+        if (title) {
+          managementList.push({
+            title: title,
+            cards: cards
+          });
+        }
+      }
+      setManagementList(managementList);
+      setContentData(content);
+    });
+  }, []);
+
+  useEffect(() => {
+    const value = searchParams.get('tab');
+    if (value === 'Manajemen') {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+      setShowDetail(false);
+    } else {
+      window.scrollTo({ top: 200 });
+      setShowDetail(true);
+    }
+  }, [searchParams, showDetail]);
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const handleCardClick = (cardData: {
     image: string;
     name: string;
     role: string;
+    desc: string;
   }) => {
-    setShowDetail(true);
-    const data = {
-      image: cardData.image,
-      name: cardData.name,
-      role: cardData.role,
+    setDetailData({
+      image: cardData?.image,
+      name: cardData?.name,
+      role: cardData?.role,
       desc: (
         <div className="flex flex-col gap-7">
-          <p>
-            Memperoleh gelar Sarjana Ekonomi dari Universitas Indonesia, Saat
-            ini ia menjabat sebagai Direktur Utama di PT Avrist Life Insurance.
-            Cholis memiliki pengalaman lebih dari 20 tahun di Lembaga Jasa
-            Keuangan Indonesia. Sebelum bergabung dengan PT Avrist Life
-            Insurance, Cholis Baidowi menjabat sebagai Chief Investment Officer
-            di PT RHB Asset Management. Cholis juga pernah berkerja di PT
-            Syailendra Capital sebagai Direktur/Chief Investment Officer,
-            bekerja di PT CIMB Principal Asset Management dengan posisi terakhir
-            sebagai Direktur/Chief Investment Officer dan di PT Trimegah Asset
-            Management sebagai Chief Investment Officer. Cholis Baidowi
-            memperoleh izin perorangan sebagai Wakil Manajer Investasi dari
-            Otoritas Jasa Keuangan berdasarkan surat keputusan Dewan Komisioner
-            Otoritas Jasa Keuangan No.Kep-280/PM.211/PJ-WMI/2022 tanggal 21
-            Oktober 2022.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Eleifend eget morbi eget
-            eget purus commodo at. In vestibulum tristique dictum ultrices
-            tempus egestas mi ipsum elit. Sed id vitae enim vel viverra cursus
-            fermentum sit.{' '}
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: cardData?.desc }} />
         </div>
       )
+    });
+    setShowDetail(true);
+    const data = {
+      name: cardData.name
     };
-    setDetailData(data);
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+    router.push(
+      pathname + '?' + createQueryString('tab', `Manajemen-${data.name}`),
+      {
+        scroll: false
+      }
+    );
   };
 
   return (
     <div className="w-full flex flex-col gap-4 bg-white justify-center">
       {showDetail ? (
-        <div className="px-[32px] py-[50px] sm:px-[136px] sm:py-[72px]">
-          <div className='flex flex-col gap-7 border rounded-xl p-4'>
-            <div className="flex flex-row gap-5 items-center border rounded-xl">
-              <div className="w-[213px] h-[213px] rounded-xl">
+        <div
+          className="xs:px-[2rem] md:px-[8.5rem] xs:mt-[2.25rem] sm:mt-[5rem]"
+          onClick={() => {
+            setShowDetail(false);
+            router.push(
+              pathname + '?' + createQueryString('tab', 'Manajemen'),
+              {
+                scroll: false
+              }
+            );
+          }}
+        >
+          <div className="flex flex-col gap-7 border rounded-xl p-[1.5rem] shadow-lg">
+            <div className="flex xs:flex-col md:flex-row gap-[1.5rem] items-center border rounded-xl">
+              <div className="xs:w-full xs:h-full sm:w-[213px] sm:h-[213px] rounded-xl">
                 <Image
                   alt="blank-image"
                   src={detailData.image}
-                  className="rounded-xl w-[213px] h-[213px]"
+                  width={213}
+                  height={213}
+                  className="xs:rounded-t-xl md:rounded-xl xs:w-full xs:h-full sm:w-[213px] sm:h-[213px]"
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-[36px] font-bold">{detailData.name}</p>
+              <div className="flex flex-col gap-2 xs:text-center md:text-start xs:mb-7 sm:mb-0">
+                <p className="text-[36px] font-bold -tracking-[1.08px] font-karla">
+                  {detailData.name}
+                </p>
                 <p className="text-[24px] font-semibold text-purple_dark">
                   {detailData.role}
                 </p>
               </div>
             </div>
-            <p>{detailData.desc}</p>
+            <p className="font-opensans text-xl text-justify">
+              {detailData.desc}
+            </p>
           </div>
         </div>
-      ) : (
-        <div className="flex flex-col gap-4 px-[32px] py-[50px] sm:px-[136px] sm:py-[72px]">
-          <PersonCard
-            heading="Kepala Dewan Komisaris"
-            cards={[
-              {
-                name: 'Gunawan Chan',
-                role: 'Kepala Dewan Komisaris',
-                image: People1,
-                onClick: handleCardClick
-              }
-            ]}
-            roleClassname="text-purple_dark"
-          />
-          <PersonCard
-            heading="Dewan Komisaris"
-            cards={[
-              {
-                name: 'Irwan B. Afiff',
-                role: 'Komisaris Independen',
-                image: People2,
-                onClick: handleCardClick
-              },
-              {
-                name: 'Angela A. Kalim',
-                role: 'Komisaris Independen',
-                image: People3,
-                onClick: handleCardClick
-              }
-            ]}
-            roleClassname="text-purple_dark"
-          />
-          <PersonCard
-            heading="Dewan Direksi"
-            cards={[
-              {
-                name: 'Dwi Wahyuni',
-                role: 'Direktur Utama',
-                image: People4,
-                onClick: handleCardClick
-              },
-              {
-                name: 'Masdar',
-                role: 'Direktur',
-                image: People5,
-                onClick: handleCardClick
-              },
-              {
-                name: 'I Nyoman Aryawa',
-                role: 'Direktur',
-                image: People6,
-                onClick: handleCardClick
-              }
-            ]}
-            roleClassname="text-purple_dark"
-          />
-          <PersonCard
-            heading="Pejabat Eksekutif"
-            cards={[
-              {
-                name: 'Dwi Wahyuni',
-                role: 'Direktur Utama',
-                image: People4,
-                onClick: handleCardClick
-              },
-              {
-                name: 'Masdar',
-                role: 'Direktur',
-                image: People5,
-                onClick: handleCardClick
-              },
-              {
-                name: 'I Nyoman Aryawa',
-                role: 'Direktur',
-                image: People6,
-                onClick: handleCardClick
-              }
-            ]}
-            roleClassname="text-purple_dark"
-          />
-          <div className="flex flex-col gap-4 items-center justify-center w-full p-10">
-            <div className="flex justify-center items-center p-10">
-              <p className="text-[56px] font-bold text-purple_dark">
-                Struktur Organisasi
+      ) : contentData ? (
+        <div className="flex flex-col gap-[3rem] xs:px-[2rem] md:px-[8.5rem] gap-[5rem]">
+          <div className="mt-[5rem] flex flex-col gap-[3rem]">
+            {managementList
+              ? managementList?.map(
+                  (item: any, index: Key | null | undefined) => (
+                    <PersonCard
+                      key={index}
+                      heading={item.title}
+                      cards={item.cards}
+                      roleClassname="text-purple_dark"
+                    />
+                  )
+                )
+              : null}
+          </div>
+          <div className="flex flex-col xs:gap-[2.25rem] sm:gap-[5rem] items-center justify-center w-full">
+            <div className="flex justify-center items-center">
+              <p className="xs:text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark xs:text-center md:text-start">
+                {contentStringTransformer(contentData['nama-section-5']) ?? ''}
               </p>
             </div>
-            <div className="w-full flex flex-row justify-between items-center p-4 border rounded-xl">
-              <p className="font-bold">
-                Komitmen Kami untuk memberikan solusi investasi berkualitas.
+            <div className="w-full flex xs:flex-col md:flex-row justify-between items-center border rounded-xl p-[1.5rem]">
+              <p className="font-bold text-2xl xs:text-center md:text-start xs:mb-4 md:mb-0">
+                {contentStringTransformer(contentData['teks-section-5']) ?? ''}
               </p>
               <Button
-                title="Lihat"
+                title={
+                  contentStringTransformer(
+                    contentData['label-button-section-5']
+                  ) ?? ''
+                }
                 customButtonClass="bg-purple_dark rounded-lg"
                 customTextClass="text-white font-bold"
+                onClick={() => {
+                  singleImageTransformer(contentData['file-section-5'])
+                    ? window.open(
+                        singleImageTransformer(contentData['file-section-5'])
+                          .imageUrl,
+                        '_blank'
+                      )
+                    : null;
+                }}
               />
             </div>
           </div>
         </div>
-      )}
-      <RoundedFrameBottom />
+      ) : null}
+      <div className="-mt-3 sm:mt-0">
+        <RoundedFrameBottom />
+      </div>
     </div>
   );
 };

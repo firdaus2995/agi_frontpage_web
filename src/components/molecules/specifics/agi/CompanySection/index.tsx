@@ -28,12 +28,14 @@ const CompanySection = (props: CompanySection) => {
   }, []);
 
   const sliderSettings = {
-    dots: true,
-    infinite: false,
+    dots: true, 
+    infinite: true,
     arrows: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
     adaptiveHeight: true
   };
 

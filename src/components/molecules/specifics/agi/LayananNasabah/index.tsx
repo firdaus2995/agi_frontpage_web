@@ -1,6 +1,5 @@
 'use client';
-
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
@@ -11,7 +10,10 @@ import Slider from 'react-slick';
 import CHEVRONRIGHTPURPLE from '@/assets/images/agi/component/layanan-nasabah/chevron-right.svg';
 import ARROW_LEFT from '@/assets/images/agi/component/total-solution/arrow-left.svg';
 import ARROW_RIGHT from '@/assets/images/agi/component/total-solution/arrow-right.svg';
-import { contentStringTransformer, singleImageTransformer } from '@/utils/responseTransformer';
+import {
+  contentStringTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 type LayananNasabah = {
   content: any;
@@ -20,6 +22,7 @@ type LayananNasabah = {
 const LayananNasabah = (props: LayananNasabah) => {
   const { content } = props;
   const sliderRef = useRef<Slider | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const next = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
@@ -77,20 +80,22 @@ const LayananNasabah = (props: LayananNasabah) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`w-[90%] max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-foamy_milk items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark pt-[24px] px-[32px] pb-[36px]`}
+        className={`xs:w-[90%] lg:w-full max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
       >
         <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
-          <Image src={val.icon} alt={val.title} width={64} height={64} />
+          <Image src={val.icon} alt={val.title} width={100} height={100} />
         </div>
         <div
-          className={`w-full md:pt-[24px] md:px-[32px] md:pb-[36px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+          className={`w-full md:py-[24px] md:px-[32px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
         >
-          <div className="flex flex-row items-center gap-4">
+          <div className="flex flex-row items-center gap-8">
             <div className="xs:hidden md:block">
               <Image
                 src={val.icon}
                 alt={val.title}
-                width={100} height={100}
+                width={100}
+                height={100}
+                className="w-[100px] h-[100px]"
               />
             </div>
             <div className="flex flex-col gap-4">
@@ -164,11 +169,14 @@ const LayananNasabah = (props: LayananNasabah) => {
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark px-10">
           {contentStringTransformer(content['layanan-nasabah-title'])}
         </p>
-        <p dangerouslySetInnerHTML={{
+        <p
+          dangerouslySetInnerHTML={{
             __html: contentStringTransformer(
               content['layanan-nasabah-description']
             )
-          }} className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_bold_dark text-center px-10" />
+          }}
+          className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_bold_dark text-center px-10"
+        />
       </div>
       <div className="w-full sm:flex sm:flex-row items-center justify-center gap-10 xs:hidden md:flex xs:grid xs:grid-cols-1">
         {data.map((val, idx) => (
@@ -180,6 +188,7 @@ const LayananNasabah = (props: LayananNasabah) => {
           ref={(slider) => {
             sliderRef.current = slider;
           }}
+          beforeChange={(_, index) => setCurrentSlide(index)}
           {...sliderSettings}
         >
           {data.map((val, idx) => (
@@ -189,8 +198,22 @@ const LayananNasabah = (props: LayananNasabah) => {
           ))}
         </Slider>
         <div className="flex flex-row gap-4 justify-between w-[85%] m-auto">
-          <Image alt="prev" src={ARROW_LEFT} role="button" onClick={previous} />
-          <Image alt="next" src={ARROW_RIGHT} role="button" onClick={next} />
+          <Image
+            alt="prev"
+            src={ARROW_LEFT}
+            role="button"
+            onClick={previous}
+            className={currentSlide === 0 ? 'opacity-50' : 'opacity-100'}
+          />
+          <Image
+            alt="next"
+            src={ARROW_RIGHT}
+            role="button"
+            onClick={next}
+            className={
+              currentSlide === data.length - 1 ? 'opacity-50' : 'opacity-100'
+            }
+          />
         </div>
       </div>
     </div>

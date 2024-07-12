@@ -330,6 +330,32 @@ const config: Config = {
           letterSpacing: '-2.4px'
         },
       ],
+      'sekilas-perusahaan-title': [
+        '48px',
+        {
+          lineHeight: '57.6px',
+          letterSpacing: '-3%'
+        },
+      ],
+      'sekilas-perusahaan-text': [
+        '24px',
+        {
+          lineHeight: '33.6px',
+          letterSpacing: '-3%'
+        },
+      ],
+      'history-title': [
+        '24px',
+        {
+          lineHeight: '30.17px'
+        },
+      ],
+      'history-text': [
+        '16px',
+        {
+          lineHeight: '21.79px'
+        },
+      ],
     }, 
     extend: {
       borderWidth: {

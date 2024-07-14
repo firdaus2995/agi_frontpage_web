@@ -92,7 +92,7 @@ const CategorySideBySideSixCards = ({
           className={`${customLeftSideClassname} h-full flex flex-col gap-[36px] p-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
         >
           <p
-            className={`${leftTitleClassname} text-[36px] font-bold font-karla -tracking-[1.08px]`}
+            className={`${leftTitleClassname} text-banner-title-mobile lg:text-banner-title-desktop font-bold font-karla -tracking-[1.08px]`}
           >
             {title ?? 'Ringkasan Produk'}
           </p>
@@ -115,7 +115,7 @@ const CategorySideBySideSixCards = ({
                         alt="symbol"
                         src={item.symbol}
                       />
-                      <p className="font-semibold text-[1.25rem] font-opensans">
+                      <p className="font-semibold text-banner-title-mobile lg:text-banner-title-desktop font-opensans">
                         {item.title}
                       </p>
                     </div>
@@ -158,7 +158,7 @@ const CategorySideBySideSixCards = ({
                     className={`${!item?.icon ? 'hidden' : 'block'}`}
                   />
                   <p
-                    className={`${rightTitleClassname} font-bold text-4xl font-karla -tracking-[1.08px]`}
+                    className={`${rightTitleClassname} font-bold text-banner-title-mobile lg:text-banner-title-desktop font-karla -tracking-[1.08px]`}
                   >
                     {item.title}
                   </p>
@@ -192,7 +192,7 @@ const CategorySideBySideSixCards = ({
           )}
           {extraBox && extraBox.title && (
             <div className="flex flex-col gap-[1.5rem] bg-purple_superlight py-[2.25rem] px-[1.5rem] rounded-xl items-center">
-              <p className="xs:text-[1.5rem] md:text-[2.25rem] font-karla text-purple_dark font-bold">
+              <p className="text-banner-title-mobile lg:text-banner-title-desktop font-karla text-purple_dark font-bold">
                 {extraBox.title}
               </p>
               <Link

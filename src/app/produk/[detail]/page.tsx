@@ -419,10 +419,17 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   };
 
   const onSubmitData = async () => {
+    const updatedData = formValue.map((item) => {
+      if (item.name.includes('produk')) {
+        return { ...item, value: dataDetail?.namaProduk };
+      }
+      return item;
+    });
+
     const queryParams = {
       id: formId,
       pic: formPic,
-      placeholderValue: formValue
+      placeholderValue: updatedData
     };
 
     const data = await handleSendEmail(queryParams);
@@ -616,34 +623,36 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         image={footerImage}
         href={footerBtnUrl}
       />
-      <FooterCards
-        cards={[
-          {
-            title: data.cta41.title,
-            icon: data.cta41.icon,
-            subtitle: data.cta41.subtitle,
-            href: data.cta41.url
-          },
-          {
-            title: data.cta42.title,
-            icon: data.cta42.icon,
-            subtitle: data.cta42.subtitle,
-            href: data.cta42.url
-          },
-          {
-            title: data.cta43.title,
-            icon: data.cta43.icon,
-            subtitle: data.cta43.subtitle,
-            href: data.cta43.url
-          },
-          {
-            title: data.cta44.title,
-            icon: data.cta44.icon,
-            subtitle: data.cta44.subtitle,
-            href: data.cta44.url
-          }
-        ]}
-      />
+      <div className="pt-[60px]">
+        <FooterCards
+          cards={[
+            {
+              title: data.cta41.title,
+              icon: data.cta41.icon,
+              subtitle: data.cta41.subtitle,
+              href: data.cta41.url
+            },
+            {
+              title: data.cta42.title,
+              icon: data.cta42.icon,
+              subtitle: data.cta42.subtitle,
+              href: data.cta42.url
+            },
+            {
+              title: data.cta43.title,
+              icon: data.cta43.icon,
+              subtitle: data.cta43.subtitle,
+              href: data.cta43.url
+            },
+            {
+              title: data.cta44.title,
+              icon: data.cta44.icon,
+              subtitle: data.cta44.subtitle,
+              href: data.cta44.url
+            }
+          ]}
+        />
+      </div>
       <div className="absolute">
         <SuccessModal
           show={showSuccess}

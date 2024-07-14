@@ -50,7 +50,7 @@ const CategorySideBySideSixCards = ({
     const isUnordered = description.includes('<ul>');
     const defaultClassName = isRightSide
       ? 'text-sm font-opensans'
-      : 'text-2xl font-light font-karla';
+      : 'xs:text-xl sm:text-2xl font-light font-karla -tracking-[0.72px]';
 
     if (isOrdered) {
       return (
@@ -92,7 +92,7 @@ const CategorySideBySideSixCards = ({
           className={`${customLeftSideClassname} h-full flex flex-col gap-[36px] p-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
         >
           <p
-            className={`${leftTitleClassname} text-[36px] font-bold font-karla`}
+            className={`${leftTitleClassname} text-[36px] font-bold font-karla -tracking-[1.08px]`}
           >
             {title ?? 'Ringkasan Produk'}
           </p>
@@ -158,7 +158,7 @@ const CategorySideBySideSixCards = ({
                     className={`${!item?.icon ? 'hidden' : 'block'}`}
                   />
                   <p
-                    className={`${rightTitleClassname} font-bold text-4xl font-karla h-auto`}
+                    className={`${rightTitleClassname} font-bold text-4xl font-karla -tracking-[1.08px]`}
                   >
                     {item.title}
                   </p>

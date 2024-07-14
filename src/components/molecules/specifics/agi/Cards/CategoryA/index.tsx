@@ -27,37 +27,44 @@ const CardCategoryA = ({
   imageProduk
 }: ICardCategoryA) => {
   return (
-    <div className="flex flex-col px-[24px] pt-[24px] pb-[36px] border border-gray_light border-b-8 border-b-purple_dark rounded-[18px] rounded-b-[12px]">
+    <div className="flex flex-col px-[24px] pt-[24px] pb-[36px] gap-[24px] border border-gray_light border-b-8 border-b-purple_dark rounded-[18px] rounded-b-[12px]">
       <Image
         alt="blank-image"
         width={100}
         height={172}
         src={imageProduk || BlankImage}
-        className="w-full h-[172px] rounded-[10px] mb-[1.5rem]"
+        className="w-full h-[172px] rounded-[10px]"
       />
-      <div className="flex flex-row items-center gap-[4px] mb-[0.5rem]">
-        <Image
-          alt="symbol"
-          src={symbol}
-          width={24}
-          height={24}
-          className="hidden"
-        />
-        <p className="text-purple_dark font-bold text-sm line-clamp-1">
-          {title}
-        </p>
-      </div>
-      <p className="text-[32px] font-bold line-clamp-3">{summary}</p>
-      <p
-        className="line-clamp-3 my-[0.75rem]"
-        dangerouslySetInnerHTML={{ __html: description ?? '' }}
-      />
-      <div className="flex flex-col justify-between grow gap-4">
-        <div className="flex flex-row flex-wrap gap-[12px]">
-          {tags.slice(0, 4).map((item: string, index: number) => (
-            <MediumTag key={index} title={item} />
-          ))}
+      <div className="flex flex-col gap-[12px]">
+        <div className="flex flex-col gap-[8px]">
+          <div className="flex flex-row items-center">
+            <Image
+              alt="symbol"
+              src={symbol}
+              width={24}
+              height={24}
+              className="hidden"
+            />
+            <p className="text-purple_dark font-bold text-top-heading-group line-clamp-1">
+              {title}
+            </p>
+          </div>
+          <p className="text-card-title-desktop font-bold line-clamp-3">{summary}</p>
         </div>
+        <p
+          className="line-clamp-3 text-card-subtitle-desktop"
+          dangerouslySetInnerHTML={{ __html: description ?? '' }}
+        />
+        <div className="flex flex-row flex-wrap">
+          {tags
+            .slice(0, 4)
+            .map(
+              (item: string, index: number) =>
+                item !== '' && <MediumTag key={index} title={item} />
+            )}
+        </div>
+      </div>
+      <div className="flex flex-col grow items-end justify-end">
         {href ? (
           <Link href={href} className="w-full">
             <ButtonSmall

@@ -32,21 +32,21 @@ const DescriptionCategoryA = ({
             src={categorySymbol ?? ''}
             className="hidden"
           />
-          <p className="font-bold text-[24px] text-purple_dark">
+          <p className="font-bold text-banner-title-mobile text-purple_dark">
             {categoryTitle}
           </p>
         </div>
-        <p className="font-bold text-[36px] sm:text-[56px] text-purple_dark">
+        <p className="font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-purple_dark">
           {productTitle}
         </p>
       </div>
       <div className="flex flex-col gap-[12px]">
         <p
-          className="font-bold md:text-[36px] xs:text-[24px]"
+          className="font-bold text-banner-title-mobile lg:text-banner-title-desktop"
           dangerouslySetInnerHTML={{ __html: tagLineProduk ?? '' }}
         />
         <p
-          className="md:text-[24px] xs:text-[24px]"
+          className="text-sekilas-perusahaan-text"
           dangerouslySetInnerHTML={{ __html: deskripsiLengkapProduk ?? '' }}
         />
         <div className="flex flex-row flex-wrap gap-[8px] font-opensans">

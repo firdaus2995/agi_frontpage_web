@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import Search from '@/assets/images/common/search.svg';
 
@@ -59,6 +59,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       url: ''
     }
   };
+  const router = useRouter();
+  const pathname = usePathname();
   const [data, setData] = useState<IDataPage>(initialData);
   const [dataContent, setDataContent] = useState<IDataContent[]>();
   const [channels, setChannels] = useState<any>([]);
@@ -224,7 +226,13 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         setChannels(Array.from(uniqueChannels));
       }
     });
-  }, [searchParams, selectedChannels, searchValue, activeTab]);
+  }, [
+    searchParams,
+    selectedChannels,
+    searchValue,
+    activeTab,
+    isCategoryChange
+  ]);
 
   const handleSelectedChannels = (value: any) => {
     if (selectedChannels === value) {
@@ -248,6 +256,19 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       onClick: () => setActiveTab(item)
     };
   });
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (name === 'tab') {
+        params.delete('nameOrTags');
+        setSearchValue('');
+      }
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   return (
     <div className="flex flex-col">
@@ -282,7 +303,16 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             </div>
           </div>
           {btnVerticalData && (
-            <DropdownMenu item={btnVerticalData} outerClass="w-full" />
+            <DropdownMenu
+              item={btnVerticalData}
+              selectedData={categoryList.indexOf(activeTab)}
+              setSelectedData={(value) =>
+                router.push(pathname + '?' + createQueryString('tab', value), {
+                  scroll: false
+                })
+              }
+              outerClass="w-full"
+            />
           )}
 
           {dataContent && (
@@ -366,34 +396,36 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         image={data.footerInfoImageUrl}
         href={data.footerBtnUrl}
       />
-      <FooterCards
-        cards={[
-          {
-            title: data.cta41.title,
-            icon: data.cta41.icon,
-            subtitle: data.cta41.subtitle,
-            href: data.cta41.url
-          },
-          {
-            title: data.cta42.title,
-            icon: data.cta42.icon,
-            subtitle: data.cta42.subtitle,
-            href: data.cta42.url
-          },
-          {
-            title: data.cta43.title,
-            icon: data.cta43.icon,
-            subtitle: data.cta43.subtitle,
-            href: data.cta43.url
-          },
-          {
-            title: data.cta44.title,
-            icon: data.cta44.icon,
-            subtitle: data.cta44.subtitle,
-            href: data.cta44.url
-          }
-        ]}
-      />
+      <div className='pt-[60px]'>
+        <FooterCards
+          cards={[
+            {
+              title: data.cta41.title,
+              icon: data.cta41.icon,
+              subtitle: data.cta41.subtitle,
+              href: data.cta41.url
+            },
+            {
+              title: data.cta42.title,
+              icon: data.cta42.icon,
+              subtitle: data.cta42.subtitle,
+              href: data.cta42.url
+            },
+            {
+              title: data.cta43.title,
+              icon: data.cta43.icon,
+              subtitle: data.cta43.subtitle,
+              href: data.cta43.url
+            },
+            {
+              title: data.cta44.title,
+              icon: data.cta44.icon,
+              subtitle: data.cta44.subtitle,
+              href: data.cta44.url
+            }
+          ]}
+        />
+      </div>
     </div>
   );
 };

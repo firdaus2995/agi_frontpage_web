@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from '@/components/atoms/Icon';
 
 interface IDropdownMenu {
@@ -8,11 +8,20 @@ interface IDropdownMenu {
     onClick?: () => void;
   }[];
   outerClass?: string;
+  selectedData: any;
+  setSelectedData: (value: string) => void
 }
 
-const DropdownMenu: React.FC<IDropdownMenu> = ({ item, outerClass }) => {
+const DropdownMenu: React.FC<IDropdownMenu> = ({ item, outerClass, selectedData, setSelectedData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(0);
+
+  useEffect(() => {
+    if (selectedData) {
+      setSelected(selectedData)
+    }
+  }, [selectedData])
+
   return (
     <div className={outerClass}>
       <div className="w-full h-full border border-purple_dark rounded-xl">
@@ -51,6 +60,7 @@ const DropdownMenu: React.FC<IDropdownMenu> = ({ item, outerClass }) => {
                     i.onClick ? i.onClick() : null;
                     setSelected(index);
                     setIsOpen(false);
+                    setSelectedData(i.title);
                   }}
                 >
                   <div className="flex flex-row gap-4 items-center">

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { format, parse } from 'date-fns';
-import { id as idLocale } from 'date-fns/locale';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import ContentPopover from '../content-popover';
@@ -60,12 +58,7 @@ const Detail = (props: agencyDetailProps) => {
         const loopingItem = content['artikel-looping'].contentData[0].details;
         const category = data.data.categoryName;
         const judulArtikel = data.data.title;
-        const date = parse(
-          `${contentStringTransformer(content['tahun'])}-${contentStringTransformer(content['bulan'])}-${contentStringTransformer(content['tanggal'])}`,
-          'yyyy-MM-dd',
-          new Date()
-        );
-        const tanggal = format(date, 'dd MMMM yyyy', { locale: idLocale });
+        const tanggal = contentStringTransformer(content['tanggal']);
         const tags = contentStringTransformer(content['tags'])
           .split(',')
           .map((tag: string) => tag.trim());
@@ -230,27 +223,31 @@ const Detail = (props: agencyDetailProps) => {
             __html: showContent(contentData.paragraf1)
           }}
         />
-        <div className="bg-gray-200">
-          <Image
-            src={showContent(contentData.artikelImg.imageUrl) ?? BlankImage}
-            alt="img"
-            width={100}
-            height={100}
-            className="w-full"
-          />
-        </div>
+        {!contentData?.artikelImg?.imageUrl?.includes('no-image') && (
+          <div className="bg-gray-200">
+            <Image
+              src={showContent(contentData.artikelImg.imageUrl) ?? BlankImage}
+              alt="img"
+              width={100}
+              height={100}
+              className="w-full"
+            />
+          </div>
+        )}
         <p
           className="pt-10 w-full border-t"
           dangerouslySetInnerHTML={{
             __html: showContent(contentData.paragraf2)
           }}
         />
-        <div className="mx-auto max-w-[70rem] aspect-video w-full rounded-lg overflow-hidden shadow-lg">
-          <VideoPlayer
-            thumbnail={''}
-            url={showContent(contentData.artikelVideo) || ''}
-          />
-        </div>
+        {contentData?.artikelVideo !== '' && (
+          <div className="mx-auto max-w-[70rem] aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+            <VideoPlayer
+              thumbnail={''}
+              url={showContent(contentData.artikelVideo) || ''}
+            />
+          </div>
+        )}
         <div
           className="flex flex-col md:flex-row"
           dangerouslySetInnerHTML={{

@@ -59,6 +59,8 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
   };
 
   const sliderSettings = {
+    autoplay: true,
+    autoplaySpeed: 3000,
     dots: true,
     infinite: false,
     arrows: false,

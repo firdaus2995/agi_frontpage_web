@@ -31,7 +31,7 @@ const FAQList = ({ selected, data }: ICardsProps) => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col sm:gap-[7.5rem] xs:gap-[2.25rem] items-center sm:px-[8.5rem] sm:pt-[3.125rem] xs:pb-[1.625rem] xs:py-[3rem] xs:px-[2.25rem]">
+    <div className="w-full bg-white flex flex-col gap-[5rem] items-center sm:px-[8.5rem] sm:pt-0 pb-[100px] xs:pb-[5rem] xs:px-[2.25rem]">
       <h1 className="font-karla text-heading-1-mobile lg:text-heading-1-desktop text-purple_dark font-extrabold">
         {selected}
       </h1>
@@ -50,7 +50,7 @@ const FAQList = ({ selected, data }: ICardsProps) => {
             ))}
           </div>
           <div className="w-full flex flex-row justify-between mt-[1rem] mb-[1.25rem]">
-            <div className="flex items-center text-[0.625rem]">
+            <div className="flex items-center text-[20px]">
               Menampilkan{'\u00A0'}
               <span className="font-bold text-purple_dark">
                 {startIndex + 1}-{Math.min(endIndex, data ? data?.length : 0)}
@@ -59,7 +59,20 @@ const FAQList = ({ selected, data }: ICardsProps) => {
               <span className="font-bold"> {data.length}</span>
               {'\u00A0'}hasil
             </div>
-            <div className="flex items-center space-x-[0.125rem]">
+            <div className="flex items-center space-x-[0.125rem] gap-2">
+              {currentPage > 1 && (
+                <div
+                  onClick={() => handlePageChange(1)}
+                  className="cursor-pointer rotate-180"
+                >
+                  <Icon
+                    width={20}
+                    height={20}
+                    name="chevronRight"
+                    color="purple_dark"
+                  />
+                </div>
+              )}
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
                   <div

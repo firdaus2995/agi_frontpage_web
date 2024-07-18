@@ -6,8 +6,12 @@ import BlankImage from '@/assets/images/blank-image.svg';
 import Button from '@/components/atoms/Button/Button';
 import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
-import { handleGetContent } from '@/services/content-page.api';
+import {
+  handleGetContent,
+  handleGetContentPage
+} from '@/services/content-page.api';
 import { ContentResponse } from '@/types/content.type';
+import { PageResponse } from '@/types/page.type';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { BASE_URL } from '@/utils/baseUrl';
 import {
@@ -20,10 +24,12 @@ interface ManagementComponentProps {
   setPageData: React.Dispatch<
     React.SetStateAction<ContentResponse | undefined>
   >;
+  setData: React.Dispatch<React.SetStateAction<PageResponse | undefined>>;
 }
 
 const Manajemen: React.FC<ManagementComponentProps> = ({
-  setPageData
+  setPageData,
+  setData
 }) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -40,6 +46,12 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
   const [managementList, setManagementList] = useState<any>();
 
   useEffect(() => {
+    handleGetContentPage(
+      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.SEKILAS_PERUSAHAAN
+    ).then((res: any) => {
+      setData(res);
+    });
+
     handleGetContent(BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.MANAJEMEN, {
       includeAttributes: 'true'
     }).then((res) => {

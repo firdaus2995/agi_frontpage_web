@@ -58,7 +58,7 @@ const Content = (props: contentProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [, setTab] = useState('');
-  const [category, setCategory] = useState('Berita dan Kegiatan');
+  const [category, setCategory] = useState('');
 
   const [searchKeyWords, setSearchKeywords] = useState('');
   const [search, setSearch] = useState('');

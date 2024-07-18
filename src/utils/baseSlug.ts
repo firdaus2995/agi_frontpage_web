@@ -23,7 +23,8 @@ export const BASE_SLUG = {
       FORMULIR: 'List-Formulir-AGI',
       KLAIM: 'List-klaim-AGI',
       BENGKEL: 'list-rekanan-bengkel-agi',
-      KANTOR_CABANG: 'List-Kantor-Cabang-AGI'
+      KANTOR_CABANG: 'List-Kantor-Cabang-AGI',
+      AGENCY: 'Berita-dan-Acara-Agency-AGI'
     },
     PAGE: {
       FORMULIR: 'halaman-formulir-agi',

@@ -101,6 +101,10 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
       }
 
       setListBanner(cta4Data);
+    } else {
+      const { content } = pageTransformer(data);
+      setTitleImage(singleImageTransformer(content['title-image']));
+      setFooterImage(singleImageTransformer(content['cta1-image']));
     }
   }, [data]);
 
@@ -108,9 +112,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
     if (contentData && tab === 'Manajemen') {
       const { content } = contentTransformer(contentData);
       setTitle(contentStringTransformer(content['title']));
-      setTitleImage(singleImageTransformer(content['title-image']));
       setBannerImage(singleImageTransformer(content['banner-image']));
-      setFooterImage(singleImageTransformer(content['cta1-image']));
       setFooterText(contentStringTransformer(content['cta1-teks']));
       setFooterBtnLabel(contentStringTransformer(content['cta1-label-button']));
       setFooterBtnUrl(contentStringTransformer(content['cta1-link-button']));
@@ -213,7 +215,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
           <SekilasPerusahaan setData={setData} />
         )}
         {(tab === 'Manajemen' || tab.includes('Manajemen')) && (
-          <Manajemen setPageData={setContentData} />
+          <Manajemen setPageData={setContentData} setData={setData} />
         )}
         {tab === 'Laporan Perusahaan' && (
           <LaporanPerusahaan setData={setData} />
@@ -232,7 +234,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
           image={footerImage.imageUrl}
           href={footerBtnUrl}
         />
-        <RoundedFrameTop bgColor='xs:bg-white md:bg-purple_superlight' />
+        <RoundedFrameTop bgColor="xs:bg-white md:bg-purple_superlight" />
       </div>
       <div className="w-full h-full">
         <FooterCards

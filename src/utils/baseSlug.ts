@@ -25,6 +25,7 @@ export const BASE_SLUG = {
       BENGKEL: 'list-rekanan-bengkel-agi',
       BANK: 'List-Rekanan-Bank-AGI',
       KANTOR_CABANG: 'List-Kantor-Cabang-AGI',
+      WORDING_KLAUSULA: 'Wording-dan-Klausula-AGI',
       AGENCY: 'Berita-dan-Acara-Agency-AGI'
     },
     PAGE: {
@@ -32,6 +33,7 @@ export const BASE_SLUG = {
       KLAIM: 'halaman-klaim-agi',
       BENGKEL: 'halaman-rekanan-agi',
       KANTOR_CABANG: 'halaman-kantor-cabang-agi',
+      WORDING_KLAUSULA: 'halaman-wording-dan-klausula-agi',
       AGENCY: 'halaman-agency-agi'
     }
   },

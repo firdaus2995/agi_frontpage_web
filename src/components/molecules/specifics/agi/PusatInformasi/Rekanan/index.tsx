@@ -11,10 +11,16 @@ import {
 import { BASE_SLUG } from '@/utils/baseSlug';
 import {
   contentDetailTransformer,
+  contentStringTransformer,
   singleImageTransformer
 } from '@/utils/responseTransformer';
 
-const Rekanan = () => {
+type RekananProps = {
+  pageData: any;
+};
+
+const Rekanan = (props: RekananProps) => {
+  const { pageData } = props;
   const [tab, setTab] = useState('Bengkel');
   const btnVerticalData = [
     {
@@ -81,13 +87,12 @@ const Rekanan = () => {
   return (
     <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.125rem] md:pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center my-[30px] md:my-[60px]">
-        <h1 className="font-karla text-[2.25rem] md:text-[3.5rem] font-light">
-          Temukan{' '}
-          <span className="font-bold text-purple_dark">
-            Daftar Rekanan yang Anda butuhkan
-          </span>{' '}
-          di bawah ini
-        </h1>
+        <h1
+          className="font-karla text-[2.25rem] md:text-[3.5rem] font-light"
+          dangerouslySetInnerHTML={{
+            __html: contentStringTransformer(pageData['nama-section']) ?? ''
+          }}
+        />
       </section>
 
       {tab === 'Bengkel' && (

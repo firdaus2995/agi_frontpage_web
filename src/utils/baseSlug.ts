@@ -23,14 +23,17 @@ export const BASE_SLUG = {
       FORMULIR: 'List-Formulir-AGI',
       KLAIM: 'List-klaim-AGI',
       BENGKEL: 'list-rekanan-bengkel-agi',
+      BANK: 'List-Rekanan-Bank-AGI',
       KANTOR_CABANG: 'List-Kantor-Cabang-AGI',
+      WORDING_KLAUSULA: 'Wording-dan-Klausula-AGI',
       AGENCY: 'Berita-dan-Acara-Agency-AGI'
     },
     PAGE: {
       FORMULIR: 'halaman-formulir-agi',
       KLAIM: 'halaman-klaim-agi',
-      BENGKEL: 'halaman-rekanan-bengkel-agi',
+      BENGKEL: 'halaman-rekanan-agi',
       KANTOR_CABANG: 'halaman-kantor-cabang-agi',
+      WORDING_KLAUSULA: 'halaman-wording-dan-klausula-agi',
       AGENCY: 'halaman-agency-agi'
     }
   },

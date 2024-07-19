@@ -29,7 +29,7 @@ const MainContent = (props: mainContentProps) => {
             'Klaim',
             'Rekanan',
             'Kantor Cabang',
-            'Wording Polis & Klausula Asuransi ',
+            'Wording Polis & Klausula Asuransi',
             'Agency'
           ]}
         />
@@ -40,11 +40,11 @@ const MainContent = (props: mainContentProps) => {
       ) : params.includes('Klaim') ? (
         <Klaim />
       ) : params.includes('Rekanan') ? (
-        <Rekanan />
+        <Rekanan pageData={pageData} />
       ) : params.includes('Kantor Cabang') ? (
         <KantorCabang />
-      ) : params.includes('Wording Polis & Klausula Asuransi ') ? (
-        <WordingPolis />
+      ) : params.includes('Wording Polis & Klausula Asuransi') ? (
+        <WordingPolis pageData={pageData} />
       ) : params.includes('Agency') ? (
         <Agency pageData={pageData} />
       ) : (

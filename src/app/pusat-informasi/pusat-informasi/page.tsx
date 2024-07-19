@@ -76,7 +76,7 @@ const PusatInformasi = () => {
     },
     {
       name: 'Wording Polis & Klausula Asuransi',
-      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
+      url: BASE_SLUG.PUSAT_INFORMASI.PAGE.WORDING_KLAUSULA
     },
     {
       name: 'Agency',

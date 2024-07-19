@@ -1,52 +1,113 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 
-import ANZ from '@/assets/images/anz.svg';
-import BANK_MEGA from '@/assets/images/bank-mega.svg';
-import BCA from '@/assets/images/bca.svg';
-import BI from '@/assets/images/bi.svg';
-import BJB from '@/assets/images/bjb.svg';
-import BUKOPIN from '@/assets/images/bukopin.svg';
-import CIMB from '@/assets/images/cimb.svg';
-import CITI from '@/assets/images/citi.svg';
-import DANAMON from '@/assets/images/danamon.svg';
-import DIGIBANK from '@/assets/images/digibank.svg';
-import MAYBANK from '@/assets/images/maybank.svg';
-import OCBC from '@/assets/images/ocbc.svg';
 import Icon from '@/components/atoms/Icon';
+import { handleGetContentCategory } from '@/services/content-page.api';
+import { BASE_SLUG } from '@/utils/baseSlug';
+import {
+  contentCategoryTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const Bank = () => {
+  const [contentData, setContentData] = useState<any>();
+  const ITEMS_PER_PAGE = 12;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItem = contentData?.length;
+
+  const totalPages = Math.ceil(contentData?.length / ITEMS_PER_PAGE);
+
+  const handleChangePage = (newPage: any) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const paginatedData = contentData?.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const fetchContent = async () => {
+    try {
+      const apiContent = await handleGetContentCategory(
+        BASE_SLUG.PUSAT_INFORMASI.CONTENT.BANK,
+        {
+          includeAttributes: 'true'
+        }
+      );
+      const listData: { image: { imageUrl: string; altText: any } }[] = [];
+      const transformedData = contentCategoryTransformer(apiContent, 'Bank');
+      transformedData[0]?.content['side-tab']?.contentData.map((item: any) => {
+        const image = singleImageTransformer(
+          item.details.find(
+            (detail: { fieldId: string }) => detail.fieldId === 'gambar'
+          )
+        );
+        listData.push({
+          image
+        });
+      });
+
+      setContentData(listData);
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-4 gap-10">
-        <Image src={ANZ} alt="anz" className="rounded-xl" />
-        <Image src={BCA} alt="anz" className="rounded-xl" />
-        <Image src={BI} alt="anz" className="rounded-xl" />
-        <Image src={BJB} alt="anz" className="rounded-xl" />
-        <Image src={BUKOPIN} alt="anz" className="rounded-xl" />
-        <Image src={CIMB} alt="anz" className="rounded-xl" />
-        <Image src={CITI} alt="anz" className="rounded-xl" />
-        <Image src={DANAMON} alt="anz" className="rounded-xl" />
-        <Image src={DIGIBANK} alt="anz" className="rounded-xl" />
-        <Image src={MAYBANK} alt="anz" className="rounded-xl" />
-        <Image src={BANK_MEGA} alt="anz" className="rounded-xl" />
-        <Image src={OCBC} alt="anz" className="rounded-xl" />
+      <div className="grid lg:grid-cols-4 grid-cols-2 gap-10">
+        {paginatedData?.map(
+          (
+            item: {
+              image: { imageUrl: string | StaticImport; altText: string };
+            },
+            idx: React.Key | null | undefined
+          ) => (
+            <Image
+              key={idx}
+              src={item.image.imageUrl}
+              alt={item.image.altText}
+              className="rounded-xl w-[140px] h-[100px] object-contain"
+              width={0}
+              height={0}
+            />
+          )
+        )}
       </div>
-      <div className="px-4 flex flex-col md:flex-row justify-between">
-        <p className="text-xl">
-          Menampilkan <span className="font-bold text-purple_dark">1-5</span>{' '}
-          dari <span className="font-bold">50</span> hasil
+      <div className="flex flex-row justify-between">
+        <p className="text-lg">
+          Menampilkan{' '}
+          <span className="font-bold">{`${currentPage * ITEMS_PER_PAGE - (ITEMS_PER_PAGE - 1)}-${ITEMS_PER_PAGE * currentPage > totalItem ? totalItem : ITEMS_PER_PAGE * currentPage}`}</span>{' '}
+          dari <span className="font-bold">{totalItem}</span> hasil
         </p>
-        <div className="flex flex-row gap-2 items-center">
-          <p className="text-xl">
-            <span className="font-bold text-purple_dark">1</span> 2 3 4 5 ... 10{' '}
-          </p>
-          <Icon
-            width={20}
-            height={20}
-            name="chevronRight"
-            color="purple_dark"
-          />
+        <div className="flex flex-row gap-[12px] items-center">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <div
+              key={page}
+              role="button"
+              onClick={() => handleChangePage(page)}
+              className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                currentPage === page ? 'text-purple_dark font-bold' : ''
+              }`}
+            >
+              {page}
+            </div>
+          ))}
+          <span
+            className="mt-[3px]"
+            role="button"
+            onClick={() => handleChangePage(totalPages)}
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
         </div>
       </div>
     </div>

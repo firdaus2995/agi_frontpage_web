@@ -54,7 +54,7 @@
             "title": "",
             "subMenus": [
               { "title": "Kantor Cabang", "icon": 3 },
-              { "title": "Wording Polis & Klausula Asuransi ", "icon": 4 },
+              { "title": "Wording Polis & Klausula Asuransi", "icon": 4 },
               { "title": "Agency", "icon": 5 }
             ]
           }

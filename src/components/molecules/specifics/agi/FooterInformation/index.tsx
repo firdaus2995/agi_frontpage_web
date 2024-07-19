@@ -28,11 +28,11 @@ const FooterInformation = ({
 }: IFooterInformation) => {
   return (
     <div
-      className={`w-full md:px-[8.5rem] md:pt-[6.25rem] md:pb-[7.5rem] xs:px-[2rem] xs:py-[3.125rem] bg-avrast_product_bg justify-center ${outerClassName}`}
+      className={`w-full lg:px-[8.5rem] lg:pt-[6.25rem] lg:pb-[7.5rem] xs:px-[2rem] xs:py-[3.125rem] bg-avrast_product_bg justify-center ${outerClassName}`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
         <div
-          className={`xs:px-[1.5rem] xs:pb-[2.25rem] xs:min-h-[212px] sm:h-auto flex flex-col gap-[24px] md:justify-center py-[2.25rem] md:pl-[3rem] md:pr-[2.25rem] xs:text-center md:text-start ${bgColor}`}
+          className={`xs:px-[1.5rem] xs:pb-[2.25rem] xs:min-h-[212px] sm:h-auto flex flex-col gap-[24px] lg:justify-center py-[2.25rem] lg:pl-[3rem] lg:pr-[2.25rem] xs:text-center lg:text-start ${bgColor}`}
         >
           <div className="text-information-title-mobile lg:text-information-title-desktop">{title}</div>
           {buttonTitle && (
@@ -90,7 +90,7 @@ const FooterInformation = ({
             height={0}
             width={0}
             alt="footerInformationImage"
-            className="min-h-[212px] md:min-h-[392px] w-full object-contain sm:object-cover"
+            className="min-h-[212px] lg:min-h-[392px] w-full object-contain sm:object-cover"
             src={image}
           />
         </div>

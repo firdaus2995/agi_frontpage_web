@@ -6,8 +6,8 @@ import Input from '@/components/atoms/Input';
 
 const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
   return (
-    <div className="z-[1] w-full bg-purple_dark -mt-[3.125rem]">
-      <div className="w-full h-[20rem] md:h-[40rem] flex items-center absolute">
+    <div className="z-10 w-full bg-purple_dark -mt-[6.5rem] relative">
+      <div className="w-full h-[20rem] md:h-[40rem] z-10 flex items-center absolute">
         <div className="w-full h-full grid sm:grid-cols-2 xs:grid-cols-1">
           <span />
           <div className="flex flex-col xs:justify-center sm:gap-1 xs:gap-[36px] xs:px-[36px] sm:px-0 sm:pb-0 xs:pb-[4rem]">

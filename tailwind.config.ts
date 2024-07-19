@@ -30,7 +30,7 @@ const config: Config = {
         },
       ],
       'heading-1-mobile': [
-        '36px',
+        '30px',
         {
           lineHeight: '43.2px',
           letterSpacing: '-1.44px',
@@ -44,7 +44,7 @@ const config: Config = {
         },
       ],
       'heading-2-mobile': [
-        '36px',
+        '24px',
         {
           lineHeight: '120%',
           letterSpacing: '-2.16px',
@@ -72,10 +72,10 @@ const config: Config = {
         },
       ],
       'banner-subtitle-mobile': [
-        '45px',
+        '24px',
         {
-          lineHeight: '49.5px',
-          letterSpacing: '-1.8px',
+          lineHeight: '28.8px',
+          letterSpacing: '-0.025em',
         },
       ],
       'banner-btn-label': [
@@ -141,7 +141,7 @@ const config: Config = {
       'card-btn-label': [
         '16px',
         {
-          lineHeight: '23.68px',
+          lineHeight: '28px',
         },
       ],
       'information-slider-title-desktop': [

@@ -135,19 +135,19 @@ const TanyaAvgen = () => {
       <FooterInformation
         title={
           <div className="flex flex-col gap-5">
-            <p className="font-karla text-[56px]">
+            <p className="font-karla text-information-title-mobile lg:text-information-title-desktop">
               Kami ada untuk membantu Anda.
             </p>
-            <p className="font-black text-purple_dark font-karla text-[56px]">
+            <p className="font-black text-purple_dark font-karla text-information-title-mobile lg:text-information-title-desktop">
               Hubungi Kami
             </p>
-            <div className="rounded-lg border-2 border-purple_dark p-4 flex items-center justify-center gap-2">
-              <Image src={WHATSAPP_IMAGE} alt="wa" width={24} />
-              <p className="text-[36px] font-semibold text-purple_dark">
+            <div className="rounded-lg border-2 border-purple_dark px-[52px] py-4 flex items-center justify-center gap-2">
+              <Image src={WHATSAPP_IMAGE} alt="wa" width={48} />
+              <p className="lg:text-[36px] text-[20px] leading-[28px] font-semibold text-purple_dark">
                 0811 1960 1000
               </p>
             </div>
-            <div className="flex items-center justify-center text-[14px]">
+            <div className="flex items-center justify-center text-[14px] tracking-[0.3px] leading-[19.6px]">
               <p>
                 <span className="font-bold">Waktu Operasional:</span> Senin -
                 Jumat, 08.00 - 17.00 WIB

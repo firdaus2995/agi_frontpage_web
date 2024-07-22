@@ -47,14 +47,14 @@ const CompanySection = (props: CompanySection) => {
         <div
           className={`h-[392px] md:w-1/2 xs:w-full p-5 flex flex-col items-start justify-center gap-6`}
         >
-          <p className="text-information-slider-title-mobile lg:text-information-slider-title-desktop text-left text-purple_dark">
+          <p className="font-karla text-information-slider-title-mobile lg:text-information-slider-title-desktop text-left text-purple_dark">
             {contentStringTransformer(val['why-us-text-1'])}
           </p>
           <p
             dangerouslySetInnerHTML={{
               __html: contentStringTransformer(val['why-us-text-2'])
             }}
-            className="text-information-slider-subtitle-mobile lg:text-information-slider-subtitle-desktop text-left text-purple_dark line-clamp-2"
+            className="font-karla text-information-slider-subtitle-mobile lg:text-information-slider-subtitle-desktop text-left text-purple_dark line-clamp-2"
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}
@@ -82,7 +82,7 @@ const CompanySection = (props: CompanySection) => {
   };
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-10 gap-16 bg-purple_dark">
+    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-[5rem] px-[2rem] gap-[5rem] bg-purple_dark">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-white px-10 font-karla">
           {contentStringTransformer(content['why-us-title-section'])}

@@ -83,10 +83,10 @@ const LayananNasabah = (props: LayananNasabah) => {
         className={`xs:w-[90%] lg:w-full max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
       >
         <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
-          <Image src={val.icon} alt={val.title} width={100} height={100} />
+          <Image src={val.icon} alt={val.title} width={80} height={80} />
         </div>
         <div
-          className={`w-full md:py-[24px] md:px-[32px] xs:px-4 xs:pb-4 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+          className={`w-full md:py-[24px] md:px-[32px] xs:px-8 xs:pb-6 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
         >
           <div className="flex flex-row items-center gap-8">
             <div className="xs:hidden md:block">
@@ -99,7 +99,7 @@ const LayananNasabah = (props: LayananNasabah) => {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <p className="text-footer-card-title font-bold text-left w-full mb-2">
+              <p className="text-footer-card-title font-bold text-left w-full mb-6">
                 {val.title}
               </p>
               <div className="flex flex-row items-center gap-2 flex-wrap">
@@ -164,7 +164,7 @@ const LayananNasabah = (props: LayananNasabah) => {
   );
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-10 gap-16 bg-white relative">
+    <div className="flex flex-col self-stretch items-center justify-center py-[5rem] gap-[5rem] bg-white relative">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark px-10">
           {contentStringTransformer(content['layanan-nasabah-title'])}

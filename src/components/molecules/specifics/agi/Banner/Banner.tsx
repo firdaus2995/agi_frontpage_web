@@ -179,7 +179,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         className="w-screen h-[40rem] object-cover"
                       />
                     </div>
-                    <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">
+                    <div className="flex flex-col gap-[2rem] 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">
                       <p
                         className={`text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark whitespace-nowrap font-karla font-medium`}
                       >
@@ -230,8 +230,8 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
             </div>
           </div>
         </div>
-        <div className="w-full -mt-[6px] flex md:flex-row xs:flex-col mb-[5rem]">
-          <div className="flex py-10 px-[2rem] md:px-[8.5rem] md:pr-0 items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-dark-purple">
+        <div className="w-full -mt-[6px] flex md:flex-row xs:flex-col">
+          <div className="flex py-10 px-[2rem] md:px-[8.5rem] md:pr-0 items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-agi_grey">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text1 }}
               className="font-karla font-light xs:w-full text-banner-footer-1-mobile lg:text-banner-footer-1-desktop"

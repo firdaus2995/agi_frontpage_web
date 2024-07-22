@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Slider from 'react-slick';
@@ -61,7 +61,9 @@ const TotalSolution = (props: TotalSolution) => {
     infinite: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    slidesPerRow: 2,
+    adaptiveHeight: true
   };
 
   const renderCard = (val: {
@@ -141,7 +143,7 @@ const TotalSolution = (props: TotalSolution) => {
   );
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center sm:py-[100px] sm:px-[136px] sm:gap-[64px] xs:gap-[24px] xs:p-4 bg-white rounded-b-[65px] relative">
+    <div className="flex flex-col self-stretch items-center justify-center sm:py-[100px] sm:px-[136px] gap-[5rem] xs:px-8 xs:pt-[5rem] xs:pb-[100px] bg-white rounded-b-[65px] relative">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark">
           {contentStringTransformer(content['produk-unggulan-title'])}
@@ -175,12 +177,7 @@ const TotalSolution = (props: TotalSolution) => {
               },
               idx: React.Key | null | undefined
             ) => (
-              <div
-                key={idx}
-                className="w-full flex items-center justify-centers"
-              >
-                {renderMobileCard(val)}
-              </div>
+              <Fragment key={idx}>{renderMobileCard(val)}</Fragment>
             )
           )}
         </Slider>

@@ -80,8 +80,8 @@ const Formulir = () => {
   }, [search]);
 
   return (
-    <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.25rem]">
-      <section className="w-full flex flex-col items-center text-center my-[30px] md:my-[60px]">
+    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+      <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1 className="font-karla text-[2.25rem] md:text-[3.5rem]">
           Temukan{' '}
           <span className="font-medium text-purple_dark">
@@ -90,14 +90,15 @@ const Formulir = () => {
           di bawah ini
         </h1>
       </section>
-
-      <SearchBox
-        onSearch={(value: string) => {
-          setSearch(value);
-        }}
-        placeHolder="Cari Formulir"
-      />
-      <div className="flex flex-col gap-3">
+      <div className='pb-[24px] lg:pb-[48px]'>
+        <SearchBox
+          onSearch={(value: string) => {
+            setSearch(value);
+          }}
+          placeHolder="Cari Formulir"
+        />
+      </div>
+      <div className="flex flex-col gap-6">
         {!isEmpty ? (
           paginatedData.map((item: any, index: number) => (
             <DownloadFileButton
@@ -112,7 +113,7 @@ const Formulir = () => {
         )}
       </div>
       <div
-        className={`flex flex-col gap-4 md:flex-row justify-between ${isEmpty && 'hidden'}`}
+        className={`flex flex-col gap-4 pt-[44px] md:flex-row justify-between ${isEmpty && 'hidden'}`}
       >
         <div>
           <p className="text-[20px]">

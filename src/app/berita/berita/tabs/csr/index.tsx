@@ -28,6 +28,7 @@ interface ICSR {
 const CSR: FC<ICSR> = ({ title, description }) => {
   const sliderRef = useRef<Slider | null>(null);
   const [contentData, setContentData] = useState<any>();
+  const [sliderData, setSliderData] = useState<any>([]);
   const [search, setSearch] = useState('');
   const [params, setParams] = useState({
     yearFilter: '',
@@ -59,10 +60,11 @@ const CSR: FC<ICSR> = ({ title, description }) => {
   };
 
   const sliderSettings = {
+    autoplay: true,
+    autoplaySpeed: 3000,
     dots: true,
     infinite: false,
     arrows: false,
-    centerMode: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -129,7 +131,16 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         };
       });
 
-      setContentData(transformedData);
+      if (sliderData?.length > 0) {
+        if (transformedData.length < 6) {
+          setContentData(transformedData);
+        } else {
+          setContentData(getDifference(transformedData, sliderData));
+        }
+      } else {
+        setSliderData(transformedData.slice(0, 5));
+        setContentData(transformedData.slice(5));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -145,9 +156,16 @@ const CSR: FC<ICSR> = ({ title, description }) => {
     }
   }, [contentData]);
 
+  const getDifference = (arr1: any, arr2: any) => {
+    const map2 = new Map(arr2.map((obj: { id: any }) => [obj.id, obj]));
+    const difference = arr1.filter((obj: { id: unknown }) => !map2.has(obj.id));
+
+    return difference;
+  };
+
   return (
     <div className="w-full flex flex-col items-center justify-center py-2">
-      <div className="text-center px-[2rem] md:px-[8.5rem] flex flex-col gap-[0.75rem]">
+      <div className="text-center px-[2rem] md:px-[8.5rem] lg:pb-[8px] xs:pb-[56px] flex flex-col gap-[0.75rem]">
         <h2 className="text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
           {title ?? 'CSR Avrist General Insurance'}
         </h2>
@@ -164,7 +182,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
           }}
           {...sliderSettings}
         >
-          {contentData?.slice(0, 5)?.map((item: any, index: number) => (
+          {sliderData?.slice(0, 5)?.map((item: any, index: number) => (
             <SliderInformation
               key={index}
               bgColor="purple_superlight"
@@ -177,13 +195,17 @@ const CSR: FC<ICSR> = ({ title, description }) => {
                     | {`${item.date} ${item.waktu}`}
                   </p>
                   <p
-                    className="text-[1.5rem] md:text-[2.25rem] font-bold line-clamp-3 "
+                    className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3"
                     dangerouslySetInnerHTML={{
                       __html: item.judul
                     }}
                   />
                   <p
-                    className="text-[16px] line-clamp-2"
+                    className={
+                      item.deskripsi[0]?.value?.substring(0, 250) === '<p>-</p>'
+                        ? 'hidden'
+                        : 'text-[16px] line-clamp-2'
+                    }
                     dangerouslySetInnerHTML={{
                       __html: item.deskripsi
                         ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
@@ -229,7 +251,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
       </div>
 
       <CategoryWithThreeCards
-        outerClass="px-[2rem] md:px-[8.5rem] w-full"
+        outerClass="px-[2rem] md:px-[8.5rem] w-full pb-[100px]"
         defaultSelectedCategory={'Berita dan Kegiatan'}
         filterRowLayout={true}
         hiddenCategory

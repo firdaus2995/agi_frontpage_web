@@ -179,11 +179,13 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
       return (
         <React.Fragment key={itemIndex}>
           {item.details.map((detailItem: any, detailIndex: number) => {
+            console.log(detailItem.value)
             const fieldType = detailItem.fieldType;
             const isNotEmpty =
               detailItem.value !== '<p>-</p>' &&
               detailItem.value !== '["-"]' &&
-              detailItem.value !== '-';
+              detailItem.value !== '-' &&
+              detailItem.value !== '[{"imageUrl":"no-image","altText":"no-image"}]';
             if (fieldType === 'TEXT_EDITOR' && isNotEmpty) {
               return (
                 <span
@@ -278,7 +280,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] py-[3.125rem] md:px-[23.281rem] md:pt-[5rem] md:pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[23.281rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               Penghargaan
@@ -289,7 +291,10 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[0.75rem] font-opensans">
                 <p>
-                  {contentData?.tanggal} | {contentData?.penulis}
+                  {contentData?.tanggal !== '-' ? contentData?.tanggal : ''}
+                  {contentData?.penulis !== '-'
+                    ? ' | ' + contentData?.penulis
+                    : ''}
                 </p>
                 <div className="flex flex-row gap-2">
                   {contentData?.tags

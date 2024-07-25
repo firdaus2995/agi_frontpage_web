@@ -154,7 +154,7 @@ const CategoryWithThreeCards = ({
 
   return (
     <div
-      className={`${outerClass} w-full flex flex-col py-[12px] sm:py-[72px] gap-[36px] sm:gap-[48px] md:flex-row`}
+      className={`${outerClass} w-full flex flex-col py-[12px] sm:pt-[80px] gap-[36px] sm:gap-[48px] md:flex-row`}
     >
       {/* CATEGORIES */}
       {!hiddenCategory && (

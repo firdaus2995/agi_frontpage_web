@@ -183,7 +183,8 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
             const isNotEmpty =
               detailItem.value !== '<p>-</p>' &&
               detailItem.value !== '["-"]' &&
-              detailItem.value !== '-';
+              detailItem.value !== '-' &&
+              detailItem.value !== '[{"imageUrl":"no-image","altText":"no-image"}]';
             if (fieldType === 'TEXT_EDITOR' && isNotEmpty) {
               return (
                 <span
@@ -278,7 +279,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] py-[3.125rem] md:px-[23.281rem] md:pt-[5rem] md:pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[23.281rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               Berita dan Acara

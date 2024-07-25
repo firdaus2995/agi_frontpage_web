@@ -162,7 +162,7 @@ const Detail = (props: agencyDetailProps) => {
   }, [pageData]);
 
   const showContent = (content: string) => {
-    if (content === '-') {
+    if (content === '-' || content === '<p>-</p>') {
       return '';
     } else {
       return content;
@@ -170,7 +170,7 @@ const Detail = (props: agencyDetailProps) => {
   };
 
   return (
-    <div className="w-full px-[2rem] md:px-[23.281rem] xs:py-[3.125rem] md:pb-[1rem]">
+    <div className="w-full px-[2rem] md:px-[23.281rem] xs:py-[3.125rem] md:pb-[6.25rem] md:pt-0">
       <div className="flex flex-col gap-[3rem]">
         <div className="flex flex-col gap-[1rem]">
           <p className="text-purple_dark font-semibold">
@@ -182,11 +182,14 @@ const Detail = (props: agencyDetailProps) => {
           <div className="flex flex-row justify-between items-center font-opensans">
             <div className="flex flex-col gap-[1rem]">
               <p>
-                {showContent(contentData.tanggal)} |{' '}
-                {showContent(contentData.penulisArtikel)}
+                {showContent(contentData.tanggal)}{' '}
+                {showContent(contentData.penulisArtikel) !== ''
+                  ? '| ' + showContent(contentData.penulisArtikel)
+                  : ''}
               </p>
               <div className="flex flex-row gap-2">
-                {contentData.tags.length > 0 &&
+                {contentData.tags[0] !== '' &&
+                  contentData.tags.length > 0 &&
                   contentData.tags.map(
                     (value: string, idx: React.Key | null | undefined) => (
                       <MediumTag key={idx} title={value} />
@@ -218,11 +221,13 @@ const Detail = (props: agencyDetailProps) => {
             </div>
           </div>
         </div>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: showContent(contentData.paragraf1)
-          }}
-        />
+        {contentData.paragraf1 !== '<p>-</p>' && (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: showContent(contentData.paragraf1)
+            }}
+          />
+        )}
         {!contentData?.artikelImg?.imageUrl?.includes('no-image') && (
           <div className="bg-gray-200">
             <Image
@@ -234,12 +239,14 @@ const Detail = (props: agencyDetailProps) => {
             />
           </div>
         )}
-        <p
-          className="pt-10 w-full border-t"
-          dangerouslySetInnerHTML={{
-            __html: showContent(contentData.paragraf2)
-          }}
-        />
+        {contentData.paragraf2 !== '<p>-</p>' && (
+          <p
+            className="pt-10 w-full border-t"
+            dangerouslySetInnerHTML={{
+              __html: showContent(contentData.paragraf2)
+            }}
+          />
+        )}
         {contentData?.artikelVideo !== '' && (
           <div className="mx-auto max-w-[70rem] aspect-video w-full rounded-lg overflow-hidden shadow-lg">
             <VideoPlayer
@@ -248,12 +255,14 @@ const Detail = (props: agencyDetailProps) => {
             />
           </div>
         )}
-        <div
-          className="flex flex-col md:flex-row"
-          dangerouslySetInnerHTML={{
-            __html: showContent(contentData.paragraf3)
-          }}
-        />
+        {contentData.paragraf3 !== '<p>-</p>' && (
+          <div
+            className="flex flex-col md:flex-row"
+            dangerouslySetInnerHTML={{
+              __html: showContent(contentData.paragraf3)
+            }}
+          />
+        )}
 
         <div className="flex flex-col gap-5 p-5 border border-b-8 border-b-purple_dark rounded-xl">
           <p className="font-semibold text-xl">

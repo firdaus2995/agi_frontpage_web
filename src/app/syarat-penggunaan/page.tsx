@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import MainContentSyaratPenggunaan from './component/MainContentSyaratPenggunaan';
-import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
-import {
-  BannerFooter,
-  InformationAvrastFooter
-} from '@/components/molecules/specifics/agi/SyaratPengunaan';
+import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
+import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
+import Hero from '@/components/molecules/specifics/agi/Hero';
 import {
   contentStringTransformer,
   pageTransformer,
@@ -14,23 +12,56 @@ import {
 } from '@/utils/responseTransformer';
 
 const SyaratPengunaan = () => {
-  const [data, setData] = useState<any>({});
+  const [title, setTitle] = useState('');
+  const [titleImg, setTitleImg] = useState({ imageUrl: '', altText: '' });
+
+  const [cta1Img, setCta1Img] = useState({ imageUrl: '', altText: '' });
+  const [cta1Name, setCta1Name] = useState('');
+  const [cta1Label, setCta1Label] = useState('');
+  const [cta1Link, setCta1Link] = useState('');
+
+  const [listBanner, setListBanner] = useState<any[]>([]);
+
+  const [contentData, setContentData] = useState<any>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          'https://api-front-sit.avristcms.barito.tech/api/page/syarat-penggunaan',
+          'https://api-front-sit.avristcms.barito.tech/api/page/halaman-syarat-penggunaan-agi',
           { method: 'GET' }
         );
         const data = await response.json();
-        setData(data);
+        const { content } = pageTransformer(data);
+        setContentData(content);
+        setTitleImg(singleImageTransformer(content['title-image']));
+        setTitle(contentStringTransformer(content['title-judul']));
 
-        const { title, content } = pageTransformer(data);
-        const artikel = contentStringTransformer(content['body-jawaban']);
-        const bannerImage = singleImageTransformer(content['image-title']);
-        const footerImage = singleImageTransformer(content['image-cta1']);
-        setData({ title, artikel, bannerImage, footerImage });
+        setCta1Img(singleImageTransformer(content['cta1-image']));
+        setCta1Name(contentStringTransformer(content['cta1-teks']));
+        setCta1Label(contentStringTransformer(content['cta1-label-button']));
+        setCta1Link(contentStringTransformer(content['cta1-link-button']));
+
+        const cta4Data = [];
+        for (let i = 0; i < 4; i++) {
+          const icon = singleImageTransformer(content[`cta4-${i + 1}-icon`]);
+          const title = contentStringTransformer(content[`cta4-${i + 1}-nama`]);
+          const subtitle = contentStringTransformer(
+            content[`cta4-${i + 1}-label-link`]
+          );
+          const href = contentStringTransformer(content[`cta4-${i + 1}-link`]);
+
+          if (icon && title && subtitle) {
+            cta4Data.push({
+              icon: icon.imageUrl,
+              title: title,
+              subtitle: subtitle,
+              href: href
+            });
+          }
+        }
+
+        setListBanner(cta4Data);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -39,27 +70,25 @@ const SyaratPengunaan = () => {
     fetchData();
   }, []);
 
-  let bannerImage, footerImage;
-
-  if (
-    data &&
-    data.bannerImage &&
-    data.footerImage
-  ) {
-    bannerImage = data.bannerImage.imageUrl;
-    footerImage = data.footerImage.imageUrl;
-  }
-
+  const breadcrumbsData = [
+    { title: 'Beranda', href: '/' },
+    { title: title, href: '#' }
+  ];
   return (
-    <div className="flex flex-col bg-avrast_product_bg">
-      <Header
-        menu={['Syarat Penggunaan']}
-        title="Syarat Penggunaan"
-        bannerImageSrc={bannerImage}
+    <div className="flex flex-col">
+      <Hero
+        title={title}
+        breadcrumbsData={breadcrumbsData}
+        imageUrl={titleImg.imageUrl}
       />
-      <MainContentSyaratPenggunaan />
-      <BannerFooter imageUrlSrc={footerImage} />
-      <InformationAvrastFooter />
+      <MainContentSyaratPenggunaan content={contentData} />
+      <FooterInformation
+        title={<p dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />}
+        buttonTitle={cta1Label}
+        href={cta1Link}
+        image={cta1Img.imageUrl}
+      />
+      <FooterCards bgColor="bg-purple_superlight" cards={listBanner} />
     </div>
   );
 };

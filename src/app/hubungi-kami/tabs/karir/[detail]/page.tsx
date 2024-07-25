@@ -117,13 +117,13 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         imageUrl={titleImage.imageUrl}
       />
 
-      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[3.125rem] md:[6.25rem]">
-        <div className="flex flex-col gap-5">
+      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[3.125rem] md:pb-[6.25rem]">
+        <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-5">
-            <p className="font-semibold xs:text-[2.5rem] md:text-[5rem]">
+            <p className="font-semibold text-information-title-mobile lg:text-information-title-desktop">
               {title}
             </p>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-col-reverse lg:flex-row justify-end lg:justify-between items-end lg:items-center gap-10">
               <div className="flex flex-row gap-4 text-nowrap text-md">
                 <div className="flex w-full flex-row items-center gap-2">
                   <Image
@@ -154,16 +154,16 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                     width={24}
                     height={24}
                   />
-                  <p>{date}</p>
+                  <p className="lg:whitespace-nowrap">{date}</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-1 items-center">
-                <div
-                  className="flex items-center"
-                  role="button"
-                  id="PopoverFocus"
-                  onClick={() => setIsOPenPopover(!isOpenPopover)}
-                >
+              <div
+                role="button"
+                id="PopoverFocus"
+                onClick={() => setIsOPenPopover(!isOpenPopover)}
+                className="flex flex-row gap-1 items-center"
+              >
+                <div className="flex items-center">
                   <Icon
                     width={16}
                     height={16}
@@ -181,28 +181,40 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
               </div>
             </div>
           </div>
-          <p
-            className="career-content"
+          <div
+            className={
+              contentStringTransformer(detailData['isi-lowongan-1']) ===
+              '<p>-</p>'
+                ? 'hidden'
+                : 'career-content'
+            }
             dangerouslySetInnerHTML={{
-              __html:
-                contentStringTransformer(detailData['isi-lowongan-1']) ?? ''
+              __html: contentStringTransformer(detailData['isi-lowongan-1'])
             }}
           />
           <div
-            className="career-content"
+            className={
+              contentStringTransformer(detailData['isi-lowongan-2']) ===
+              '<p>-</p>'
+                ? 'hidden'
+                : 'career-content'
+            }
             dangerouslySetInnerHTML={{
-              __html:
-                contentStringTransformer(detailData['isi-lowongan-2']) ?? ''
+              __html: contentStringTransformer(detailData['isi-lowongan-2'])
             }}
           />
           <div
-            className="career-content"
+            className={
+              contentStringTransformer(detailData['isi-lowongan-3']) ===
+              '<p>-</p>'
+                ? 'hidden'
+                : 'career-content'
+            }
             dangerouslySetInnerHTML={{
-              __html:
-                contentStringTransformer(detailData['isi-lowongan-3']) ?? ''
+              __html: contentStringTransformer(detailData['isi-lowongan-3'])
             }}
           />
-          <div className="p-4">
+          <div className="">
             <Button onClick={() => setOpenDialog(true)}>
               Apply For This job
             </Button>

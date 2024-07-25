@@ -62,8 +62,8 @@ const Bank = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-10">
+    <div className="flex flex-col gap-[52px]">
+      <div className="grid lg:grid-cols-4 grid-cols-2 gap-[32px] lg:gap-[64px] place-content-center place-items-center">
         {paginatedData?.map(
           (
             item: {

@@ -45,7 +45,7 @@ const CompanySection = (props: CompanySection) => {
         className={`md:mx-[4.5rem] md:h-[50vh] flex mb-10 md:flex-row xs:flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
       >
         <div
-          className={`h-[392px] md:w-1/2 xs:w-full p-5 flex flex-col items-start justify-center gap-6`}
+          className={`h-[392px] md:w-1/2 xs:w-full lg:px-[48px] px-[24px] pt-[36px] lg:pb-[36px] pb-[24px] flex flex-col items-start justify-center gap-6`}
         >
           <p className="font-karla text-information-slider-title-mobile lg:text-information-slider-title-desktop text-left text-purple_dark">
             {contentStringTransformer(val['why-us-text-1'])}
@@ -58,7 +58,7 @@ const CompanySection = (props: CompanySection) => {
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}
-            className='flex w-full items-center xs:justify-center sm:justify-start'
+            className='flex w-full items-center justify-start'
 >
             <Button
               title={contentStringTransformer(val['why-us-button-label'])}

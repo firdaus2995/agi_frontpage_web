@@ -77,7 +77,7 @@ const TotalSolution = (props: TotalSolution) => {
     <div
       className={`flex flex-col h-full gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
     >
-      <div className="p-5 flex grow flex-col items-center justify-between gap-[24px] pb-10">
+      <div className="border-[0.5px] border-b-8 border-b-purple_light rounded-[12px] px-[24px] py-[36px] flex grow flex-col items-center justify-between gap-[24px]">
         <div className="flex flex-col items-center gap-[24px]">
           <Image
             alt="loop-image"
@@ -100,9 +100,6 @@ const TotalSolution = (props: TotalSolution) => {
           </Link>
         </div>
       </div>
-      <div
-        className={`w-full bg-purple_dark text-sm font-semibold p-1 text-white rounded-b-xl`}
-      ></div>
     </div>
   );
 
@@ -116,7 +113,7 @@ const TotalSolution = (props: TotalSolution) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`w-[90%] h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl p-4`}
+        className={`w-[90%] h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl px-[24px] py-[36px]`}
       >
         <div className="flex flex-col items-center gap-[24px]">
           <Image
@@ -200,7 +197,7 @@ const TotalSolution = (props: TotalSolution) => {
           />
         </div>
       </div>
-      <div className="xs:max-lg:hidden grid grid-cols-3 gap-[24px]">
+      <div className="xs:max-lg:hidden grid grid-cols-3 gap-x-[24px] gap-y-[48px]">
         {data.map(
           (
             val: {

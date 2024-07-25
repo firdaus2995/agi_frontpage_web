@@ -108,8 +108,8 @@ export const ApplyJobModal: FC<Props> = ({ isOpen, onClose, formId, setIsSuccess
                   >
                     <Icon width={24} height={24} name="close" />
                   </div>
-                  <div className="flex flex-col items-baseline sm:px-[72px] sm:py-[100px]">
-                    <h2 className="text-[56px] font-karla text-gray_body font-bold">
+                  <div className="flex flex-col items-center sm:px-[72px] sm:py-[100px]">
+                    <h2 className="text-[32px] lg:text-[56px] font-karla text-gray_body font-bold">
                       Job Application Form
                     </h2>
                     <div className="w-full">

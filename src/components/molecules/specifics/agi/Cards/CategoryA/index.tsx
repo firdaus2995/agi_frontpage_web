@@ -33,7 +33,7 @@ const CardCategoryA = ({
         width={100}
         height={172}
         src={imageProduk || BlankImage}
-        className="w-full h-[172px] rounded-[10px]"
+        className="w-full h-[172px] rounded-[10px] object-cover"
       />
       <div className="flex flex-col gap-[12px]">
         <div className="flex flex-col gap-[8px]">

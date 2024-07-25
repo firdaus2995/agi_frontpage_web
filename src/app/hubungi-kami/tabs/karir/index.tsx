@@ -119,8 +119,8 @@ const Karir = (props: Props) => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-4 bg-white justify-center xs:pt-[3.125rem] md:pt-[6.25rem]">
-      <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4 bg-white justify-center xs:pt-[3.125rem] md:pt-[5rem]">
+      <div className="flex flex-col">
         <div className="w-full flex flex-col items-center justify-center text-center">
           <p className="font-karla font-bold text-[56px] text-center text-purple_dark flex flex-col">
             {contentStringTransformer(pageData['body-judul'])}
@@ -129,7 +129,7 @@ const Karir = (props: Props) => {
             </span>
           </p>
         </div>
-        <div className="px-[2rem] md:px-[8.5rem] pt-[4rem] flex flex-col gap-10 items-center justify-center xs:pb-[3.125rem] md:pb-[6.25rem]">
+        <div className="px-[2rem] md:px-[8.5rem] pt-[5rem] flex flex-col gap-10 items-center justify-center xs:pb-[3.125rem] md:pb-[5rem]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {purposeData.map((val, idx) => (
               <PurposeCard
@@ -143,7 +143,7 @@ const Karir = (props: Props) => {
             ))}
           </div>
         </div>
-        <div className="bg-purple_superlight px-[2rem] md:px-[8.5rem] py-[2.5rem] md:py-[5rem]">
+        <div className="bg-purple_superlight px-[2rem] md:px-[8.5rem] py-[2.5rem] md:pt-[5rem] md:pb-[100px]">
           <h2 className="text-[2.25rem] md:text-[3.5rem] text-center font-semibold">
             Lihat Lowongan di{' '}
             <span className="text-purple_dark">Avrist General Insurance</span>

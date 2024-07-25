@@ -166,7 +166,9 @@ const Berita: React.FC<ParamsProps> = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    fetchData();
+    if(tabs.find((item: any) => item.name === tab)?.url) {
+      fetchData();
+    }
   }, [tab]);
 
   return (
@@ -188,7 +190,7 @@ const Berita: React.FC<ParamsProps> = () => {
         ]}
         imageUrl={data?.titleImageUrl ?? BlankImage}
       />
-      <div className="w-full z-20 bg-white xs:pt-[3.125rem] xs:pb-[2rem] md:pt-[6.25rem] md:pb-[4rem] xs:-mt-[3.15rem] md:-mt-[6.3rem]">
+      <div className="w-full z-20 bg-white xs:pt-[3.125rem] md:pt-[6.25rem] pb-[5rem] xs:-mt-[3.15rem] md:-mt-[6.3rem]">
         <ButtonMenu buttonList={tabs.map((item) => item.name)} />
       </div>
 

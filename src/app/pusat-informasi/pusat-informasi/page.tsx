@@ -1,9 +1,6 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import BLANK_IMAGE from '@/assets/images/blank-image.svg';
-import Button from '@/components/atoms/Button/Button';
-import Input from '@/components/atoms/Input';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -55,7 +52,6 @@ const initialData = {
 const PusatInformasi = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab') ?? '';
-  const content = searchParams.get('content') ?? '';
   const [pageData, setPageData] = useState<any>([]);
 
   const [data, setData] = useState<typeof initialData>(initialData);
@@ -165,41 +161,17 @@ const PusatInformasi = () => {
         imageUrl={data?.titleImageUrl}
       />
       <MainContent pageData={pageData} />
-      {!content ? (
-        <FooterInformation
-          title={
-            <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
-              dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
-            />
-          }
-          buttonTitle={data?.footerBtnLabel}
-          image={data?.footerInfoImageUrl}
-          href={data?.footerBtnUrl}
-        />
-      ) : (
-        <FooterInformation
-          title={
-            <div className="flex flex-col gap-4">
-              <p className="text-[56px]">Subscribe Informasi Terkini!</p>
-              <Button
-                title="Avrist Life Insurance"
-                customButtonClass="bg-purple_dark rounded-xl"
-                customTextClass="text-white font-bold"
-              />
-              <div className="flex flex-row gap-2">
-                <Input
-                  type="text"
-                  placeholder="Masukkan email Anda"
-                  customInputClass="w-[90%]"
-                />
-                <Button title="Subscribe" customButtonClass="rounded-xl" />
-              </div>
-            </div>
-          }
-          image={BLANK_IMAGE}
-        />
-      )}
+      <FooterInformation
+        title={
+          <p
+            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
+          />
+        }
+        buttonTitle={data?.footerBtnLabel}
+        image={data?.footerInfoImageUrl}
+        href={data?.footerBtnUrl}
+      />
 
       <FooterCards
         cards={[

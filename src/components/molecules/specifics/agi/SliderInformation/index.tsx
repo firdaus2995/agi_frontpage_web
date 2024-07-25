@@ -1,5 +1,6 @@
 import { ReactElement, useState } from 'react';
 import Image from 'next/image';
+import BlankImage from '@/assets/images/blank-image.svg';
 import PlayButton from '@/assets/images/play-button.svg';
 import Button from '@/components/atoms/Button/Button';
 import { VideoModal } from '@/components/molecules/specifics/agi/Modal/VideoModal';
@@ -48,7 +49,7 @@ const SliderInformation = ({
               width={0}
               alt="sliderInformationImage"
               className={`h-[470px] w-full object-cover ${imageClassName} rounded-r-3xl`}
-              src={imageUrl}
+              src={imageUrl !== '' ? imageUrl : BlankImage}
             />
             {isVideo && (
               <div className="w-full h-full absolute flex items-center justify-center">
@@ -73,7 +74,7 @@ const SliderInformation = ({
               width={0}
               alt="sliderInformationImage"
               className={`min-h-[400px] w-full object-cover rounded-t-3xl`}
-              src={imageUrl}
+              src={imageUrl !== '' ? imageUrl : BlankImage}
             />
             {isVideo && (
               <div className="w-full h-full absolute flex items-center justify-center">

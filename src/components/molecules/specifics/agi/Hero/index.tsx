@@ -27,7 +27,7 @@ const Hero: React.FC<IHero> = ({
 }) => {
   return (
     <div
-      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[26.25rem] sm:h-[52.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
+      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[26.25rem] sm:h-[38.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
     >
       <div className="w-full flex items-center">
         <div
@@ -64,12 +64,12 @@ const Hero: React.FC<IHero> = ({
         height={100}
       />
       {bottomImage && (
-        <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute">
+        <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute h-[50vh]">
           <Image
-            className="w-full h-[20rem] md:h-[40rem] object-fill"
+            className="w-full h-full object-cover"
             alt="gambar-produk-individu"
-            width={100}
-            height={100}
+            width={0}
+            height={0}
             src={bottomImage}
           />
         </div>

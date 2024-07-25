@@ -1,7 +1,6 @@
 'use client';
 import { Key, useEffect, useState } from 'react';
 import { ISetData } from '../../page';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import PurposeCard from '@/components/molecules/specifics/agi/Cards/PurposeCard';
 import Timeline from '@/components/molecules/specifics/agi/TimeLine';
 import VisiMisi from '@/components/molecules/specifics/agi/VisiMisi';
@@ -175,7 +174,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
             __html: desc
           }}
         />
-        <div className="w-full my-[5rem]">
+        <div className="w-full mt-[3.125rem]">
           {contentData && (
             <Timeline data={contentData} title={contentDataTitle} />
           )}
@@ -183,8 +182,8 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
         {visiMisi && <VisiMisi data={visiMisi} />}
       </div>
 
-      <div className="flex flex-col gap-4 items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-0 lg:py-[5rem] px-[32px] lg:px-[136px]">
-        <div className="flex justify-center items-center p-10">
+      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-0 lg:py-[5rem] px-[32px] lg:px-[136px]">
+        <div className="flex justify-center items-center pb-[5rem]">
           <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
             {section2Title}
           </p>
@@ -208,7 +207,6 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
           <p className="text-xl">{section3Link}</p>
         </div>
       </div>
-      <RoundedFrameBottom frameColor="bg-purple_superlight" />
     </div>
   );
 };

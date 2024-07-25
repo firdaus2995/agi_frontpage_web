@@ -75,19 +75,21 @@ const WordingPolis = (props: WordingPolisProps) => {
   }, [pageData]);
 
   return (
-    <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.25rem]">
-      <section className="w-full flex flex-col items-center text-center my-[64px]">
+    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+      <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1 className="font-karla text-[2.25rem] md:text-[3.5rem] text-purple_dark">
           {contentStringTransformer(pageData['body-judul'])}
         </h1>
       </section>
 
-      <SearchBox
+        <div className="pb-[24px] lg:pb-[48px]">
+        <SearchBox
         onSearch={(key) => setSearch(key)}
         placeHolder="Cari Formulir"
       />
-      {paginatedData?.length > 0 ? (
-        <div className="flex flex-col gap-3">
+        </div>
+        {paginatedData?.length > 0 ? (
+        <div className="flex flex-col gap-6">
           {paginatedData?.map(
             (
               item: {
@@ -109,7 +111,7 @@ const WordingPolis = (props: WordingPolisProps) => {
       ) : (
         <NotFound />
       )}
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row pt-[44px] justify-between">
         <p className="text-lg">
           Menampilkan{' '}
           <span className="font-bold">{`${currentPage * ITEMS_PER_PAGE - (ITEMS_PER_PAGE - 1)}-${ITEMS_PER_PAGE * currentPage > totalItem ? totalItem : ITEMS_PER_PAGE * currentPage}`}</span>{' '}

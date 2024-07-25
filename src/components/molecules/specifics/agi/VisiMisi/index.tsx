@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
-import Plus from '@/assets/images/common/+.svg';
-import Minus from '@/assets/images/common/-.svg';
+import Chevron from '@/assets/images/common/chevron-right-purple.svg';
 
 interface IDataArray {
   title: string;
@@ -18,7 +17,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex flex-col gap-[1.5rem] font-karla">
+    <div className="flex flex-col gap-[1.5rem] font-karla w-full xs:my-[3.125rem] sm:my-[5rem]">
       {data.map((val, idx) => (
         <div
           key={idx}
@@ -28,7 +27,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
             <div className="flex flex-row gap-4 items-center">
               <Image
                 src={val.icon}
-                className="w-20"
+                className="w-[100px]"
                 width={24}
                 height={24}
                 alt="logo"
@@ -41,8 +40,8 @@ const VisiMisi = ({ data }: IVisiMisi) => {
               <Image
                 role="button"
                 onClick={() => setIsExpanded(false)}
-                src={Minus}
-                className="w-5"
+                src={Chevron}
+                className="w-5 -rotate-[90deg]"
                 alt="minus"
               />
             ) : null}
@@ -70,12 +69,12 @@ const VisiMisi = ({ data }: IVisiMisi) => {
               <div
                 role="button"
                 onClick={() => setIsExpanded(true)}
-                className="w-full flex flex-row gap-2 items-end justify-end"
+                className="w-full flex flex-row gap-2 items-center justify-end"
               >
                 <p className="font-semibold text-purple_dark text-history-title">
                   Lihat Lebih Lanjut
                 </p>
-                <Image src={Plus} className="w-6" alt="plus" />
+                <Image src={Chevron} className="w-5 rotate-[90deg]" alt="plus" />
               </div>
             </div>
           ) : (
@@ -84,7 +83,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 key={index}
                 className="p-10 flex flex-col gap-4 border border-b-8 border-b-purple_dark rounded-xl"
               >
-                <div className="flex flex-col lg:flex-row gap-10 items-center">
+                <div className="flex flex-col lg:flex-row gap-[60px] items-center">
                   <p className="font-karla text-[4rem] lg:text-[100px] lg:leading-[120px] lg:-tracking-[0.04em] font-semibold text-purple_dark">
                     {index + 1}
                   </p>

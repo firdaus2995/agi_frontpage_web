@@ -18,6 +18,7 @@ const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapCo
 const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
 const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
 
+import 'leaflet/dist/leaflet.css';
 const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
@@ -82,12 +83,12 @@ const KantorCabang = () => {
 
   const RenderMap = () => {
     const highOfficeCoordinate = {
-      lat: -6.214663280751351,
-      lng: 106.82071668189862
+      lat: selectedMarker?.latOffice,
+      lng: selectedMarker?.longOffice
     };
     const defaultProps = {
       center: highOfficeCoordinate,
-      zoom: 4.5
+      zoom: 16
     };
 
     const eventHandlers = (item: any) => {
@@ -133,9 +134,9 @@ const KantorCabang = () => {
   }, [search]);
 
   return (
-    <div className="flex flex-col gap-10 w-full">
+    <div className="flex flex-col gap-[6.25rem] w-full">
       <div className="px-[2rem] md:px-[8.5rem]">
-        <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem] text-center text-purple_dark my-[60px]">
+        <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem] text-center text-purple_dark my-[80px]">
           Lokasi Kantor Cabang Avrist General Assurance
         </p>
         <Card className="bg-white p-[1.5rem]">
@@ -159,7 +160,7 @@ const KantorCabang = () => {
               />
             ))}
           </div>
-          <div className="flex flex-col gap-4 sm:flex-row justify-between mt-5">
+          <div className="flex flex-col gap-4 sm:flex-row justify-between mt-6">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}
@@ -200,7 +201,7 @@ const KantorCabang = () => {
           </div>
         </Card>
       </div>
-      <div className="bg-gray_bglightgray px-[2rem] md:px-[8.5rem] py-[3.125rem] md:py-[6.25rem] flex flex-col gap-[2rem] md:gap-[4rem]">
+      <div className="bg-gray_bglightgray px-[2rem] md:px-[8.5rem] py-[5rem] md:py-[6.25rem] flex flex-col gap-[5rem]">
         <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem] text-center text-purple_dark">
           Lokasi Kantor Avrist General Assurance
         </p>
@@ -212,9 +213,11 @@ const KantorCabang = () => {
             contact={selectedMarker?.phoneOffice}
             withNavigation={true}
           />
-          <Card className="md:col-span-2 min-h-[100%] w-full">
-            {RenderMap()}
-          </Card>
+          {selectedMarker?.latOffice ? (
+            <Card className="md:col-span-2 min-h-[100%] w-full">
+              {RenderMap()}
+            </Card>
+          ) : null}
         </Card>
       </div>
     </div>

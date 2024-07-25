@@ -592,7 +592,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         px="32px"
         pxSm="136px"
         py="36px"
-        pySm="72px"
+        pySm="5rem"
         textTitle={data?.judulSection ?? 'Rekomendasi Produk Lainnya'}
       >
         {dataRekomendasi &&
@@ -623,36 +623,34 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         image={footerImage}
         href={footerBtnUrl}
       />
-      <div className="pt-[60px]">
-        <FooterCards
-          cards={[
-            {
-              title: data.cta41.title,
-              icon: data.cta41.icon,
-              subtitle: data.cta41.subtitle,
-              href: data.cta41.url
-            },
-            {
-              title: data.cta42.title,
-              icon: data.cta42.icon,
-              subtitle: data.cta42.subtitle,
-              href: data.cta42.url
-            },
-            {
-              title: data.cta43.title,
-              icon: data.cta43.icon,
-              subtitle: data.cta43.subtitle,
-              href: data.cta43.url
-            },
-            {
-              title: data.cta44.title,
-              icon: data.cta44.icon,
-              subtitle: data.cta44.subtitle,
-              href: data.cta44.url
-            }
-          ]}
-        />
-      </div>
+      <FooterCards
+        cards={[
+          {
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
+          },
+          {
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
+          },
+          {
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
+          },
+          {
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
+          }
+        ]}
+      />
       <div className="absolute">
         <SuccessModal
           show={showSuccess}

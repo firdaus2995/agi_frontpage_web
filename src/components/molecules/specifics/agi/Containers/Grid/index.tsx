@@ -25,7 +25,7 @@ const GridContainer = ({
 }: IGridContainer) => {
   return (
     <>
-      <div className="flex justify-center pt-[50px]">
+      <div className="flex justify-center pt-[80px]">
         <p className="font-bold font-karla text-center text-[36px] sm:text-[56px] text-purple_dark">
           {textTitle}
         </p>

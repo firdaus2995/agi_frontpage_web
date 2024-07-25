@@ -19,7 +19,7 @@ const SimpleContainer = ({
 }: ISimpleContainer) => {
   return (
     <div
-      className={`${className} flex flex-col justify-center ${paddingX ?? 'px-[2rem] sm:px-[8.5rem]'} ${paddingY ?? 'py-[3.125rem] sm:py-[4.5rem]'} ${gap ?? 'gap-[4rem]'} bg-${bgColor}`}
+      className={`${className} flex flex-col justify-center ${paddingX ?? 'px-[2rem] sm:px-[8.5rem]'} ${paddingY ?? 'py-[3.125rem] sm:py-[5rem]'} ${gap ?? 'gap-[4rem]'} bg-${bgColor}`}
     >
       {children}
     </div>

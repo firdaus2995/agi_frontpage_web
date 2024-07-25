@@ -18,7 +18,7 @@ const Bengkel: React.FC<BengkelProps> = ({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-6">
       {data?.map((item, index) => (
         <DownloadFileButton
           title={item.title}

@@ -4,7 +4,6 @@ import { ISetData } from '@/app/tentang-kami/avrist-general-insurance/page';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 import { handleGetContentPage } from '@/services/content-page.api';
@@ -81,7 +80,6 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
       });
 
       const categoryList = Object.keys(apiContent.data.categoryList);
-
       categories.length < 1 && setCategories(categoryList);
 
       setContentData(apiContent.data.categoryList[params.category]);
@@ -235,7 +233,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 bg-white justify-center">
+    <div className="w-full flex flex-col gap-4 bg-white justify-center px-[2rem] py-[2.25rem] lg:py-[5rem]">
       <div className="flex flex-col gap-4">
         {params.category ? (
           // <CustomContainer className="w-full flex flex-col items-center justify-center text-center font-karla xs:mt-[2.25rem] sm:mt-[5rem]">
@@ -246,87 +244,87 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           //     Temukan {params.category.toLowerCase()} perusahaan di sini
           //   </h2>
           // </CustomContainer>
-          <div className="px-[2rem] xs:my-[2.25rem] py-[5rem]">
-            <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
-              {title}
-            </p>
-            <p
-              className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_black_dark text-center lg:mt-2"
-              dangerouslySetInnerHTML={{
-                __html: desc
+          <div className="flex flex-col gap-[5rem]">
+            <div className='flex flex-col'>
+              <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
+                {title}
+              </p>
+              <p
+                className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_black_dark text-center lg:mt-2"
+                dangerouslySetInnerHTML={{
+                  __html: desc
+                }}
+              />
+            </div>
+            <CategoryWithThreeCards
+              defaultSelectedCategory={params.category}
+              onCategoryChange={(tab) =>
+                setParams({ ...params, category: tab })
+              }
+              filterRowLayout={true}
+              categories={contentData && categories ? categories : []}
+              tabs={[
+                {
+                  type: 'dropdown',
+                  label: 'tahun',
+                  options: yearDropdown(2009)
+                },
+                {
+                  type: 'dropdown',
+                  label: 'Bulan',
+                  options: monthDropdown()
+                }
+              ]}
+              searchPlaceholder="Cari laporan"
+              onSearchChange={(e) => {
+                setSearch(e.target.value);
               }}
+              onSearch={() => {
+                setParams({ ...params, searchFilter: search });
+              }}
+              hidePagination
+              customContent={
+                <>
+                  {paginatedData.length > 0 ? (
+                    <div className="w-full flex flex-col gap-6">
+                      {contentData &&
+                        getContentFile(paginatedData)?.map(
+                          (item: any, index: number) => (
+                            <div
+                              key={index}
+                              className="w-full flex xs:flex-col sm:flex-row xs:justify-start sm:justify-between  p-[1.5rem] border rounded-xl gap-2"
+                            >
+                              <div className="flex flex-row gap-2 items-center">
+                                <p className="font-bold text-2xl font-karla">
+                                  {item.name}
+                                </p>
+                                <MediumTag title="PDF" />
+                              </div>
+                              <div>
+                                <Button
+                                  title="Unduh"
+                                  customButtonClass="rounded-xl bg-purple_dark"
+                                  customTextClass="text-white font-opensans font-semibold leading-[23.68px]"
+                                  onClick={async () =>
+                                    window.open(item.file, '_blank')
+                                  }
+                                />
+                              </div>
+                            </div>
+                          )
+                        )}
+                    </div>
+                  ) : (
+                    <NotFound />
+                  )}
+
+                  {renderPage()}
+                </>
+              }
+              outerClass="sm:!py-[0px] px-[2rem] md:px-[8.5rem]"
             />
           </div>
         ) : null}
-
-        <CategoryWithThreeCards
-          defaultSelectedCategory={params.category}
-          onCategoryChange={(tab) => setParams({ ...params, category: tab })}
-          filterRowLayout={true}
-          categories={contentData && categories ? categories : []}
-          tabs={[
-            {
-              type: 'dropdown',
-              label: 'tahun',
-              options: yearDropdown(2009)
-            },
-            {
-              type: 'dropdown',
-              label: 'Bulan',
-              options: monthDropdown()
-            }
-          ]}
-          searchPlaceholder="Cari laporan"
-          onSearchChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          onSearch={() => {
-            setParams({ ...params, searchFilter: search });
-          }}
-          hidePagination
-          customContent={
-            <>
-              {paginatedData.length > 0 ? (
-                <div className="w-full flex flex-col gap-6">
-                  {contentData &&
-                    getContentFile(paginatedData)?.map(
-                      (item: any, index: number) => (
-                        <div
-                          key={index}
-                          className="w-full flex xs:flex-col sm:flex-row xs:justify-start sm:justify-between  p-[1.5rem] border rounded-xl gap-2"
-                        >
-                          <div className="flex flex-row gap-2 items-center">
-                            <p className="font-bold text-2xl font-karla">
-                              {item.name}
-                            </p>
-                            <MediumTag title="PDF" />
-                          </div>
-                          <div>
-                            <Button
-                              title="Unduh"
-                              customButtonClass="rounded-xl bg-purple_dark"
-                              customTextClass="text-white font-opensans font-semibold leading-[23.68px]"
-                              onClick={async () =>
-                                window.open(item.file, '_blank')
-                              }
-                            />
-                          </div>
-                        </div>
-                      )
-                    )}
-                </div>
-              ) : (
-                <NotFound />
-              )}
-
-              {renderPage()}
-            </>
-          }
-          outerClass="sm:!py-[0px] px-[2rem] md:px-[8.5rem]"
-        />
-      </div>
-      <div className="flex flex-col w-full">
-        <RoundedFrameBottom />
       </div>
     </div>
   );

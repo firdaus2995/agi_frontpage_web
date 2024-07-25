@@ -102,3 +102,12 @@ export const breakWords = (text: string, length: number) => {
     </span>
   );
 };
+
+export const isContentNotEmpty = (str: string) => {
+  return (
+    str !== '<p>-</p>' &&
+    str !== '["-"]' &&
+    str !== '-' &&
+    !str?.includes('>-<')
+  );
+};

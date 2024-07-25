@@ -27,6 +27,8 @@ export const MainContent = () => {
         </div>
         <ReportForm onChangeData={function (): void {
           throw new Error('Function not implemented.');
+        } } setMaxSizeValidation={function (): void {
+          throw new Error('Function not implemented.');
         } } />
       </div>
       <Image

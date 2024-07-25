@@ -21,8 +21,8 @@ const Klaim = () => {
   }, [searchKeyWords]);
 
   return (
-    <div className="flex flex-col gap-4 px-[2rem] md:px-[8.5rem] pb-[3.125rem] md:pb-[6.25rem]">
-      <section className="w-full flex flex-col items-center text-center my-[30px] md:my-[60px]">
+    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+      <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1 className="font-karla text-[2.25rem] md:text-[3.5rem]">
           <span className="text-purple_dark font-medium">Transparansi</span> dan{' '}
           <span className="text-purple_dark font-medium">efisiensi</span> dalam
@@ -30,13 +30,15 @@ const Klaim = () => {
         </h1>
       </section>
 
-      <SearchBox
-        onSearch={(value: string) => {
-          setSearchKeywords(value);
-        }}
-        placeHolder="Cari Formulir"
-      />
-      <div className="flex flex-col gap-3">
+      <div className='pb-[24px] lg:pb-[48px]'>
+        <SearchBox
+          onSearch={(value: string) => {
+            setSearchKeywords(value);
+          }}
+          placeHolder="Cari Formulir"
+        />
+      </div>
+      <div className="flex flex-col gap-6">
         {transformedData && categoryList.length > 0 ? (
           categoryList?.map((element: any, idx: number) => {
             const currentData =

@@ -69,7 +69,7 @@ const FooterInformation = ({
                     !buttonVariant || buttonVariant === 'primary'
                       ? 'bg-purple_dark text-white'
                       : buttonVariant === 'secondary'
-                        ? 'bg-white'
+                        ? 'bg-white border border-purple_dark text-purple_dark'
                         : buttonVariant === 'syariah'
                           ? 'text-syariah_green bg-white !py-[0.75rem]'
                           : buttonVariant === 'dplk'

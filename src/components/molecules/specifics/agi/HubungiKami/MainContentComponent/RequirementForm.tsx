@@ -21,7 +21,8 @@ export const RequirementForm = (props: Props) => {
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [attachmentFile, setAttachmentFile] = useState('');
-
+  const [maxSizeValidation, setMaxSizeValidation] = useState<boolean>(false);
+  const [attachmentFileSize, setAttachmentFileSize] = useState(0);
   useEffect(() => {
     if (Id) {
       const fetchDataForm = async () => {
@@ -67,20 +68,39 @@ export const RequirementForm = (props: Props) => {
       };
     }
 
-    const data = await handleSendEmail(queryParams);
-    if (data.status === 'OK') {
-      setShowSuccess(true);
-    }
+    const size10Mb = 10 * 1024;
+    if (attachmentFileSize > size10Mb) {
+      setMaxSizeValidation(true);
+    } else {
+      const data = await handleSendEmail(queryParams);
+      if (data.status === 'OK') {
+        setShowSuccess(true);
+      }
 
-    if (data.status !== 'OK') {
-      console.error('Error:', data.errors.message);
-      router.refresh();
+      if (data.status !== 'OK') {
+        console.error('Error:', data.errors.message);
+        router.refresh();
+      }
     }
   };
 
-  const handleChangeAttachment = (value: string) => {
-    if (value) {
-      setAttachmentFile(value);
+  const handleChangeAttachment = (value: string, files: any, type: string) => {
+    setMaxSizeValidation(false);
+    if (type === 'delete') {
+      const newData = attachmentFile.replace(value, '');
+      setAttachmentFile(newData);
+      if (files) {
+        const filesInKb = Math.round(files.size / 1024);
+        setAttachmentFileSize(attachmentFileSize - filesInKb);
+      }
+    } else {
+      if (value) {
+        setAttachmentFile(value);
+      }
+      if (files) {
+        const filesInKb = Math.round(files.size / 1024);
+        setAttachmentFileSize(filesInKb + attachmentFileSize);
+      }
     }
   };
 
@@ -103,7 +123,11 @@ export const RequirementForm = (props: Props) => {
               resultData={receiveData}
             />
           )}
-          <ReportForm onChangeData={handleChangeAttachment} />
+          <ReportForm
+            maxSizeValidation={maxSizeValidation}
+            setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
+            onChangeData={handleChangeAttachment}
+          />
           <div className="flex flex-row mt-[1.5rem] md:mt-[2.25rem]">
             <div>
               <input

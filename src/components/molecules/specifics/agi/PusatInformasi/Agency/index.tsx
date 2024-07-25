@@ -19,7 +19,7 @@ const Agency = (props: agencyProps) => {
 
   return (
     <div
-      className={`flex flex-col gap-4 ${tab.includes('Agency') && content ? '' : 'px-[2rem] md:px-[8.5rem] pb-[3.25rem]'}`}
+      className={`flex flex-col ${tab.includes('Agency') && content ? '' : 'px-[2rem] md:px-[8.5rem] pb-[6.25rem]'}`}
     >
       {tab.includes('Agency') && content ? (
         <Detail pageData={pageData} />

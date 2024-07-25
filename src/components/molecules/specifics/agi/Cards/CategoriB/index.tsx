@@ -23,9 +23,9 @@ const CardCategoryB = ({
       <Image
         alt="blank-image"
         width={0}
-        height={170}
+        height={190}
         src={imageUrl ?? BlankImage}
-        className={`w-auto rounded-t-[12px] ${imageStyle ?? ''}`}
+        className={`w-auto rounded-t-[12px] h-[190px] object-cover ${imageStyle ?? ''}`}
       />
       <div className="h-full flex flex-col justify-between px-5 pb-5">
         <p

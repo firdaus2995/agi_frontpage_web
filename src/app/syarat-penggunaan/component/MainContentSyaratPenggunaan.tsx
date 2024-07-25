@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import Disclaimer from '../tabs/Disclaimer';
@@ -8,15 +7,21 @@ import KepemilikanInformasi from '../tabs/KepemilikanInformasi';
 import KontenSitus from '../tabs/KontenSitus';
 import SyaratPenggunaan from '../tabs/SyaratPenggunaan';
 
-import ROUNDED_FRAME_BOTTOM from '@/assets/images/rounded-frame-bottom.svg';
 import Icon from '@/components/atoms/Icon';
+interface Props {
+  content: any;
+}
 
-const MainContentSyaratPenggunaan = () => {
+const MainContentSyaratPenggunaan = ({content}: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [tab, setTab] = useState('Disclaimer');
   const [isOpen, setIsOpen] = useState(false);
+  const disclaimerRef = useRef(null);
+  const syaratRef = useRef(null);
+  const kontenRef = useRef(null);
+  const kepemilikanRef = useRef(null);
 
   const handleTabClick = (tabs: string) => {
     setTab(tabs);
@@ -31,10 +36,36 @@ const MainContentSyaratPenggunaan = () => {
     return params.toString();
   };
 
+  const getRefByTab = (tab: string) => {
+    switch (tab) {
+      case 'Disclaimer':
+        return disclaimerRef;
+      case 'Syarat Penggunaan':
+        return syaratRef;
+      case 'Konten Situs':
+        return kontenRef;
+      case 'Kepemilikan Informasi':
+        return kepemilikanRef;
+      default:
+        return null;
+    }
+  };
+
+  const handleScrollToRef = (ref: React.MutableRefObject<null> | null) => {
+    if (ref?.current) {
+      (ref.current! as HTMLElement).scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'start'
+      });
+    }
+  };
+
   useEffect(() => {
     const value = searchParams.get('tab');
     if (value !== null) {
       setTab(value);
+      handleScrollToRef(getRefByTab(value));
     }
   }, [searchParams]);
 
@@ -46,8 +77,8 @@ const MainContentSyaratPenggunaan = () => {
   ];
   return (
     <div className=" w-full flex flex-col  relative bottom-[70px]">
-      <div className="bg-white rounded-t-[80px] w-full min-h-[60px]">
-        <div className="px-[136px] py-[100px] flex flex-row">
+      <div className="bg-white w-full min-h-[60px]">
+        <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
           {/* start tabs kiri */}
           <div className="sm:block hidden rounded-lg">
             <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
@@ -109,20 +140,22 @@ const MainContentSyaratPenggunaan = () => {
             )}
           </div>{' '}
           {/* end tabs kiri */}
-          <div className="ml-[48px]">
-            {tab === 'Disclaimer' && <Disclaimer />}
-            {tab === 'Syarat Penggunaan' && <SyaratPenggunaan />}
-            {tab === 'Konten Situs' && <KontenSitus />}
-            {tab === 'Kepemilikan Informasi' && <KepemilikanInformasi />}
+          <div className="sm:ml-[48px] flex flex-col xs:mt-[2rem] sm:mt-0">
+            <div ref={disclaimerRef}>
+              <Disclaimer content={content} />
+            </div>
+            <div ref={syaratRef}>
+              <SyaratPenggunaan content={content} />
+            </div>
+            <div ref={kontenRef}>
+              <KontenSitus content={content} />
+            </div>
+            <div ref={kepemilikanRef}>
+              <KepemilikanInformasi content={content} />
+            </div>
           </div>
         </div>
       </div>
-      <Image
-        alt="border-bottom"
-        className="w-full h-auto"
-        src={ROUNDED_FRAME_BOTTOM}
-        style={{ userSelect: 'none' }}
-      />
     </div>
   );
 };

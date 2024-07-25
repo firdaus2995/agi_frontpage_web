@@ -4,7 +4,6 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import LaporanPerusahaan from './tabs/laporan-perusahaan';
 import Manajemen from './tabs/management';
 import SekilasPerusahaan from './tabs/sekilas-perusahaan';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import CustomContainer from '@/components/molecules/specifics/agi/Containers/Custom';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
@@ -233,8 +232,8 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
           buttonTitle={footerBtnLabel}
           image={footerImage.imageUrl}
           href={footerBtnUrl}
+          buttonVariant={parseInt(footerBtnLabel) ? "secondary" : 'primary'}
         />
-        <RoundedFrameTop bgColor="xs:bg-white md:bg-purple_superlight" />
       </div>
       <div className="w-full h-full">
         <FooterCards

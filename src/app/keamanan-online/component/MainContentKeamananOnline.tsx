@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import KeamananOnline from '../tabs/keamanan-online';
-import ROUNDED_FRAME_BOTTOM from '@/assets/images/rounded-frame-bottom.svg';
 import Icon from '@/components/atoms/Icon';
 
-const MainContentKeamananOnline = () => {
+interface Props {
+  content: any;
+}
+
+const MainContentKeamananOnline = ({content}: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -40,8 +42,8 @@ const MainContentKeamananOnline = () => {
   const tabs = ['Keamanan Online'];
   return (
     <div className=" w-full flex flex-col  relative bottom-[70px]">
-      <div className="bg-white rounded-t-[80px] w-full min-h-[60px]">
-        <div className="px-[136px] py-[100px] flex flex-row">
+      <div className="bg-white w-full min-h-[60px]">
+        <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
           {/* start tabs kiri */}
           <div className="sm:block hidden rounded-lg">
             <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
@@ -103,17 +105,11 @@ const MainContentKeamananOnline = () => {
             )}
           </div>
           {/* end tabs kiri */}
-          <div className="ml-[48px]">
-            {tab === 'Keamanan Online' && <KeamananOnline />}
+          <div className="sm:ml-[48px] flex flex-col xs:mt-[2rem] sm:mt-0">
+            {tab === 'Keamanan Online' && <KeamananOnline content={content} />}
           </div>
         </div>
       </div>
-      <Image
-        alt="border-bottom"
-        className="w-full h-auto"
-        src={ROUNDED_FRAME_BOTTOM}
-        style={{ userSelect: 'none' }}
-      />
     </div>
   );
 };

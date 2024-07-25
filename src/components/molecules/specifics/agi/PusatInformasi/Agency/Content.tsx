@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
 import Icon from '@/components/atoms/Icon';
+import NotFound from '@/components/atoms/NotFound';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CardCategoryB from '@/components/molecules/specifics/agi/Cards/CategoriB';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
@@ -38,9 +39,10 @@ const Content = (props: contentProps) => {
   };
   const sliderSettings = {
     dots: true,
-    infinite: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
     arrows: false,
-    centerMode: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -60,18 +62,18 @@ const Content = (props: contentProps) => {
   const [, setTab] = useState('');
   const [category, setCategory] = useState('');
 
-  const [searchKeyWords, setSearchKeywords] = useState('');
   const [search, setSearch] = useState('');
-  const [year, setYear] = useState<any>([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [month, setMonth] = useState<any>([]);
-  const [selectedMonth, setSelectedMonth] = useState('');
   const [listData, setListData] = useState<any>([]);
   const [sliderData, setSliderData] = useState<any>([]);
 
   const ITEMS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const totalItem = listData.length;
+  const [params, setParams] = useState({
+    yearFilter: '',
+    monthFilter: '',
+    searchFilter: ''
+  });
 
   const totalPages = Math.ceil(listData.length / ITEMS_PER_PAGE);
 
@@ -122,9 +124,9 @@ const Content = (props: contentProps) => {
       try {
         const queryParams: QueryParams = {
           includeAttributes: 'true',
-          searchFilter: searchKeyWords,
-          yearFilter: selectedYear,
-          monthFilter: selectedMonth
+          searchFilter: params.searchFilter,
+          yearFilter: params.yearFilter,
+          monthFilter: params.monthFilter
         };
         const data = await handleGetContentCategory(
           'Berita-dan-Acara-Agency-AGI',
@@ -153,9 +155,6 @@ const Content = (props: contentProps) => {
             });
           }
         }
-
-        setYear(transformData(uniqueTahun, 'Pilih Tahun', setSelectedYear));
-        setMonth(transformData(uniqueBulan, 'Pilih Bulan', setSelectedMonth));
 
         const newDataContentWithCategory = Object.values(data.data.categoryList)
           .flat()
@@ -204,7 +203,101 @@ const Content = (props: contentProps) => {
     };
 
     fetchData();
-  }, [searchKeyWords, selectedMonth, selectedYear]);
+  }, [params]);
+
+  const yearDropdown = (startYear: number) => {
+    const currentYear = new Date().getFullYear();
+
+    const years = [
+      {
+        label: 'Pilih Tahun',
+        value: '',
+        onClick: () => setParams({ ...params, yearFilter: '' })
+      }
+    ];
+
+    for (let year = currentYear; year >= startYear; year--) {
+      years.push({
+        label: year.toString(),
+        value: year.toString(),
+        onClick: () => setParams({ ...params, yearFilter: year.toString() })
+      });
+    }
+
+    return years;
+  };
+
+  const monthDropdown = () => {
+    const month = [
+      {
+        label: 'Pilih Bulan',
+        value: '',
+        onClick: () => setParams({ ...params, monthFilter: '' })
+      },
+      {
+        label: 'Januari',
+        value: '01',
+        onClick: () => setParams({ ...params, monthFilter: '01' })
+      },
+      {
+        label: 'Februari',
+        value: '02',
+        onClick: () => setParams({ ...params, monthFilter: '02' })
+      },
+      {
+        label: 'Maret',
+        value: '03',
+        onClick: () => setParams({ ...params, monthFilter: '03' })
+      },
+      {
+        label: 'April',
+        value: '04',
+        onClick: () => setParams({ ...params, monthFilter: '04' })
+      },
+      {
+        label: 'Mei',
+        value: '05',
+        onClick: () => setParams({ ...params, monthFilter: '05' })
+      },
+      {
+        label: 'Juni',
+        value: '06',
+        onClick: () => setParams({ ...params, monthFilter: '06' })
+      },
+      {
+        label: 'Juli',
+        value: '07',
+        onClick: () => setParams({ ...params, monthFilter: '07' })
+      },
+      {
+        label: 'Agustus',
+        value: '08',
+        onClick: () => setParams({ ...params, monthFilter: '08' })
+      },
+      {
+        label: 'September',
+        value: '09',
+        onClick: () => setParams({ ...params, monthFilter: '09' })
+      },
+      {
+        label: 'Oktober',
+        value: '10',
+        onClick: () => setParams({ ...params, monthFilter: '10' })
+      },
+      {
+        label: 'November',
+        value: '11',
+        onClick: () => setParams({ ...params, monthFilter: '11' })
+      },
+      {
+        label: 'Desember',
+        value: '12',
+        onClick: () => setParams({ ...params, monthFilter: '12' })
+      }
+    ];
+
+    return month;
+  };
 
   const getDifference = (arr1: any, arr2: any) => {
     const map2 = new Map(arr2.map((obj: { id: any }) => [obj.id, obj]));
@@ -213,33 +306,14 @@ const Content = (props: contentProps) => {
     return difference;
   };
 
-  const transformData = (
-    data: any,
-    initialSelect: string,
-    setSelectedFunction: any
-  ) => {
-    const dataArray = Array.from(data).sort((a: any, b: any) => b - a);
-
-    const transformedData = [
-      { label: initialSelect, value: '' },
-      ...dataArray.map((item) => ({
-        label: item,
-        value: item,
-        onClick: () => setSelectedFunction(item)
-      }))
-    ];
-
-    return transformedData;
-  };
-
   return (
-    <div className="w-full flex flex-col items-center justify-center py-2 mt-10">
-      <div className="text-center">
-        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-medium mb-6 text-purple_dark">
+    <div className="w-full flex flex-col items-center justify-center py-2 pt-[5rem] pb-[32px] lg:pb-[64px]">
+      <div className="text-center lg:pb-2 xs:pb-[56px]">
+        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-medium text-purple_dark">
           {contentStringTransformer(pageData['nama-section'])}
         </h2>
         <h2
-          className="text-[1.5rem] md:text-[2rem] mb-6"
+          className="text-[1.5rem] md:text-[2rem]"
           dangerouslySetInnerHTML={{
             __html: contentStringTransformer(pageData['deskripsi-section'])
           }}
@@ -321,6 +395,7 @@ const Content = (props: contentProps) => {
 
       <div className="flex flex-col w-full">
         <CategoryWithThreeCards
+          outerClass={'!py-[48px]'}
           hiddenCategory
           hidePagination
           defaultSelectedCategory={category}
@@ -329,7 +404,7 @@ const Content = (props: contentProps) => {
             setSearch(e.target.value);
           }}
           onSearch={() => {
-            setSearchKeywords(search);
+            setParams({ ...params, searchFilter: search });
           }}
           filterRowLayout={true}
           categoryCard="B"
@@ -338,18 +413,18 @@ const Content = (props: contentProps) => {
             {
               type: 'dropdown',
               label: 'tahun',
-              options: year
+              options: yearDropdown(2009)
             },
             {
               type: 'dropdown',
               label: 'Bulan',
-              options: month
+              options: monthDropdown()
             }
           ]}
           searchPlaceholder="Cari Kegiatan"
           customContent={
             <>
-              {paginatedData.length > 0 && (
+              {paginatedData.length > 0 ? (
                 <div className="grid grid-cols-3 gap-[24px] xs:max-sm:grid-cols-1">
                   {paginatedData.map(
                     (
@@ -375,17 +450,19 @@ const Content = (props: contentProps) => {
                     )
                   )}
                 </div>
+              ) : (
+                <NotFound />
               )}
             </>
           }
         />
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
           <p className="text-lg">
             Menampilkan{' '}
             <span className="font-bold">{`${currentPage * ITEMS_PER_PAGE - (ITEMS_PER_PAGE - 1)}-${ITEMS_PER_PAGE * currentPage > totalItem ? totalItem : ITEMS_PER_PAGE * currentPage}`}</span>{' '}
             dari <span className="font-bold">{totalItem}</span> hasil
           </p>
-          <div className="flex flex-row gap-[12px] items-center">
+          <div className="flex flex-row gap-1 lg:gap-[12px] items-center">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <div
                 key={page}

@@ -27,11 +27,11 @@ const Hero: React.FC<IHero> = ({
 }) => {
   return (
     <div
-      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[26.25rem] sm:h-[38.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
+      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[24rem] sm:h-[35.5rem]' : 'xs:h-[9.375rem] md:h-[18.75rem]'}`}
     >
       <div className="w-full flex items-center">
         <div
-          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between px-[2rem] md:px-[8.5rem] items-center xs:pt-[2.5rem] md:pt-[3.75rem]`}
+          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between px-[2rem] md:px-[8.5rem] items-center xs:pt-[2rem] md:pt-[0.5rem]`}
         >
           <div className="line-clamp-1 md:w-[60%]">
             <p className="hidden sm:block font-karla text-white text-[1.125rem] sm:text-[3rem] font-light">
@@ -56,15 +56,21 @@ const Hero: React.FC<IHero> = ({
           </span>
         </div>
       </div>
-      <Image
-        className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[9.375rem] sm:h-[17.5rem]' : 'lg:h-[15.625rem] xs:h-[150px]'}`}
-        alt="Avrist"
-        src={imageUrl ?? HERO_IMAGE}
-        width={100}
-        height={100}
-      />
+      {imageUrl ? (
+        <Image
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[90px]`}
+          alt="Avrist"
+          src={imageUrl ?? HERO_IMAGE}
+          width={100}
+          height={100}
+        />
+      ) : (
+        <div
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[90px] bg-purple_soft`}
+        ></div>
+      )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[6.25rem] sm:top-[12.5rem] absolute h-[50vh]">
+        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute h-[50vh]">
           <Image
             className="w-full h-full object-cover"
             alt="gambar-produk-individu"

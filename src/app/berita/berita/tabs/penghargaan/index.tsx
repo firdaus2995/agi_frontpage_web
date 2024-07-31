@@ -131,15 +131,15 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         };
       });
 
-      if (sliderData?.length > 0) {
-        if (transformedData.length < 6) {
-          setContentData(transformedData);
-        } else {
-          setContentData(getDifference(transformedData, sliderData));
-        }
+      if (!transformedData) {
+        setContentData([]);
       } else {
-        setSliderData(transformedData.slice(0, 5));
-        setContentData(transformedData.slice(5));
+        if (sliderData?.length > 0) {
+          setContentData(getDifference(transformedData, sliderData));
+        } else {
+          setSliderData(transformedData.slice(0, 5));
+          setContentData(transformedData.slice(5));
+        }
       }
     } catch (err) {
       console.error(err);

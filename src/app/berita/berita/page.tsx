@@ -160,13 +160,17 @@ const Berita: React.FC<ParamsProps> = () => {
       const value = searchParams.get('tab');
 
       if (value !== null) {
-        setTab(value);
+        if (value === 'Penghargaan dan Prestasi') {
+          setTab('Penghargaan');
+        } else {
+          setTab(value);
+        }
       }
     }
   }, [searchParams]);
 
   useEffect(() => {
-    if(tabs.find((item: any) => item.name === tab)?.url) {
+    if (tabs.find((item: any) => item.name === tab)?.url) {
       fetchData();
     }
   }, [tab]);

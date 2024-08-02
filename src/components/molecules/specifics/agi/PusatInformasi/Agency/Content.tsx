@@ -336,12 +336,17 @@ const Content = (props: contentProps) => {
                     bgColor="purple_superlight"
                     title={
                       <div className="flex flex-col gap-4 text-left">
-                        <p className="text-[14px]">
-                          <span className="font-bold text-purple_dark">
-                            {item.category !== '-' ? item.category : ''}
-                          </span>{' '}
-                          {item.date !== '-' ? `| ${item.date}` : ''}
-                        </p>
+                        <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[200px]">
+                          {item.category !== '-' &&
+                            item.category !== undefined && (
+                              <div className="font-bold text-purple_dark">
+                                {item.category}
+                              </div>
+                            )}
+                          {item.date !== '-' && item.date !== undefined && (
+                            <div className="ml-2">{item.date}</div>
+                          )}
+                        </div>
                         <p className="text-[36px] font-bold">
                           {item.title !== '-' ? item.title : ''}
                         </p>

@@ -173,7 +173,7 @@ const CategorySideBySideSixCards = ({
                       item.urlDownload &&
                       (await handleDownload(item.urlDownload))
                     }
-                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans`}
+                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
                   >
                     <p>{item.btnLabel}</p>
                   </button>
@@ -181,7 +181,7 @@ const CategorySideBySideSixCards = ({
                   item.urlDownload && (
                     <Link
                       href={item.urlDownload}
-                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-xl font-semibold font-opensans text-center`}
+                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
                     >
                       <p>{item.btnLabel}</p>
                     </Link>
@@ -205,7 +205,7 @@ const CategorySideBySideSixCards = ({
                   alt="symbol"
                   src={extraBox?.icon}
                 />
-                <p className="font-opensans font-semibold text-purple_dark text-xl">
+                <p className="font-opensans font-semibold text-purple_dark text-[20px] whitespace-nowrap">
                   {extraBox?.buttonTitle}
                 </p>
               </Link>

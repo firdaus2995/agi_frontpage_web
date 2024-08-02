@@ -25,6 +25,7 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
   const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
   const [titleContent, setTitleContent] = useState('');
   const [mainContent, setMainContent] = useState('');
+  const [tags, setTags] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,7 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
         setFooterImage(singleImageTransformer(content['cta1-image']));
         // contrent
         const { content: contentDetail } = contentDetailTransformer(detail);
+        setTags(contentStringTransformer(contentDetail['tags']));
         setTitleContent(
           contentStringTransformer(contentDetail['pertanyaan-tanya-avgen'])
         );
@@ -55,12 +57,12 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
     <div className="bg-purple_superlight">
       <Suspense>
         <Hero
-          title={titleContent}
+          title={tags}
           imageUrl={bannerImage.imageUrl}
           breadcrumbsData={[
             { title: 'Beranda', href: '/' },
             {
-              title: 'Detail',
+              title: 'Tanya Avgen',
               href: '#'
             }
           ]}
@@ -74,7 +76,9 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
         <FooterInformation
           title={
             <p className="font-karla text-[2.5rem] md:text-[3.5rem] md:tracking-[-0.3%] md:leading-[61.6px]">
-              Ada yang bisa <span className="font-bold text-purple_dark">AvGen</span> bantu untuk Anda?
+              Ada yang bisa{' '}
+              <span className="font-bold text-purple_dark">AvGen</span> bantu
+              untuk Anda?
             </p>
           }
           buttonTitle="Tanya AvGen"

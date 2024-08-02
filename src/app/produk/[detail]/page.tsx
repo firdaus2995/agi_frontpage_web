@@ -22,9 +22,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SuccessModal } from '@/components/molecules/specifics/agi/Modal';
 import VideoInformation from '@/components/molecules/specifics/agi/Produk/ContentComponent/VideoInformation';
-import { handleGetContentPage } from '@/services/content-page.api';
+import { handleGetContentDetail, handleGetContentPage } from '@/services/content-page.api';
 import { handleSendEmail } from '@/services/form.api';
-import { ContentDetailResponse } from '@/types/content.type';
 import {
   contentDetailTransformer,
   contentStringTransformer,
@@ -115,7 +114,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           judul: contentStringTransformer(content['judul-kotak-3']),
           btnLabel: contentStringTransformer(content['label-button-kotak-3'])
         };
-        console.log(kotak3)
         const kotak4 = {
           judul: contentStringTransformer(content['judul-kotak-4']),
           btnLabel: contentStringTransformer(content['label-button-kotak-4'])
@@ -184,8 +182,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
     };
 
     async function fetchDetailData() {
-      const response = await fetch(`/api/produk/${params.detail}`);
-      const jsonData: ContentDetailResponse = await response.json();
+      const jsonData = await handleGetContentDetail(params.detail);
 
       const { content } = contentDetailTransformer(jsonData);
 
@@ -275,7 +272,9 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         kategoriProdukIcon,
         fileRiplay,
         fileBrosur,
-        categoryTitle: jsonData.data.categoryName,
+        categoryTitle: jsonData.data.categories
+        .map((item: any) => item.categoryName)
+        .join(', '),
         formId: jsonData.data?.formId || formProduk || '6979',
         kotak1,
         kotak2,

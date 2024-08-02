@@ -45,7 +45,7 @@
           {
             "title": "Pusat Informasi",
             "subMenus": [
-              { "title": "Formulir Penutupan", "icon": 0 },
+              { "title": "Formulir", "icon": 0 },
               { "title": "Klaim", "icon": 1 },
               { "title": "Rekanan", "icon": 2 }
             ]

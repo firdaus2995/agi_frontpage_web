@@ -118,7 +118,7 @@ const Footer = () => {
               <div>
                 <a
                   href="/pusat-informasi/pusat-informasi?tab=Kantor+Cabang"
-                  className="font-semibold font-opensanspro text-footer-subtitle"
+                  className="font-semibold font-opensanspro text-footer-subtitle whitespace-normal"
                 >
                   Lokasi Avrist General Insurance
                 </a>

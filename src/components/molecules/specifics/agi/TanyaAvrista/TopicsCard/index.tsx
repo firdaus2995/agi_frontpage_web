@@ -34,7 +34,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col gap-[5rem] items-center bg-[#F7F4F8] sm:px-[5rem] sm:pt-[5rem] sm:pb-[5rem] xs:py-[5rem] xs:px-[1.3125rem]">
+    <div className="w-full bg-white flex flex-col gap-[2.25rem] lg:gap-[5rem] items-center bg-[#F7F4F8] sm:px-[5rem] sm:pt-[5rem] sm:pb-[5rem] xs:py-[2.25rem] xs:px-[1.3125rem]">
       <h1 className="font-karla text-tanya-avgen-title-mobile lg:text-tanya-avgen-title-desktop text-purple_dark text-center">
         Apa yang ingin <span className="font-bold">Anda </span> ketahui?
       </h1>

@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import CHEVRONRIGHTPURPLE from '@/assets/images/agi/component/product-section/chevron-right-purple.svg';
 
 interface INewsCard {
   label: string;
@@ -18,29 +16,30 @@ const NewsCard: React.FC<INewsCard> = ({
   tags
 }) => {
   return (
-    <div className="mx-3 rounded-xl border-2 border-gray_light p-6 flex flex-col gap-3">
+    <div className="rounded-xl border-2 border-gray_light px-[1.5rem] py-[2.25rem] flex flex-col gap-[0.75rem]">
       <span className="flex flex-row gap-2">
-        <p className="font-bold text-purple_dark text-top-heading-group">{label}</p>
-        <span className="w-[1px] h-auto bg-black" />
-        <p className="text-top-heading-group">{date}</p>
+        <p className="font-bold text-purple_dark text-sm leading-[19.6px]">{label}</p>
+        <span className="w-[0.0625rem] h-auto bg-gray_body" />
+        <p className="text-sm leading-[19.6px]">{date}</p>
       </span>
-      <p className="text-[1.5rem] w-[74%] font-bold">{title}</p>
-      <p className="text-base text-body-text-1 line-clamp-2">{description}</p>
+      <p className="text-2xl w-full lg:w-[74%] font-bold font-opensanspro xs:line-clamp-3 sm:line-clamp-none">{title}</p>
+      <div
+        className="text-body-text-1 line-clamp-2"
+        dangerouslySetInnerHTML={{
+          __html: description
+        }}
+      />
 
-      <div className="flex flex-row gap-2">
-        {tags.map((item, index) => (
-          <p
-            key={index}
-            className="text-purple_dark font-medium bg-gray_bglightgray px-2 py-1 text-top-heading-group"
-          >
-            {item}
-          </p>
-        ))}
-      </div>
-
-      <div className="flex flex-row gap-2 items-center">
-        <p className="text-[14px] font-bold text-purple_dark">Selengkapnya</p>
-        <Image alt="chevron" src={CHEVRONRIGHTPURPLE} width={17} />
+      <div className="flex flex-row flex-wrap gap-2">
+        {tags?.length > 0 &&
+          tags.map((item, index) => (
+            <p
+              key={index}
+              className="text-purple_dark font-semibold bg-gray_bglightgray px-2 py-1 text-sm leading-[19.6px] xs:line-clamp-1 sm:line-clamp-none"
+            >
+              {item}
+            </p>
+          ))}
       </div>
     </div>
   );

@@ -1,12 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import CONTACTS from '@/assets/images/common/contacts.svg';
 import DOCUMENT_CHART from '@/assets/images/common/document-chart.svg';
 import NOTES from '@/assets/images/common/notes.svg';
 import RECEIPT from '@/assets/images/common/receipt.svg';
-import WHATSAPP_IMAGE from '@/assets/images/whatsapp-image-small.svg';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -15,7 +13,11 @@ import SearchTerm from '@/components/molecules/specifics/agi/TanyaAvrista/Search
 import TopicsCard from '@/components/molecules/specifics/agi/TanyaAvrista/TopicsCard';
 import { getListFaq, getTanyaAvgen } from '@/services/tanya-avgen.api';
 import { QueryParams } from '@/utils/httpService';
-import { contentStringTransformer, pageTransformer, singleImageTransformer } from '@/utils/responseTransformer';
+import {
+  contentStringTransformer,
+  pageTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const breadcrumbsData = [
   { title: 'Beranda', href: '/' },
@@ -73,6 +75,9 @@ const TanyaAvgen = () => {
   const [listData, setListData] = useState<IListFaq[]>([]);
   const [listFilteredData, setListFilteredData] = useState<IListFaq[]>([]);
   const [selectedCards, setSelectedCards] = useState('');
+  const [footerText, setFooterText] = useState('');
+  const [footerBtnLabel, setFooterBtnLabel] = useState('');
+  const [footerBtnUrl, setFooterBtnUrl] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,6 +90,11 @@ const TanyaAvgen = () => {
         setTitleImage(singleImageTransformer(content['title-image']));
         setBannerImage(singleImageTransformer(content['banner-image']));
         setFooterImage(singleImageTransformer(content['cta1-image']));
+        setFooterText(contentStringTransformer(content['cta1-teks']));
+        setFooterBtnLabel(
+          contentStringTransformer(content['cta1-label-button'])
+        );
+        setFooterBtnUrl(contentStringTransformer(content['cta1-link-button']));
 
         const listCards = topics.map((topic) => ({
           title: contentStringTransformer(content[topic.textKey]),
@@ -128,35 +138,24 @@ const TanyaAvgen = () => {
 
   return (
     <div>
-      <Hero title="Tanya AvGen" breadcrumbsData={breadcrumbsData} imageUrl={titleImage.imageUrl} />
+      <Hero
+        title="Tanya AvGen"
+        breadcrumbsData={breadcrumbsData}
+        imageUrl={titleImage.imageUrl}
+      />
       <SearchTerm bannerImage={bannerImage.imageUrl} />
       <TopicsCard cards={cards} onClickCards={handleCardsClick} />
       <FAQList selected={selectedCards} data={listFilteredData} />
       <FooterInformation
         title={
-          <div className="flex flex-col gap-5">
-            <p className="font-karla text-information-title-mobile lg:text-information-title-desktop">
-              Kami ada untuk membantu Anda.
-            </p>
-            <p className="font-black text-purple_dark font-karla text-information-title-mobile lg:text-information-title-desktop">
-              Hubungi Kami
-            </p>
-            <div className="rounded-lg border-2 border-purple_dark px-[52px] py-4 flex items-center justify-center gap-2">
-              <Image src={WHATSAPP_IMAGE} alt="wa" width={48} />
-              <p className="lg:text-[36px] text-[20px] leading-[28px] font-semibold text-purple_dark">
-                0811 1960 1000
-              </p>
-            </div>
-            <div className="flex items-center justify-center text-[14px] tracking-[0.3px] leading-[19.6px]">
-              <p>
-                <span className="font-bold">Waktu Operasional:</span> Senin -
-                Jumat, 08.00 - 17.00 WIB
-              </p>
-            </div>
-          </div>
+          <p
+            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
+          />
         }
+        buttonTitle={footerBtnLabel}
         image={footerImage.imageUrl}
-        href="/klaim-layanan/layanan?tab=Informasi+Nasabah"
+        href={footerBtnUrl}
       />
       <FooterCards
         bgColor="bg-purple_superlight"

@@ -258,7 +258,7 @@ const config: Config = {
         '56px',
         {
           lineHeight: '120%',
-          letterSpacing: '-2.24px'
+          letterSpacing: '-4%'
         },
       ],
       'information-title-mobile': [

@@ -6,7 +6,7 @@ import Input from '@/components/atoms/Input';
 
 const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
   return (
-    <div className="z-10 w-full bg-purple_dark -mt-[6.5rem] relative">
+    <div className="z-10 w-full bg-purple_dark -mt-[4rem] lg:-mt-[6.5rem] relative">
       <div className="w-full h-[20rem] md:h-[40rem] z-10 flex items-center absolute">
         <div className="w-full h-full grid sm:grid-cols-2 xs:grid-cols-1">
           <span />
@@ -30,7 +30,7 @@ const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
       </div>
       {bannerImage !== '' && (
         <Image
-          className="w-full sm:object-cover xs:object-none xs:object-right sm:object-center h-[640px]"
+          className="w-full sm:object-cover xs:object-none xs:object-right sm:object-center h-[320px] lg:h-[50vh]"
           alt="gambar-produk-individu"
           src={bannerImage}
           width={0}

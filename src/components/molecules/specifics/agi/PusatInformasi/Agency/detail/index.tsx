@@ -3,9 +3,6 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import ContentPopover from '../content-popover';
 import BlankImage from '@/assets/images/blank-image.svg';
-import Email from '@/assets/images/common/email.svg';
-import Office from '@/assets/images/common/office.svg';
-import Phone from '@/assets/images/common/phone.svg';
 import Icon from '@/components/atoms/Icon';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
 import VideoPlayer from '@/components/molecules/specifics/avram/VideoPlayer';
@@ -263,56 +260,6 @@ const Detail = (props: agencyDetailProps) => {
             }}
           />
         )}
-
-        <div className="flex flex-col gap-5 p-5 border border-b-8 border-b-purple_dark rounded-xl">
-          <p className="font-semibold text-xl">
-            {showContent(contentData.footnoteLabel1)}
-          </p>
-          <div>
-            <p className="font-semibold text-xl">
-              {showContent(contentData.footnoteLabel2)}
-            </p>
-            <p className="text-xl">{showContent(contentData.footnoteLabel3)}</p>
-          </div>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                alt={'email'}
-                className="w-6"
-                width={24}
-                height={24}
-                src={showContent(contentData.footnoteIcon1.imageUrl) ?? Email}
-              />
-              <p className="font-bold">
-                {showContent(contentData.footnoteLabel4)}
-              </p>
-            </div>
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                alt={'phone'}
-                className="w-6"
-                width={24}
-                height={24}
-                src={showContent(contentData.footnoteIcon2.imageUrl) ?? Phone}
-              />
-              <p className="font-bold">
-                {showContent(contentData.footnoteLabel5)}
-              </p>
-            </div>
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                alt={'office'}
-                className="w-6"
-                width={24}
-                height={24}
-                src={showContent(contentData.footnoteIcon3.imageUrl) ?? Office}
-              />
-              <p className="font-bold">
-                {showContent(contentData.footnoteLabel6)}
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

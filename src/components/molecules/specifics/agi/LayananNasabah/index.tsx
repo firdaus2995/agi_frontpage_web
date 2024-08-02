@@ -80,7 +80,7 @@ const LayananNasabah = (props: LayananNasabah) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`xs:w-[90%] lg:w-full max-h-[40vh] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
+        className={`xs:w-[90%] lg:w-full min-h-[240px] sm:gap-[32px] xs:gap-[12px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
       >
         <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
           <Image src={val.icon} alt={val.title} width={80} height={80} />
@@ -105,7 +105,7 @@ const LayananNasabah = (props: LayananNasabah) => {
               <div className="flex flex-row items-center gap-2 flex-wrap">
                 <Link
                   role="button"
-                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  className="flex flex-row flex-wrap items-center gap-4 whitespace-nowrap"
                   href={val.href1}
                 >
                   <p className={`font-semibold text-footer-card-subtitle`}>

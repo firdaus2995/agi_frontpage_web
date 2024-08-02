@@ -56,7 +56,7 @@ const Hero: React.FC<IHero> = ({
           </span>
         </div>
       </div>
-      {imageUrl ? (
+      {imageUrl && !imageUrl.includes('no-image') ? (
         <Image
           className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[90px]`}
           alt="Avrist"
@@ -70,7 +70,7 @@ const Hero: React.FC<IHero> = ({
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute h-[50vh]">
+        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute h-full lg:h-[50vh]">
           <Image
             className="w-full h-full object-cover"
             alt="gambar-produk-individu"

@@ -22,6 +22,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SuccessModal } from '@/components/molecules/specifics/agi/Modal';
 import VideoInformation from '@/components/molecules/specifics/agi/Produk/ContentComponent/VideoInformation';
+import { handleGetContentPage } from '@/services/content-page.api';
 import { handleSendEmail } from '@/services/form.api';
 import { ContentDetailResponse } from '@/types/content.type';
 import {
@@ -80,8 +81,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/produk/produk-detail');
-        const data = await response.json();
+        const data = await handleGetContentPage('Hal-Produk-Detail-AGI');
         setData(data);
 
         const { content } = pageTransformer(data);
@@ -115,7 +115,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           judul: contentStringTransformer(content['judul-kotak-3']),
           btnLabel: contentStringTransformer(content['label-button-kotak-3'])
         };
-
+        console.log(kotak3)
         const kotak4 = {
           judul: contentStringTransformer(content['judul-kotak-4']),
           btnLabel: contentStringTransformer(content['label-button-kotak-4'])
@@ -241,6 +241,9 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         deskripsi: contentStringTransformer(content['deskripsi-kotak-2'])
       };
       const kotak3 = {
+        icon: singleImageTransformer(content['icon-kotak-3']).imageUrl,
+        judul: contentStringTransformer(content['judul-kotak-3']),
+        btnLabel: contentStringTransformer(content['label-button-kotak-3']),
         url: contentStringTransformer(content['url-button-kotak-3'])
       };
       const kotak4 = {
@@ -446,7 +449,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   return (
     <div className="flex flex-col">
       <Hero
-        title={dataDetail?.namaProduk || 'Product Title'}
+        title={dataDetail?.categoryTitle || 'Product Title'}
         breadcrumbsData={[
           { title: 'Beranda', href: '/' },
           {
@@ -454,7 +457,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
             href: `/produk/?tab=${dataDetail?.categoryTitle}`
           },
           {
-            title: dataDetail?.namaProduk || 'Product Title',
+            title: dataDetail?.categoryTitle || 'Product Title',
             href: '#'
           }
         ]}
@@ -506,12 +509,12 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
                     description: dataDetail?.kotak2?.deskripsi ?? ''
                   },
                   {
-                    title: data?.kotak3?.judul ?? '',
+                    title: dataDetail?.kotak3?.judul ?? '',
                     description: dataDetail?.kotak3?.deskripsi ?? '',
                     hasDownloadButton: false,
-                    btnLabel: data?.kotak3?.btnLabel,
+                    btnLabel: dataDetail?.kotak3?.btnLabel,
                     urlDownload: dataDetail?.kotak3?.url,
-                    icon: data?.kotak3?.icon
+                    icon: dataDetail?.kotak3?.icon
                   },
                   {
                     title: data?.kotak4?.judul ?? '',

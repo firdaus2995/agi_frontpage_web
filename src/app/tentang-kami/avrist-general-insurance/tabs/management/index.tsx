@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Button from '@/components/atoms/Button/Button';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
 import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
 import {
   handleGetContent,
@@ -194,7 +193,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
           </div>
         </div>
       ) : contentData ? (
-        <div className="flex flex-col gap-[3rem] xs:px-[2rem] md:px-[8.5rem] gap-[5rem]">
+        <div className="flex flex-col gap-[3rem] xs:px-[2rem] md:px-[8.5rem] gap-[5rem] pb-[5rem]">
           <div className="mt-[5rem] flex flex-col gap-[3rem]">
             {managementList
               ? managementList?.map(
@@ -241,9 +240,6 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
           </div>
         </div>
       ) : null}
-      <div className="-mt-3 sm:mt-0">
-        <RoundedFrameBottom />
-      </div>
     </div>
   );
 };

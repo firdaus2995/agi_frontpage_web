@@ -97,10 +97,10 @@ const Footer = () => {
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
                 <a
-                  href="tel:+6281119601000"
+                  href="tel:+62812842422"
                   className="font-semibold font-karla text-footer-phone"
                 >
-                  0811 1960 1000
+                  0812 8424 22
                 </a>
               </div>
               <div>

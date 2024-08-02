@@ -50,15 +50,15 @@ const CategorySideBySideSixCards = ({
     const isUnordered = description.includes('<ul>');
     const defaultClassName = isRightSide
       ? 'text-sm font-opensans'
-      : 'xs:text-xl sm:text-2xl font-light font-karla -tracking-[0.72px]';
+      : 'xs:text-xl sm:text-2xl font-karla -tracking-[0.72px]';
 
     if (isOrdered) {
       return (
         <div
           dangerouslySetInnerHTML={{
             __html: description.replace(
-              '<ol>',
-              `<ol class="list-decimal pl-6 text-base font-normal font-opensans ${defaultClassName}">`
+              /<ol>/g,
+              `<ol class="list-decimal pl-6 font-karla ${defaultClassName}">`
             )
           }}
         />
@@ -69,8 +69,8 @@ const CategorySideBySideSixCards = ({
         <div
           dangerouslySetInnerHTML={{
             __html: description.replace(
-              '<ul>',
-              `<ul class="list-disc pl-6 text-base font-normal font-opensans ${defaultClassName}">`
+              /<ul>/g,
+              `<ul class="list-disc pl-6 font-karla ${defaultClassName}">`
             )
           }}
         />
@@ -115,7 +115,7 @@ const CategorySideBySideSixCards = ({
                         alt="symbol"
                         src={item.symbol}
                       />
-                      <p className="font-semibold text-banner-title-mobile lg:text-banner-title-desktop font-opensans">
+                      <p className="font-semibold text-[20px] leading-[28px] font-opensans">
                         {item.title}
                       </p>
                     </div>

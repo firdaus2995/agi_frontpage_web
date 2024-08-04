@@ -5,7 +5,7 @@ import ContentPopover from '../content-popover';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon from '@/components/atoms/Icon';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
-import VideoPlayer from '@/components/molecules/specifics/avram/VideoPlayer';
+import VideoPlayer from '@/components/molecules/specifics/agi/Klaim/VideoPlayer';
 import { handleGetContentDetail } from '@/services/content-page.api';
 import {
   contentDetailTransformer,
@@ -167,7 +167,7 @@ const Detail = (props: agencyDetailProps) => {
   };
 
   return (
-    <div className="w-full px-[2rem] md:px-[23.281rem] xs:py-[3.125rem] md:pb-[6.25rem] md:pt-0">
+    <div className="w-full px-[2rem] md:px-[20.5rem] xs:py-[3.125rem] md:pb-[6.25rem] md:pt-0">
       <div className="flex flex-col gap-[3rem]">
         <div className="flex flex-col gap-[1rem]">
           <p className="text-purple_dark font-semibold">
@@ -249,6 +249,8 @@ const Detail = (props: agencyDetailProps) => {
             <VideoPlayer
               thumbnail={''}
               url={showContent(contentData.artikelVideo) || ''}
+              mute={true}
+              color={''}
             />
           </div>
         )}

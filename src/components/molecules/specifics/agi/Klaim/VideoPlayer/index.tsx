@@ -11,13 +11,15 @@ export type VideoPlayerProps = {
   thumbnail?: string;
   type?: string;
   color: string;
+  mute?: boolean;
 };
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   url,
   thumbnail,
   type,
-  color
+  color,
+  mute = false
 }) => {
   const [isThumbnailVisible, setIsThumbnailVisible] = useState(true);
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -47,29 +49,22 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   }, [url]);
 
   useEffect(() => {
-    if (isThumbnailVisible || !videoPlayerRef.current) return;
-    try {
-      videoPlayerRef.current?.playVideo();
-    } catch (err) {
-      console.error('Error auto playing media', err);
-    }
-  }, [isThumbnailVisible]);
-
-  useEffect(() => {
     setIsThumbnailVisible(true);
     isReady.current = false;
     if (
-      !videoPlayerRef.current ||
-      !videoPlayerRef.current?.cueVideoById ||
+      !videoPlayerRef?.current ||
+      !videoPlayerRef?.current?.cueVideoById ||
       !videoId ||
-      videoPlayerRef.current.g === null
+      videoPlayerRef?.current?.g === null
     )
       return;
-    videoPlayerRef.current?.cueVideoById(videoId);
+    videoPlayerRef?.current?.cueVideoById(videoId);
   }, [videoId]);
 
   const handleReady = (ev: YouTubeEvent) => {
     videoPlayerRef.current = ev.target;
+    videoPlayerRef?.current?.playVideo();
+    mute && videoPlayerRef?.current?.mute();
     isReady.current = true;
     setIsThumbnailVisible(false);
   };
@@ -122,15 +117,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         ref={videoPlayerRef}
       /> */}
       <YouTube
+        // ref={videoPlayerRef}
         videoId={videoId}
         className="sm:h-[35.438rem] xs:h-[13.375rem]"
-        iframeClassName="-z-1 w-full sm:h-[35.438rem] xs:h-[13.375rem] rounded-t-xl"
+        iframeClassName={`-z-1 w-full sm:h-[35.438rem] xs:h-[13.375rem] ${type ? 'rounded-t-xl' : 'rounded-xl'}`}
         onReady={handleReady}
         opts={videoOptions}
       />
       {type && (
         <div
-          className={`p-[1.5rem] w-full bg-${color} rounded-b-xl text-white font-bold md:text-2xl font-karla flex flex-row justify-between`}
+          className={`p-[1.5rem] w-full bg-${color} rounded-b-xl text-white font-bold xs:text-xl sm:text-2xl font-karla flex flex-row justify-between font-karla -tracking-[0.72px] leading-[28.8px]`}
         >
           {type}
         </div>

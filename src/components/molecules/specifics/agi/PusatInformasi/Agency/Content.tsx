@@ -354,7 +354,7 @@ const Content = (props: contentProps) => {
                           {item.description !== '-' ? item.description : ''}
                         </p>
                         <div className="flex flex-row flex-wrap gap-[12px]">
-                          {item.tags?.length > 0
+                          {item.tags[0] !== '' && item.tags?.length > 0
                             ? item.tags.map(
                                 (
                                   value: string,

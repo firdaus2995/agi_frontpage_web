@@ -207,9 +207,9 @@ export const ReportForm = (props: ReportFormProps) => {
             </div>
           </div>
           {/* contact support */}
-          <div className="border border-gray_light rounded-xl flex flex-col justify-between overflow-hidden gap-[12px] pb-[1.5rem] px-[1.5rem] pt-[1.5rem] border-b-8 border-b-purple_dark">
+          <div className="border border-gray_light rounded-xl flex flex-col justify-between overflow-hidden gap-[12px] p-[1rem] lg:p-[1.5rem] border-b-8 border-b-purple_dark">
             <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
-              <div className="flex flex-row gap-[24px]">
+              <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image
                   width={24}
                   height={24}
@@ -220,31 +220,31 @@ export const ReportForm = (props: ReportFormProps) => {
                   Layanan Nasabah
                 </span>
               </div>
-              <span className="sm:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[48px] sm:ml-0">
-                021 5789 8188
+              <span className="sm:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] sm:ml-0">
+                021 5740 0381
               </span>
             </div>
             {/*  */}
             <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
-              <div className="flex flex-row gap-[24px]">
+              <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image width={24} height={24} alt="symbol" src={EMAIL} />
                 <span className="font-opensans font-bold text-[1rem]">
                   Email
                 </span>
               </div>
-              <span className="w-1/2 text-purple_dark font-normal text-[1rem] xs:ml-[48px] sm:ml-0">
-                customer@avrist.com
+              <span className="w-1/2 text-purple_dark font-normal text-[1rem] xs:ml-[36px] sm:ml-0 break-all">
+                avrist.general@avrist.com
               </span>
             </div>
             {/*  */}
             <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
-              <div className="flex flex-row gap-[24px]">
+              <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image width={24} height={24} alt="symbol" src={CLOCK} />
                 <span className="font-opensans font-bold text-[1rem]">
                   Waktu Operasional
                 </span>
               </div>
-              <span className="sm:w-1/2 xs:w-3/4 text-purple_dark font-normal text-[1rem] xs:ml-[48px] sm:ml-0">
+              <span className="sm:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] xs:ml-[36px] sm:ml-0">
                 Senin - Jumat, 08.00 - 17.00 WIB
               </span>
             </div>

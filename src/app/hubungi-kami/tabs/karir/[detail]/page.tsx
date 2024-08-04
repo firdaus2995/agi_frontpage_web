@@ -103,6 +103,38 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
     fetchData();
   }, []);
 
+  const renderedDescription = (description: string) => {
+    const isOrdered = description.includes('<ol>');
+    const isUnordered = description.includes('<ul>');
+
+    if (isOrdered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              /<ol>/g,
+              `<ol class="list-decimal pl-6 font-karla">`
+            )
+          }}
+        />
+      );
+    }
+    if (isUnordered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              /<ul>/g,
+              `<ul class="list-disc pl-6 font-karla">`
+            )
+          }}
+        />
+      );
+    }
+
+    return <p dangerouslySetInnerHTML={{ __html: description }}></p>;
+  };
+
   return (
     <>
       <Hero
@@ -123,9 +155,9 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
             <p className="font-semibold text-information-title-mobile lg:text-information-title-desktop">
               {title}
             </p>
-            <div className="flex flex-col-reverse lg:flex-row justify-end lg:justify-between items-end lg:items-center gap-10">
-              <div className="flex flex-row gap-4 text-nowrap text-md">
-                <div className="flex w-full flex-row items-center gap-2">
+            <div className="flex flex-col lg:flex-row justify-end lg:justify-between items-end lg:items-center gap-4 lg:gap-10">
+              <div className="flex flex-row gap-4 text-nowrap flex-wrap text-md">
+                <div className="flex flex-row items-center gap-2">
                   <Image
                     src={singleImageTransformer(detailData['icon-1']).imageUrl}
                     alt={singleImageTransformer(detailData['icon-1']).altText}
@@ -136,7 +168,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                     {contentStringTransformer(detailData['info-tambahan-1'])}
                   </p>
                 </div>
-                <div className="flex w-full flex-row items-center gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <Image
                     src={singleImageTransformer(detailData['icon-2']).imageUrl}
                     alt={singleImageTransformer(detailData['icon-2']).altText}
@@ -147,7 +179,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                     {contentStringTransformer(detailData['info-tambahan-2'])}
                   </p>
                 </div>
-                <div className="flex w-full flex-row items-center gap-2">
+                <div className="flex flex-row items-center gap-2">
                   <Image
                     src={singleImageTransformer(detailData['icon-3']).imageUrl}
                     alt={singleImageTransformer(detailData['icon-3']).altText}
@@ -188,10 +220,11 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                 ? 'hidden'
                 : 'career-content'
             }
-            dangerouslySetInnerHTML={{
-              __html: contentStringTransformer(detailData['isi-lowongan-1'])
-            }}
-          />
+          >
+            {renderedDescription(
+              contentStringTransformer(detailData['isi-lowongan-1'])
+            )}
+          </div>
           <div
             className={
               contentStringTransformer(detailData['isi-lowongan-2']) ===
@@ -199,10 +232,11 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                 ? 'hidden'
                 : 'career-content'
             }
-            dangerouslySetInnerHTML={{
-              __html: contentStringTransformer(detailData['isi-lowongan-2'])
-            }}
-          />
+          >
+            {renderedDescription(
+              contentStringTransformer(detailData['isi-lowongan-2'])
+            )}
+          </div>
           <div
             className={
               contentStringTransformer(detailData['isi-lowongan-3']) ===
@@ -210,10 +244,11 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                 ? 'hidden'
                 : 'career-content'
             }
-            dangerouslySetInnerHTML={{
-              __html: contentStringTransformer(detailData['isi-lowongan-3'])
-            }}
-          />
+          >
+            {renderedDescription(
+              contentStringTransformer(detailData['isi-lowongan-3'])
+            )}
+          </div>
           <div className="">
             <Button onClick={() => setOpenDialog(true)}>
               Apply For This job

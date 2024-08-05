@@ -163,9 +163,9 @@ const Timeline = ({ data, title }: IFooterInformation) => {
             .map((filteredVal) =>
               filteredVal.data.map((val, idx) => (
                 <div className="flex flex-col gap-4" key={idx}>
-                  <h3 className="text-2xl font-bold text-[#1A141F] text-left font-karla">
+                  <p className="text-[24px] font-opensanspro font-bold text-[#1A141F] text-left font-karla">
                     {val.title}
-                  </h3>
+                  </p>
                   <p
                     className="text-base font-normal text-[#1A141F] font-opensans"
                     dangerouslySetInnerHTML={{

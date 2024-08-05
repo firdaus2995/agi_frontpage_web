@@ -27,7 +27,7 @@ const Hero: React.FC<IHero> = ({
 }) => {
   return (
     <div
-      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[24rem] sm:h-[35.5rem]' : 'xs:h-[9.375rem] md:h-[12rem]'}`}
+      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[24rem] sm:h-[35.5rem]' : 'xs:h-[6rem] md:h-[6rem]'}`}
     >
       <div className="w-full flex items-center">
         <div
@@ -56,7 +56,7 @@ const Hero: React.FC<IHero> = ({
           </span>
         </div>
       </div>
-      {imageUrl ? (
+      {imageUrl && !imageUrl.includes('no-image') ? (
         <Image
           className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[90px]`}
           alt="Avrist"
@@ -70,7 +70,7 @@ const Hero: React.FC<IHero> = ({
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute h-[50vh]">
+        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute h-full lg:h-[50vh]">
           <Image
             className="w-full h-full object-cover"
             alt="gambar-produk-individu"

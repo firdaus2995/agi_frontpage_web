@@ -73,7 +73,6 @@ const Karir = (props: Props) => {
         });
         const transformedData = contentCategoryTransformer(fetchApi, '');
 
-        console.log(transformedData);
         const karirData = [];
         for (let i = 0; i < transformedData.length; i++) {
           const id = transformedData[i].id;
@@ -90,7 +89,7 @@ const Karir = (props: Props) => {
             locale: idTime
           });
           const icon1 = singleImageTransformer(
-            transformedData[i].content['icon-2']
+            transformedData[i].content['icon-1']
           );
           const icon2 = singleImageTransformer(
             transformedData[i].content['icon-2']
@@ -119,12 +118,12 @@ const Karir = (props: Props) => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-4 bg-white justify-center xs:pt-[3.125rem] md:pt-[5rem]">
+    <div className="w-full flex flex-col gap-4 bg-white justify-center">
       <div className="flex flex-col">
-        <div className="w-full flex flex-col items-center justify-center text-center">
-          <p className="font-karla font-bold text-[56px] text-center text-purple_dark flex flex-col">
+        <div className="w-full flex flex-col items-center justify-center text-center xs:py-[3.125rem] md:py-[5rem] px-[32px] md:px-[136px]">
+          <p className="font-karla font-bold text-heading-1-mobile lg:text-heading-1-desktop text-center text-purple_dark flex flex-col">
             {contentStringTransformer(pageData['body-judul'])}
-            <span className="text-[36px] text-black font-normal">
+            <span className="text-heading-2-mobile lg:text-heading-2-desktop text-black font-normal">
               {contentStringTransformer(pageData['body-sub-judul'])}
             </span>
           </p>
@@ -144,7 +143,7 @@ const Karir = (props: Props) => {
           </div>
         </div>
         <div className="bg-purple_superlight px-[2rem] md:px-[8.5rem] py-[2.5rem] md:pt-[5rem] md:pb-[100px]">
-          <h2 className="text-[2.25rem] md:text-[3.5rem] text-center font-semibold">
+          <h2 className="font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-center font-semibold">
             Lihat Lowongan di{' '}
             <span className="text-purple_dark">Avrist General Insurance</span>
           </h2>
@@ -174,7 +173,7 @@ const Karir = (props: Props) => {
                     key={index}
                     className="w-full flex flex-col gap-2 items-start p-4 border rounded-xl bg-white"
                   >
-                    <p className="font-bold text-[24px]">{item.title}</p>
+                    <p className="font-bold text-[24px] font-opensanspro">{item.title}</p>
                     <div className="flex w-full flex-row items-center gap-2">
                       <Image
                         src={item?.icon1.imageUrl}
@@ -209,8 +208,7 @@ const Karir = (props: Props) => {
                     >
                       <Button
                         title="Lihat Detail"
-                        customButtonClass="rounded-xl bg-purple_dark w-full mt-5"
-                        customTextClass="text-white"
+                        customButtonClass="rounded-xl w-full mt-5"
                       />
                     </Link>
                   </div>

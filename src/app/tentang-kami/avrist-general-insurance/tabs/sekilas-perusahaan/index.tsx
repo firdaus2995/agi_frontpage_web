@@ -169,7 +169,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
         />
 
         <p
-          className="text-[20px] lg:text-sekilas-perusahaan-text"
+          className="text-[20px] lg:text-sekilas-perusahaan-text font-light"
           dangerouslySetInnerHTML={{
             __html: desc
           }}
@@ -182,7 +182,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
         {visiMisi && <VisiMisi data={visiMisi} />}
       </div>
 
-      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-0 lg:py-[5rem] px-[32px] lg:px-[136px]">
+      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-[5rem] lg:py-[5rem] px-[32px] lg:px-[136px]">
         <div className="flex justify-center items-center pb-[5rem]">
           <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
             {section2Title}

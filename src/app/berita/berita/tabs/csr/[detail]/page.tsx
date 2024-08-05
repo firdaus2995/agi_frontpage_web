@@ -220,6 +220,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
                     url={detailItem.value ?? ''}
                     color="purple_dark"
                     type="Artikel Video"
+                    mute={true}
                   />
                 </div>
               );
@@ -278,12 +279,12 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[23.281rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[20.5rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               CSR
             </p>
-            <p className="font-bold text-[2.25rem] md:text-[3.5rem] mb-[0.75rem] font-karla">
+            <p className="font-bold mb-[0.75rem] font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop">
               {contentData?.judul}
             </p>
             <div className="flex flex-row justify-between items-center">
@@ -332,46 +333,6 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
           {contentData
             ? contentData?.loopArtikel?.map((item: any) => item)
             : null}
-
-          <div className="flex flex-col gap-5 p-5 border border-b-8 border-b-purple_dark rounded-xl">
-            <p className="font-semibold text-xl">{data?.footnote?.judul}</p>
-            <div className="flex flex-col">
-              <p className="font-bold text-xl">{data?.footnote?.nama}</p>
-              <p className="text-xl">{data?.footnote?.posisi}</p>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-              <div className="flex flex-row gap-2 items-center">
-                <Image
-                  alt={'email'}
-                  className="w-6"
-                  width={28}
-                  height={28}
-                  src={data?.footnote?.icon1}
-                />
-                <p className="font-bold">{data?.footnote?.email}</p>
-              </div>
-              <div className="flex flex-row gap-2 items-center">
-                <Image
-                  alt={'phone'}
-                  className="w-6"
-                  width={28}
-                  height={28}
-                  src={data?.footnote?.icon2}
-                />
-                <p className="font-bold">{data?.footnote?.phone}</p>
-              </div>
-              <div className="flex flex-row gap-2 items-center">
-                <Image
-                  alt={'office'}
-                  className="w-6"
-                  width={28}
-                  height={28}
-                  src={data?.footnote?.icon3}
-                />
-                <p className="font-bold">{data?.footnote?.alamat}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

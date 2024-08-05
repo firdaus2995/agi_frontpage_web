@@ -188,12 +188,19 @@ const CSR: FC<ICSR> = ({ title, description }) => {
               bgColor="purple_superlight"
               title={
                 <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px] md:h-[330px]">
-                  <p className="text-[14px]">
-                    <span className="font-bold text-purple_dark text-sm">
-                      {item.artikelTopic}
-                    </span>{' '}
-                    | {`${item.date} ${item.waktu}`}
-                  </p>
+                  <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[250px]">
+                    {item.artikelTopic !== '-' &&
+                      item.artikelTopic !== undefined && (
+                        <div className="font-bold text-purple_dark whitespace-nowrap">
+                          {item.artikelTopic}
+                        </div>
+                      )}
+                    {item.date !== '-' && item.date !== undefined && (
+                      <div className="pl-2 flex flex-row whitespace-nowrap">
+                        {item.date} {item.waktu}
+                      </div>
+                    )}
+                  </div>
                   <p
                     className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3"
                     dangerouslySetInnerHTML={{

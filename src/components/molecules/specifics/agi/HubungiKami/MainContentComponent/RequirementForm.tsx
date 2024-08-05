@@ -108,10 +108,10 @@ export const RequirementForm = (props: Props) => {
     <div className="bg-purple_superlight">
       <div className="bg-white mx-auto border rounded-xl border-gray_light overflow-hidden">
         <div className="p-[2.25rem]">
-          <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem]">
+          <p className="font-karla font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop">
             Diskusikan kebutuhan Anda disini!
           </p>
-          <p className="mt-[1.5rem] md:mt-[2.25rem] font-opensans text-[0.875rem] md:text-[1rem]">
+          <p className="mt-[1.5rem] md:mt-[2.25rem] font-opensans text-[0.875rem] md:text-[1rem] mb-[1rem]">
             isi data berikut dan Kami akan menghubungi Anda.
           </p>
           {dataForm && (

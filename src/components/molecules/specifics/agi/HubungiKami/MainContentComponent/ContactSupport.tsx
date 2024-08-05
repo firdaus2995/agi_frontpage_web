@@ -43,7 +43,7 @@ export const ContactSupport = (props: Props) => {
   return (
     <>
       <div className="hidden md:flex flex-row gap-[1.5rem] font-['Source Sans Pro']">
-        <div className="min-h-[340px] md:w-[380px] border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
+        <div className="min-h-[340px] md:w-[373px] border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
           <div className="p-[2.25rem] gap-[1.5rem] flex flex-col h-full">
             <Image
               src={
@@ -58,7 +58,7 @@ export const ContactSupport = (props: Props) => {
             </p>
           </div>
         </div>
-        <div className="min-h-[340px] w-basis-60 border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
+        <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-2-link'])}
             className="h-full font-opensans md:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
@@ -72,7 +72,7 @@ export const ContactSupport = (props: Props) => {
               height={100}
             />
             <div className="flex flex-col">
-              <p className="">
+              <p className="font-opensanspro font-bold">
                 {contentStringTransformer(pageData['informasi-2-nama'])}
               </p>
               <p className="text-purple_dark text-[16px] font-opensanspro">
@@ -81,7 +81,7 @@ export const ContactSupport = (props: Props) => {
             </div>
           </Link>
         </div>
-        <div className="min-h-[340px] w-basis-60 border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
+        <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-3-link'])}
             className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
@@ -96,7 +96,7 @@ export const ContactSupport = (props: Props) => {
             />
 
             <div className="flex flex-col">
-              <p className="">
+              <p className="font-opensanspro font-bold">
                 {contentStringTransformer(pageData['informasi-3-nama'])}
               </p>
               <p className="text-purple_dark text-[16px] font-opensanspro">
@@ -105,7 +105,7 @@ export const ContactSupport = (props: Props) => {
             </div>
           </Link>
         </div>
-        <div className="min-h-[340px] w-basis-60 border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
+        <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-4-link'])}
             className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
@@ -119,7 +119,7 @@ export const ContactSupport = (props: Props) => {
               height={100}
             />
             <div className="flex flex-col">
-              <p className="">
+              <p className="font-opensanspro font-bold">
                 {contentStringTransformer(pageData['informasi-4-nama'])}
               </p>
               <p className="text-purple_dark text-[16px] font-opensanspro">

@@ -54,7 +54,7 @@ const CompanySection = (props: CompanySection) => {
             dangerouslySetInnerHTML={{
               __html: contentStringTransformer(val['why-us-text-2'])
             }}
-            className="font-karla text-information-slider-subtitle-mobile lg:text-information-slider-subtitle-desktop text-left text-purple_dark line-clamp-2"
+            className="font-karla text-information-slider-subtitle-mobile lg:text-information-slider-subtitle-desktop text-left text-purple_dark line-clamp-3"
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}

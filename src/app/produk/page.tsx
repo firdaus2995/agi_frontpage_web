@@ -15,6 +15,7 @@ import FooterInformation from '@/components/molecules/specifics/agi/FooterInform
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
+import { handleGetContentPage } from '@/services/content-page.api';
 import { ParamsProps } from '@/utils/globalTypes';
 import {
   contentCategoryTransformer,
@@ -95,8 +96,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/produk`);
-        const data = await response.json();
+        const data = await handleGetContentPage('Hal-Produk-AGI');
 
         const { content } = pageTransformer(data);
         const titleImage = singleImageTransformer(content['title-image']);
@@ -396,7 +396,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         image={data.footerInfoImageUrl}
         href={data.footerBtnUrl}
       />
-      <div className='pt-[60px]'>
+      <div className="pt-[60px]">
         <FooterCards
           cards={[
             {

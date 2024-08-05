@@ -164,7 +164,7 @@ const PusatInformasi = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla leading-[120%] -tracking-[0.04em]"
             dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
           />
         }

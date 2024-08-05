@@ -78,7 +78,7 @@ export const FeedbackForm = (props: Props) => {
     <div className="bg-purple_superlight sm:px-[8.5rem] sm:py-[5rem] xs:py-[1.875rem] xs:px-[1.3125rem]">
       <div className="bg-white border rounded-xl flex flex-col justify-between overflow-hidden">
         <div className="p-[2.25rem]">
-          <p className="font-bold font-karla text-[2.25rem] text-purple_dark">
+          <p className="font-bold font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-purple_dark mb-[1rem]">
             Bagikan Saran Anda
           </p>
           {dataForm && (

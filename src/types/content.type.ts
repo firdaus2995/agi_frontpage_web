@@ -18,6 +18,7 @@ export interface ContentResponse {
   }
   
   export interface ContentData {
+    categories: any;
     id: number;
     title: string;
     shortDesc: string;

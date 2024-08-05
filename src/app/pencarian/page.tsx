@@ -1,7 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import RoundedFrameBottom from '@/components/atoms/RoundedFrameBottom';
-import RoundedFrameTop from '@/components/atoms/RoundedFrameTop';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -68,7 +66,6 @@ const Pencarian = () => {
     <div className="flex flex-col">
       <Hero title={title} breadcrumbsData={breadcrumbsData} imageUrl={titleImg.imageUrl} />
       <SearchForm />
-      <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
           <p dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />
@@ -77,7 +74,6 @@ const Pencarian = () => {
         href={cta1Link}
         image={cta1Img.imageUrl}
       />
-      <RoundedFrameTop />
       <FooterCards
         cards={listBanner}
       />

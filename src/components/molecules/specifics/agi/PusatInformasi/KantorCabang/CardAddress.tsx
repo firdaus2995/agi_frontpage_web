@@ -14,7 +14,7 @@ export const CardAddress = (props: Props) => {
     <CardPurple>
       <div className="p-[24px] pb-[36px]">
         <div className="flex flex-row justify-between items-center">
-          <span className="font-bold text-[24px]">{title}</span>
+          <span className="font-opensanspro font-bold text-[24px]">{title}</span>
           {withNavigation && (
             <Icon
               name="navigation"
@@ -34,7 +34,7 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] font-normal">
+            <span className="font-opensans text-[18px] font-normal leading-[140%]">
               {address}
             </span>
           </div>
@@ -49,7 +49,7 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] font-normal">
+            <span className="font-opensans text-[18px] font-normal leading-[140%]">
               {workHour}
             </span>
           </div>
@@ -64,7 +64,7 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] font-normal">
+            <span className="font-opensans text-[18px] font-normal leading-[140%]">
               {contact}
             </span>
           </div>

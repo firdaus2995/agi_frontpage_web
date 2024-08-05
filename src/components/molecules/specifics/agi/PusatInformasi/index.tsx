@@ -25,7 +25,7 @@ const MainContent = (props: mainContentProps) => {
       {!content && (
         <ButtonMenu
           buttonList={[
-            'Formulir Penutupan',
+            'Formulir',
             'Klaim',
             'Rekanan',
             'Kantor Cabang',

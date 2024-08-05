@@ -22,8 +22,8 @@ const DownloadFileButton: React.FC<IDownloadFileButton> = ({
     <div
       className={`flex xs:flex-col md:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-6 ${bgColor ?? 'bg-white'}`}
     >
-      <div className="w-full flex flex-row gap-4 items-center">
-        <h1 className="font-bold 2xl:text-2xl">{title}</h1>
+      <div className="w-full flex flex-row gap-4 items-center justify-between">
+        <p className="w-auto font-bold lg:text-[24px] font-opensanspro">{title}</p>
         <p className="bg-purple_superlight text-purple_dark text-xs 2xl:text-sm p-1 font-semibold uppercase">
           {fileType}
         </p>

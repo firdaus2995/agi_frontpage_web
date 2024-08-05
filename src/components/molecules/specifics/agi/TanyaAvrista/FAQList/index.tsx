@@ -31,7 +31,7 @@ const FAQList = ({ selected, data }: ICardsProps) => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col gap-[5rem] items-center sm:px-[8.5rem] sm:pt-0 pb-[100px] xs:pb-[5rem] xs:px-[2.25rem]">
+    <div className="w-full bg-white flex flex-col gap-[2.25rem] lg:gap-[5rem] items-center sm:px-[8.5rem] sm:pt-0 pb-[100px] xs:pb-[5rem] xs:px-[2.25rem]">
       <h1 className="font-karla text-heading-1-mobile lg:text-heading-1-desktop text-purple_dark font-extrabold">
         {selected}
       </h1>

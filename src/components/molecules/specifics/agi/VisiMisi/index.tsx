@@ -48,7 +48,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
           </div>
           {!Array.isArray(val.desc) ? (
             <p
-              className="text-[1.25rem] lg:text-heading-1-mobile font-light"
+              className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
               dangerouslySetInnerHTML={{
                 __html: val.desc
               }}
@@ -60,7 +60,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                   1
                 </p>
                 <p
-                  className="text-[1.25rem] lg:text-heading-1-mobile font-light"
+                  className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
                   dangerouslySetInnerHTML={{
                     __html: val.desc[0]
                   }}
@@ -81,14 +81,14 @@ const VisiMisi = ({ data }: IVisiMisi) => {
             val.desc.map((value, index) => (
               <div
                 key={index}
-                className="p-10 flex flex-col gap-4 border border-b-8 border-b-purple_dark rounded-xl"
+                className="px-[1.5rem] pb-[2.25rem] pt-[1rem] flex flex-col gap-4 border border-b-8 border-b-purple_dark rounded-xl"
               >
-                <div className="flex flex-col lg:flex-row gap-[60px] items-center">
+                <div className="flex flex-col lg:flex-row gap-0 lg:gap-[60px] items-center">
                   <p className="font-karla text-[4rem] lg:text-[100px] lg:leading-[120px] lg:-tracking-[0.04em] font-semibold text-purple_dark">
                     {index + 1}
                   </p>
                   <p
-                    className="text-[1.25rem] lg:text-heading-1-mobile font-light lg:text-left text-center"
+                    className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
                     dangerouslySetInnerHTML={{
                       __html: value
                     }}

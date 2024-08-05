@@ -23,10 +23,10 @@ const config: Config = {
     },
     fontSize: {
       'heading-1-desktop': [
-        '56px',
+        '64px',
         {
           lineHeight: '76.8px',
-          letterSpacing: '-2.56px',
+          letterSpacing: '-4%',
         },
       ],
       'heading-1-mobile': [
@@ -47,7 +47,7 @@ const config: Config = {
         '24px',
         {
           lineHeight: '120%',
-          letterSpacing: '-2.16px',
+          letterSpacing: '-3%'
         },
       ],
       'banner-title-desktop': [
@@ -145,14 +145,14 @@ const config: Config = {
         },
       ],
       'information-slider-title-desktop': [
-        '48px',
+        '28px',
         {
           lineHeight: '33.6px',
           letterSpacing: '-0.84px',
         },
       ],
       'information-slider-title-mobile': [
-        '40px',
+        '24px',
         {
           lineHeight: '48px',
           letterSpacing: '-1.2px',
@@ -258,7 +258,7 @@ const config: Config = {
         '56px',
         {
           lineHeight: '120%',
-          letterSpacing: '-2.24px'
+          letterSpacing: '-4%'
         },
       ],
       'information-title-mobile': [

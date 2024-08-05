@@ -23,9 +23,9 @@ const Klaim = () => {
   return (
     <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla text-[2.25rem] md:text-[3.5rem]">
-          <span className="text-purple_dark font-medium">Transparansi</span> dan{' '}
-          <span className="text-purple_dark font-medium">efisiensi</span> dalam
+        <h1 className="font-karla font-light text-[2.25rem] md:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
+          <span className="text-purple_dark font-bold">Transparansi</span> dan{' '}
+          <span className="text-purple_dark font-bold">efisiensi</span> dalam
           menangani permohonan klaim nasabah.
         </h1>
       </section>

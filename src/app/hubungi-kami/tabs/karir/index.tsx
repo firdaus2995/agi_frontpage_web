@@ -137,7 +137,7 @@ const Karir = (props: Props) => {
                 desc={val.desc}
                 link={val.link}
                 icon={val.icon}
-                route={val.route}
+                href={val.route}
               />
             ))}
           </div>

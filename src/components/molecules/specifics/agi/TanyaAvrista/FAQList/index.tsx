@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import ReactPaginate from 'react-paginate';
 import CHEVRON_RIGHT_PURPLE from '@/assets/images/common/chevron-right-purple.svg';
 import Search from '@/assets/images/common/search.svg';
 import Icon from '@/components/atoms/Icon';

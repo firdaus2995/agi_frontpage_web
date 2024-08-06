@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';

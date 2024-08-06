@@ -31,7 +31,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
     >
       {heading}
     </TitleContainer>
-    <div className="flex flex-row justify-center items-center gap-[1.5rem] mt-[1rem]">
+    <div className="flex flex-row flex-wrap justify-center items-center gap-[1.5rem] mt-[1rem]">
       {cards.map((item, index) => (
         <div
           key={index}

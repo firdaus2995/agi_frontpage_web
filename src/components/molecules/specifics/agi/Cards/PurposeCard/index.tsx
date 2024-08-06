@@ -7,7 +7,8 @@ interface PurposeCardProps {
   desc: string;
   icon: StaticImport;
   link: string;
-  route: string;
+  href?: string;
+  customClassName?: string;
 }
 
 const PurposeCard: React.FC<PurposeCardProps> = ({
@@ -15,27 +16,32 @@ const PurposeCard: React.FC<PurposeCardProps> = ({
   desc,
   icon,
   link,
-  route
+  href,
+  customClassName = ''
 }) => (
-  <div className="flex p-4 flex-col gap-4 items-center justify-between bg-white w-full border border-b-8 border-b-purple_dark rounded-xl text-center">
-    <div className='flex flex-col gap-4 items-center'>
-      <Image src={icon} alt="img" className="w-20" width={20} height={20} />
-      <p className="font-karla text-card-title-mobile lg:text-card-title-desktop font-bold">
-        {title}
-      </p>
+  <div
+    className={`${customClassName} p-4 flex flex-col gap-4 bg-white w-full h-full border border-b-8 border-b-purple_dark rounded-xl text-center`}
+  >
+    <div className="flex flex-col gap-4 items-center">
+      <Image src={icon} alt="img" className="w-20" width={80} height={80} />
       <p
-        className="text-card-subtitle-desktop line-clamp-3"
+        className="text-[2rem] font-bold font-karla -tracking-[0.96px] leading-[2.5rem]"
         dangerouslySetInnerHTML={{
-          __html: desc
+          __html: title
         }}
       />
     </div>
-    <Link
-      href={route}
-      className="font-semibold text-footer-link font-opensanspro text-purple_dark"
-    >
-      {link}
-    </Link>
+    <p
+      className="font-opensans leading-[22.4px]"
+      dangerouslySetInnerHTML={{
+        __html: desc
+      }}
+    />
+    {href && (
+      <Link href={href ?? ''}>
+        <p className="font-bold text-purple_dark">{link}</p>
+      </Link>
+    )}
   </div>
 );
 

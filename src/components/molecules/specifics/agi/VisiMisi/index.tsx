@@ -27,7 +27,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
             <div className="flex flex-row gap-4 items-center">
               <Image
                 src={val.icon}
-                className="w-[100px]"
+                className="xs:w-[2.25rem] md:w-[5rem]"
                 width={24}
                 height={24}
                 alt="logo"
@@ -48,19 +48,19 @@ const VisiMisi = ({ data }: IVisiMisi) => {
           </div>
           {!Array.isArray(val.desc) ? (
             <p
-              className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
+              className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
               dangerouslySetInnerHTML={{
                 __html: val.desc
               }}
             />
           ) : !isExpanded ? (
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row justify-between gap-10 items-center">
-                <p className="font-karla text-[4rem] lg:text-[100px] lg:leading-[120px] lg:-tracking-[0.04em] font-semibold text-purple_dark">
+              <div className="flex flex-row xs:gap-[2rem] md:gap-[3.75rem] items-center">
+                <p className="xs:text-[4rem] md:text-[5rem] font-bold text-purple_dark font-karla">
                   1
                 </p>
                 <p
-                  className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
+                  className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
                   dangerouslySetInnerHTML={{
                     __html: val.desc[0]
                   }}
@@ -71,10 +71,14 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 onClick={() => setIsExpanded(true)}
                 className="w-full flex flex-row gap-2 items-center justify-end"
               >
-                <p className="font-semibold text-purple_dark text-history-title">
+                <p className="text-2xl font-semibold text-purple_dark font-karla">
                   Lihat Lebih Lanjut
                 </p>
-                <Image src={Chevron} className="w-5 rotate-[90deg]" alt="plus" />
+                <Image
+                  src={Chevron}
+                  className="w-5 rotate-[90deg]"
+                  alt="plus"
+                />
               </div>
             </div>
           ) : (
@@ -83,16 +87,23 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 key={index}
                 className="px-[1.5rem] pb-[2.25rem] pt-[1rem] flex flex-col gap-4 border border-b-8 border-b-purple_dark rounded-xl"
               >
-                <div className="flex flex-col lg:flex-row gap-0 lg:gap-[60px] items-center">
-                  <p className="font-karla text-[4rem] lg:text-[100px] lg:leading-[120px] lg:-tracking-[0.04em] font-semibold text-purple_dark">
-                    {index + 1}
-                  </p>
-                  <p
-                    className="text-[1.25rem] md:text-[2.25rem] font-light -tracking-[1.08px] font-light lg:text-left text-center"
-                    dangerouslySetInnerHTML={{
-                      __html: value
-                    }}
-                  />
+                <div className="flex xs:flex-col md:flex-row items-center w-full xs:text-center md:text-start">
+                  <span className="w-[7rem]">
+                    <p
+                      className={`xs:text-[4rem] md:text-[5rem] font-bold text-purple_dark font-karla ${index + 1 === 1 ? 'md:pl-4' : ''}`}
+                    >
+                      {index + 1}
+                    </p>
+                  </span>
+
+                  <span className="w-full">
+                    <p
+                      className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+                      dangerouslySetInnerHTML={{
+                        __html: value
+                      }}
+                    />
+                  </span>
                 </div>
               </div>
             ))

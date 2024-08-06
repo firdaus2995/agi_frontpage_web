@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactPaginate from 'react-paginate';
 import CHEVRON_RIGHT_PURPLE from '@/assets/images/common/chevron-right-purple.svg';
 import Search from '@/assets/images/common/search.svg';
 import Icon from '@/components/atoms/Icon';
@@ -15,86 +15,70 @@ export interface IListFaq {
 interface ICardsProps {
   selected: string;
   data: IListFaq[];
+  itemsPerPage?: number;
+  pageCount: number;
+  itemOffset: number;
+  handlePageClick: (e: any) => void;
 }
 
-const FAQList = ({ selected, data }: ICardsProps) => {
-  const itemsPerPage = 5; // Jumlah item yang ditampilkan per halaman
-  const [currentPage, setCurrentPage] = useState(1);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedData = data ? data.slice(startIndex, endIndex) : [];
-
-  const totalPages = data ? Math.ceil(data.length / itemsPerPage) : 0;
-
-  const handlePageChange = (page: React.SetStateAction<number>) => {
-    setCurrentPage(page);
-  };
-
+const FAQList = ({
+  selected,
+  data,
+  itemOffset,
+  pageCount,
+  handlePageClick,
+  itemsPerPage = 5
+}: ICardsProps) => {
   return (
-    <div className="w-full bg-white flex flex-col gap-[2.25rem] lg:gap-[5rem] items-center sm:px-[8.5rem] sm:pt-0 pb-[100px] xs:pb-[5rem] xs:px-[2.25rem]">
-      <h1 className="font-karla text-heading-1-mobile lg:text-heading-1-desktop text-purple_dark font-extrabold">
+    <div className="w-full bg-white flex flex-col gap-[5rem] items-center sm:px-[8.5rem] xs:pb-[1.5rem] sm:pb-[3rem] xs:px-[2rem]">
+      <h1 className="font-karla sm:text-[3.5rem] xs:text-[2.25rem] text-purple_dark font-extrabold text-center sm:leading-[67.2px] -tracking-[0.04em] xs:leading-[43.2px]">
         {selected}
       </h1>
-      {paginatedData?.length > 0 ? (
+      {data?.length > 0 ? (
         <div className="w-full">
           <div className="w-full flex flex-col gap-[12px]">
-            {paginatedData.map((item, index) => (
+            {data.map((item, index) => (
               <Link
                 href={item.href}
                 key={index}
-                className="w-full border border-gray_light rounded-xl p-6 flex flex-row justify-between items-center"
+                className="w-full border border-gray_light rounded-xl p-[1.5rem] flex flex-row justify-between items-center shadow-[0_13px_20px_0px_purple_dark/[0/03]]"
               >
-                <p className="text-[1.5rem] font-semibold">{item.title}</p>
+                <p className="text-2xl font-semibold leading-[30.17px] font-opensanspro">
+                  {item.title}
+                </p>
                 <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
               </Link>
             ))}
           </div>
-          <div className="w-full flex flex-row justify-between mt-[1rem] mb-[1.25rem]">
-            <div className="flex items-center text-[20px]">
-              Menampilkan{'\u00A0'}
-              <span className="font-bold text-purple_dark">
-                {startIndex + 1}-{Math.min(endIndex, data ? data?.length : 0)}
-              </span>
-              {'\u00A0'}dari{'\u00A0'}
-              <span className="font-bold"> {data.length}</span>
-              {'\u00A0'}hasil
+          <div className="w-full flex flex-col md:flex-row items-center justify-between py-8 gap-4">
+            <div>
+              <p className="text-[20px]">
+                Menampilkan{' '}
+                <span className="font-bold text-purple_dark">
+                  {data?.length === 0 || data === undefined
+                    ? 0
+                    : itemOffset + 1}
+                  -
+                  {Math.min(
+                    (itemOffset + 1) * itemsPerPage,
+                    data ? data.length : 0
+                  )}
+                </span>{' '}
+                dari <span className="font-bold">{data && data.length}</span>{' '}
+                hasil
+              </p>
             </div>
-            <div className="flex items-center space-x-[0.125rem] gap-2">
-              {currentPage > 1 && (
-                <div
-                  onClick={() => handlePageChange(1)}
-                  className="cursor-pointer rotate-180"
-                >
-                  <Icon
-                    width={20}
-                    height={20}
-                    name="chevronRight"
-                    color="purple_dark"
-                  />
-                </div>
-              )}
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <div
-                    key={page}
-                    role="button"
-                    onClick={() => handlePageChange(page)}
-                    className={`w-[0.375rem] h-[0.375rem] flex items-center justify-center cursor-pointer ${
-                      currentPage === page ? 'text-purple_dark font-bold' : ''
-                    }`}
-                  >
-                    {page}
-                  </div>
-                )
-              )}
-              <span
-                className="mt-[0.1875rem]"
-                role="button"
-                onClick={() => handlePageChange(totalPages)}
-              >
-                <Icon name="chevronRight" color="purple_dark" />
-              </span>
-            </div>
+            <ReactPaginate
+              pageCount={pageCount}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              nextLabel={<Icon name="chevronRight" color="purple_dark" />}
+              previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
+              containerClassName="flex flex-row gap-[8px] items-center"
+              activeClassName="text-purple_dark font-bold"
+              pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
+              forcePage={itemOffset / itemsPerPage}
+            />
           </div>
         </div>
       ) : (

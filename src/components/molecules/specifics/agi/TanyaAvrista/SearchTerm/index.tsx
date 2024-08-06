@@ -4,7 +4,19 @@ import React from 'react';
 import Image from 'next/image';
 import Input from '@/components/atoms/Input';
 
-const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
+const SearchTerm = ({
+  bannerImage = '',
+  onSearch,
+  loading,
+  onChange,
+  value
+}: {
+  bannerImage?: string;
+  onSearch: any;
+  loading: boolean;
+  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   return (
     <div className="z-10 w-full bg-purple_dark -mt-[4rem] lg:-mt-[6.5rem] relative">
       <div className="w-full h-[20rem] md:h-[40rem] z-10 flex items-center absolute">
@@ -23,6 +35,16 @@ const SearchTerm = ({ bannerImage }: { bannerImage: string }) => {
               <Input
                 customInputClass="md:w-[60%] 2xl:w-[72%] grow !bg-gray_bglightgray !border-none"
                 placeholder="Ketik kata kunci (misal: promosi berlangsung)"
+                onChange={onChange}
+                value={loading ? 'Loading data...' : value}
+                onKeyDown={(e: any) => {
+                  if (e.key === 'Enter' || e.keyCode === 13) {
+                    onSearch(
+                      'List-Pertanyaan-dan-Jawaban-Tanya-Avgen',
+                      value);
+                  }
+                }}
+                disabled={loading}
               />
             </div>
           </div>

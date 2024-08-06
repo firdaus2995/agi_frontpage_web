@@ -103,7 +103,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
               </div>
             ))}
           </Slider>
-          <div className="w-full flex flex-row justify-between px-[2.5rem]">
+          <div className="w-full flex flex-row justify-between px-[2rem]">
             <Image
               width={36}
               height={36}

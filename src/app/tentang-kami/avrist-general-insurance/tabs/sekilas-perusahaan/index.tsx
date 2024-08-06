@@ -1,5 +1,5 @@
 'use client';
-import { Key, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ISetData } from '../../page';
 import PurposeCard from '@/components/molecules/specifics/agi/Cards/PurposeCard';
 import Timeline from '@/components/molecules/specifics/agi/TimeLine';
@@ -188,17 +188,35 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
             {section2Title}
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {purposeData?.map((val: any, idx: Key | null | undefined) => (
-            <PurposeCard
-              key={idx}
-              title={val.title}
-              desc={val.desc}
-              link={val.link}
-              icon={val.icon}
-              route={val.href}
-            />
-          ))}
+        <div className="xs:hidden sm:block">
+          <div className="grid grid-cols-3 gap-5">
+            {purposeData?.map((val: any, idx: any) => (
+              <PurposeCard
+                key={idx}
+                title={val.title}
+                desc={val.desc}
+                link={val.link}
+                icon={val.icon}
+                href={val.href}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full h-full sm:hidden">
+          <div className="w-full overflow-x-auto overflow-y-hidden flex flex-row gap-5">
+            {purposeData?.map((val: any, idx: any) => (
+              <PurposeCard
+                key={idx}
+                title={val.title}
+                desc={val.desc}
+                link={val.link}
+                icon={val.icon}
+                href={val.href}
+                customClassName="flex-none !w-[85%] !h-[400px]"
+              />
+            ))}
+          </div>
         </div>
         <div className="flex w-full flex-col p-5 gap-4 bg-white border rounded-xl mt-10">
           <p className="font-karla font-bold text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark">

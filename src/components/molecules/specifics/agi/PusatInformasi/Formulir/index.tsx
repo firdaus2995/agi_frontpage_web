@@ -10,7 +10,7 @@ import {
 } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import {
-  contentDetailTransformer,
+  contentDetailTransformer, 
   singleImageTransformer
 } from '@/utils/responseTransformer';
 

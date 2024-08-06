@@ -100,25 +100,23 @@ const TanyaAvgen = () => {
   const [selectedCards, setSelectedCards] = useState('');
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [keyword, setKeyword] = useState('');
-  // PAGINATION STATE
-  const itemsPerPage = 5;
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
   const [footerText, setFooterText] = useState('');
   const [footerBtnLabel, setFooterBtnLabel] = useState('');
   const [footerBtnUrl, setFooterBtnUrl] = useState('');
-  // PAGINATION LOGIC HOOK
-  useEffect(() => {
-    if (!listFilteredData?.length) return; // check if contentaData already present
+  // PAGINATION STATE
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = listFilteredData
+    ? listFilteredData.slice(startIndex, endIndex)
+    : [];
+  const totalPages = listFilteredData
+    ? Math.ceil(listFilteredData.length / itemsPerPage)
+    : 0;
 
-    setPageCount(Math.ceil(listFilteredData?.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, listFilteredData]);
-
-  // PAGINATION LOGIC HANDLER
-  const handlePageClick = (event: any) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % listFilteredData?.length;
-    setItemOffset(newOffset);
+  const handlePageChange = (page: React.SetStateAction<number>) => {
+    setCurrentPage(page);
   };
 
   useEffect(() => {
@@ -195,13 +193,10 @@ const TanyaAvgen = () => {
           };
         });
         setListFilteredData(transformedData);
-        setPageCount(Math.ceil(transformedData?.length / itemsPerPage));
       } catch (error) {
         console.error('Error:', error);
       }
     };
-    setItemOffset(0);
-    setPageCount(0);
     fetchData();
   }, []);
 
@@ -241,8 +236,6 @@ const TanyaAvgen = () => {
               };
             });
       setListFilteredData(transformedData);
-      setItemOffset(0);
-      setPageCount(0);
       setLoadingSearch(false);
       return tempData;
     } catch (error) {
@@ -277,8 +270,6 @@ const TanyaAvgen = () => {
               };
             });
       setListFilteredData(transformedData);
-      setItemOffset(0);
-      setPageCount(0);
       setLoadingSearch(false);
       return tempData;
     } catch (error) {
@@ -303,10 +294,13 @@ const TanyaAvgen = () => {
       <TopicsCard cards={cards} onClickCards={handleCardsClick} />
       <FAQList
         selected={selectedCards}
-        data={listFilteredData}
-        pageCount={pageCount}
-        itemOffset={itemOffset}
-        handlePageClick={handlePageClick}
+        data={paginatedData}
+        allData={listFilteredData}
+        pageCount={totalPages}
+        handlePageClick={handlePageChange}
+        currentPage={currentPage}
+        startIndex={startIndex}
+        endIndex={endIndex}
       />
       <FooterInformation
         title={

@@ -31,7 +31,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
 
   // PAGINATION STATE
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(Math.ceil(0));
   const [itemOffset, setItemOffset] = useState(0);
 
   // PAGINATION LOGIC HOOK

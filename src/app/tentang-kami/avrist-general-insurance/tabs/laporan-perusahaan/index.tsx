@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import { ISetData } from '@/app/tentang-kami/avrist-general-insurance/page';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
@@ -29,24 +28,18 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
   const [categories, setCategories] = useState<any>([]);
   const [itemsPerPage] = useState(3);
 
-  // PAGINATION STATE
-  const [paginatedData, setPaginatedData] = useState<any[]>([]);
-  const [pageCount, setPageCount] = useState(Math.ceil(0));
-  const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = contentData
+    ? contentData.slice(startIndex, endIndex)
+    : [];
+  const totalPages = contentData
+    ? Math.ceil(contentData.length / itemsPerPage)
+    : 0;
 
-  // PAGINATION LOGIC HOOK
-  useEffect(() => {
-    if (!contentData?.length) return; // check if contentaData already present
-
-    const endOffset = itemOffset + itemsPerPage;
-    setPaginatedData(contentData.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(contentData.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, contentData]);
-
-  // PAGINATION LOGIC HANDLER
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % contentData.length;
-    setItemOffset(newOffset);
+  const handlePageChange = (page: React.SetStateAction<number>) => {
+    setCurrentPage(page);
   };
 
   useEffect(() => {
@@ -199,35 +192,49 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
     return (
       <div className="flex flex-col gap-4 md:flex-row items-start justify-between font-opensans ">
         <div>
-          <p className="text-[20px]/[28px] font-normal">
+          <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">
-              {contentData?.length === 0 || contentData === undefined
-                ? 0
-                : itemOffset + 1}
-              -
-              {Math.min(
-                (itemOffset + 1) * itemsPerPage,
-                contentData ? contentData.length : 0
-              )}
+              {contentData?.length === 0 ? 0 : startIndex + 1}-
+              {Math.min(endIndex, contentData ? contentData.length : 0)}
             </span>{' '}
-            dari{' '}
-            <span className="font-bold">
-              {contentData && contentData.length}
-            </span>{' '}
-            hasil
+            dari <span className="font-bold">{contentData?.length}</span> hasil
           </p>
         </div>
-        <ReactPaginate
-          pageCount={pageCount}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          nextLabel={<Icon name="chevronRight" color="purple_dark" />}
-          previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
-          containerClassName="flex flex-row gap-[12px] items-center"
-          activeClassName="text-purple_dark font-bold"
-          pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
-        />
+        <div className="flex flex-row gap-[12px] items-center">
+          <span
+            className="mt-[3px] rotate-180"
+            role="button"
+            onClick={() =>
+              handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+            }
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <div
+              key={page}
+              role="button"
+              onClick={() => handlePageChange(page)}
+              className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                currentPage === page ? 'text-purple_dark font-bold' : ''
+              }`}
+            >
+              {page}
+            </div>
+          ))}
+          <span
+            className="mt-[3px]"
+            role="button"
+            onClick={() =>
+              handlePageChange(
+                currentPage === totalPages ? currentPage : currentPage + 1
+              )
+            }
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
+        </div>
       </div>
     );
   };
@@ -245,7 +252,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           //   </h2>
           // </CustomContainer>
           <div className="flex flex-col gap-[5rem]">
-            <div className='flex flex-col'>
+            <div className="flex flex-col">
               <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
                 {title}
               </p>

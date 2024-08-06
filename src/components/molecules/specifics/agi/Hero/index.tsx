@@ -44,7 +44,7 @@ const Hero: React.FC<IHero> = ({
               <React.Fragment key={index}>
                 <Link
                   href={item.href}
-                  className={`font-opensanspro text-footer-subtitle text-white ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default pointer-events-none' : ''}`}
+                  className={`font-opensanspro text-footer-subtitle line-clamp-1 text-white ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default pointer-events-none' : ''}`}
                 >
                   {item.title}
                 </Link>

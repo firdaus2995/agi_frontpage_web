@@ -21,24 +21,18 @@ const Formulir = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [itemsPerPage] = useState(5);
 
-  // PAGINATION STATE
-  const [paginatedData, setPaginatedData] = useState<any[]>([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = contentData
+    ? contentData.slice(startIndex, endIndex)
+    : [];
+  const totalPages = contentData
+    ? Math.ceil(contentData.length / itemsPerPage)
+    : 0;
 
-  // PAGINATION LOGIC HOOK
-  useEffect(() => {
-    if (!contentData?.length) return; // check if contentaData already present
-
-    const endOffset = itemOffset + itemsPerPage;
-    setPaginatedData(contentData.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(contentData.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, contentData]);
-
-  // PAGINATION LOGIC HANDLER
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % contentData.length;
-    setItemOffset(newOffset);
+  const handlePageChange = (page: React.SetStateAction<number>) => {
+    setCurrentPage(page);
   };
 
   const fetchContent = async () => {
@@ -90,7 +84,7 @@ const Formulir = () => {
           di bawah ini
         </h1>
       </section>
-      <div className='pb-[24px] lg:pb-[48px]'>
+      <div className="pb-[24px] lg:pb-[48px]">
         <SearchBox
           onSearch={(value: string) => {
             setSearch(value);
@@ -119,32 +113,46 @@ const Formulir = () => {
           <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">
-              {contentData?.length === 0 || contentData === undefined
-                ? 0
-                : itemOffset + 1}
-              -
-              {Math.min(
-                (itemOffset + 1) * itemsPerPage,
-                contentData ? contentData.length : 0
-              )}
+              {contentData?.length === 0 ? 0 : startIndex + 1}-
+              {Math.min(endIndex, contentData ? contentData.length : 0)}
             </span>{' '}
-            dari{' '}
-            <span className="font-bold">
-              {contentData && contentData.length}
-            </span>{' '}
-            hasil
+            dari <span className="font-bold">{contentData?.length}</span> hasil
           </p>
         </div>
-        <ReactPaginate
-          pageCount={pageCount}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          nextLabel={<Icon name="chevronRight" color="purple_dark" />}
-          previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
-          containerClassName="flex flex-row gap-[8px] items-center"
-          activeClassName="text-purple_dark font-bold"
-          pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
-        />
+        <div className="flex flex-row gap-[12px] items-center">
+          <span
+            className="mt-[3px] rotate-180"
+            role="button"
+            onClick={() =>
+              handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+            }
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <div
+              key={page}
+              role="button"
+              onClick={() => handlePageChange(page)}
+              className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                currentPage === page ? 'text-purple_dark font-bold' : ''
+              }`}
+            >
+              {page}
+            </div>
+          ))}
+          <span
+            className="mt-[3px]"
+            role="button"
+            onClick={() =>
+              handlePageChange(
+                currentPage === totalPages ? currentPage : currentPage + 1
+              )
+            }
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
+        </div>
       </div>
     </div>
   );

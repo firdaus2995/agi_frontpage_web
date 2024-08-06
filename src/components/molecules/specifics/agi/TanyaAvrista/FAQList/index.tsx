@@ -15,19 +15,24 @@ export interface IListFaq {
 interface ICardsProps {
   selected: string;
   data: IListFaq[];
+  allData: IListFaq[];
   itemsPerPage?: number;
   pageCount: number;
-  itemOffset: number;
+  currentPage: number;
+  startIndex: number;
+  endIndex: number;
   handlePageClick: (e: any) => void;
 }
 
 const FAQList = ({
   selected,
   data,
-  itemOffset,
+  allData,
   pageCount,
-  handlePageClick,
-  itemsPerPage = 5
+  currentPage,
+  startIndex,
+  endIndex,
+  handlePageClick
 }: ICardsProps) => {
   return (
     <div className="w-full bg-white flex flex-col gap-[5rem] items-center sm:px-[8.5rem] xs:pb-[1.5rem] sm:pb-[3rem] xs:px-[2rem]">
@@ -55,30 +60,48 @@ const FAQList = ({
               <p className="text-[20px]">
                 Menampilkan{' '}
                 <span className="font-bold text-purple_dark">
-                  {data?.length === 0 || data === undefined
-                    ? 0
-                    : itemOffset + 1}
-                  -
-                  {Math.min(
-                    (itemOffset + 1) * itemsPerPage,
-                    data ? data.length : 0
-                  )}
+                  {allData?.length === 0 ? 0 : startIndex + 1}-
+                  {Math.min(endIndex, allData ? allData.length : 0)}
                 </span>{' '}
-                dari <span className="font-bold">{data && data.length}</span>{' '}
-                hasil
+                dari <span className="font-bold">{allData?.length}</span> hasil
               </p>
             </div>
-            <ReactPaginate
-              pageCount={pageCount}
-              pageRangeDisplayed={5}
-              onPageChange={handlePageClick}
-              nextLabel={<Icon name="chevronRight" color="purple_dark" />}
-              previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
-              containerClassName="flex flex-row gap-[8px] items-center"
-              activeClassName="text-purple_dark font-bold"
-              pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
-              forcePage={itemOffset / itemsPerPage}
-            />
+            <div className="flex flex-row gap-[12px] items-center">
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() =>
+                  handlePageClick(currentPage > 1 ? currentPage - 1 : 1)
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+              {Array.from({ length: pageCount }, (_, i) => i + 1).map(
+                (page) => (
+                  <div
+                    key={page}
+                    role="button"
+                    onClick={() => handlePageClick(page)}
+                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                      currentPage === page ? 'text-purple_dark font-bold' : ''
+                    }`}
+                  >
+                    {page}
+                  </div>
+                )
+              )}
+              <span
+                className="mt-[3px]"
+                role="button"
+                onClick={() =>
+                  handlePageClick(
+                    currentPage === pageCount ? currentPage : currentPage + 1
+                  )
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+            </div>
           </div>
         </div>
       ) : (

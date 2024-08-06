@@ -3,6 +3,12 @@ import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CardRainbow } from '../HubungiKami/MainContentComponent/Card';
 import Icon from '@/components/atoms/Icon';
+import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleSubscribe } from '@/services/subscribe-service.api';
+import {
+  contentCategoryTransformer,
+  contentStringTransformer
+} from '@/utils/responseTransformer';
 
 type Props = {
   show: boolean;
@@ -11,6 +17,58 @@ type Props = {
 export const EmailSubscribeModal = (props: Props) => {
   const { onClose, show } = props;
   const [isSuccessSubs, setIsSuccessSubs] = useState(false);
+  const [contentData, setContentData] = useState<any>({});
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await handleGetContentCategory('Subscribe-AGI', {
+          includeAttributes: 'true'
+        });
+        const transformedContent = contentCategoryTransformer(data, '');
+
+        setContentData(transformedContent[0].content);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setEmail('');
+    setEmailError('');
+  }, [onClose]);
+
+  const handleSubmit = async () => {
+    if (!validateEmail(email)) {
+      setEmailError('Masukkan alamat email yang valid');
+      return;
+    }
+
+    setEmailError('');
+
+    const queryParams = {
+      email: email,
+      entity: 'AGI'
+    };
+    const data = await handleSubscribe(queryParams);
+    if (data.status === 'OK') {
+      setIsSuccessSubs(true);
+    }
+
+    if (data.status !== 'OK') {
+      console.error('Error:', data.errors.message);
+    }
+  };
+
+  const validateEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
 
   useEffect(() => {
     if (show) {
@@ -46,8 +104,8 @@ export const EmailSubscribeModal = (props: Props) => {
               <Dialog.Panel className="transform transition-all overflow-hidden">
                 <CardRainbow className="bg-[#7e3f96] overflow-hidden">
                   {isSuccessSubs ? (
-                    <div className="h-[50vh] w-[50vw] transition">
-                      <div className="absolute right-0 p-[24px]">
+                    <div className="px-[72px] py-[100px] transition">
+                      <div className="absolute right-0 top-0 p-[24px]">
                         <button onClick={onClose}>
                           <Icon
                             name="close"
@@ -57,20 +115,18 @@ export const EmailSubscribeModal = (props: Props) => {
                           />
                         </button>
                       </div>
-                      <div className="flex flex-1 flex-col items-center justify-center h-full text-center px-[72px]">
-                        <p className="font-karla font-semibold text-[48px] text-white">
+                      <div className="flex flex-1 flex-col items-center justify-center h-full text-center sm:px-[4.5rem] sm:py-[6.25rem] xs:px-[2rem] xs:py-[3.125rem] gap-[36px]">
+                        <p className="font-karla font-extrabold xs:text-[2.25rem] md:text-[3.5rem] text-white xs:leading-[43.2px] sm:leading-[57.6px] -tracking-[1.92px] mb-2">
                           Terima kasih atas langganan Anda!
                         </p>
-                        <p className="font-opensans font-normal text-[18px] text-white">
-                          Anda telah berhasil berlangganan untuk mendapatkan
-                          informasi terkini, wawasan eksklusif, tips investasi,
-                          dan berita terbaru.
+                        <p className="font-opensans font-normal text-[1.125rem] text-white leading-[25.2px]">
+                          Cek email untuk konfirmasi email Anda
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="h-[80vh] w-[60vw] transition">
-                      <div className="absolute right-0 p-[24px]">
+                    <div className="p-12 lg:px-[72px] lg:py-[90px] transition">
+                      <div className="absolute right-0 top-0 p-[24px]">
                         <button onClick={onClose}>
                           <Icon
                             name="close"
@@ -80,40 +136,39 @@ export const EmailSubscribeModal = (props: Props) => {
                           />
                         </button>
                       </div>
-                      <div className="grid grid-rows-2 h-[80vh] w-[60vw]">
-                        <div className="bg-white">
-                          <img
-                            src="https://bertuahpos.com/wp-content/uploads/2023/05/Modus-penipuan-via-email.jpg"
-                            alt="modal-home-banner"
-                            className="object-cover"
-                          />
-                        </div>
+                      <div className="">
                         <div className="bg-[#7e3f96] flex items-center flex-col">
-                          <div className="mt-[40px]">
-                            <p className="font-karla font-extrabold text-[48px] text-white">
-                              Subscribe Informasi Terkini!
-                            </p>
-                            <div className=" w-full grid grid-cols-3 gap-[12px] mt-[40px]">
-                              <button className="bg-purple_dark rounded-xl py-[8px] font-opensans font-bold text-[18px] text-white">
-                                Life Insurance
-                              </button>
-                              <button className="bg-white rounded-xl py-[8px] font-opensans font-bold text-[18px] text-grey_video_footer">
-                                Life Insurance
-                              </button>
-                              <button className="bg-white rounded-xl py-[8px] font-opensans font-bold text-[18px] text-avram_green">
-                                Asset Management
-                              </button>
-                            </div>
+                          <div className="">
+                            <p
+                              className="font-karla font-extrabold text-[24px] lg:text-[48px] leading-[36.3px] lg:leading-[57.6px] -tracking-[0.04em] text-white text-center"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  contentStringTransformer(
+                                    contentData['teks-judul']
+                                  ) ?? ''
+                              }}
+                            />
+                            <p
+                              className="font-opensans font-normal lg:text-[18px] lg:leading-[25.2px] text-white text-center"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  contentStringTransformer(
+                                    contentData['teks-deskripsi']
+                                  ) ?? ''
+                              }}
+                            />
                             <form
-                              className="flex flex-1 flex-row mt-[12px]"
+                              className="flex flex-1 flex-row mt-[40px]"
                               onSubmit={(e) => {
                                 e.preventDefault();
-                                setIsSuccessSubs(true);
+                                handleSubmit();
                               }}
                             >
                               <input
                                 type="email"
                                 placeholder="Masukkan email Anda"
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                                 className="flex-1 rounded-md p-[12px] border-1 border-purple_verylight text-white bg-purple_verylight/20"
                               />
 
@@ -121,9 +176,14 @@ export const EmailSubscribeModal = (props: Props) => {
                                 // type="submit"
                                 className="ml-[12px] bg-white rounded-md px-[20px] font-opensans font-semibold text-[16px] text-purple_dark"
                               >
-                                Subscribe
+                                {contentStringTransformer(
+                                  contentData['label-button']
+                                )}
                               </button>
                             </form>
+                            {emailError && (
+                              <p className="text-red-500 ml-2">{emailError}</p>
+                            )}
                           </div>
                         </div>
                       </div>

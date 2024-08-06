@@ -1,10 +1,6 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
 
-import CONTACTS from '@/assets/images/common/contacts.svg';
-import DOCUMENT_SEARCH from '@/assets/images/common/document-search.svg';
-import HOSPITAL from '@/assets/images/common/hospital.svg';
-import MESSAGE from '@/assets/images/common/message.svg';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
@@ -27,6 +23,33 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
   const [mainContent, setMainContent] = useState('');
   const [tags, setTags] = useState('');
 
+  const [cta4Data, setCta4Data] = useState({
+    cta41: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta42: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta43: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta44: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    }
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,6 +68,38 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
         setMainContent(
           contentStringTransformer(contentDetail['jawaban-tanya-avgen'])
         );
+
+        const cta41 = {
+          icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-1-nama']),
+          subtitle: contentStringTransformer(content['cta4-1-label-link']),
+          url: contentStringTransformer(content['cta4-1-link'])
+        };
+        const cta42 = {
+          icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-2-nama']),
+          subtitle: contentStringTransformer(content['cta4-2-label-link']),
+          url: contentStringTransformer(content['cta4-2-link'])
+        };
+        const cta43 = {
+          icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-3-nama']),
+          subtitle: contentStringTransformer(content['cta4-3-label-link']),
+          url: contentStringTransformer(content['cta4-3-link'])
+        };
+        const cta44 = {
+          icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-4-nama']),
+          subtitle: contentStringTransformer(content['cta4-4-label-link']),
+          url: contentStringTransformer(content['cta4-4-link'])
+        };
+
+        setCta4Data({
+          cta41,
+          cta42,
+          cta43,
+          cta44
+        });
       } catch (error) {
         console.error('Error:', error);
       }
@@ -89,29 +144,28 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
           bgColor="bg-purple_superlight"
           cards={[
             {
-              title: 'Kelola Polis',
-              subtitle: 'Pengkinian Data',
-              href: 'https://my.avrist.com/welcome',
-              openInNewTab: true,
-              icon: CONTACTS
+              title: cta4Data.cta41.title,
+              icon: cta4Data.cta41.icon,
+              subtitle: cta4Data.cta41.subtitle,
+              href: cta4Data.cta41.url
             },
             {
-              title: 'Rumah Sakit \n \n Rekanan',
-              subtitle: 'Lebih Lanjut',
-              href: '/klaim-layanan/layanan?tab=Rumah+Sakit+Rekanan',
-              icon: HOSPITAL
+              title: cta4Data.cta42.title,
+              icon: cta4Data.cta42.icon,
+              subtitle: cta4Data.cta42.subtitle,
+              href: cta4Data.cta42.url
             },
             {
-              title: 'Tanya Avrista',
-              subtitle: 'Lebih Lanjut',
-              href: '/tanya-avrista',
-              icon: MESSAGE
+              title: cta4Data.cta43.title,
+              icon: cta4Data.cta43.icon,
+              subtitle: cta4Data.cta43.subtitle,
+              href: cta4Data.cta43.url
             },
             {
-              title: 'Prosedur Pengaduan',
-              subtitle: 'Lihat Prosedur',
-              href: '/klaim-layanan/layanan/penanganan-pengaduan',
-              icon: DOCUMENT_SEARCH
+              title: cta4Data.cta44.title,
+              icon: cta4Data.cta44.icon,
+              subtitle: cta4Data.cta44.subtitle,
+              href: cta4Data.cta44.url
             }
           ]}
         />

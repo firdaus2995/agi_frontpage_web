@@ -593,7 +593,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         gridColsSm={3}
         px="32px"
         pxSm="136px"
-        py="36px"
+        py="5rem"
         pySm="5rem"
         textTitle={data?.judulSection ?? 'Rekomendasi Produk Lainnya'}
       >

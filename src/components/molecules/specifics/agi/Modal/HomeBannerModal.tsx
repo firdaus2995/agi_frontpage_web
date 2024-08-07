@@ -87,7 +87,7 @@ export const HomeBannerModal = (props: HomeBannerModal) => {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center py-[100px] px-[72px]">
+          <div className="flex min-h-full items-center justify-center p-4 text-center py-[100px] lg:px-[72px] p-4">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -97,7 +97,7 @@ export const HomeBannerModal = (props: HomeBannerModal) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full h-full lg:w-[580px] lg:h-[460px] transform overflow-hidden transition-all cursor-pointer">
+              <Dialog.Panel className="h-[100%] lg:w-[60%] xs:w-[100%] transform overflow-hidden transition-all cursor-pointer">
                 <div className="absolute right-0 p-[24px]">
                   <button onClick={closeModal}>
                     <Icon name="close" width={24} height={24} color="white" />
@@ -111,7 +111,7 @@ export const HomeBannerModal = (props: HomeBannerModal) => {
                   }
                 >
                   <CardRainbow>
-                    <div className="w-full h-full min-h-[200px]">
+                    <div className="h-full min-h-[200px] xs:min-h-full">
                       <img
                         src={bannerModalPath}
                         alt="modal-home-banner"

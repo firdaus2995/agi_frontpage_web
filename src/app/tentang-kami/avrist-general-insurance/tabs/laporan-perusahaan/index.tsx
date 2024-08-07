@@ -26,7 +26,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
     searchFilter: ''
   });
   const [categories, setCategories] = useState<any>([]);
-  const [itemsPerPage] = useState(3);
+  const [itemsPerPage] = useState(5);
 
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -251,7 +251,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           //     Temukan {params.category.toLowerCase()} perusahaan di sini
           //   </h2>
           // </CustomContainer>
-          <div className="flex flex-col gap-[5rem]">
+          <div className="flex flex-col gap-[36px] lg:gap-[5rem]">
             <div className="flex flex-col">
               <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
                 {title}
@@ -328,7 +328,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
                   {renderPage()}
                 </>
               }
-              outerClass="sm:!py-[0px] px-[2rem] md:px-[8.5rem]"
+              outerClass="sm:!py-[0px] px-0 md:px-[8.5rem]"
             />
           </div>
         ) : null}

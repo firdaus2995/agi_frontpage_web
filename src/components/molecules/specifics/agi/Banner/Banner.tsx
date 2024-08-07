@@ -282,7 +282,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
           {dropdownVisible && (
             <div
               aria-label="drop-down"
-              className={`absolute shadow-xl flex flex-col xs:top-[1170px] md:top-[950px] lg:top-[950px] xl:top-[920px] rounded-md bg-white xs:left-0 md:left-[10rem] lg:left-[25rem] xl:left-[50rem] w-full md:w-[31.25rem] z-30 md:text-[36px]/[43.2px] md:-tracking-[1.44px] xs:text-[1.5rem] text-[#1A141F]`}
+              className={`absolute shadow-xl flex flex-col xs:top-[1200px] md:top-[950px] lg:top-[950px] xl:top-[920px] rounded-md bg-white xs:left-0 md:left-[10rem] lg:left-[25rem] xl:left-[50rem] w-full md:w-[31.25rem] z-30 md:text-[36px]/[43.2px] md:-tracking-[1.44px] xs:text-[1.5rem] text-[#1A141F]`}
               ref={dropdownRef}
             >
               {dropdownData?.item?.map((item, index) => (

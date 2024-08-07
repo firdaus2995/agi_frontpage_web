@@ -160,9 +160,9 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
   }, []);
   return (
     <div className="w-full flex flex-col bg-white justify-center">
-      <div className="flex flex-col gap-4 px-[32px] py-[50px] sm:px-[136px] sm:py-[72px]">
+      <div className="flex flex-col gap-4 px-[32px] pt-[50px] sm:px-[136px] sm:py-[72px]">
         <p
-          className="xs:text-[30px] lg:text-sekilas-perusahaan-title font-light"
+          className="xs:text-[30px] xs:-tracking-[1.44px] lg:text-sekilas-perusahaan-title font-light"
           dangerouslySetInnerHTML={{
             __html: tagline
           }}
@@ -183,7 +183,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
       </div>
 
       <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-[5rem] lg:py-[5rem] px-[32px] lg:px-[136px]">
-        <div className="flex justify-center items-center pb-[5rem]">
+        <div className="flex justify-center items-center pb-[36px] lg:pb-[5rem]">
           <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
             {section2Title}
           </p>

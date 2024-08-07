@@ -32,7 +32,7 @@ const config: Config = {
       'heading-1-mobile': [
         '30px',
         {
-          lineHeight: '43.2px',
+          lineHeight: '36px',
           letterSpacing: '-1.44px',
         },
       ],
@@ -47,7 +47,7 @@ const config: Config = {
         '24px',
         {
           lineHeight: '120%',
-          letterSpacing: '-3%'
+          letterSpacing: '1.44px'
         },
       ],
       'banner-title-desktop': [
@@ -129,13 +129,13 @@ const config: Config = {
       'card-subtitle-desktop': [
         '16px',
         {
-          lineHeight: '22.4px',
+          lineHeight: '22.4px'
         },
       ],
       'card-subtitle-mobile': [
         '16px',
         {
-          lineHeight: '22.4px',
+          lineHeight: '22.4px'
         },
       ],
       'card-btn-label': [

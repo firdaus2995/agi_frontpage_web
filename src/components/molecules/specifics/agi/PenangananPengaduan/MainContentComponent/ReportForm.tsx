@@ -108,12 +108,18 @@ const UploadBox = (props: UploadBoxProps) => {
 
 type ReportFormProps = {
   onChangeData: (value: string, uploadedFile: any, type: string) => void;
+  onSetFormData: (value: string, title: any) => void;
   maxSizeValidation?: boolean;
   setMaxSizeValidation: (value: boolean) => void;
 };
 
 export const ReportForm = (props: ReportFormProps) => {
-  const { onChangeData, maxSizeValidation, setMaxSizeValidation } = props;
+  const {
+    onChangeData,
+    maxSizeValidation,
+    setMaxSizeValidation,
+    onSetFormData
+  } = props;
   const [attachmentFile, setAttachmentFile] = useState('');
   const [selectedFile, setSelectedFile] = useState({});
   const [fileKtp, setFileKtp] = useState<any>('');
@@ -138,6 +144,7 @@ export const ReportForm = (props: ReportFormProps) => {
     } else {
       setAttachmentFile(attachmentFile + '|' + value);
     }
+    onSetFormData(uploadedFile.name, title);
   };
 
   useEffect(() => {

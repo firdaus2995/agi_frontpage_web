@@ -24,6 +24,7 @@ export interface FormResponse {
     parentId: number | null;
     value: string | null;
     attributeList?: null;
+    componentId: string;
   }
 
   export interface SendEmailResponse {

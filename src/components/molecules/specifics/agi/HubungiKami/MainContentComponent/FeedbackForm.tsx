@@ -22,6 +22,10 @@ export const FeedbackForm = (props: Props) => {
   const [, setRating] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [emailSubjectSubmitter, setEmailSubjectSubmitter] = useState('');
+  const [emailBodySubmitter, setEmailBodySubmitter] = useState('');
 
   useEffect(() => {
     if (Id) {
@@ -33,6 +37,10 @@ export const FeedbackForm = (props: Props) => {
           setFormId(dataFormJson.data.id);
           setFormPic(dataFormJson.data.pic);
           setDataForm(dataFormJson.data.attributeList);
+          setEmailSubject(dataFormJson.data.emailSubject);
+          setEmailBody(dataFormJson.data.emailBody);
+          setEmailSubjectSubmitter(dataFormJson.data.emailSubjectSubmitter);
+          setEmailBodySubmitter(dataFormJson.data.emailBodySubmitter);
         } catch (error: any) {
           throw new Error('Error fetching form data: ', error.message);
         }
@@ -55,7 +63,11 @@ export const FeedbackForm = (props: Props) => {
     const queryParams = {
       id: formId,
       pic: formPic,
-      placeholderValue: dataForm
+      placeholderValue: dataForm,
+      emailSubject,
+      emailBody,
+      emailSubjectSubmitter,
+      emailBodySubmitter
     };
 
     const data = await handleSendEmail(queryParams);

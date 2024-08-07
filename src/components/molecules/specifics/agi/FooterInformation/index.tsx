@@ -90,7 +90,7 @@ const FooterInformation = ({
             height={0}
             width={0}
             alt="footerInformationImage"
-            className="min-h-[200px] lg:min-h-[392px] w-full object-contain sm:object-cover"
+            className="min-h-[160px] lg:min-h-[392px] w-full object-contain sm:object-cover"
             src={image}
           />
         </div>

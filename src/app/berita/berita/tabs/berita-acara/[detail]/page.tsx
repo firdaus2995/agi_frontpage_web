@@ -292,16 +292,16 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[0.75rem] font-opensans">
                 <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[250px]">
-                  {contentData.tanggal !== '-' &&
-                    contentData.tanggal !== undefined && (
+                  {contentData?.tanggal !== '-' &&
+                    contentData?.tanggal !== undefined && (
                       <div className="font-bold text-purple_dark whitespace-nowrap">
-                        {contentData.tanggal}
+                        {contentData?.tanggal}
                       </div>
                     )}
-                  {contentData.penulis !== '-' &&
-                    contentData.penulis !== undefined && (
+                  {contentData?.penulis !== '-' &&
+                    contentData?.penulis !== undefined && (
                       <div className="pl-2 flex flex-row whitespace-nowrap">
-                        {contentData.penulis}
+                        {contentData?.penulis}
                       </div>
                     )}
                 </div>

@@ -113,7 +113,7 @@ const TotalSolution = (props: TotalSolution) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`w-[90%] h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl px-[24px] py-[36px]`}
+        className={`w-[90%] min-h-[580px] mb-10 flex flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl px-[24px] py-[36px]`}
       >
         <div className="flex flex-col items-center gap-[24px]">
           <Image
@@ -192,7 +192,7 @@ const TotalSolution = (props: TotalSolution) => {
             role="button"
             onClick={next}
             className={
-              currentSlide === data.length - 1 ? 'opacity-50' : 'opacity-100'
+              currentSlide === data.length/2 - 1 ? 'opacity-50' : 'opacity-100'
             }
           />
         </div>

@@ -42,7 +42,7 @@ export const SuccessModal = (props: Props) => {
             >
               <Dialog.Panel className="transform transition-all overflow-hidden">
                 <CardRainbow className="bg-[#7e3f96] overflow-hidden">
-                  <div className="xs:w-full md:w-[48.75rem] flex flex-col">
+                  <div className="xs:w-full flex flex-col">
                     <div className="absolute right-0 p-[1.5rem]">
                       <button onClick={onClose}>
                         <Icon
@@ -56,11 +56,11 @@ export const SuccessModal = (props: Props) => {
                     <Image
                       alt="success"
                       src={popUpImage ?? BLANK_IMAGE}
-                      className="w-full h-[320px] object-cover"
+                      className="w-full h-[200px] object-cover"
                       width={24}
                       height={24}
                     />
-                    <div className="w-full h-[320px] text-white flex flex-col items-center text-center justify-center ">
+                    <div className="w-full h-[240px] text-white flex flex-col items-center text-center justify-center ">
                       <h1 className="font-karla xs:text-[2.25rem] md:text-[3.5rem] font-extrabold">
                         Thank you
                       </h1>

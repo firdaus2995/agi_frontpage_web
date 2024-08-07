@@ -32,7 +32,7 @@ export const CardRainbow: React.FC<Props> = (props) => {
   const { children, className } = props;
   return (
     <div
-      className={`border rounded-xl w-full h-full lg:w-[580px] lg:h-[460px] border-gray_light overflow-hidden flex flex-col justify-between ${className}`}
+      className={`border rounded-xl border-gray_light overflow-hidden flex flex-col justify-between ${className}`}
     >
       <div>{children}</div>
       <DividerRainbow />

@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback, Key } from 'react';
 import Image from 'next/image';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import BlankImage from '@/assets/images/blank-image.svg';
 import Button from '@/components/atoms/Button/Button';
 import PersonCard from '@/components/molecules/specifics/agi/Cards/PersonCard';
 import {
@@ -34,12 +33,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [showDetail, setShowDetail] = useState(false);
-  const [detailData, setDetailData] = useState({
-    image: BlankImage,
-    name: '',
-    role: '',
-    desc: <p></p>
-  });
+  const [detailData, setDetailData] = useState<any>({});
 
   const [contentData, setContentData] = useState<any>();
   const [managementList, setManagementList] = useState<any>();
@@ -139,7 +133,6 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
         </div>
       )
     });
-    setShowDetail(true);
     const data = {
       name: cardData.name
     };
@@ -154,11 +147,11 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
 
   return (
     <div className="w-full flex flex-col gap-4 bg-white justify-center">
-      {showDetail ? (
+      {detailData.name ? (
         <div
-          className="xs:px-[2rem] md:px-[8.5rem] xs:mt-[2.25rem] sm:mt-[5rem]"
+          className="xs:px-[2rem] md:px-[8.5rem] xs:my-[2.25rem] sm:my-[5rem]"
           onClick={() => {
-            setShowDetail(false);
+            setDetailData({});
             router.push(
               pathname + '?' + createQueryString('tab', 'Manajemen'),
               {

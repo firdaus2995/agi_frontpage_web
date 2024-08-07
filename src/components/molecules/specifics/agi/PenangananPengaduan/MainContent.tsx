@@ -29,6 +29,8 @@ export const MainContent = () => {
           throw new Error('Function not implemented.');
         } } setMaxSizeValidation={function (): void {
           throw new Error('Function not implemented.');
+        } } onSetFormData={function (): void {
+          throw new Error('Function not implemented.');
         } } />
       </div>
       <Image

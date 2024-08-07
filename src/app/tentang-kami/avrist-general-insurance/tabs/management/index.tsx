@@ -147,7 +147,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
 
   return (
     <div className="w-full flex flex-col gap-4 bg-white justify-center">
-      {detailData.name ? (
+      {detailData?.name ? (
         <div
           className="xs:px-[2rem] md:px-[8.5rem] xs:my-[2.25rem] sm:my-[5rem]"
           onClick={() => {

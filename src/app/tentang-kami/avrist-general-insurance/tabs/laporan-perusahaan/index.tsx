@@ -26,7 +26,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
     searchFilter: ''
   });
   const [categories, setCategories] = useState<any>([]);
-  const [itemsPerPage] = useState(3);
+  const [itemsPerPage] = useState(5);
 
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;

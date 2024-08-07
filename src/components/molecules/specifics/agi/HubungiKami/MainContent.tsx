@@ -15,7 +15,7 @@ export const MainContent = (props: Props) => {
   const { formSaranId, pageData, formId } = props;
   return (
     <div className="w-full flex flex-col">
-      <div className=" flex flex-col sm:gap-[4rem] xs:gap-[2.25rem] xs:py-[3.125rem] xs:px-[2rem] sm:p-0 sm:px-[8.5rem] sm:py-[6.25rem] xs:px-[1.3125rem]">
+      <div className=" flex flex-col gap-[5rem] xs:py-[5rem] xs:px-[2rem] sm:p-0 sm:px-[8.5rem] sm:py-[6.25rem] xs:px-[1.3125rem]">
         <div className="font-karla mx-[2rem] md:mx-[8.5rem] flex flex-col text-center">
           <p className="font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-purple_dark">
             {contentStringTransformer(pageData['body-judul'])}

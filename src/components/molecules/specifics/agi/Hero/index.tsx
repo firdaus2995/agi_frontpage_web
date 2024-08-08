@@ -27,7 +27,7 @@ const Hero: React.FC<IHero> = ({
 }) => {
   return (
     <div
-      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[24rem] sm:h-[35.5rem]' : 'xs:h-[6rem] md:h-[12rem]'}`}
+      className={`${customClassName} relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[24rem] sm:h-[35.5rem]' : 'h-[6rem]'}`}
     >
       <div className="w-full flex items-center">
         <div

@@ -32,9 +32,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
   customFormButtonClassname = 'border-purple_dark text-purple_dark',
   dataForm,
   resultData,
-  longTextArea,
-  selectedProduct,
-  dataRekomendasi
+  longTextArea
 }) => {
   const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
   const [formData, setFormData] = useState([{ name: '', value: '' }]);
@@ -1661,7 +1659,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                   className={`pt-1 ${JSON.parse(attribute.config)?.hidden === 'true' ? 'hidden' : ''}`}
                 >
                   {attribute.name.includes('produk') ? null : (
-                    <p className="font-bold">
+                    <p className="font-bold text-start">
                       {attribute.name}{' '}
                       <span
                         className={`text-reddist ${!isRequired(attribute.componentId) ? 'hidden' : ''}`}
@@ -1748,6 +1746,50 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         handleUploadChange(attribute.componentId, e)
                       }
                     />
+                  ) : attribute.fieldType === 'PHONE_NUMBER' ? (
+                    <div className="flex flex-col grow shrink-0">
+                      <input
+                        className="w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
+                        placeholder="Masukan nomor telepon"
+                        name={attribute.name}
+                        maxLength={JSON.parse(attribute.config).max_length}
+                        type="text"
+                        onChange={(e) => {
+                          if (
+                            isNumber(e.target.value) ||
+                            e.target.value === ''
+                          ) {
+                            updateFormDataByName(
+                              attribute.componentId,
+                              e.target.value
+                            );
+                          }
+                          if (
+                            e.target.value.length <
+                            JSON.parse(attribute.config).min_length
+                          ) {
+                            updatePhoneNumberValidation(
+                              attribute.componentId,
+                              false
+                            );
+                          } else {
+                            updatePhoneNumberValidation(
+                              attribute.componentId,
+                              true
+                            );
+                          }
+                        }}
+                        onInput={handleInput}
+                        pattern="[0-9]*"
+                      />
+                      {validPhoneNumber.find(
+                        (item) => item.name === attribute.componentId
+                      )?.value === false && (
+                        <p className="text-xs text-error">
+                          Masukkan jumlah nomor telepon yang benar!
+                        </p>
+                      )}
+                    </div>
                   ) : (
                     <input
                       className={`w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem] ${JSON.parse(attribute.config)?.hidden === 'true' ? 'hidden' : ''}`}
@@ -1806,7 +1848,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                     key={attribute.id}
                     className={`pt-1 ${JSON.parse(attribute.config)?.hidden === 'true' ? 'hidden' : ''}`}
                   >
-                    <p className={`font-bold`}>
+                    <p className={`font-bold text-start`}>
                       {attribute.name}{' '}
                       <span
                         className={`text-reddist ${!isRequired(attribute.componentId) ? 'hidden' : ''}`}
@@ -1839,36 +1881,21 @@ const CustomForm: React.FC<CustomFormProps> = ({
                             e.target.value
                           )
                         }
-                        className={`w-full px-[1rem] py-[0.625rem] border ${customFormClassname ?? 'border-purple_dark text-purple_dark'} rounded-xl focus:outline-none focus:border-blue-500`}
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                       >
                         <option value={''}>Pilih</option>
-                        {attribute.value?.split(';').map((option, idx) => (
+                        {attribute.value?.split(/[,;]/).map((option, idx) => (
                           <option
                             key={idx}
                             value={option}
                             selected={
                               option ===
-                                formData?.find(
-                                  (item) => item.name === attribute.name
-                                )?.value || option === selectedProduct
+                              formData?.find(
+                                (item) => item.name === attribute.name
+                              )?.value
                             }
                           >
                             {option}
-                          </option>
-                        ))}
-                        {dataRekomendasi?.map((product: any, index: any) => (
-                          <option
-                            selected={
-                              product.namaProduk ===
-                                dataRekomendasi?.find(
-                                  (item: any) => item.name === attribute.name
-                                )?.value ||
-                              product.namaProduk === selectedProduct
-                            }
-                            key={index}
-                            value={product.namaProduk}
-                          >
-                            {product.namaProduk}
                           </option>
                         ))}
                       </select>

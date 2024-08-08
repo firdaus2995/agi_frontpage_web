@@ -136,7 +136,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         image={BLANK_IMAGE}
       />
       <FooterCards
-        bgColor="bg-purple_superlight"
+        bgColor="bg-cta4_bg"
         cards={[
           {
             title: 'Layanan Nasabah',

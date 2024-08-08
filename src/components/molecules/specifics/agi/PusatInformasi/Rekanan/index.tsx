@@ -107,7 +107,7 @@ const Rekanan = (props: RekananProps) => {
         <div className="xs:w-[100%] md:w-[23%] h-full bg-purple_light_bg rounded-xl">
           <ButtonMenuVertical item={btnVerticalData} />
         </div>
-        <div className="xs:w-[100%] md:w-[77%]">
+        <div className="xs:w-[100%] md:w-[77%] xs:mt-12 lg:mt-0">
           {tab === 'Bengkel' ? (
             <Bengkel
               data={contentData}

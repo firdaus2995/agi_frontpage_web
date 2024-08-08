@@ -17,7 +17,7 @@ const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   return (
-    <div className={outerClass}>
+    <div className={`relative ${outerClass}`}>
       <div className="xs:hidden md:block w-full bg-purple_light_bg rounded-xl cursor-pointer py-[12px]">
         {item.map((i, index) => (
           <span
@@ -40,9 +40,9 @@ const ButtonMenuVertical: React.FC<IButtonMenuVertical> = ({
         ))}
       </div>
 
-      <div className="md:hidden w-full h-full bg-purple_light_bg rounded-xl">
+      <div className="md:hidden w-full h-full bg-purple_light_bg rounded-xl absolute">
         <span
-          className="flex flex-row justify-between items-center cursor-pointer pr-4"
+          className="flex flex-row justify-between bg-purple_light_bg rounded-xl items-center cursor-pointer pr-4"
           onClick={() => {
             setIsOpen(!isOpen);
           }}

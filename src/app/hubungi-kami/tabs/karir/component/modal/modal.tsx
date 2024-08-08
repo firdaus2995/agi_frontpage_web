@@ -12,12 +12,21 @@ type Props = {
   setIsSuccess: (value: boolean) => void;
 };
 
-export const ApplyJobModal: FC<Props> = ({ isOpen, onClose, formId, setIsSuccess }) => {
+export const ApplyJobModal: FC<Props> = ({
+  isOpen,
+  onClose,
+  formId,
+  setIsSuccess
+}) => {
   const [dataForm, setDataForm] = useState<any>();
   const [idForm, setFormId] = useState<any>();
   const [formPic, setFormPic] = useState<any>();
   const [formValue, setFormValue] = useState([{ name: '', value: '' }]);
   const [formIsValid, setFormIsValid] = useState(false);
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [emailSubjectSubmitter, setEmailSubjectSubmitter] = useState('');
+  const [emailBodySubmitter, setEmailBodySubmitter] = useState('');
 
   useEffect(() => {
     setFormValue([{ name: '', value: '' }]);
@@ -29,6 +38,10 @@ export const ApplyJobModal: FC<Props> = ({ isOpen, onClose, formId, setIsSuccess
           setDataForm(dataFormJson.data.attributeList);
           setFormId(dataFormJson.data.id);
           setFormPic(dataFormJson.data.pic);
+          setEmailSubject(dataFormJson.data.emailSubject);
+          setEmailBody(dataFormJson.data.emailBody);
+          setEmailSubjectSubmitter(dataFormJson.data.emailSubjectSubmitter);
+          setEmailBodySubmitter(dataFormJson.data.emailBodySubmitter);
         } catch (error: any) {
           throw new Error('Error fetching form data: ', error.message);
         }
@@ -58,7 +71,11 @@ export const ApplyJobModal: FC<Props> = ({ isOpen, onClose, formId, setIsSuccess
     const queryParams = {
       id: idForm,
       pic: formPic,
-      placeholderValue: formValue
+      placeholderValue: formValue,
+      emailSubject,
+      emailBody,
+      emailSubjectSubmitter,
+      emailBodySubmitter
     };
 
     const data = await handleSendEmail(queryParams);

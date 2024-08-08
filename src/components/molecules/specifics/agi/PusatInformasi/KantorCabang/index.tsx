@@ -34,6 +34,7 @@ const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
   const [contentData, setContentData] = useState<any>([]);
+  const [tempData, setTempData] = useState<any>([]);
   const [search, setSearch] = useState('');
   const [dataHo, setDataHo] = useState<any>({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,94 +52,98 @@ const KantorCabang = () => {
   };
   const [mapCenter, setMapCenter] = useState<[number, number]>([0, 0]);
 
-  const fetchContent = async () => {
-    try {
-      const apiContent = await handleGetContentCategory(
-        BASE_SLUG.PUSAT_INFORMASI.CONTENT.KANTOR_CABANG,
-        {
-          searchFilter: search,
-          includeAttributes: 'true'
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const apiContent = await handleGetContentCategory(
+          BASE_SLUG.PUSAT_INFORMASI.CONTENT.KANTOR_CABANG,
+          {
+            includeAttributes: 'true'
+          }
+        );
+        const transformedContent = contentCategoryTransformer(apiContent, '');
+        if (transformedContent?.length === 0) {
+          return setTempData([]);
         }
-      );
-      const transformedContent = contentCategoryTransformer(apiContent, '');
-      if (transformedContent?.length === 0) {
-        return setContentData([]);
-      }
-      const content = transformedContent[0].content;
-      const title = content['kota-ho'].value;
-      const addressOffice = content['alamat-ho'].value;
-      const operationalHourOffice = content['jam-operasional-ho'].value;
-      const branchOffice = content['kantor-cabang'].value;
-      const cityOffice = content['kota-ho'].value;
-      const latOffice = parseFloat(content['latitude-ho'].value);
-      const longOffice = parseFloat(content['longitude-ho'].value);
-      const phoneOffice = content['nomor-telepon-ho'].value;
-      const data = {
-        title,
-        addressOffice,
-        operationalHourOffice,
-        branchOffice,
-        cityOffice,
-        latOffice,
-        longOffice,
-        phoneOffice
-      };
-      setDataHo(data);
+        const content = transformedContent[0].content;
+        const title = content['kota-ho'].value;
+        const addressOffice = content['alamat-ho'].value;
+        const operationalHourOffice = content['jam-operasional-ho'].value;
+        const branchOffice = content['kantor-cabang'].value;
+        const cityOffice = content['kota-ho'].value;
+        const latOffice = parseFloat(content['latitude-ho'].value);
+        const longOffice = parseFloat(content['longitude-ho'].value);
+        const phoneOffice = content['nomor-telepon-ho'].value;
+        const data = {
+          title,
+          addressOffice,
+          operationalHourOffice,
+          branchOffice,
+          cityOffice,
+          latOffice,
+          longOffice,
+          phoneOffice
+        };
+        setDataHo(data);
 
-      const branchData: any = [];
-      transformedContent[0]?.content['kantor-cabang']?.contentData.map(
-        (item: any) => {
-          const kota = contentStringTransformer(
-            item.details.find(
-              (detail: { fieldId: string }) => detail.fieldId === 'kota'
-            )
-          );
-          const alamat = contentStringTransformer(
-            item.details.find(
-              (detail: { fieldId: string }) => detail.fieldId === 'alamat'
-            )
-          );
-          const jam = contentStringTransformer(
-            item.details.find(
-              (detail: { fieldId: string }) =>
-                detail.fieldId === 'jam-operasional'
-            )
-          );
-          const nomorTelepon = contentStringTransformer(
-            item.details.find(
-              (detail: { fieldId: string }) =>
-                detail.fieldId === 'nomor-telepon'
-            )
-          );
-          const latitude = parseFloat(
-            contentStringTransformer(
+        const branchData: any = [];
+        transformedContent[0]?.content['kantor-cabang']?.contentData.map(
+          (item: any) => {
+            const kota = contentStringTransformer(
               item.details.find(
-                (detail: { fieldId: string }) => detail.fieldId === 'latitude'
+                (detail: { fieldId: string }) => detail.fieldId === 'kota'
               )
-            )
-          );
-          const longitude = parseFloat(
-            contentStringTransformer(
+            );
+            const alamat = contentStringTransformer(
               item.details.find(
-                (detail: { fieldId: string }) => detail.fieldId === 'longitude'
+                (detail: { fieldId: string }) => detail.fieldId === 'alamat'
               )
-            )
-          );
-          branchData.push({
-            kota,
-            alamat,
-            jam,
-            nomorTelepon,
-            latitude,
-            longitude
-          });
-        }
-      );
-      setContentData(branchData);
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
-  };
+            );
+            const jam = contentStringTransformer(
+              item.details.find(
+                (detail: { fieldId: string }) =>
+                  detail.fieldId === 'jam-operasional'
+              )
+            );
+            const nomorTelepon = contentStringTransformer(
+              item.details.find(
+                (detail: { fieldId: string }) =>
+                  detail.fieldId === 'nomor-telepon'
+              )
+            );
+            const latitude = parseFloat(
+              contentStringTransformer(
+                item.details.find(
+                  (detail: { fieldId: string }) => detail.fieldId === 'latitude'
+                )
+              )
+            );
+            const longitude = parseFloat(
+              contentStringTransformer(
+                item.details.find(
+                  (detail: { fieldId: string }) =>
+                    detail.fieldId === 'longitude'
+                )
+              )
+            );
+            branchData.push({
+              kota,
+              alamat,
+              jam,
+              nomorTelepon,
+              latitude,
+              longitude
+            });
+          }
+        );
+        setTempData(branchData);
+      } catch (error: any) {
+        throw new Error(error.message);
+      }
+    };
+
+    fetchContent();
+  }, []);
 
   useEffect(() => {
     if (dataHo) {
@@ -212,8 +217,15 @@ const KantorCabang = () => {
   };
 
   useEffect(() => {
-    fetchContent();
-  }, [search]);
+    if (search === '') {
+      setContentData(tempData);
+    } else {
+      const temp = tempData?.filter((value: any) =>
+        value.kota?.toLowerCase().includes(search.toLowerCase())
+      );
+      setContentData(temp);
+    }
+  }, [tempData, search]);
 
   return (
     <div className="flex flex-col gap-[6.25rem] w-full">

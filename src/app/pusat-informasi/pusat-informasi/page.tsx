@@ -174,6 +174,7 @@ const PusatInformasi = () => {
       />
 
       <FooterCards
+        bgColor="md:bg-cta4_bg"
         cards={[
           {
             title: data.cta41.title,

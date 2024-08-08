@@ -68,7 +68,8 @@ const Content = (props: contentProps) => {
 
   const ITEMS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalItem = listData.length;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
   const [params, setParams] = useState({
     yearFilter: '',
     monthFilter: '',
@@ -462,12 +463,24 @@ const Content = (props: contentProps) => {
           }
         />
         <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
-          <p className="text-lg">
+          <p className="text-[20px]">
             Menampilkan{' '}
-            <span className="font-bold">{`${currentPage * ITEMS_PER_PAGE - (ITEMS_PER_PAGE - 1)}-${ITEMS_PER_PAGE * currentPage > totalItem ? totalItem : ITEMS_PER_PAGE * currentPage}`}</span>{' '}
-            dari <span className="font-bold">{totalItem}</span> hasil
+            <span className="font-bold text-purple_dark">
+              {listData?.length === 0 ? 0 : startIndex + 1}-
+              {Math.min(endIndex, listData ? listData.length : 0)}
+            </span>{' '}
+            dari <span className="font-bold">{listData?.length}</span> hasil
           </p>
           <div className="flex flex-row gap-1 lg:gap-[12px] items-center">
+            <span
+              className="mt-[3px] rotate-180"
+              role="button"
+              onClick={() =>
+                handleChangePage(currentPage > 1 ? currentPage - 1 : 1)
+              }
+            >
+              <Icon name="chevronRight" color="purple_dark" />
+            </span>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <div
                 key={page}
@@ -483,7 +496,11 @@ const Content = (props: contentProps) => {
             <span
               className="mt-[3px]"
               role="button"
-              onClick={() => handleChangePage(totalPages)}
+              onClick={() =>
+                handleChangePage(
+                  currentPage === totalPages ? currentPage : currentPage + 1
+                )
+              }
             >
               <Icon name="chevronRight" color="purple_dark" />
             </span>

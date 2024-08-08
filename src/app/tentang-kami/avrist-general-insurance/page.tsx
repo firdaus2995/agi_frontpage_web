@@ -284,7 +284,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
       </div>
       <div className="w-full h-full">
         <FooterCards
-          bgColor="xs:bg-white md:bg-purple_superlight"
+          bgColor="xs:bg-white md:bg-cta4_bg"
           cards={[
             {
               title: cta4Data.cta41.title,

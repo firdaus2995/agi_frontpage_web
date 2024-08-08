@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Icon from '@/components/atoms/Icon';
+import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 
 type BengkelProps = {
@@ -18,15 +19,19 @@ const Bengkel: React.FC<BengkelProps> = ({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   return (
-    <div className="flex flex-col gap-6">
-      {data?.map((item, index) => (
-        <DownloadFileButton
-          title={item.title}
-          fileType={item.fileType}
-          key={index}
-          filePath={item.file}
-        />
-      ))}
+    <div className="flex flex-col gap-6 mt-5">
+      {data?.length > 0 ? (
+        data?.map((item, index) => (
+          <DownloadFileButton
+            title={item.title}
+            fileType={item.fileType}
+            key={index}
+            filePath={item.file}
+          />
+        ))
+      ) : (
+        <NotFound />
+      )}
       <div className="flex flex-col gap-4 sm:flex-row justify-between">
         <div>
           <p className="text-[20px]">

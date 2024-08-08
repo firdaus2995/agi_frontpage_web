@@ -314,7 +314,7 @@ const TanyaAvgen = () => {
         href={footerBtnUrl}
       />
       <FooterCards
-        bgColor="bg-purple_superlight"
+        bgColor="bg-cta4_bg"
         cards={[
           {
             title: cta4Data.cta41.title,

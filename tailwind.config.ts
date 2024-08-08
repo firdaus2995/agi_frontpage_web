@@ -431,7 +431,8 @@ const config: Config = {
         grey_video_footer: '#8C8B89',
         syariah_green: '#3D5910',
         syariah_green_informing: '#417C40',
-        dplk_yellow: '#F2A625'
+        dplk_yellow: '#F2A625',
+        cta4_bg: '#f2f3f5'
       }
     }
   },

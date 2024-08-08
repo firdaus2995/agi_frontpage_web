@@ -131,7 +131,7 @@ const CallMe = () => {
         href={footerBtnUrl}
       />
 
-      <FooterCards bgColor="md:bg-purple_superlight" cards={listBanner} />
+      <FooterCards bgColor="md:bg-cta4_bg" cards={listBanner} />
     </div>
   );
 };

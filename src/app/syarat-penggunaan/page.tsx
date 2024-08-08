@@ -88,7 +88,7 @@ const SyaratPengunaan = () => {
         href={cta1Link}
         image={cta1Img.imageUrl}
       />
-      <FooterCards bgColor="bg-purple_superlight" cards={listBanner} />
+      <FooterCards bgColor="bg-cta4_bg" cards={listBanner} />
     </div>
   );
 };

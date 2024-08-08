@@ -149,7 +149,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         imageUrl={titleImage.imageUrl}
       />
 
-      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[3.125rem] md:pb-[6.25rem]">
+      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[5rem] md:pb-[6.25rem]">
         <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-5">
             <p className="font-semibold text-information-title-mobile lg:text-information-title-desktop">

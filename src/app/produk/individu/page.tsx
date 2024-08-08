@@ -158,7 +158,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       />
 
       <FooterCards
-        bgColor="bg-purple_superlight"
+        bgColor="bg-cta4_bg"
         cards={[
           {
             title: 'Layanan Nasabah',

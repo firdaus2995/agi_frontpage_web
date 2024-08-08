@@ -269,7 +269,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         href={footerBtnUrl}
       />
 
-      <FooterCards bgColor="md:bg-purple_superlight" cards={listBanner} />
+      <FooterCards bgColor="md:bg-cta4_bg" cards={listBanner} />
       {openDialog && (
         <ApplyJobModal
           isOpen={openDialog}

@@ -7,6 +7,7 @@ import { CardAddress } from './CardAddress';
 import { SearchInput } from './form/Input';
 import maps from '@/assets/images/Map-Pin.svg';
 import Icon from '@/components/atoms/Icon';
+import NotFound from '@/components/atoms/NotFound';
 import { handleGetContentCategory } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import {
@@ -32,7 +33,7 @@ import 'leaflet/dist/leaflet.css';
 const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
-  const [contentData, setContentData] = useState<any>();
+  const [contentData, setContentData] = useState<any>([]);
   const [search, setSearch] = useState('');
   const [dataHo, setDataHo] = useState<any>({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,9 +49,7 @@ const KantorCabang = () => {
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setCurrentPage(page);
   };
-  const [mapCenter, setMapCenter] = useState<[number, number]>([
-    0, 0
-  ]);
+  const [mapCenter, setMapCenter] = useState<[number, number]>([0, 0]);
 
   const fetchContent = async () => {
     try {
@@ -62,6 +61,9 @@ const KantorCabang = () => {
         }
       );
       const transformedContent = contentCategoryTransformer(apiContent, '');
+      if (transformedContent?.length === 0) {
+        return setContentData([]);
+      }
       const content = transformedContent[0].content;
       const title = content['kota-ho'].value;
       const addressOffice = content['alamat-ho'].value;
@@ -140,9 +142,9 @@ const KantorCabang = () => {
 
   useEffect(() => {
     if (dataHo) {
-      onClickMarker(dataHo?.latOffice, dataHo?.longOffice)
+      onClickMarker(dataHo?.latOffice, dataHo?.longOffice);
     }
-  }, [dataHo])
+  }, [dataHo]);
 
   const onClickMarker = (lat: number, lng: number) => {
     if (lat !== 0 || lng !== 0) {
@@ -229,41 +231,50 @@ const KantorCabang = () => {
               placeholder="Cari Lokasi Kantor Cabang"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
-            {paginatedData?.map((i: any, index: number) => (
-              <CardAddress
-                key={index}
-                title={i?.kota}
-                address={i?.alamat}
-                contact={i?.nomorTelepon}
-                workHour={i?.jam}
-                lat={i?.latitude}
-                lng={i.longitude}
-                onChangeCenter={onClickMarker}
-              />
-            ))}
-          </div>
-          <div className="flex flex-col gap-4 sm:flex-row justify-between mt-6">
-            <div>
-              <p className="text-[20px]">
-                Menampilkan{' '}
-                <span className="font-bold text-purple_dark">
-                  {contentData?.length === 0 ? 0 : startIndex + 1}-
-                  {Math.min(endIndex, contentData ? contentData.length : 0)}
-                </span>{' '}
-                dari <span className="font-bold">{contentData?.length}</span>{' '}
-                hasil
-              </p>
+          {paginatedData?.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
+              {paginatedData?.map((i: any, index: number) => (
+                <CardAddress
+                  key={index}
+                  title={i?.kota}
+                  address={i?.alamat}
+                  contact={i?.nomorTelepon}
+                  workHour={i?.jam}
+                  lat={i?.latitude}
+                  lng={i.longitude}
+                  onChangeCenter={onClickMarker}
+                />
+              ))}
             </div>
-            <div className="flex flex-row gap-[12px] items-center">
+          ) : (
+            <NotFound />
+          )}
+          <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+            <p className="text-[20px]">
+              Menampilkan{' '}
+              <span className="font-bold text-purple_dark">
+                {contentData?.length === 0 ? 0 : startIndex + 1}-
+                {Math.min(endIndex, contentData ? contentData.length : 0)}
+              </span>{' '}
+              dari <span className="font-bold">{contentData?.length}</span>{' '}
+              hasil
+            </p>
+            <div className="flex flex-row gap-1 lg:gap-[12px] items-center">
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() =>
+                  handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
                   <div
                     key={page}
                     role="button"
-                    onClick={() => {
-                      handlePageChange(page);
-                    }}
+                    onClick={() => handlePageChange(page)}
                     className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
                       currentPage === page ? 'text-purple_dark font-bold' : ''
                     }`}
@@ -275,7 +286,11 @@ const KantorCabang = () => {
               <span
                 className="mt-[3px]"
                 role="button"
-                onClick={() => handlePageChange(totalPages)}
+                onClick={() =>
+                  handlePageChange(
+                    currentPage === totalPages ? currentPage : currentPage + 1
+                  )
+                }
               >
                 <Icon name="chevronRight" color="purple_dark" />
               </span>

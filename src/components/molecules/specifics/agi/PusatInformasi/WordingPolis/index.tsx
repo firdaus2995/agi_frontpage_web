@@ -18,12 +18,12 @@ type WordingPolisProps = {
 
 const WordingPolis = (props: WordingPolisProps) => {
   const { pageData } = props;
-  const [contentData, setContentData] = useState<any>();
+  const [contentData, setContentData] = useState<any>([]);
   const [search, setSearch] = useState('');
   const ITEMS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalItem = contentData?.length;
-
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
   const totalPages = Math.ceil(contentData?.length / ITEMS_PER_PAGE);
 
   const handleChangePage = (newPage: any) => {
@@ -82,13 +82,13 @@ const WordingPolis = (props: WordingPolisProps) => {
         </h1>
       </section>
 
-        <div className="pb-[24px] lg:pb-[48px]">
+      <div className="pb-[24px] lg:pb-[48px]">
         <SearchBox
-        onSearch={(key) => setSearch(key)}
-        placeHolder="Cari Formulir"
-      />
-        </div>
-        {paginatedData?.length > 0 ? (
+          onSearch={(key) => setSearch(key)}
+          placeHolder="Cari Formulir"
+        />
+      </div>
+      {paginatedData?.length > 0 ? (
         <div className="flex flex-col gap-6">
           {paginatedData?.map(
             (
@@ -111,13 +111,25 @@ const WordingPolis = (props: WordingPolisProps) => {
       ) : (
         <NotFound />
       )}
-      <div className="flex flex-row pt-[44px] justify-between">
-        <p className="text-lg">
+      <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+        <p className="text-[20px]">
           Menampilkan{' '}
-          <span className="font-bold">{`${currentPage * ITEMS_PER_PAGE - (ITEMS_PER_PAGE - 1)}-${ITEMS_PER_PAGE * currentPage > totalItem ? totalItem : ITEMS_PER_PAGE * currentPage}`}</span>{' '}
-          dari <span className="font-bold">{totalItem}</span> hasil
+          <span className="font-bold text-purple_dark">
+            {contentData?.length === 0 ? 0 : startIndex + 1}-
+            {Math.min(endIndex, contentData ? contentData.length : 0)}
+          </span>{' '}
+          dari <span className="font-bold">{contentData?.length}</span> hasil
         </p>
-        <div className="flex flex-row gap-[12px] items-center">
+        <div className="flex flex-row gap-1 lg:gap-[12px] items-center">
+          <span
+            className="mt-[3px] rotate-180"
+            role="button"
+            onClick={() =>
+              handleChangePage(currentPage > 1 ? currentPage - 1 : 1)
+            }
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <div
               key={page}
@@ -133,7 +145,11 @@ const WordingPolis = (props: WordingPolisProps) => {
           <span
             className="mt-[3px]"
             role="button"
-            onClick={() => handleChangePage(totalPages)}
+            onClick={() =>
+              handleChangePage(
+                currentPage === totalPages ? currentPage : currentPage + 1
+              )
+            }
           >
             <Icon name="chevronRight" color="purple_dark" />
           </span>

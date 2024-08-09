@@ -36,7 +36,7 @@ export interface ContentDatum {
   config: null | string;
   parentId: string;
   value: string;
-  contentData: string;
+  contentData: string | any;
 }
 
 export interface PageTemplate {

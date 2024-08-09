@@ -218,7 +218,6 @@ const TanyaAvgen = () => {
       };
       const listFaq: any = await getListFaq(slug, queryParams);
       const tempData = listFaq?.data?.categoryList[''];
-      console.log(tempData);
       const transformedData =
         tempData === undefined
           ? []

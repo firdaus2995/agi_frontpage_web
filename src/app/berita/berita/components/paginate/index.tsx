@@ -39,7 +39,18 @@ const Paginate: FC<IPaginate> = ({
           dari <span className="font-bold">{data ? data.length : 0}</span> hasil
         </p>
       </div>
-      <div className="flex flex-row gap-[8px] items-center">
+      <div className="flex flex-row gap-[12px] items-center">
+        <span
+          className="mt-[3px] rotate-180"
+          role="button"
+          onClick={() =>
+            handlePageChange(
+              pagination.currentPage > 1 ? pagination.currentPage - 1 : 1
+            )
+          }
+        >
+          <Icon name="chevronRight" color="purple_dark" />
+        </span>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <div
             key={page}
@@ -57,7 +68,13 @@ const Paginate: FC<IPaginate> = ({
         <span
           className="mt-[3px]"
           role="button"
-          onClick={() => handlePageChange(totalPages)}
+          onClick={() =>
+            handlePageChange(
+              pagination.currentPage === totalPages
+                ? pagination.currentPage
+                : pagination.currentPage + 1
+            )
+          }
         >
           <Icon name="chevronRight" color="purple_dark" />
         </span>

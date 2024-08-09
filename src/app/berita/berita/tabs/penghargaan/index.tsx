@@ -63,7 +63,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
     autoplay: true,
     autoplaySpeed: 3000,
     dots: true,
-    infinite: false,
+    infinite: sliderData.length > 1 ? true : false,
     arrows: false,
     speed: 500,
     slidesToShow: 1,
@@ -187,8 +187,8 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left justify-between md:justify-center h-[290px] md:h-[330px]">
-                  <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[250px]">
+                <div className="flex flex-col gap-4 text-left justify-between md:justify-center min-h-[290px] md:h-[330px]">
+                  <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] min-w-[200px]">
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
                         <div className="font-bold text-purple_dark whitespace-nowrap">
@@ -196,7 +196,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                         </div>
                       )}
                     {item.date !== '-' && item.date !== undefined && (
-                      <div className="pl-2 flex flex-row whitespace-nowrap">
+                      <div className="xm:pl-2 flex flex-row whitespace-nowrap">
                         {item.date} {item.waktu}
                       </div>
                     )}

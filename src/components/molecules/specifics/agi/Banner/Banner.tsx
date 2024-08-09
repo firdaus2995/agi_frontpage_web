@@ -179,14 +179,14 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         className="w-screen h-[40rem] object-cover"
                       />
                     </div>
-                    <div className="flex flex-col gap-[2rem] 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start">
+                    <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start gap-8">
                       <p
-                        className={`text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark whitespace-nowrap font-karla font-medium`}
+                        className={`xs:text-[1.5rem] md:text-[28px] text-purple_dark whitespace-nowrap font-karla font-medium`}
                       >
                         {contentStringTransformer(data['hero-teks1'])}
                       </p>
                       <div
-                        className=" font-karla text-banner-subtitle-mobile lg:text-banner-subtitle-desktop bg-none text-center lg:text-left"
+                        className="xs:px-[2rem] md:px-0 text-2xl/3 leading-none md:text-[1.5rem] xl:text-[2.25rem] xs:text-center md:text-left font-karla md:font-normal md:leading-9 tracking-tight text-shadow"
                         dangerouslySetInnerHTML={{
                           __html: contentStringTransformer(data['hero-teks2'])
                         }}
@@ -201,7 +201,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                             title={contentStringTransformer(
                               data['hero-lblbutton']
                             )}
-                            customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none xs:py-[12px] xs:px-[40px]`}
+                            customButtonClass={`bg-purple_dark hover:bg-purple_dark text-white border-none text-[1.25rem] xs:py-[12px] xs:px-[40px]`}
                             customTextClass="text-banner-btn-label"
                           />
                         </Link>

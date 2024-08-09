@@ -63,7 +63,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
     autoplay: true,
     autoplaySpeed: 3000,
     dots: true,
-    infinite: true,
+    infinite: sliderData.length > 1 ? true : false,
     arrows: false,
     speed: 500,
     slidesToShow: 1,

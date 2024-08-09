@@ -37,7 +37,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
         <Disclosure key={index}>
           <div>
             <div className="flex w-full">
-              <Disclosure.Button className="top- text-[black] font-medium w-full text-list-menu-header-mobile text-start p-2 transition-all rounded hover:bg-white/20 outline-none focus:bg-white/20">
+              <Disclosure.Button className="top- text-black font-medium w-full text-base text-start p-2 transition-all rounded hover:bg-white/20 outline-none focus:bg-white/20">
                 {item.title}
               </Disclosure.Button>
               <Disclosure.Button>
@@ -66,7 +66,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
               <Disclosure.Panel className="p-2 text-[black] items-stretch gap-4 pl-2">
                 {item.content.map((val, idx) => (
                   <div key={idx} className="pt-4">
-                    <span className="text-menu-header-title cursor-pointer rounded font-bold outline-none p-2">
+                    <span className="text-[20px] leading-[38.4px] -tracking-[0.96px] cursor-pointer rounded font-bold outline-none px-2 py-[17.5px]">
                       {val.title}
                     </span>
                     {val.subMenus.map((el, index) => (
@@ -81,7 +81,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
                             query: { tab: el.title }
                           }}
                           onClick={() => setVisibility(false)}
-                          className="text-menu-header-subtitle cursor-pointer rounded transition-all hover:bg-white/20 outline-none p-2"
+                          className="text-[16px] font-semibold leading-[28px] cursor-pointer rounded transition-all hover:bg-white/20 outline-none p-2"
                         >
                           {el.title}
                         </Link>

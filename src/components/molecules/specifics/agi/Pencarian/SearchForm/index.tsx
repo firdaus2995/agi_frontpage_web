@@ -5,7 +5,6 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import ReactPaginate from 'react-paginate';
 import Accordion from '../../Accordion';
 import DownloadFileButton from '../../DownloadFileButton';
 import SearchBox from '../../SearchBox';
@@ -36,9 +35,9 @@ const SearchForm = () => {
   const [dataContent, setDataContent] = useState<any>([]);
 
   const itemsPerPage = 5;
-  const [paginatedData, setPaginatedData] = useState<any>([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
   const [transformedData, setTransFormedData] = useState<any>([]);
   const [categoryList, setCategoryList] = useState<string[]>([]);
@@ -126,13 +125,7 @@ const SearchForm = () => {
           }
         );
 
-        console.log(dataContentValues);
         setDataContent(dataContentValues);
-
-        const endOffset = itemOffset + itemsPerPage;
-        console.log(dataContentValues.slice(itemOffset, endOffset));
-        setPaginatedData(dataContentValues.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(dataContentValues.length / itemsPerPage));
       } catch (error) {
         console.error('Error:', error);
       }
@@ -149,8 +142,6 @@ const SearchForm = () => {
       }
     };
 
-    setItemOffset(0);
-    setPageCount(0);
     if (selectedTab.title === 'Klaim') {
       fetchKlaimData();
     } else {
@@ -181,19 +172,18 @@ const SearchForm = () => {
     return { transformedData };
   }
 
-  // PAGINATION LOGIC HOOK
-  useEffect(() => {
-    if (!dataContent.length) return; // check if contentaData already present
+  const totalPages = Math.ceil(dataContent.length / itemsPerPage);
 
-    const endOffset = itemOffset + itemsPerPage;
-    setPaginatedData(dataContent.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(dataContent.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, dataContent]);
-
-  const handlePageChange = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % dataContent.length;
-    setItemOffset(newOffset);
+  const handlePageChange = (newPage: any) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
   };
+
+  const paginatedData = dataContent.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const tabs = useMemo(
     () => [
@@ -240,7 +230,6 @@ const SearchForm = () => {
                   slug
                 });
                 setDataContent([]);
-                setPaginatedData([]);
               }}
               customButtonClass={`${selectedTab.title === tab.title && `bg-purple_dark text-white px-[1.25rem] py-[0.5rem]`} hover:bg-purple_dark px-[1.25rem] py-[0.5rem]`}
               customTextClass="text-[1rem] font-semibold leading-[1.48rem] whitespace-nowrap"
@@ -392,36 +381,53 @@ const SearchForm = () => {
             )}
           </div>
         )}
-
         {selectedTab.title !== 'Klaim' && (
-          <div className="flex flex-col gap-[1.5rem] sm:flex-row justify-between">
-            <div>
-              <p className="text-[1.25rem] leading-[28px]">
-                Menampilkan{' '}
-                <span className="font-bold text-purple_dark">
-                  {dataContent?.length === 0 ? 0 : itemOffset + 1}-
-                  {dataContent?.length === 0
-                    ? 0
-                    : itemOffset + 1 + itemsPerPage > dataContent?.length
-                      ? dataContent?.length
-                      : itemOffset + itemsPerPage}
-                </span>{' '}
-                dari <span className="font-bold">{dataContent?.length}</span>{' '}
-                hasil
-              </p>
+          <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+            <p className="text-[20px]">
+              Menampilkan{' '}
+              <span className="font-bold text-purple_dark">
+                {dataContent?.length === 0 ? 0 : startIndex + 1}-
+                {Math.min(endIndex, dataContent ? dataContent.length : 0)}
+              </span>{' '}
+              dari <span className="font-bold">{dataContent?.length}</span>{' '}
+              hasil
+            </p>
+            <div className="flex flex-row gap-1 lg:gap-[12px] items-center">
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() =>
+                  handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <div
+                    key={page}
+                    role="button"
+                    onClick={() => handlePageChange(page)}
+                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                      currentPage === page ? 'text-purple_dark font-bold' : ''
+                    }`}
+                  >
+                    {page}
+                  </div>
+                )
+              )}
+              <span
+                className="mt-[3px]"
+                role="button"
+                onClick={() =>
+                  handlePageChange(
+                    currentPage === totalPages ? currentPage : currentPage + 1
+                  )
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
             </div>
-
-            <ReactPaginate
-              pageCount={pageCount}
-              pageRangeDisplayed={5}
-              onPageChange={handlePageChange}
-              nextLabel={<Icon name="chevronRight" color="purple_dark" />}
-              previousLabel={<Icon name="chevronLeft" color="purple_dark" />}
-              containerClassName={`flex flex-row gap-[12px] items-center ${dataContent.length > 0 ? '' : 'hidden'}`}
-              activeClassName="text-purple_dark font-bold"
-              pageClassName="w-6 h-6 flex items-center justify-center cursor-pointer text-xl"
-              forcePage={itemOffset / itemsPerPage}
-            />
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json(
       { error: 'Error on fetch content category' },
-      { status: 500 }
+      { status: 500 } 
     );
   }
 }

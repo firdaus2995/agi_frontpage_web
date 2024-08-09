@@ -232,7 +232,7 @@ const Berita: React.FC<ParamsProps> = () => {
         />
       </div>
 
-      <div className="w-full h-full md:bg-purple_superlight">
+      <div className="w-full h-full md:bg-cta4_bg">
         <FooterCards
           cards={[
             {

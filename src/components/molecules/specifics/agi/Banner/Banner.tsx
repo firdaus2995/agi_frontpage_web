@@ -186,7 +186,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         {contentStringTransformer(data['hero-teks1'])}
                       </p>
                       <div
-                        className="xs:px-[2rem] md:px-0 text-2xl/3 leading-none md:text-[1.5rem] xl:text-[2.25rem] xs:text-center md:text-left font-karla md:font-normal md:leading-9 tracking-tight text-shadow"
+                        className="xs:px-[2rem] md:px-0 leading-none text-[1.5rem] xl:text-[2.25rem] xs:text-center md:text-left font-karla md:font-normal md:leading-9 tracking-tight text-shadow"
                         dangerouslySetInnerHTML={{
                           __html: contentStringTransformer(data['hero-teks2'])
                         }}

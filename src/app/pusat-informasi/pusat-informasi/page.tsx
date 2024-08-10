@@ -58,7 +58,7 @@ const PusatInformasi = () => {
 
   const tabs = [
     {
-      name: 'Formulir Penutupan',
+      name: 'Formulir',
       url: BASE_SLUG.PUSAT_INFORMASI.PAGE.FORMULIR
     },
     { name: 'Klaim', url: BASE_SLUG.PUSAT_INFORMASI.PAGE.KLAIM },
@@ -80,73 +80,75 @@ const PusatInformasi = () => {
     }
   ];
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `${BASE_URL.apiPage}/${tabs.find((item: any) => item.name === tab)?.url}`
-      );
-      const data = await response.json();
-
-      const { content } = pageTransformer(data);
-      setPageData(content);
-      const titleImage = singleImageTransformer(content['title-image']);
-      const bannerImage = singleImageTransformer(content['banner-image']);
-      const footerImage = singleImageTransformer(content['cta1-image']);
-      const footerText = contentStringTransformer(content['cta1-teks']);
-      const footerBtnLabel = contentStringTransformer(
-        content['cta1-label-button']
-      );
-      const footerBtnUrl = contentStringTransformer(
-        content['cta1-link-button']
-      );
-
-      const cta41 = {
-        icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
-        title: contentStringTransformer(content['cta4-1-nama']),
-        subtitle: contentStringTransformer(content['cta4-1-label-link']),
-        url: contentStringTransformer(content['cta4-1-link'])
-      };
-      const cta42 = {
-        icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
-        title: contentStringTransformer(content['cta4-2-nama']),
-        subtitle: contentStringTransformer(content['cta4-2-label-link']),
-        url: contentStringTransformer(content['cta4-2-link'])
-      };
-      const cta43 = {
-        icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
-        title: contentStringTransformer(content['cta4-3-nama']),
-        subtitle: contentStringTransformer(content['cta4-3-label-link']),
-        url: contentStringTransformer(content['cta4-3-link'])
-      };
-      const cta44 = {
-        icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
-        title: contentStringTransformer(content['cta4-4-nama']),
-        subtitle: contentStringTransformer(content['cta4-4-label-link']),
-        url: contentStringTransformer(content['cta4-4-link'])
-      };
-
-      setData({
-        titleImageUrl: titleImage.imageUrl,
-        bannerImageUrl: bannerImage.imageUrl,
-        titleAltText: titleImage.altText,
-        bannerAltText: bannerImage.altText,
-        footerInfoAltText: footerImage.altText,
-        footerInfoImageUrl: footerImage.imageUrl,
-        footerText,
-        footerBtnLabel,
-        footerBtnUrl,
-        cta41,
-        cta42,
-        cta43,
-        cta44
-      });
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${BASE_URL.apiPage}/${tabs.find((item: any) => item.name === tab)?.url}`
+        );
+        const data = await response.json();
+
+        const { content } = pageTransformer(data);
+        setPageData(content);
+        const titleImage = singleImageTransformer(content['title-image']);
+        const bannerImage = singleImageTransformer(content['banner-image']);
+        const footerImage = singleImageTransformer(content['cta1-image']);
+        const footerText = contentStringTransformer(content['cta1-teks']);
+        const footerBtnLabel = contentStringTransformer(
+          content['cta1-label-button']
+        );
+        const footerBtnUrl = contentStringTransformer(
+          content['cta1-link-button']
+        );
+
+        const cta41 = {
+          icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-1-nama']),
+          subtitle: contentStringTransformer(content['cta4-1-label-link']),
+          url: contentStringTransformer(content['cta4-1-link'])
+        };
+        const cta42 = {
+          icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-2-nama']),
+          subtitle: contentStringTransformer(content['cta4-2-label-link']),
+          url: contentStringTransformer(content['cta4-2-link'])
+        };
+        const cta43 = {
+          icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-3-nama']),
+          subtitle: contentStringTransformer(content['cta4-3-label-link']),
+          url: contentStringTransformer(content['cta4-3-link'])
+        };
+        const cta44 = {
+          icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-4-nama']),
+          subtitle: contentStringTransformer(content['cta4-4-label-link']),
+          url: contentStringTransformer(content['cta4-4-link'])
+        };
+
+        setData({
+          titleImageUrl: titleImage.imageUrl,
+          bannerImageUrl: bannerImage.imageUrl,
+          titleAltText: titleImage.altText,
+          bannerAltText: bannerImage.altText,
+          footerInfoAltText: footerImage.altText,
+          footerInfoImageUrl: footerImage.imageUrl,
+          footerText,
+          footerBtnLabel,
+          footerBtnUrl,
+          cta41,
+          cta42,
+          cta43,
+          cta44
+        });
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    if (tab) {
+      fetchData();
+    }
   }, [tab]);
 
   return (

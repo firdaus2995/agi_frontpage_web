@@ -211,18 +211,20 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           >
             <Icon name="chevronRight" color="purple_dark" />
           </span>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <div
-              key={page}
-              role="button"
-              onClick={() => handlePageChange(page)}
-              className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
-                currentPage === page ? 'text-purple_dark font-bold' : ''
-              }`}
-            >
-              {page}
-            </div>
-          ))}
+          <div className="flex flex-row flex-wrap">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <div
+                key={page}
+                role="button"
+                onClick={() => handlePageChange(page)}
+                className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                  currentPage === page ? 'text-purple_dark font-bold' : ''
+                }`}
+              >
+                {page}
+              </div>
+            ))}
+          </div>
           <span
             className="mt-[3px]"
             role="button"

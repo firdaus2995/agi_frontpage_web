@@ -133,16 +133,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
         </div>
       )
     });
-    const data = {
-      name: cardData.name
-    };
     window.scrollTo({ top: 200, behavior: 'smooth' });
-    router.push(
-      pathname + '?' + createQueryString('tab', `Manajemen-${data.name}`),
-      {
-        scroll: false
-      }
-    );
   };
 
   return (

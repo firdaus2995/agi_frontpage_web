@@ -33,7 +33,7 @@ const Paginate: FC<IPaginate> = ({
         <p className="text-[1.25rem]">
           Menampilkan{' '}
           <span className="font-bold text-purple_dark">
-            {data ? startIndex + 1 : 0}-
+            {data?.length === 0 ? 0 : startIndex + 1}-
             {Math.min(endIndex, data ? data.length : 0)}
           </span>{' '}
           dari <span className="font-bold">{data ? data.length : 0}</span> hasil

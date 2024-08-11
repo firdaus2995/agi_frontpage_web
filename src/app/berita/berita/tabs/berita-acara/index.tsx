@@ -310,7 +310,17 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
               />
             </>
           ) : (
-            <NotFound />
+            <>
+              <NotFound />
+              <Paginate
+                data={contentData}
+                startIndex={startIndex}
+                endIndex={endIndex}
+                totalPages={totalPages}
+                pagination={pagination}
+                setPagination={setPagination}
+              />
+            </>
           )
         }
       />

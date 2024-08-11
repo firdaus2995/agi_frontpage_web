@@ -240,7 +240,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 bg-white justify-center px-[2rem] py-[2.25rem] lg:py-[5rem]">
+    <div className="w-full flex flex-col gap-4 bg-white justify-center px-[2rem] py-[5rem]">
       <div className="flex flex-col gap-4">
         {params.category ? (
           // <CustomContainer className="w-full flex flex-col items-center justify-center text-center font-karla xs:mt-[2.25rem] sm:mt-[5rem]">
@@ -251,7 +251,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           //     Temukan {params.category.toLowerCase()} perusahaan di sini
           //   </h2>
           // </CustomContainer>
-          <div className="flex flex-col gap-[36px] lg:gap-[5rem]">
+          <div className="flex flex-col gap-[5rem]">
             <div className="flex flex-col">
               <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
                 {title}

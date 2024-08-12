@@ -1,18 +1,19 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import CustomerFund from '@/components/molecules/specifics/avram/_investasi/CustomerFund';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import BeritaAcara from './tabs/berita-acara';
 import CSR from './tabs/csr';
 import Penghargaan from './tabs/penghargaan';
 import BlankImage from '@/assets/images/blank-image.svg';
-import ButtonMenu from '@/components/molecules/specifics/agi/ButtonMenu';
+import CustomContainer from '@/components/molecules/specifics/agi/Containers/Custom';
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import { SubmittedFormModal } from '@/components/molecules/specifics/agi/Modal/SubmittedFormModal';
+import SliderComponent from '@/components/molecules/specifics/agi/Slider';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { BASE_URL } from '@/utils/baseUrl';
 import { ParamsProps } from '@/utils/globalTypes';
@@ -63,6 +64,8 @@ const initialData = {
 
 const Berita: React.FC<ParamsProps> = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const tabs = [
     {
       name: 'Berita dan Acara',
@@ -175,6 +178,23 @@ const Berita: React.FC<ParamsProps> = () => {
     }
   }, [tab]);
 
+  const handleTabClick = (tab: string) => {
+    setTab(tab);
+    router.push(pathname + '?' + createQueryString('tab', tab), {
+      scroll: false
+    });
+  };
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <div className="flex flex-col items-center justify-center bg-white relative">
       <div className="absolute">
@@ -194,9 +214,35 @@ const Berita: React.FC<ParamsProps> = () => {
         ]}
         imageUrl={data?.titleImageUrl ?? BlankImage}
       />
-      <div className="w-full z-20 bg-white xs:pt-[3.125rem] md:pt-[6.25rem] pb-[5rem] xs:-mt-[3.15rem] md:-mt-[6.3rem]">
-        <ButtonMenu buttonList={tabs.map((item) => item.name)} />
-      </div>
+      <CustomContainer className="pb-[5rem] xs:-mb-2 md:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] md:pt-[5rem] bg-white xs:-mt-[3.2rem] md:-mt-[6.2rem] z-[10]">
+        {/* Tab Desktop */}
+        <div className="w-full xs:hidden md:block">
+          <div className="flex sm:w-full xs:w-[90%] md:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
+            {tabs.map((val, idx) => (
+              <div
+                key={idx}
+                role="button"
+                onClick={() => {
+                  handleTabClick(val.name);
+                }}
+                className={`grow flex p-2 items-center justify-center rounded-lg border border-purple_dark text-[1rem] font-semibold ${tab.includes(val.name) ? 'text-white bg-purple_dark' : 'text-purple_dark bg-white'}`}
+              >
+                {val.name}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tab Mobile */}
+        <div className="w-[100%] md:hidden mt-[20px]">
+          <SliderComponent
+            selected={tab}
+            slideItems={tabs}
+            onClickItem={(val) => handleTabClick(val.name)}
+            customLabel="name"
+          />
+        </div>
+      </CustomContainer>
 
       {tab === 'Berita dan Acara' && (
         <BeritaAcara

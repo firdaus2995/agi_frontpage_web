@@ -77,7 +77,7 @@ const FooterInformation = ({
                             : ''
                   }`}
                 >
-                  <p className="font-opensans text-banner-btn-label font-semibold">
+                  <p className="font-opensans text-banner-btn-label font-semibold whitespace-nowrap">
                     {buttonTitle}
                   </p>
                 </button>

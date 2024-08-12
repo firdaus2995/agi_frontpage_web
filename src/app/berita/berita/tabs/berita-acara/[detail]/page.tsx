@@ -280,8 +280,8 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
         bottomImage={thumbnail ?? BlankImage}
       />
 
-      <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[20.5rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
+      <div className="flex items-center justify-center w-full px-[2rem] pt-[3.125rem] md:px-[20.5rem] md:pt-[5rem] pb-[6.25rem]">
+        <div className="flex flex-col gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem] -tracking-[0.03em]">
               Berita dan Acara
@@ -360,7 +360,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
           openInNewTab
         />
       </div>
-      <div className="w-full h-full md:bg-purple_superlight">
+      <div className="w-full h-full md:bg-cta4_bg">
         <FooterCards
           cards={[
             {

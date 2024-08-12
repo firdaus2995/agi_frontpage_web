@@ -10,14 +10,13 @@ import {
 } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import {
-  contentDetailTransformer, 
+  contentDetailTransformer,
   singleImageTransformer
 } from '@/utils/responseTransformer';
 
 const Formulir = () => {
   const [contentData, setContentData] = useState<any>();
   const [search, setSearch] = useState('');
-  const [isEmpty, setIsEmpty] = useState(false);
   const [itemsPerPage] = useState(5);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +42,7 @@ const Formulir = () => {
         }
       );
 
-      const transformedContent = apiContent.data.categoryList[''];
+      const transformedContent = apiContent.data.categoryList[''] ?? [];
 
       const transformedData = await Promise.all(
         transformedContent?.map(async (item: any) => {
@@ -60,10 +59,8 @@ const Formulir = () => {
         })
       );
 
-      setIsEmpty(false);
       setContentData(transformedData);
     } catch (error: any) {
-      setIsEmpty(true);
       throw new Error(error.message);
     }
   };
@@ -92,7 +89,7 @@ const Formulir = () => {
         />
       </div>
       <div className="flex flex-col gap-6">
-        {!isEmpty ? (
+        {contentData?.length > 0 ? (
           paginatedData.map((item: any, index: number) => (
             <DownloadFileButton
               title={item.title}
@@ -106,7 +103,7 @@ const Formulir = () => {
         )}
       </div>
       <div
-        className={`flex flex-col gap-4 pt-[44px] md:flex-row justify-between ${isEmpty && 'hidden'}`}
+        className={`flex flex-col gap-4 pt-[44px] md:flex-row justify-between`}
       >
         <div>
           <p className="text-[20px]">

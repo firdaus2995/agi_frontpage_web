@@ -176,7 +176,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         }
                         width={100}
                         height={100}
-                        className="w-[1920px] h-[40rem] object-cover aspect-video"
+                        className="w-full h-[40rem] object-cover"
                       />
                     </div>
                     <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start gap-8">

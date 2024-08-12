@@ -108,7 +108,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
       window.scrollTo({ top: 0 });
       setShowDetail(true);
       const data = personList?.filter(
-        (item) => item.name === value?.split('-')[1].trim()
+        (item) => item.name === value?.split('-')[1]?.trim()
       );
       setDetailData(data[0]);
     }

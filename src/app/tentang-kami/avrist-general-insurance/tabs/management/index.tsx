@@ -41,7 +41,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
 
   useEffect(() => {
     handleGetContentPage(
-      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.SEKILAS_PERUSAHAAN
+      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.MANAJEMEN
     ).then((res: any) => {
       setData(res);
     });

@@ -105,7 +105,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
     if (value === 'Manajemen') {
       setShowDetail(false);
     } else {
-      window.scrollTo({ top: 200 });
+      window.scrollTo({ top: 0 });
       setShowDetail(true);
       const data = personList?.filter(
         (item) => item.name === value?.split('-')[1].trim()

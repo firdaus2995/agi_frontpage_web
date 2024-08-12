@@ -174,13 +174,13 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
             __html: desc
           }}
         />
-        <div className="w-full mt-[3.125rem]">
-          {contentData && (
-            <Timeline data={contentData} title={contentDataTitle} />
-          )}
-        </div>
-        {visiMisi && <VisiMisi data={visiMisi} />}
       </div>
+      <div className="w-full mt-[3.125rem]">
+        {contentData && (
+          <Timeline data={contentData} title={contentDataTitle} />
+        )}
+      </div>
+      {visiMisi && <VisiMisi data={visiMisi} />}
 
       <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-[5rem] lg:py-[5rem] px-[32px] lg:px-[136px]">
         <div className="flex justify-center items-center pb-[36px] lg:pb-[5rem]">

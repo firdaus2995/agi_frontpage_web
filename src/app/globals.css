@@ -35,6 +35,21 @@
   overflow: hidden;
 }
 
+.slick-track {
+  margin-left: 0px !important;
+}
+
+.company-section {
+  .slick-dots li button:before {
+    background-color: #FFFFFF;
+    height: 12px !important;
+    width: 12px !important;
+    border-radius: 12px !important;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+}
+
 .tab-header-container {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

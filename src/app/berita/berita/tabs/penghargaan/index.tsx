@@ -165,7 +165,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center py-2">
-      <div className="text-center px-[1rem] xm:px-[2rem] md:px-[8.5rem] lg:pb-[8px] xs:pb-[56px] flex flex-col gap-[0.75rem]">
+      <div className="text-center px-[2rem] md:px-[8.5rem] lg:pb-[8px] xs:pb-[56px] flex flex-col gap-[0.75rem]">
         <h2 className="text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
           {title ?? 'Penghargaan Avrist General Insurance'}
         </h2>
@@ -175,7 +175,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         </h2>
       </div>
 
-      <div className="w-full h-full px-[1rem] xm:px-[2rem]">
+      <div className="w-full h-full px-[2rem]">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;
@@ -258,7 +258,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
       </div>
 
       <CategoryWithThreeCards
-        outerClass="px-[1rem] xm:px-[2rem] pt-[2rem] md:px-[8.5rem] w-full pb-[100px]"
+        outerClass="px-[2rem] pt-[2rem] md:px-[8.5rem] w-full pb-[100px]"
         defaultSelectedCategory={'Berita dan Kegiatan'}
         filterRowLayout={true}
         hiddenCategory

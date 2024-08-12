@@ -138,7 +138,7 @@ export const EmailSubscribeModal = (props: Props) => {
                       </div>
                       <div className="">
                         <div className="bg-[#7e3f96] flex items-center flex-col">
-                          <div className="">
+                          <div className="flex items-center flex-col">
                             <p
                               className="font-karla font-extrabold text-[24px] lg:text-[48px] leading-[36.3px] lg:leading-[57.6px] -tracking-[0.04em] text-white text-center"
                               dangerouslySetInnerHTML={{
@@ -158,7 +158,7 @@ export const EmailSubscribeModal = (props: Props) => {
                               }}
                             />
                             <form
-                              className="flex flex-1 flex-row mt-[40px]"
+                              className="flex flex-1 xs:flex-col xm:flex-row mt-[40px] items-center gap-2"
                               onSubmit={(e) => {
                                 e.preventDefault();
                                 handleSubmit();
@@ -174,7 +174,7 @@ export const EmailSubscribeModal = (props: Props) => {
 
                               <button
                                 // type="submit"
-                                className="ml-[12px] bg-white rounded-md px-[20px] font-opensans font-semibold text-[16px] text-purple_dark"
+                                className="xm:ml-[12px] p-[12px] w-full bg-white rounded-md px-[20px] font-opensans font-semibold text-[16px] text-purple_dark"
                               >
                                 {contentStringTransformer(
                                   contentData['label-button']

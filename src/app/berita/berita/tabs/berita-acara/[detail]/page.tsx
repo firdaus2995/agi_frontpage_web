@@ -291,7 +291,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
             </p>
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[0.75rem] font-opensans">
-                <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[250px]">
+                <div className="grid grid-cols-2 divide-x-2 text-[14px]">
                   {contentData?.tanggal !== '-' &&
                     contentData?.tanggal !== undefined && (
                       <div className="font-bold text-purple_dark whitespace-nowrap">

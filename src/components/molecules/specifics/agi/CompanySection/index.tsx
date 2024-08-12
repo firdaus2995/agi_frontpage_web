@@ -36,7 +36,7 @@ const CompanySection = (props: CompanySection) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    adaptiveHeight: true
+    adaptiveHeight: true,
   };
 
   const renderCard = (val: any) => {
@@ -96,7 +96,7 @@ const CompanySection = (props: CompanySection) => {
           className="text-heading-2-mobile lg:text-heading-2-desktop text-center font-light px-10 font-karla lg:mt-10 text-white"
         />
       </div>
-      <div className="w-full grid grid-cols-1">
+      <div className="w-full grid grid-cols-1 company-section">
         <Slider {...sliderSettings}>
           {sliderData.map((val: any, idx: any) => (
             <div

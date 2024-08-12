@@ -57,7 +57,7 @@ const SliderComponent = ({
             key={activeTab}
             title={activeTab}
             onClick={() => handleClick(tab)}
-            customButtonClass={`w-[95%] whitespace-nowrap p-2 border border-purple_dark rounded-lg text-center ${selected === activeTab ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold`}
+            customButtonClass={`w-[95%] whitespace-nowrap p-2 border border-purple_dark rounded-lg text-center ${selected?.includes(activeTab) ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold`}
             customTextClass="text-[1rem] font-semibold leading-[1.48rem]"
           />
         );

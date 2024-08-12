@@ -17,7 +17,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex flex-col gap-[1.5rem] font-karla w-full xs:my-[3.125rem] sm:my-[5rem]">
+    <div className="flex flex-col gap-[1.5rem] px-[2rem] md:px-[8.5rem] font-karla w-full xs:my-[3.125rem] sm:my-[5rem]">
       {data.map((val, idx) => (
         <div
           key={idx}

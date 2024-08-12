@@ -37,6 +37,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
 
   const [contentData, setContentData] = useState<any>();
   const [managementList, setManagementList] = useState<any>();
+  const [personList, setPersonList] = useState<any[]>([]);
 
   useEffect(() => {
     handleGetContentPage(
@@ -52,6 +53,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
       const { content } = contentTransformer(res);
 
       const managementList = [];
+      const personList = [];
       for (let i = 0; i < 4; i++) {
         const title = contentStringTransformer(
           content[`nama-section-${i + 1}`]
@@ -84,6 +86,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
             onClick: handleCardClick
           })
         );
+        personList.push(cards);
         if (title) {
           managementList.push({
             title: title,
@@ -91,6 +94,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
           });
         }
       }
+      setPersonList(personList.flat());
       setManagementList(managementList);
       setContentData(content);
     });
@@ -99,13 +103,16 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
   useEffect(() => {
     const value = searchParams.get('tab');
     if (value === 'Manajemen') {
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
       setShowDetail(false);
     } else {
       window.scrollTo({ top: 200 });
       setShowDetail(true);
+      const data = personList?.filter(
+        (item) => item.name === value?.split('-')[1].trim()
+      );
+      setDetailData(data[0]);
     }
-  }, [searchParams, showDetail]);
+  }, [searchParams, showDetail, personList]);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -127,11 +134,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
       image: cardData?.image,
       name: cardData?.name,
       role: cardData?.role,
-      desc: (
-        <div className="flex flex-col gap-7">
-          <div dangerouslySetInnerHTML={{ __html: cardData?.desc }} />
-        </div>
-      )
+      desc: cardData?.desc
     });
     const data = {
       name: cardData.name
@@ -180,9 +183,10 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
                 </p>
               </div>
             </div>
-            <p className="font-opensans text-xl text-justify">
-              {detailData.desc}
-            </p>
+            <p
+              className="font-opensans text-xl text-justify"
+              dangerouslySetInnerHTML={{ __html: detailData.desc }}
+            />
           </div>
         </div>
       ) : contentData ? (

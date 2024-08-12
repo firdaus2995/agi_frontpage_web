@@ -181,7 +181,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                     </div>
                     <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start gap-8">
                       <p
-                        className={`xs:text-[1.5rem] md:text-[28px] text-purple_dark whitespace-nowrap font-karla font-medium`}
+                        className={`xs:text-[1.5rem] md:text-[28px] px-[1rem] md:px-0 text-purple_dark font-karla font-medium`}
                       >
                         {contentStringTransformer(data['hero-teks1'])}
                       </p>

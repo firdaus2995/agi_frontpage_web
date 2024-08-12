@@ -99,16 +99,16 @@ const LayananNasabah = (props: LayananNasabah) => {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <p className="text-footer-card-title font-bold text-left w-full mb-4">
+              <p className="xs:text-[24px] xm:text-footer-card-title font-bold text-left w-full mb-4">
                 {val.title}
               </p>
               <div className="flex flex-row items-center gap-2 flex-wrap">
                 <Link
                   role="button"
-                  className="flex flex-row flex-wrap items-center gap-4 whitespace-nowrap"
+                  className="flex flex-row flex-wrap items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href1}
                 >
-                  <p className={`font-semibold text-footer-card-subtitle`}>
+                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
                     {val.link1}
                   </p>
                   <Image
@@ -123,10 +123,10 @@ const LayananNasabah = (props: LayananNasabah) => {
               <div className="flex flex-row items-center gap-2 flex-wrap">
                 <Link
                   role="button"
-                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  className="flex flex-row items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href2}
                 >
-                  <p className={`font-semibold text-footer-card-subtitle`}>
+                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
                     {val.link2}
                   </p>
                   <Image
@@ -141,10 +141,10 @@ const LayananNasabah = (props: LayananNasabah) => {
               <div className="flex flex-row items-center gap-2 flex-wrap">
                 <Link
                   role="button"
-                  className="flex flex-row items-center gap-4 whitespace-nowrap"
+                  className="flex flex-row items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href3}
                 >
-                  <p className={`font-semibold text-footer-card-subtitle`}>
+                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
                     {val.link3}
                   </p>
                   <Image

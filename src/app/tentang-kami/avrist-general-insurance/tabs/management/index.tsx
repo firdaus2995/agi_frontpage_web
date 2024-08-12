@@ -41,7 +41,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
 
   useEffect(() => {
     handleGetContentPage(
-      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.SEKILAS_PERUSAHAAN
+      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.MANAJEMEN
     ).then((res: any) => {
       setData(res);
     });
@@ -105,10 +105,10 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
     if (value === 'Manajemen') {
       setShowDetail(false);
     } else {
-      window.scrollTo({ top: 200 });
+      window.scrollTo({ top: 0 });
       setShowDetail(true);
       const data = personList?.filter(
-        (item) => item.name === value?.split('-')[1].trim()
+        (item) => item.name === value?.split('-')[1]?.trim()
       );
       setDetailData(data[0]);
     }

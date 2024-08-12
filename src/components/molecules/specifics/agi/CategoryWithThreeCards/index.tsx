@@ -180,8 +180,8 @@ const CategoryWithThreeCards = ({
           <div
             className={`flex ${filterRowLayout ? 'flex-row' : 'flex-col'} xs:max-lg:flex-wrap  gap-5 justify-between`}
           >
-            <div className="flex flex-nowrap overflow-x-hidden sm:overflow-x-hidden py-1">
-              <div className="flex flex-row gap-[12px] w-full">
+            <div className="flex flex-wrap overflow-x-hidden sm:overflow-x-hidden py-1">
+              <div className="flex flex-row flex-wrap gap-[12px] w-full">
                 {tabs.map(
                   (
                     item: { type: string; label: string; options?: IOption[] },

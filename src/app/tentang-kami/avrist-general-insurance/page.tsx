@@ -70,7 +70,11 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
   useEffect(() => {
     const value = searchParams.get('tab');
     if (value !== null) {
-      setTab(value);
+      if (value?.includes('Manajemen')) {
+        setTab('Manajemen');
+      } else{
+        setTab(value);
+      }
     }
   }, [searchParams]);
 

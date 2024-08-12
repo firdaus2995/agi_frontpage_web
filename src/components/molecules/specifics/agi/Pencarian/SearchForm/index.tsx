@@ -43,6 +43,7 @@ const SearchForm = () => {
   const [categoryList, setCategoryList] = useState<string[]>([]);
 
   useEffect(() => {
+    setCurrentPage(1);
     const fetchData = async () => {
       try {
         let listData = [];
@@ -76,11 +77,9 @@ const SearchForm = () => {
           );
           listData = newDataContentWithCategory;
         }
-        console.log(listData);
         const dataContentValues = listData?.map(
           ({ id, createdAt, categories, shortDesc, title, contentData }) => {
             if (selectedTab.title === 'Berita Pers') {
-              console.log(contentData);
               const date = format(new Date(createdAt), 'MMMM yyyy');
               const description = contentData?.filter(
                 (item) => item.fieldId === 'artikel-looping'

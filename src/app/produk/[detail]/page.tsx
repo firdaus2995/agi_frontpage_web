@@ -76,6 +76,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [bannerImageFit, setBannerImageFit] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,7 +105,11 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           icon3: singleImageTransformer(content['icon-3-kotak-1']).imageUrl,
           subjudul3: contentStringTransformer(content['subjudul-3-kotak-1'])
         };
-
+        setBannerImageFit(
+          content['banner-image']?.config
+            ? JSON.parse(content['banner-image']?.config)?.image_fit
+            : ''
+        );
         const kotak2 = {
           judul: contentStringTransformer(content['judul-kotak-2'])
         };
@@ -462,6 +467,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         ]}
         bottomImage={bannerImg?.imageUrl}
         imageUrl={titleImage}
+        bottomImageFit={bannerImageFit}
       />
       <Suspense>
         <SimpleContainer>

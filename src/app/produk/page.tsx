@@ -85,6 +85,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     searchParams.get('tab') ?? categoryList[0]
   );
   const [isCategoryChange, setIsCategoryChange] = useState(true);
+  const [bannerImageFit, setBannerImageFit] = useState('');
 
   useEffect(() => {
     const value = searchParams.get('tab');
@@ -109,7 +110,11 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         const footerBtnUrl = contentStringTransformer(
           content['cta1-link-button']
         );
-
+        setBannerImageFit(
+          content['banner-image']?.config
+            ? JSON.parse(content['banner-image']?.config)?.image_fit
+            : ''
+        );
         const cta41 = {
           icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
           title: contentStringTransformer(content['cta4-1-nama']),
@@ -280,6 +285,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         ]}
         bottomImage={data.bannerImageUrl}
         imageUrl={data.titleImageUrl}
+        bottomImageFit={bannerImageFit}
       />
       <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:pt-[80px] sm:pb-[100px] gap-[36px] sm:gap-[48px] sm:flex-row">
         <div className="flex flex-col gap-[24px] grow">

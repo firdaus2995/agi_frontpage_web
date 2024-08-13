@@ -81,6 +81,7 @@ const Berita: React.FC<ParamsProps> = () => {
   const [visibleSubscribeModal, setVisibleSubscribeModal] =
     useState<boolean>(false);
   const [data, setData] = useState<typeof initialData>(initialData);
+  const [bannerImageFit, setBannerImageFit] = useState('');
 
   const fetchData = async () => {
     try {
@@ -95,6 +96,11 @@ const Berita: React.FC<ParamsProps> = () => {
       const judulBody = contentStringTransformer(content['body-judul']);
       const descriptionBody = contentStringTransformer(
         content['body-sub-judul']
+      );
+      setBannerImageFit(
+        content['banner-image']?.config
+          ? JSON.parse(content['banner-image']?.config)?.image_fit
+          : ''
       );
       const bannerImage = singleImageTransformer(content['banner-image']);
       const footerImage = singleImageTransformer(content['cta1-image']);
@@ -213,6 +219,7 @@ const Berita: React.FC<ParamsProps> = () => {
           }
         ]}
         imageUrl={data?.titleImageUrl ?? BlankImage}
+        bottomImageFit={bannerImageFit}
       />
       <CustomContainer className="pb-[5rem] xs:-mb-2 md:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] md:pt-[5rem] bg-white xs:-mt-[3.2rem] md:-mt-[6.2rem] z-[10]">
         {/* Tab Desktop */}

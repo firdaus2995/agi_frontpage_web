@@ -55,6 +55,7 @@ const PusatInformasi = () => {
   const [pageData, setPageData] = useState<any>([]);
 
   const [data, setData] = useState<typeof initialData>(initialData);
+  const [bannerImageFit, setBannerImageFit] = useState('');
 
   const tabs = [
     {
@@ -100,7 +101,11 @@ const PusatInformasi = () => {
         const footerBtnUrl = contentStringTransformer(
           content['cta1-link-button']
         );
-
+        setBannerImageFit(
+          content['banner-image']?.config
+            ? JSON.parse(content['banner-image']?.config)?.image_fit
+            : ''
+        );
         const cta41 = {
           icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
           title: contentStringTransformer(content['cta4-1-nama']),
@@ -161,6 +166,7 @@ const PusatInformasi = () => {
         title="Pusat Informasi"
         bottomImage={data?.bannerImageUrl}
         imageUrl={data?.titleImageUrl}
+        bottomImageFit={bannerImageFit}
       />
       <MainContent pageData={pageData} />
       <FooterInformation

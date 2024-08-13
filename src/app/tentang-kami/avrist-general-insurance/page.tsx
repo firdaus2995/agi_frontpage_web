@@ -36,6 +36,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
   const [titleImage, setTitleImage] = useState({ imageUrl: '', altText: '' });
   const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
   const [bannerImage, setBannerImage] = useState({ imageUrl: '', altText: '' });
+  const [bannerImageFit, setBannerImageFit] = useState('');
   const [cta4Data, setCta4Data] = useState({
     cta41: {
       icon: '',
@@ -108,7 +109,11 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
       setFooterText(contentStringTransformer(content['cta1-teks']));
       setFooterBtnLabel(contentStringTransformer(content['cta1-label-button']));
       setFooterBtnUrl(contentStringTransformer(content['cta1-link-button']));
-
+      setBannerImageFit(
+        content['banner-image']?.config
+          ? JSON.parse(content['banner-image']?.config)?.image_fit
+          : ''
+      );
       const cta41 = {
         icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
         title: contentStringTransformer(content['cta4-1-nama']),
@@ -218,6 +223,7 @@ const TentangAvristLife: React.FC<ParamsProps> = () => {
           ]}
           imageUrl={titleImage.imageUrl}
           bottomImage={bannerImage.imageUrl}
+          bottomImageFit={bannerImageFit}
         />
       ) : (
         <Hero

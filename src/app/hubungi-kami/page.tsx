@@ -36,6 +36,7 @@ const CallMe = () => {
   const [footerText, setFooterText] = useState('');
   const [footerBtnLabel, setFooterBtnLabel] = useState('');
   const [footerBtnUrl, setFooterBtnUrl] = useState('');
+  const [bannerImageFit, setBannerImageFit] = useState('');
 
   useEffect(() => {
     const tab = params.get('tab') ?? '';
@@ -62,7 +63,11 @@ const CallMe = () => {
         setFooterBtnUrl(contentStringTransformer(content['cta1-link-button']));
         setFormId(contentStringTransformer(content['form-pengaduan']));
         setFormSaranId(contentStringTransformer(content['form-saran']));
-
+        setBannerImageFit(
+          content['banner-image']?.config
+            ? JSON.parse(content['banner-image']?.config)?.image_fit
+            : ''
+        );
         const cta4Data = [];
         for (let i = 0; i < 4; i++) {
           const icon = singleImageTransformer(content[`cta4-${i + 1}-icon`]);
@@ -104,6 +109,7 @@ const CallMe = () => {
         ]}
         imageUrl={titleImage.imageUrl}
         bottomImage={bannerImage.imageUrl}
+        bottomImageFit={bannerImageFit}
       />
       <div className="pt-[3.125rem] md:pt-[6.25rem]">
         <ButtonMenu buttonList={['Pengaduan Nasabah', 'Karir']} />

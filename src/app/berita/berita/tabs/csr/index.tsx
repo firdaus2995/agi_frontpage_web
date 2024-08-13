@@ -188,7 +188,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
               bgColor="purple_superlight"
               title={
                 <div className="flex flex-col gap-4 text-left justify-between md:justify-center min-h-[290px] md:h-[330px]">
-                  <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] min-w-[200px]">
+                  <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
                         <div className="font-bold text-purple_dark whitespace-nowrap">

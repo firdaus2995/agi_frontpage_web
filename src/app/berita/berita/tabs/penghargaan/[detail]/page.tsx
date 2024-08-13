@@ -75,7 +75,6 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
   const pathSegments = pathname.split('/');
   const slug = pathSegments[pathSegments.length - 1];
   const [isOpenPopover, setIsOPenPopover] = useState<boolean>(false);
-  const [thumbnail, setThumbnail] = useState<string>('');
   const [contentData, setContentData] = useState<any>();
   const [data, setData] = useState<typeof initialData>(initialData);
   const [visibleSubscribeModal, setVisibleSubscribeModal] =
@@ -251,7 +250,6 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
     };
 
     setContentData(transformedData);
-    setThumbnail(transformedData.thumbnail);
     return transformedData;
   };
 
@@ -278,11 +276,10 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
           }
         ]}
         imageUrl={data?.titleImageUrl}
-        bottomImage={thumbnail ?? BlankImage}
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] pt-[3.125rem] md:px-[20.5rem] md:pt-[5rem] pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] md:px-[20.5rem] pb-[6.25rem] gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               Penghargaan
@@ -292,12 +289,20 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
             </p>
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[0.75rem] font-opensans">
-                <p>
-                  {contentData?.tanggal !== '-' ? contentData?.tanggal : ''}
-                  {contentData?.penulis !== '-'
-                    ? ' | ' + contentData?.penulis
-                    : ''}
-                </p>
+                <div className="grid grid-cols-2 divide-x-2 text-[14px]">
+                  {contentData?.tanggal !== '-' &&
+                    contentData?.tanggal !== undefined && (
+                      <div className="font-bold text-purple_dark whitespace-nowrap mr-2">
+                        {contentData?.tanggal}
+                      </div>
+                    )}
+                  {contentData?.penulis !== '-' &&
+                    contentData?.penulis !== undefined && (
+                      <div className="pl-2 flex flex-row whitespace-nowrap">
+                        {contentData?.penulis}
+                      </div>
+                    )}
+                </div>
                 <div className="flex flex-row gap-2">
                   {contentData?.tags
                     .split(/\s*,\s*/)

@@ -22,7 +22,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SuccessModal } from '@/components/molecules/specifics/agi/Modal';
 import VideoInformation from '@/components/molecules/specifics/agi/Produk/ContentComponent/VideoInformation';
-import { handleGetContentDetail, handleGetContentPage } from '@/services/content-page.api';
+import {
+  handleGetContentDetail,
+  handleGetContentPage
+} from '@/services/content-page.api';
 import { handleSendEmail } from '@/services/form.api';
 import {
   contentDetailTransformer,
@@ -77,6 +80,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [bannerImageFit, setBannerImageFit] = useState('');
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [emailSubjectSubmitter, setEmailSubjectSubmitter] = useState('');
+  const [emailBodySubmitter, setEmailBodySubmitter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -278,8 +285,8 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         fileRiplay,
         fileBrosur,
         categoryTitle: jsonData.data.categories
-        .map((item: any) => item.categoryName)
-        .join(', '),
+          .map((item: any) => item.categoryName)
+          .join(', '),
         formId: jsonData.data?.formId || formProduk || '6979',
         kotak1,
         kotak2,
@@ -390,6 +397,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           setDataForm(dataFormJson.data.attributeList);
           setFormId(dataFormJson.data.id);
           setFormPic(dataFormJson.data.pic);
+          setEmailSubject(dataFormJson.data.emailSubject);
+          setEmailBody(dataFormJson.data.emailBody);
+          setEmailSubjectSubmitter(dataFormJson.data.emailSubjectSubmitter);
+          setEmailBodySubmitter(dataFormJson.data.emailBodySubmitter);
         } catch (error: any) {
           throw new Error('Error fetching form data: ', error.message);
         }
@@ -436,7 +447,11 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
     const queryParams = {
       id: formId,
       pic: formPic,
-      placeholderValue: updatedData
+      placeholderValue: updatedData,
+      emailSubject,
+      emailBody,
+      emailSubjectSubmitter,
+      emailBodySubmitter
     };
 
     const data = await handleSendEmail(queryParams);

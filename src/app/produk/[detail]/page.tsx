@@ -44,6 +44,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
     footerText: '',
     footerBtnLabel: '',
     footerBtnUrl: '',
+    formId: '',
     cta41: {
       icon: '',
       title: '',
@@ -102,6 +103,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           content['cta1-link-button']
         );
         const judulForm = contentStringTransformer(content['judul-form']);
+        const formId = contentStringTransformer(content['form-produk']);
         const judulSection = contentStringTransformer(content['judul-section']);
         const kotak1 = {
           judul: contentStringTransformer(content['judul-kotak-1']),
@@ -176,6 +178,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           footerBtnLabel,
           footerBtnUrl,
           judulForm,
+          formId,
           judulSection,
           cta41,
           cta42,
@@ -240,7 +243,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       );
       const fileRiplay = singleImageTransformer(content['file-riplay']);
       const fileBrosur = singleImageTransformer(content['file-brosur']);
-      const formProduk = contentStringTransformer(content['form-produk']);
       const kotak1 = {
         deskripsi1: contentStringTransformer(content['deskripsi-1-kotak-1']),
         deskripsi2: contentStringTransformer(content['deskripsi-2-kotak-1']),
@@ -287,7 +289,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
         categoryTitle: jsonData.data.categories
           .map((item: any) => item.categoryName)
           .join(', '),
-        formId: jsonData.data?.formId || formProduk || '6979',
         kotak1,
         kotak2,
         kotak3,
@@ -387,12 +388,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
 
   useEffect(() => {
     setFormValue([{ name: '', value: '' }]);
-    if (dataDetail?.formId) {
+    if (data?.formId) {
       const fetchDataForm = async () => {
         try {
-          const contentResponse = await fetch(
-            `/api/form?id=${dataDetail.formId}`
-          );
+          const contentResponse = await fetch(`/api/form?id=${data?.formId}`);
           const dataFormJson = await contentResponse.json();
           setDataForm(dataFormJson.data.attributeList);
           setFormId(dataFormJson.data.id);

@@ -177,11 +177,10 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
           setCategoryList(Object.keys(categoryData.data.categoryList));
 
           const dataContentValues = transformedDataContent?.map(
-            ({ content, id }) => {
-              const namaProduk = transformedDataContent[0].title;
+            ({ content, id, title, shortDesc }) => {
+              const namaProduk = title;
               const tags = contentStringTransformer(content['tags']);
-              const deskripsiSingkatProduk =
-                transformedDataContent[0].shortDesc;
+              const deskripsiSingkatProduk = shortDesc;
               const deskripsiLengkapProduk = contentStringTransformer(
                 content['deskripsi-lengkap-produk']
               );

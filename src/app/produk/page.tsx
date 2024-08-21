@@ -15,7 +15,10 @@ import FooterInformation from '@/components/molecules/specifics/agi/FooterInform
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
-import { handleGetContentPage } from '@/services/content-page.api';
+import {
+  handleGetContentCategory,
+  handleGetContentPage
+} from '@/services/content-page.api';
 import { ParamsProps } from '@/utils/globalTypes';
 import {
   contentCategoryTransformer,
@@ -163,17 +166,20 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     const fetchDataContentWithCategory = async () => {
       try {
         if (activeTab === searchParams.get('tab')) {
-          const contentCategoryResponse = await fetch(
-            `/api/produk/content-category?category=${activeTab}&channelFilter=${selectedChannels}&searchFilter=${searchValue}`
-          );
-          const data = await contentCategoryResponse.json();
+          const data = await handleGetContentCategory('Produk AGI', {
+            includeAttributes: 'true',
+            category: activeTab,
+            channelFilter: selectedChannels,
+            searchFilter: searchValue
+          });
           const transformedDataContent = contentCategoryTransformer(
             data,
             activeTab
           );
 
-          const fetchCategoryList = await fetch(`/api/produk/content-category`);
-          const categoryData = await fetchCategoryList.json();
+          const categoryData = await handleGetContentCategory('Produk AGI', {
+            includeAttributes: 'true'
+          });
           setCategoryList(Object.keys(categoryData.data.categoryList));
 
           const dataContentValues = transformedDataContent?.map(

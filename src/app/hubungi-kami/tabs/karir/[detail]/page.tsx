@@ -132,7 +132,6 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
           locale: idTime
         });
         setDate(infoTambahan3);
-        console.log(content);
       } catch (error) {
         console.error('Error:', error);
       }

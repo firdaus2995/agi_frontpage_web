@@ -53,19 +53,21 @@ export const SuccessModal = (props: Props) => {
                         />
                       </button>
                     </div>
-                    <Image
-                      alt="success"
-                      src={popUpImage ?? BLANK_IMAGE}
-                      className="w-full h-[200px] object-cover"
-                      width={24}
-                      height={24}
-                    />
-                    <div className="w-full h-[240px] text-white flex flex-col items-center text-center justify-center ">
+                    {popUpImage && (
+                      <Image
+                        alt="success"
+                        src={popUpImage ?? BLANK_IMAGE}
+                        className="w-full h-[200px] object-cover"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                    <div className="w-full h-[240px] lg:h-[440px] text-white flex flex-col items-center text-center justify-center px-[32px] lg:px-[50px]">
                       <h1 className="font-karla xs:text-[2.25rem] md:text-[3.5rem] font-extrabold">
-                        Thank you
+                        Terima Kasih
                       </h1>
                       <p className="xs:text-lg md:text-xl font-opensans">
-                        The form was submitted successfully
+                        Form telah berhasil dikirim.
                       </p>
                     </div>
                   </div>

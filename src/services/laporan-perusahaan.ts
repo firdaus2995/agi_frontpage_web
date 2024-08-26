@@ -9,6 +9,11 @@ export const getListLaporanPerusahaan = async (query: QueryParams) => {
     BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.LAPORAN_PERUSAHAAN,
     {
       method: 'GET',
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      },
       queryParams: filterAttributes(query)
     }
   );

@@ -2,15 +2,14 @@ version: '3'
 services:
   agi-frontpage-web:
     container_name: agi-frontpage-web-app
-    image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}
+    image: agi-frontpage-web
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - ${DOCKER_PORT}:3000
+      - '3033:80'
     networks:
       - avrist-network
 networks:
   avrist-network:
-    external: true
-    name: 'avrist_network'
+    driver: 'bridge'

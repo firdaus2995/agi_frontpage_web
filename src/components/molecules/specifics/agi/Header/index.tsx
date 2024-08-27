@@ -44,14 +44,25 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const totalMiddlePositions: number[] = [];
+    const totalMiddlePositions: any[] | ((prevState: number[]) => number[]) =
+      [];
+    const windowWidth = window.innerWidth;
 
-    listRef.current.forEach((ref: any) => {
+    listRef.current.forEach((ref: { getBoundingClientRect: () => any }) => {
       const rect = ref.getBoundingClientRect();
-      const leftPosition = rect.x;
+      let leftPosition = rect.x;
       const itemWidth = rect.width / 2.5;
-      const middlePositions = leftPosition + itemWidth;
 
+      let adjustment = 0;
+      if (windowWidth > 1536 && windowWidth <= 1920) {
+        adjustment = (windowWidth - 1536) / 2;
+      } else if (windowWidth > 1920) {
+        adjustment = (windowWidth - 1920) / 2;
+      }
+
+      leftPosition -= adjustment;
+
+      const middlePositions = leftPosition + itemWidth;
       totalMiddlePositions.push(middlePositions);
     });
 

@@ -1840,7 +1840,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
               ))}
             </div>
             <div
-              className={`flex flex-col xs:gap-[1.5rem] sm:gap-[2.25rem] ${type === 'Karir' && 'sm:gap-[1rem]'}`}
+              className={`flex flex-col xs:gap-[1.5rem] sm:gap-[2.25rem] ${type === 'Karir' && 'sm:gap-[2rem]'}`}
             >
               {rightSide?.map((attribute: Attribute) => {
                 return (

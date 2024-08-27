@@ -123,18 +123,18 @@ export const ApplyJobModal: FC<Props> = ({
                 <div className=" bg-white ">
                   <div
                     onClick={onClose}
-                    className="cursor-pointer  flex justify-end pr-[30px] pt-[30px]"
+                    className="cursor-pointer absolute right-1 flex justify-end pr-[30px] pt-[30px]"
                   >
                     <Icon width={24} height={24} name="close" />
                   </div>
-                  <div className="flex flex-col items-center sm:px-[72px] sm:py-[100px]">
+                  <div className="flex flex-col items-center pt-9">
                     <h2 className="text-[32px] lg:text-[56px] font-karla text-gray_body font-bold">
                       Job Application Form
                     </h2>
                     <div className="w-full">
                       {dataForm && (
                         <CustomForm
-                          customFormClassname="border-none p-[0px] rounded-[12px]"
+                          customFormClassname="border-none p-[20px] rounded-[12px]"
                           onChange={handleChange}
                           dataForm={dataForm}
                           resultData={receiveData}
@@ -142,7 +142,7 @@ export const ApplyJobModal: FC<Props> = ({
                           title=" "
                         />
                       )}
-                      <div className="bg-white py-[2rem] w-full flex justify-end p-4">
+                      <div className="bg-white w-full flex justify-start px-9 pb-[72px] border-b-8 border-b-purple_dark">
                         <button
                           type="submit"
                           disabled={!formIsValid}

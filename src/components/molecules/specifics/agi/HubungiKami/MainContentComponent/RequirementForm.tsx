@@ -116,6 +116,7 @@ export const RequirementForm = (props: Props) => {
         emailBodySubmitter
       };
     }
+    console.log(queryParams);return
     const size10Mb = 10 * 1024;
     if (attachmentFileSize > size10Mb) {
       setMaxSizeValidation(true);
@@ -136,6 +137,7 @@ export const RequirementForm = (props: Props) => {
     setMaxSizeValidation(false);
     if (type === 'delete') {
       const newData = attachmentFile.replace(value, '');
+      console.log(newData)
       setAttachmentFile(newData);
       if (files) {
         const filesInKb = Math.round(files.size / 1024);

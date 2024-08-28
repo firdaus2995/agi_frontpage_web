@@ -88,7 +88,7 @@ const UploadBox = (props: UploadBoxProps) => {
           onClick={() => onDeleteData()}
         >
           <Icon name="close" height={24} width={24} color="purple_dark" />
-          <p className="font-opensans font-normal text-[14px] text-center line-clamp-2">
+          <p className="font-opensans font-normal text-[14px] text-center line-clamp-2 break-all">
             {value?.name}
           </p>
           <p className="font-opensans font-normal text-[14px] text-center">
@@ -122,7 +122,7 @@ export const ReportForm = (props: ReportFormProps) => {
     setMaxSizeValidation,
     onSetFormData
   } = props;
-  const [attachmentFile, setAttachmentFile] = useState('');
+  const [attachmentFiles, setAttachmentFiles] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState({});
   const [fileKtp, setFileKtp] = useState<any>('');
   const [fileFormulir, setFileFormulir] = useState<any>('');
@@ -141,19 +141,28 @@ export const ReportForm = (props: ReportFormProps) => {
     } else {
       setFileDocument({ file: uploadedFile, value });
     }
-    if (attachmentFile === '') {
-      setAttachmentFile(value);
-    } else {
-      setAttachmentFile(attachmentFile + '|' + value);
-    }
+
+    setAttachmentFiles((prevFiles) => {
+      const newFiles = prevFiles.filter((file) => file !== value);
+      return [...newFiles, value];
+    });
+
     onSetFormData(uploadedFile.name, title);
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const handleDeleteData = (value: string, fileStateSetter: Function) => {
+    setAttachmentFiles((prevFiles) => prevFiles.filter((file) => file !== value));
+    fileStateSetter('');
+  };
+
   useEffect(() => {
-    if (attachmentFile) {
-      onChangeData(attachmentFile, selectedFile, 'add');
+    if (attachmentFiles.length > 0) {
+      const combinedFiles = attachmentFiles.join('|');
+      onChangeData(combinedFiles, selectedFile, 'add');
+      console.log(combinedFiles);
     }
-  }, [attachmentFile]);
+  }, [attachmentFiles]);
 
   return (
     <div>
@@ -177,10 +186,7 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileKtp?.file}
-                onDeleteData={() => {
-                  onChangeData(fileKtp?.value, fileKtp?.file, 'delete');
-                  setFileKtp('');
-                }}
+                onDeleteData={() => handleDeleteData(fileKtp?.value, setFileKtp)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -188,14 +194,7 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileFormulir?.file}
-                onDeleteData={() => {
-                  onChangeData(
-                    fileFormulir?.value,
-                    fileFormulir?.file,
-                    'delete'
-                  );
-                  setFileFormulir('');
-                }}
+                onDeleteData={() => handleDeleteData(fileFormulir?.value, setFileFormulir)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -203,14 +202,7 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileDocument?.file}
-                onDeleteData={() => {
-                  onChangeData(
-                    fileDocument?.value,
-                    fileDocument?.file,
-                    'delete'
-                  );
-                  setFileDocument('');
-                }}
+                onDeleteData={() => handleDeleteData(fileDocument?.value, setFileDocument)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
             </div>

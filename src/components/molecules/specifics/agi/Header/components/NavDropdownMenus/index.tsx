@@ -103,24 +103,6 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
           <Icon name="helpcircle" color="gray_black" />
           <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Tanya Avgen</p>
         </Link>
-        <Link
-          href={'https://shop.avrist.com/'}
-          target="blank"
-          className="flex flex-row gap-2 cursor-pointer ml-2"
-          onClick={() => setVisibility(false)}
-        >
-          <Icon name="shoppingCart" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Beli Online</p>
-        </Link>
-        <a
-          href={'https://my.avrist.com/welcome'}
-          target="_blank"
-          className="flex flex-row gap-2 cursor-pointer ml-2"
-          onClick={() => setVisibility(false)}
-        >
-          <Icon name="lightBulb" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Avrist Solution</p>
-        </a>
         <div
           className="flex flex-row gap-2 cursor-pointer ml-2"
           onClick={() => {

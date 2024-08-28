@@ -32,7 +32,32 @@ const CallMe = () => {
   const [formSaranId, setFormSaranId] = useState('');
   const [tab, setTab] = useState('');
   const [pageData, setPageData] = useState<any>([]);
-  const [listBanner, setListBanner] = useState<any[]>([]);
+  const [cta4Data, setCta4Data] = useState({
+    cta41: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta42: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta43: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    },
+    cta44: {
+      icon: '',
+      title: '',
+      subtitle: '',
+      url: ''
+    }
+  });
   const [footerText, setFooterText] = useState('');
   const [footerBtnLabel, setFooterBtnLabel] = useState('');
   const [footerBtnUrl, setFooterBtnUrl] = useState('');
@@ -68,26 +93,37 @@ const CallMe = () => {
             ? JSON.parse(content['banner-image']?.config)?.image_fit
             : ''
         );
-        const cta4Data = [];
-        for (let i = 0; i < 4; i++) {
-          const icon = singleImageTransformer(content[`cta4-${i + 1}-icon`]);
-          const title = contentStringTransformer(content[`cta4-${i + 1}-nama`]);
-          const subtitle = contentStringTransformer(
-            content[`cta4-${i + 1}-label-link`]
-          );
-          const href = contentStringTransformer(content[`cta4-${i + 1}-link`]);
+        const cta41 = {
+          icon: singleImageTransformer(content['cta4-1-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-1-nama']),
+          subtitle: contentStringTransformer(content['cta4-1-label-link']),
+          url: contentStringTransformer(content['cta4-1-link'])
+        };
+        const cta42 = {
+          icon: singleImageTransformer(content['cta4-2-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-2-nama']),
+          subtitle: contentStringTransformer(content['cta4-2-label-link']),
+          url: contentStringTransformer(content['cta4-2-link'])
+        };
+        const cta43 = {
+          icon: singleImageTransformer(content['cta4-3-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-3-nama']),
+          subtitle: contentStringTransformer(content['cta4-3-label-link']),
+          url: contentStringTransformer(content['cta4-3-link'])
+        };
+        const cta44 = {
+          icon: singleImageTransformer(content['cta4-4-icon']).imageUrl,
+          title: contentStringTransformer(content['cta4-4-nama']),
+          subtitle: contentStringTransformer(content['cta4-4-label-link']),
+          url: contentStringTransformer(content['cta4-4-link'])
+        };
 
-          if (icon && title && subtitle) {
-            cta4Data.push({
-              icon: icon.imageUrl,
-              title: title,
-              subtitle: subtitle,
-              href: href
-            });
-          }
-        }
-
-        setListBanner(cta4Data);
+        setCta4Data({
+          cta41,
+          cta42,
+          cta43,
+          cta44
+        });
       } catch (error) {
         console.error('Error:', error);
       }
@@ -137,7 +173,35 @@ const CallMe = () => {
         href={footerBtnUrl}
       />
 
-      <FooterCards bgColor="md:bg-cta4_bg" cards={listBanner} />
+      <FooterCards
+        bgColor="md:bg-cta4_bg"
+        cards={[
+          {
+            title: cta4Data.cta41?.title,
+            icon: cta4Data.cta41?.icon,
+            subtitle: cta4Data.cta41?.subtitle,
+            href: cta4Data.cta41?.url
+          },
+          {
+            title: cta4Data.cta42?.title,
+            icon: cta4Data.cta42?.icon,
+            subtitle: cta4Data.cta42?.subtitle,
+            href: cta4Data.cta42?.url
+          },
+          {
+            title: cta4Data.cta43?.title,
+            icon: cta4Data.cta43?.icon,
+            subtitle: cta4Data.cta43?.subtitle,
+            href: cta4Data.cta43?.url
+          },
+          {
+            title: cta4Data.cta44?.title,
+            icon: cta4Data.cta44?.icon,
+            subtitle: cta4Data.cta44?.subtitle,
+            href: cta4Data.cta44?.url
+          }
+        ]}
+      />
     </div>
   );
 };

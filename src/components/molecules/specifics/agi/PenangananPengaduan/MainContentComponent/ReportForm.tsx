@@ -79,6 +79,7 @@ const UploadBox = (props: UploadBoxProps) => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
             multiple
+            accept="application/pdf"
           />
         </div>
       ) : (
@@ -87,7 +88,7 @@ const UploadBox = (props: UploadBoxProps) => {
           onClick={() => onDeleteData()}
         >
           <Icon name="close" height={24} width={24} color="purple_dark" />
-          <p className="font-opensans font-normal text-[14px] text-center">
+          <p className="font-opensans font-normal text-[14px] text-center line-clamp-2">
             {value?.name}
           </p>
           <p className="font-opensans font-normal text-[14px] text-center">
@@ -99,6 +100,7 @@ const UploadBox = (props: UploadBoxProps) => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
             multiple
+            accept="application/pdf"
           />
         </div>
       )}

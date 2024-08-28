@@ -109,7 +109,7 @@ export const RequirementForm = (props: Props) => {
         pic: formPic,
         placeholderValue: dataForm,
         attachment: true,
-        attachment_path: attachmentFile,
+        attachmentPath: attachmentFile,
         emailSubject,
         emailBody,
         emailSubjectSubmitter,

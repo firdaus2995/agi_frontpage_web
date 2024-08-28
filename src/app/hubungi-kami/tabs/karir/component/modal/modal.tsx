@@ -77,7 +77,7 @@ export const ApplyJobModal: FC<Props> = ({
       emailSubjectSubmitter,
       emailBodySubmitter,
       attachment: true,
-      attachment_path: formValue?.filter((item) => item.value.includes('files'))[0]?.value
+      attachmentPath: formValue?.filter((item) => item.value.includes('files'))[0]?.value
     };
 
     const data = await handleSendEmail(queryParams);

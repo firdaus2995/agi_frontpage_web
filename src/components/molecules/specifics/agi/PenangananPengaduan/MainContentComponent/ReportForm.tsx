@@ -160,7 +160,6 @@ export const ReportForm = (props: ReportFormProps) => {
     if (attachmentFiles.length > 0) {
       const combinedFiles = attachmentFiles.join('|');
       onChangeData(combinedFiles, selectedFile, 'add');
-      console.log(combinedFiles);
     }
   }, [attachmentFiles]);
 

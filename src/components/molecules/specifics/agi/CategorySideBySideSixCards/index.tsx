@@ -45,7 +45,6 @@ const CategorySideBySideSixCards = ({
   customRightSideClassname = 'border-b-purple_light',
   extraBox
 }: ICategorySideBySideSixCards) => {
-  console.log(rightSide);
   const renderedDescription = (description: string, isRightSide: boolean) => {
     const isOrdered = description.includes('<ol>');
     const isUnordered = description.includes('<ul>');

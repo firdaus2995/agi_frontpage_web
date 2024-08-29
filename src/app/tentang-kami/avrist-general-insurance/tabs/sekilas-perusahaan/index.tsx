@@ -182,8 +182,8 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
       </div>
       {visiMisi && <VisiMisi data={visiMisi} />}
 
-      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-[5rem] lg:py-[5rem] px-[32px] lg:px-[136px]">
-        <div className="flex justify-center items-center pb-[36px] lg:pb-[5rem]">
+      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full py-[5rem] px-[32px] lg:px-[136px]">
+        <div className="flex justify-center items-center pb-[5rem]">
           <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
             {section2Title}
           </p>

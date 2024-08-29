@@ -214,11 +214,11 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
           <div className="xs:hidden md:block absolute top-[50%] w-full">
             <div className="flex flex-row justify-between w-full px-10">
               <div
-                className="p-2 border-2 rounded-full border-purple_dark"
+                className="p-2 border-2 rounded-full border-purple_dark rotate-180"
                 role="button"
                 onClick={previous}
               >
-                <Icon name="chevronLeft" color="purple_dark" />
+                <Icon name="chevronRight" color="purple_dark" />
               </div>
               <div
                 className="p-2 border-2 rounded-full border-purple_dark"

@@ -87,6 +87,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
   const [emailBodySubmitter, setEmailBodySubmitter] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await handleGetContentPage('Hal-Produk-Detail-AGI');

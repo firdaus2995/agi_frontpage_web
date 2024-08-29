@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import IconWrapper from './components/IconWrapper';
 import AGI_LOGO from '@/assets/images/agi-logo.svg';
 import FOOTER_IMAGE from '@/assets/images/footer-image.svg';
@@ -26,7 +25,6 @@ const additionalInfo = [
 ];
 
 const Footer = () => {
-  const pathname = usePathname();
   const [globalConfig, setGlobalConfig] = useState<any>([]);
 
   useEffect(() => {
@@ -58,7 +56,6 @@ const Footer = () => {
     return '';
   };
 
-  if (pathname.includes('/under-construction')) return null;
   return (
     <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
       <div className="md:p-16 p-8">

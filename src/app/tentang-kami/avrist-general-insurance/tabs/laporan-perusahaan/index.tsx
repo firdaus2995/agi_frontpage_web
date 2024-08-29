@@ -195,7 +195,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">
-              {contentData?.length === 0 ? 0 : startIndex + 1}-
+              {paginatedData?.length === 0 ? 0 : startIndex + 1}-
               {Math.min(endIndex, contentData ? contentData.length : 0)}
             </span>{' '}
             dari <span className="font-bold">{contentData?.length}</span> hasil
@@ -257,8 +257,8 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
             />
           </div>
           <CategoryWithThreeCards
-            defaultSelectedCategory={params.category}
-            onCategoryChange={(tab) => setParams({ ...params, category: tab })}
+            defaultSelectedCategory={'Laporan Perusahaan'}
+            onCategoryChange={(tab: any) => setParams({ ...params, category: tab })}
             filterRowLayout={true}
             categories={contentData && categories ? categories : []}
             tabs={[
@@ -274,7 +274,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
               }
             ]}
             searchPlaceholder="Cari laporan"
-            onSearchChange={(e) => {
+            onSearchChange={(e: { target: { value: React.SetStateAction<string>; }; }) => {
               setSearch(e.target.value);
             }}
             onSearch={() => {

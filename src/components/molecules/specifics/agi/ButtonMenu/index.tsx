@@ -69,7 +69,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
               >
                 <div
                   role="button"
-                  className={`w-[95%] mx-[10px] p-2 border border-purple_dark rounded-lg text-center ${params?.includes(i) ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold line-clamp-1`}
+                  className={`w-[95%] mx-[10px] p-2 border border-purple_dark rounded-lg text-center ${params?.includes(i) ? 'bg-purple_dark text-white' : 'text-purple_dark'} font-semibold line-clamp-1 leading-8`}
                 >
                   {i}
                 </div>

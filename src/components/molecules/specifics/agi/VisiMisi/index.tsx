@@ -32,7 +32,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 height={24}
                 alt="logo"
               />
-              <p className="font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-semibold">
+              <p className="font-karla text-[30px] lg:text-tanya-avgen-detail-title-desktop font-semibold">
                 {val.title}
               </p>
             </div>
@@ -48,7 +48,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
           </div>
           {!Array.isArray(val.desc) ? (
             <p
-              className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+              className="xs:text-[20px] md:text-[1.5rem] font-light -tracking-[1.08px]"
               dangerouslySetInnerHTML={{
                 __html: val.desc
               }}
@@ -60,7 +60,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                   1
                 </p>
                 <p
-                  className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+                  className="xs:text-[20px] md:text-[1.5rem] font-light -tracking-[1.08px]"
                   dangerouslySetInnerHTML={{
                     __html: val.desc[0]
                   }}
@@ -71,7 +71,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 onClick={() => setIsExpanded(true)}
                 className="w-full flex flex-row gap-2 items-center justify-end"
               >
-                <p className="text-2xl font-semibold text-purple_dark font-karla">
+                <p className="text-[24px] font-semibold text-purple_dark font-karla">
                   Lihat Lebih Lanjut
                 </p>
                 <Image

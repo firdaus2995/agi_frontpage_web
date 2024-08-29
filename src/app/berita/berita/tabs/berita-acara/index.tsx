@@ -237,11 +237,11 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
         </Slider>
         <div className="flex flex-row justify-between w-full mt-10 md:mb-0 md:px-[6.5rem]">
           <div
-            className="p-2 border-2 rounded-full border-purple_dark"
+            className="p-2 border-2 rounded-full border-purple_dark rotate-180"
             role="button"
             onClick={previous}
           >
-            <Icon name="chevronLeft" color="purple_dark" />
+            <Icon name="chevronRight" color="purple_dark" />
           </div>
           <div
             className="p-2 border-2 rounded-full border-purple_dark"
@@ -254,7 +254,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
       </div>
 
       <CategoryWithThreeCards
-        outerClass="px-[2rem] md:px-[8.5rem] w-full pb-[100px]"
+        outerClass="px-[2rem] md:px-[8.5rem] w-full !py-[5rem]"
         defaultSelectedCategory={'Berita dan Kegiatan'}
         filterRowLayout={true}
         hiddenCategory

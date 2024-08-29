@@ -45,6 +45,7 @@ const CategorySideBySideSixCards = ({
   customRightSideClassname = 'border-b-purple_light',
   extraBox
 }: ICategorySideBySideSixCards) => {
+  console.log(rightSide);
   const renderedDescription = (description: string, isRightSide: boolean) => {
     const isOrdered = description.includes('<ol>');
     const isUnordered = description.includes('<ul>');
@@ -144,51 +145,52 @@ const CategorySideBySideSixCards = ({
                 icon?: string;
               },
               index: number
-            ) => (
-              <div
-                key={index}
-                className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
-              >
-                <span className="flex flex-row gap-[1.188rem] items-center">
-                  <Image
-                    width={61}
-                    height={61}
-                    alt="symbol"
-                    src={item?.icon ?? ''}
-                    className={`${!item?.icon ? 'hidden' : 'block'}`}
-                  />
-                  <p
-                    className={`${rightTitleClassname} font-bold text-banner-title-mobile lg:text-banner-title-desktop font-karla -tracking-[1.08px]`}
-                  >
-                    {item.title}
-                  </p>
-                </span>
+            ) =>
+              item?.title !== '' && (
+                <div
+                  key={index}
+                  className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
+                >
+                  <span className="flex flex-row gap-[1.188rem] items-center">
+                    <Image
+                      width={61}
+                      height={61}
+                      alt="symbol"
+                      src={item?.icon ?? ''}
+                      className={`${!item?.icon ? 'hidden' : 'block'}`}
+                    />
+                    <p
+                      className={`${rightTitleClassname} font-bold text-banner-title-mobile lg:text-banner-title-desktop font-karla -tracking-[1.08px]`}
+                    >
+                      {item.title}
+                    </p>
+                  </span>
 
-                {item.description &&
-                  renderedDescription(item.description, true)}
-                {item.hasDownloadButton ? (
-                  <button
-                    type="button"
-                    onClick={async () =>
-                      item.urlDownload &&
-                      (await handleDownload(item.urlDownload))
-                    }
-                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
-                  >
-                    <p>{item.btnLabel}</p>
-                  </button>
-                ) : (
-                  item.urlDownload && (
-                    <Link
-                      href={item.urlDownload}
-                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
+                  {item.description &&
+                    renderedDescription(item.description, true)}
+                  {item.hasDownloadButton ? (
+                    <button
+                      type="button"
+                      onClick={async () =>
+                        item.urlDownload &&
+                        (await handleDownload(item.urlDownload))
+                      }
+                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
                     >
                       <p>{item.btnLabel}</p>
-                    </Link>
-                  )
-                )}
-              </div>
-            )
+                    </button>
+                  ) : (
+                    item.urlDownload && (
+                      <Link
+                        href={item.urlDownload}
+                        className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
+                      >
+                        <p>{item.btnLabel}</p>
+                      </Link>
+                    )
+                  )}
+                </div>
+              )
           )}
           {extraBox && extraBox.title && (
             <div className="flex flex-col gap-[1.5rem] bg-purple_superlight py-[2.25rem] px-[1.5rem] rounded-xl items-center">

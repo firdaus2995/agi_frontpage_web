@@ -382,11 +382,11 @@ const Content = (props: contentProps) => {
           </Slider>
           <div className="flex flex-row justify-between w-full mt-10 md:mb-0">
             <div
-              className="p-2 border-2 rounded-full border-purple_dark"
+              className="p-2 border-2 rounded-full border-purple_dark rotate-180"
               role="button"
               onClick={previous}
             >
-              <Icon name="chevronLeft" color="purple_dark" />
+              <Icon name="chevronRight" color="purple_dark" />
             </div>
             <div
               className="p-2 border-2 rounded-full border-purple_dark"
@@ -401,7 +401,7 @@ const Content = (props: contentProps) => {
 
       <div className="flex flex-col w-full">
         <CategoryWithThreeCards
-          outerClass={'!py-[48px]'}
+          outerClass={'xs:pb-[24px] lg:!pb-[48px] pt-[5rem]'}
           hiddenCategory
           hidePagination
           defaultSelectedCategory={category}

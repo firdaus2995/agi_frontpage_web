@@ -44,6 +44,19 @@ const Bengkel: React.FC<BengkelProps> = ({
           </p>
         </div>
         <div className="flex flex-row gap-[12px] items-center">
+          <span
+            className="mt-[3px] rotate-180"
+            role="button"
+            onClick={() => {
+              if (currentPage > 1) {
+                handlePageChange(currentPage - 1);
+              } else {
+                handlePageChange(1);
+              }
+            }}
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <div
               key={page}
@@ -62,7 +75,13 @@ const Bengkel: React.FC<BengkelProps> = ({
           <span
             className="mt-[3px]"
             role="button"
-            onClick={() => handlePageChange(totalPages)}
+            onClick={() => {
+              if (currentPage === data?.length) {
+                handlePageChange(currentPage);
+              } else {
+                handlePageChange(currentPage + 1);
+              }
+            }}
           >
             <Icon name="chevronRight" color="purple_dark" />
           </span>

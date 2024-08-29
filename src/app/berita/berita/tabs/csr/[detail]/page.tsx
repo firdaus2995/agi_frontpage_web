@@ -215,10 +215,8 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
                   key={detailIndex}
                 >
                   <VideoPlayer
-                    thumbnail=""
                     url={detailItem.value ?? ''}
                     color="purple_dark"
-                    type="Artikel Video"
                     mute={true}
                   />
                 </div>
@@ -316,8 +314,8 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
                   onClick={() => setIsOPenPopover(!isOpenPopover)}
                 >
                   <Icon
-                    width={16}
-                    height={16}
+                    width={24}
+                    height={24}
                     name="share"
                     color="purple_verylight"
                   />

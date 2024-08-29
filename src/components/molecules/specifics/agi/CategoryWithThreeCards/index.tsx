@@ -174,7 +174,7 @@ const CategoryWithThreeCards = ({
       </div>
 
       {/* ITEMS LIST */}
-      <div className="flex flex-col gap-[24px] grow">
+      <div className="flex flex-col gap-[48px] lg:gap-[24px] grow">
         {customRightContent ?? null}
         {!hideSearchBar && (
           <div

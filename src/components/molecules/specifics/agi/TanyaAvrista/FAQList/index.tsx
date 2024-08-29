@@ -54,7 +54,7 @@ const FAQList = ({
               </Link>
             ))}
           </div>
-          <div className="w-full flex flex-col md:flex-row items-center justify-between py-8 gap-4">
+          <div className="w-full flex flex-col md:flex-row items-start justify-between py-8 gap-4">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}

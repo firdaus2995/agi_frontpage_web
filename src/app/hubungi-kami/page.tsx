@@ -147,7 +147,7 @@ const CallMe = () => {
         bottomImage={bannerImage.imageUrl}
         bottomImageFit={bannerImageFit}
       />
-      <div className="pt-[3.125rem] md:pt-[6.25rem]">
+      <div className="pt-[3.125rem] lg:pt-[6.25rem]">
         <ButtonMenu buttonList={['Pengaduan Nasabah', 'Karir']} />
       </div>
 
@@ -164,7 +164,7 @@ const CallMe = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
             dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
           />
         }
@@ -174,7 +174,7 @@ const CallMe = () => {
       />
 
       <FooterCards
-        bgColor="md:bg-cta4_bg"
+        bgColor="lg:bg-cta4_bg"
         cards={[
           {
             title: cta4Data.cta41?.title,

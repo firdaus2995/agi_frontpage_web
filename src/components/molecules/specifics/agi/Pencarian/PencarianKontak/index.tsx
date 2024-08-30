@@ -12,28 +12,28 @@ const PencarianKontak = () => {
         <div className="w-[78%] h-auto grid grid-cols-4 gap-10">
           <div className="w-auto h-[274px] flex flex-col justify-center items-center bg-white rounded-xl border border-gray_light">
             <Image alt="logo" src={CUSTOMER_SERVICE} className="mb-10" />
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl">
               Layanan Nasabah
             </p>
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl text-purple_dark">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl text-purple_dark">
               021 5789 8188
             </p>
           </div>
           <div className="w-auto h-[274px] flex flex-col justify-center items-center bg-white rounded-xl border border-gray_light">
             <Image alt="logo" src={MESSAGE} className="mb-10" />
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl">
               Tanya Avrista
             </p>
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl text-purple_dark">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl text-purple_dark">
               Lebih Lanjut
             </p>
           </div>
           <div className="w-auto h-[274px] flex flex-col justify-center items-center bg-white rounded-xl border border-gray_light">
             <Image alt="logo" src={EMAIL} className="mb-10" />
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl">
               Tanya Lewat Email
             </p>
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl text-purple_dark">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl text-purple_dark">
               Kirim Email
             </p>
           </div>
@@ -43,10 +43,10 @@ const PencarianKontak = () => {
               src={DOCUMENT_SEARCH}
               className="mb-10 w-[100px] h-[100px]"
             />
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl">
               Prosedur Pengaduan
             </p>
-            <p className="font-opensans font-bold md:text-xl 2xl:text-2xl text-purple_dark">
+            <p className="font-opensans font-bold lg:text-xl 2xl:text-2xl text-purple_dark">
               Lihat Prosedur
             </p>
           </div>

@@ -14,9 +14,9 @@ const SubCard: React.FC<SubCardProps> = ({ item, onClick }) => {
   return (
     <div
       onClick={() => onClick(item.id)}
-      className="w-full md:max-w-[25rem] flex flex-col gap-4 rounded-xl shadow-md cursor-pointer group"
+      className="w-full lg:max-w-[25rem] flex flex-col gap-4 rounded-xl shadow-md cursor-pointer group"
     >
-      <div className="w-full relative h-[15rem] md:h-[10rem] overflow-hidden rounded-xl">
+      <div className="w-full relative h-[15rem] lg:h-[10rem] overflow-hidden rounded-xl">
         <Image
           alt={item.title}
           width={0}

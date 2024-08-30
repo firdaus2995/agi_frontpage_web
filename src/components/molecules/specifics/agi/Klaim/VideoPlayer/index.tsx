@@ -119,14 +119,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       <YouTube
         // ref={videoPlayerRef}
         videoId={videoId}
-        className="sm:h-[35.438rem] xs:h-[13.375rem]"
-        iframeClassName={`-z-1 w-full sm:h-[35.438rem] xs:h-[13.375rem] ${type ? 'rounded-t-xl' : 'rounded-xl'}`}
+        className="lg:h-[35.438rem] xs:h-[13.375rem]"
+        iframeClassName={`-z-1 w-full lg:h-[35.438rem] xs:h-[13.375rem] ${type ? 'rounded-t-xl' : 'rounded-xl'}`}
         onReady={handleReady}
         opts={videoOptions}
       />
       {type && (
         <div
-          className={`p-[1.5rem] w-full bg-${color} rounded-b-xl text-white font-bold xs:text-xl sm:text-2xl font-karla flex flex-row justify-between font-karla -tracking-[0.72px] leading-[28.8px]`}
+          className={`p-[1.5rem] w-full bg-${color} rounded-b-xl text-white font-bold xs:text-xl lg:text-2xl font-karla flex flex-row justify-between font-karla -tracking-[0.72px] leading-[28.8px]`}
         >
           {type}
         </div>

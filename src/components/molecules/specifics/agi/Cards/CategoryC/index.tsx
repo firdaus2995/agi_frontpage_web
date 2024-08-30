@@ -45,7 +45,7 @@ const CardCategoryC = ({
             className="w-full h-[190px] object-cover rounded-t-xl"
           />
           {isVideo && (
-            <div className="w-full h-full absolute flex items-center justify-center md:justify-between">
+            <div className="w-full h-full absolute flex items-center justify-center lg:justify-between">
               <Image alt={'play-button'} className="w-16" src={PlayButton} />
             </div>
           )}

@@ -19,13 +19,13 @@ const HelpCard = ({
   image
 }: HelpCardProps) => {
   return (
-    <div className="flex px-[32px] py-[50px] sm:px-[136px] sm:py-[72px]">
+    <div className="flex px-[32px] py-[50px] lg:px-[136px] lg:py-[72px]">
       <div
-        className={`${cardClassname} grid grid-cols-1 sm:grid-cols-2 rounded-[24px] overflow-hidden`}
+        className={`${cardClassname} grid grid-cols-1 lg:grid-cols-2 rounded-[24px] overflow-hidden`}
       >
         <div className="flex flex-col gap-[24px] justify-center p-[36px]">
           <div>{title}</div>
-          <div className="flex justify-center sm:justify-start">
+          <div className="flex justify-center lg:justify-start">
             <button
               className={`${buttonClassname} rounded-[8px] hover:shadow-lg px-[40px] py-[14px] w-[fit-content]`}
             >

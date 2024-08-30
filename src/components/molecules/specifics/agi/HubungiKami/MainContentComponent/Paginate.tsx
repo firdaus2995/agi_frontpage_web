@@ -68,7 +68,7 @@ export const Paginate = (props: Props) => {
   };
   
   return (
-    <div className={`w-full flex sm:flex-row xs:flex-col gap-4 justify-between ${className}`}>
+    <div className={`w-full flex lg:flex-row xs:flex-col gap-4 justify-between ${className}`}>
       <p className="text-xl">
         Menampilkan <span className="font-bold text-purple_dark">1-{dataPage.pageSize}</span> dari{' '}
         <span className="font-bold">{dataPage?.totalData}</span> hasil

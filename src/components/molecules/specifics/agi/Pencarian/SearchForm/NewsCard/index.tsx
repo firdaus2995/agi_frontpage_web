@@ -24,7 +24,7 @@ const NewsCard: React.FC<INewsCard> = ({
         <span className="w-[0.0625rem] h-auto bg-gray_body" />
         <p className="text-sm leading-[19.6px]">{date}</p>
       </span>
-      <p className="text-2xl w-[74%] font-bold font-opensanspro xs:line-clamp-3 sm:line-clamp-none">
+      <p className="text-2xl w-[74%] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none">
         {title}
       </p>
       <div
@@ -40,7 +40,7 @@ const NewsCard: React.FC<INewsCard> = ({
           tags.map((item, index) => (
             <p
               key={index}
-              className="text-purple_dark font-semibold bg-gray_bglightgray px-2 py-1 text-sm leading-[19.6px] xs:line-clamp-1 sm:line-clamp-none"
+              className="text-purple_dark font-semibold bg-gray_bglightgray px-2 py-1 text-sm leading-[19.6px] xs:line-clamp-1 lg:line-clamp-none"
             >
               {item}
             </p>

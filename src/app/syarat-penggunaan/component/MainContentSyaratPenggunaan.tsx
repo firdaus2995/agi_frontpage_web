@@ -8,11 +8,12 @@ import KontenSitus from '../tabs/KontenSitus';
 import SyaratPenggunaan from '../tabs/SyaratPenggunaan';
 
 import Icon from '@/components/atoms/Icon';
+
 interface Props {
   content: any;
 }
 
-const MainContentSyaratPenggunaan = ({content}: Props) => {
+const MainContentSyaratPenggunaan = ({ content }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -51,9 +52,11 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
     }
   };
 
-  const handleScrollToRef = (ref: React.MutableRefObject<null> | null) => {
+  const handleScrollToRef = (
+    ref: React.MutableRefObject<HTMLElement | null> | null
+  ) => {
     if (ref?.current) {
-      (ref.current! as HTMLElement).scrollIntoView({
+      (ref.current as HTMLElement).scrollIntoView({
         behavior: 'smooth',
         block: 'end',
         inline: 'start'
@@ -65,9 +68,15 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
     const value = searchParams.get('tab');
     if (value !== null) {
       setTab(value);
-      handleScrollToRef(getRefByTab(value));
+
+      // Ensure the ref is available before scrolling
+      const ref = getRefByTab(value);
+      if (ref && ref.current) {
+        // Use setTimeout to ensure the DOM is fully updated
+        setTimeout(() => handleScrollToRef(ref), 100);
+      }
     }
-  }, [searchParams]);
+  }, [searchParams, disclaimerRef, syaratRef, kontenRef, kepemilikanRef]);
 
   const tabs = [
     'Disclaimer',
@@ -75,12 +84,13 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
     'Konten Situs',
     'Kepemilikan Informasi'
   ];
+
   return (
-    <div className=" w-full flex flex-col  relative bottom-[70px]">
+    <div className="w-full flex flex-col relative bottom-[70px]">
       <div className="bg-white w-full min-h-[60px]">
         <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
           {/* start tabs kiri */}
-          <div className="sm:block hidden rounded-lg">
+          <div className="lg:block hidden rounded-lg">
             <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
               {tabs.map((val, idx) =>
                 tab === val ? (
@@ -140,7 +150,7 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
             )}
           </div>{' '}
           {/* end tabs kiri */}
-          <div className="sm:ml-[48px] flex flex-col xs:mt-[2rem] sm:mt-0">
+          <div className="lg:ml-[48px] flex flex-col xs:mt-[2rem] lg:mt-0">
             <div ref={disclaimerRef}>
               <Disclaimer content={content} />
             </div>

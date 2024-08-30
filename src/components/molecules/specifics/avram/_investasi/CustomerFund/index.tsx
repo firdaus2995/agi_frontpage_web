@@ -75,7 +75,7 @@ const CustomerFund: React.FC<CustomerFundProps> = async ({ searchParams }) => {
     highlight
   }) => {
     return (
-      <p className="text-[1.875rem] md:text-[3rem] leading-snug block font-karla font-light tracking-tighter">
+      <p className="text-[1.875rem] lg:text-[3rem] leading-snug block font-karla font-light tracking-tighter">
         {leading}{' '}
         <span className="font-bold text-purple_dark">{highlight}</span>.
       </p>
@@ -83,7 +83,7 @@ const CustomerFund: React.FC<CustomerFundProps> = async ({ searchParams }) => {
   };
 
   return (
-    <div className="w-full flex flex-col self-stretch items-center justify-center md:px-20 xs:p-5 md:py-10 gap-12">
+    <div className="w-full flex flex-col self-stretch items-center justify-center lg:px-20 xs:p-5 lg:py-10 gap-12">
       <div className="self-center">
         <CustomerFundTabs items={tabs} tab={currentTab} />
       </div>

@@ -67,17 +67,17 @@ const Hero: React.FC<IHero> = ({
 
   return (
     <div
-      className={`relative w-full md:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] sm:h-[35.5rem]' : 'h-[9rem] sm:h-[12rem]'} ${customClassName}`}
+      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] lg:h-[35.5rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
       style={{
         marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
       }}
     >
       <div className="w-full flex items-center">
         <div
-          className={`w-full flex sm:flex-row xs:flex-row-reverse justify-between px-[2rem] md:px-[8.5rem] items-center xs:pt-[2rem] md:pt-[0.5rem]`}
+          className={`w-full flex lg:flex-row xs:flex-row-reverse justify-between px-[2rem] lg:px-[8.5rem] items-center xs:pt-[2rem] lg:pt-[0.5rem]`}
         >
           <div className="line-clamp-1">
-            <p className="hidden sm:block font-karla text-white text-[1.125rem] sm:text-[3rem] font-light">
+            <p className="hidden lg:block font-karla text-white text-[1.125rem] lg:text-[3rem] font-light">
               {title}
             </p>
           </div>
@@ -101,7 +101,7 @@ const Hero: React.FC<IHero> = ({
       </div>
       {imageUrl && !imageUrl.includes('no-image') ? (
         <Image
-          className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[9.375rem] sm:h-[17.5rem]' : 'h-[100px]'}`}
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[9.375rem] lg:h-[17.5rem]' : 'h-[100px]'}`}
           alt="Avrist"
           src={imageUrl ?? ''}
           width={0}
@@ -113,10 +113,10 @@ const Hero: React.FC<IHero> = ({
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem] sm:top-[5.5rem] absolute">
+        <div className="-z-[1] w-full top-[5.25rem] lg:top-[5.5rem] absolute">
           <Image
             ref={bannerRef}
-            className={`w-full xs:h-auto sm:h-full md:h-[50vh] ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
+            className={`w-full xs:h-auto lg:h-full lg:h-[50vh] ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
             alt="gambar-produk-individu"
             width={0}
             height={0}

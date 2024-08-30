@@ -304,7 +304,7 @@ const TanyaAvgen = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
             dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
           />
         }

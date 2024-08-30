@@ -34,11 +34,11 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col gap-[2.25rem] lg:gap-[5rem] items-center bg-[#F7F4F8] sm:px-[5rem] sm:pt-[5rem] sm:pb-[5rem] xs:py-[2.25rem] xs:px-[1.3125rem]">
-      <h1 className="font-karla text-tanya-avgen-title-mobile lg:text-tanya-avgen-title-desktop text-purple_dark text-center">
+    <div className="w-full bg-white flex flex-col items-center bg-[#F7F4F8] lg:px-[5rem] py-[5rem] xs:px-[1.3125rem]">
+      <h1 className="font-karla text-tanya-avgen-title-mobile lg:text-tanya-avgen-title-desktop text-purple_dark text-center pb-[5rem]">
         Apa yang ingin <span className="font-bold">Anda </span> ketahui?
       </h1>
-      <div className="xs:hidden sm:grid xs:grid-rows-1 xs:grid-cols-2 sm:grid-cols-4 gap-[1.5rem]">
+      <div className="xs:hidden lg:grid xs:grid-rows-1 xs:grid-cols-2 lg:grid-cols-4 gap-[1.5rem]">
         {cards.map(
           (item, index) =>
             item.title !== '' && (
@@ -49,13 +49,13 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
                 className="flex flex-col items-center"
               >
                 <div
-                  className={`xs:w-[11.25rem] bg-white sm:w-[17.125rem] xs:h-[11.625rem] sm:h-[16.25rem] flex flex-col items-center justify-center px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-xl border-b-[0.5rem] border-b-purple_dark`}
+                  className={`xs:w-[11.25rem] bg-white lg:w-[17.125rem] xs:h-[11.625rem] lg:h-[16.25rem] flex flex-col items-center justify-center px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-xl border-b-[0.5rem] border-b-purple_dark`}
                 >
                   {!item.icon.includes('no-image') && (
                     <Image
                       alt={item.title}
                       src={item.icon}
-                      className="xs:w-[3.75rem] xs:h-[3.75rem] sm:w-[6.25rem] sm:h-[6.25rem]"
+                      className="xs:w-[3.75rem] xs:h-[3.75rem] lg:w-[6.25rem] lg:h-[6.25rem]"
                       width={60}
                       height={60}
                     />
@@ -72,7 +72,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
         )}
       </div>
       <div className="w-full">
-        <div className="md:hidden py-[0.375rem] flex flex-col gap-[2.25rem]">
+        <div className="lg:hidden py-[0.375rem] flex flex-col gap-[2.25rem]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => (
               <div
@@ -90,7 +90,7 @@ const TopicsCard = ({ cards, onClickCards }: ITopicsCard) => {
                   <Image
                     alt={item.title}
                     src={item.icon}
-                    className="xs:w-[3.75rem] xs:h-[3.75rem] sm:w-[6.25rem] sm:h-[6.25rem]"
+                    className="xs:w-[3.75rem] xs:h-[3.75rem] lg:w-[6.25rem] lg:h-[6.25rem]"
                     width={60}
                     height={60}
                   />

@@ -85,7 +85,7 @@ const ProdukDplk = () => {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-4 sm:flex-row justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row justify-between">
           <div>
             <p className="text-[20px]">
               Menampilkan{' '}

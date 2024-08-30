@@ -68,10 +68,10 @@ const AvramCommunity = () => {
             <MainCard item={videoData[0]} />
           </div>
         )}
-        <div className="hidden md:grid md:grid-cols-3 gap-8 mt-2 justify-center p-2">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mt-2 justify-center p-2">
           {renderSub()}
         </div>
-        <Slider className="md:!hidden" {...sliderSettings}>
+        <Slider className="lg:!hidden" {...sliderSettings}>
           {renderSub()}
         </Slider>
       </div>

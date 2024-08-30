@@ -25,7 +25,7 @@ const KlaimBanner: React.FC<KlaimBannerComponentProps> = ({ changeImg }) => {
   ];
   return (
     <div className="flex w-full">
-      <div className="w-full h-[640px] flex md:items-center xs:items-start justify-center relative bg-white rounded-t-[72px] md:-mt-28 xs:-mt-20 relative">
+      <div className="w-full h-[640px] flex lg:items-center xs:items-start justify-center relative bg-white rounded-t-[72px] lg:-mt-28 xs:-mt-20 relative">
         <Image
           className="bg-purple_dark absolute bottom-0 object-bottom rounded-t-[72px]"
           src={imgData[changeImg]}

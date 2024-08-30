@@ -26,12 +26,12 @@ const GridContainer = ({
   return (
     <>
       <div className="flex justify-center pt-[80px]">
-        <p className="font-bold font-karla text-center text-[36px] sm:text-[56px] text-purple_dark">
+        <p className="font-bold font-karla text-center text-[36px] lg:text-[56px] text-purple_dark">
           {textTitle}
         </p>
       </div>
       <div
-        className={`grid grid-cols-${gridCols} sm:grid-cols-${gridColsSm} px-[${px}] sm:px-[${pxSm}] py-[${py}] sm:py-[${pySm}] gap-[24px] bg-${bgColor}`}
+        className={`grid grid-cols-${gridCols} lg:grid-cols-${gridColsSm} px-[${px}] lg:px-[${pxSm}] py-[${py}] lg:py-[${pySm}] gap-[24px] bg-${bgColor}`}
       >
         {children}
       </div>

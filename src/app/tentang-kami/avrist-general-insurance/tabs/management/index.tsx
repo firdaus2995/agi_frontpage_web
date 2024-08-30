@@ -152,7 +152,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
     <div className="w-full flex flex-col gap-4 bg-white justify-center">
       {detailData?.name ? (
         <div
-          className="xs:px-[2rem] md:px-[8.5rem] xs:my-[2.25rem] sm:my-[5rem]"
+          className="xs:px-[2rem] lg:px-[8.5rem] xs:my-[2.25rem] lg:my-[5rem]"
           onClick={() => {
             setDetailData({});
             router.push(
@@ -164,17 +164,17 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
           }}
         >
           <div className="flex flex-col gap-7 border rounded-xl p-[1.5rem] shadow-lg">
-            <div className="flex xs:flex-col md:flex-row gap-[1.5rem] items-center border rounded-xl">
-              <div className="xs:w-full xs:h-full sm:w-[213px] sm:h-[213px] rounded-xl">
+            <div className="flex xs:flex-col lg:flex-row gap-[1.5rem] items-center border rounded-xl">
+              <div className="xs:w-full xs:h-full lg:w-[213px] lg:h-[213px] rounded-xl">
                 <Image
                   alt="blank-image"
                   src={detailData.image}
                   width={213}
                   height={213}
-                  className="xs:rounded-t-xl md:rounded-xl xs:w-full xs:h-full sm:w-[213px] sm:h-[213px]"
+                  className="xs:rounded-t-xl lg:rounded-xl xs:w-full xs:h-full lg:w-[213px] lg:h-[213px]"
                 />
               </div>
-              <div className="flex flex-col gap-2 xs:text-center md:text-start xs:mb-7 sm:mb-0">
+              <div className="flex flex-col gap-2 xs:text-center lg:text-start xs:mb-7 lg:mb-0">
                 <p className="text-[36px] font-bold -tracking-[1.08px] font-karla">
                   {detailData.name}
                 </p>
@@ -190,7 +190,7 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
           </div>
         </div>
       ) : contentData ? (
-        <div className="flex flex-col gap-[3rem] xs:px-[2rem] md:px-[8.5rem] gap-[5rem] pb-[5rem]">
+        <div className="flex flex-col gap-[3rem] xs:px-[2rem] lg:px-[8.5rem] gap-[5rem] pb-[5rem]">
           <div className="mt-[5rem] flex flex-col gap-[3rem]">
             {managementList
               ? managementList?.map(
@@ -205,14 +205,14 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
                 )
               : null}
           </div>
-          <div className="flex flex-col xs:gap-[2.25rem] sm:gap-[5rem] items-center justify-center w-full">
+          <div className="flex flex-col xs:gap-[2.25rem] lg:gap-[5rem] items-center justify-center w-full">
             <div className="flex justify-center items-center">
-              <p className="xs:text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark xs:text-center md:text-start">
+              <p className="xs:text-[2.25rem] lg:text-[3.5rem] font-bold text-purple_dark xs:text-center lg:text-start">
                 {contentStringTransformer(contentData['nama-section-5']) ?? ''}
               </p>
             </div>
-            <div className="w-full flex xs:flex-col md:flex-row justify-between items-center border rounded-xl p-[1.5rem]">
-              <p className="font-bold text-2xl xs:text-center md:text-start xs:mb-4 md:mb-0">
+            <div className="w-full flex xs:flex-col lg:flex-row justify-between items-center border rounded-xl p-[1.5rem]">
+              <p className="font-bold text-2xl xs:text-center lg:text-start xs:mb-4 lg:mb-0">
                 {contentStringTransformer(contentData['teks-section-5']) ?? ''}
               </p>
               <Button

@@ -63,10 +63,10 @@ export const SuccessModal = (props: Props) => {
                       />
                     )}
                     <div className="w-full h-[240px] lg:h-[440px] text-white flex flex-col items-center text-center justify-center px-[32px] lg:px-[50px]">
-                      <h1 className="font-karla xs:text-[2.25rem] md:text-[3.5rem] font-extrabold">
+                      <h1 className="font-karla xs:text-[2.25rem] lg:text-[3.5rem] font-extrabold">
                         Terima Kasih
                       </h1>
-                      <p className="xs:text-lg md:text-xl font-opensans">
+                      <p className="xs:text-lg lg:text-xl font-opensans">
                         Form telah berhasil dikirim.
                       </p>
                     </div>

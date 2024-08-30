@@ -62,7 +62,7 @@ const Accordion: React.FC<IAccordion> & {
       {expand && (
         <>
           {isContentNotEmpty(description ?? '-') && (
-            <p className="text-md 2xl:text-[20px] sm:leading-[32px] font-normal font-opensans">
+            <p className="text-md 2xl:text-[20px] lg:leading-[32px] font-normal font-opensans">
               {description}
             </p>
           )}

@@ -40,7 +40,7 @@ const Content = (props: contentProps) => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
     speed: 500,

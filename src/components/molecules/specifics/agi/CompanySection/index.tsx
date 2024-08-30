@@ -68,7 +68,7 @@ const CompanySection = (props: CompanySection) => {
           </Link>
         </div>
         <div
-          className={`lg:w-1/2 xs:w-full h-full xs:max-lg:h-[212px] lg:rounded-r-xl lg:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}
+          className={`lg:w-1/2 xs:w-full h-full xs:h-[212px] md:h-[400px] lg:h-full lg:rounded-r-xl lg:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}
         >
           <Image
             src={singleImageTransformer(val['why-us-banner']).imageUrl}
@@ -82,7 +82,7 @@ const CompanySection = (props: CompanySection) => {
   };
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center lg:py-32 xs:py-[5rem] px-[2rem] gap-[5rem] bg-purple_dark">
+    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-[5rem] px-[2rem] gap-[5rem] bg-purple_dark">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-white px-10 font-karla">
           {contentStringTransformer(content['why-us-title-section'])}
@@ -101,7 +101,7 @@ const CompanySection = (props: CompanySection) => {
           {sliderData.map((val: any, idx: any) => (
             <div
               key={idx}
-              className="w-full flex items-center justify-center lg:px-[24px] lg:py-[36px] xs:p-4"
+              className="w-full flex items-center justify-center sm:px-[24px] sm:py-[36px] xs:p-4"
             >
               {renderCard(val)}
             </div>

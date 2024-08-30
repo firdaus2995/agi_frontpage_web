@@ -104,7 +104,7 @@ const FAQList = ({
           </div>
         </div>
       ) : (
-        <div className="w-full flex flex-col gap-[1rem] items-center justify-center">
+        <div className="w-full flex flex-col gap-[1rem] items-center justify-center pb-[56px]">
           <Image src={Search} alt="search" />
           <div className="flex flex-col gap-[2.25rem]">
             <div className="w-[20.25rem] text-center">

@@ -90,7 +90,9 @@ const Footer = () => {
 
           {/* Communication content */}
           <div className="flex flex-col gap-4 whitespace-nowrap">
-            <p className="font-bold font-opensanspro text-footer-title">Hubungi AvGen</p>
+            <p className="font-bold font-opensanspro text-footer-title">
+              Hubungi AvGen
+            </p>
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
                 <a
@@ -101,14 +103,21 @@ const Footer = () => {
                 </a>
               </div>
               <div>
-                <p className="font-semibold font-opensanspro text-footer-subtitle">Layanan Nasabah</p>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">
+                  Layanan Nasabah
+                </p>
                 <a href="tel:+62215740381" className="text-footer-list">
                   (021) 574 0381
                 </a>
               </div>
               <div>
-                <p className="font-semibold font-opensanspro text-footer-subtitle">Email</p>
-                <a href="mailto:avrist.general@avrist.com" className='text-footer-list'>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">
+                  Email
+                </p>
+                <a
+                  href="mailto:avrist.general@avrist.com"
+                  className="text-footer-list"
+                >
                   avrist.general@avrist.com
                 </a>
               </div>
@@ -125,7 +134,9 @@ const Footer = () => {
 
           {/* Product content */}
           <div className="flex flex-col gap-4">
-            <p className="font-bold font-opensanspro text-footer-title">Produk</p>
+            <p className="font-bold font-opensanspro text-footer-title">
+              Produk
+            </p>
             <div className="flex flex-col gap-2 h-full text-sm font-light">
               <Link href={'/produk?tab=Asuransi+Kendaraan'}>
                 <p className="hover:text-purple_light cursor-pointer text-footer-list">
@@ -177,18 +188,26 @@ const Footer = () => {
 
           {/* Investation content */}
           <div className="flex flex-col gap-4">
-            <p className="font-bold font-opensanspro text-footer-title">Quick Links</p>
+            <p className="font-bold font-opensanspro text-footer-title">
+              Quick Links
+            </p>
             <div className="flex flex-col gap-2 h-full">
               <Link href="/tanya-avgen">
                 <div className="text-xs flex flex-col gap-2 font-light whitespace-nowrap">
-                  <p className="text-base font-semibold font-opensanspro text-footer-subtitle">Tanya AvGen</p>
+                  <p className="text-base font-semibold font-opensanspro text-footer-subtitle">
+                    Tanya AvGen
+                  </p>
                 </div>
               </Link>
               <Link href="/pusat-informasi/pusat-informasi?tab=Formulir+Penutupan">
-                <p className="font-semibold font-opensanspro text-footer-subtitle">Formulir</p>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">
+                  Formulir
+                </p>
               </Link>
               <Link href="/hubungi-kami?tab=Karir">
-                <p className="font-semibold font-opensanspro text-footer-subtitle">Karir</p>
+                <p className="font-semibold font-opensanspro text-footer-subtitle">
+                  Karir
+                </p>
               </Link>
             </div>
           </div>
@@ -202,7 +221,9 @@ const Footer = () => {
             {additionalInfo.map((item, index) => (
               <React.Fragment key={index}>
                 <Link href={item.href}>
-                  <span className="font-bold text-footer-link ml-4">{item.title}</span>
+                  <span className="font-bold text-footer-link lg:ml-4">
+                    {item.title}
+                  </span>
                 </Link>
               </React.Fragment>
             ))}

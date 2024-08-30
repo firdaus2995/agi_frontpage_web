@@ -211,7 +211,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
             if (fieldType === 'YOUTUBE_URL' && isNotEmpty) {
               return (
                 <div
-                  className="w-full xs:h-[250px] lg:h-[650px] xs:mb-10 lg:mb-0"
+                  className="w-full xs:h-[250px] md:h-[24rem] lg:h-[650px] xs:mb-10 md:mb-0"
                   key={detailIndex}
                 >
                   <VideoPlayer
@@ -332,7 +332,6 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
           </div>
 
           {/* Loop Artikel */}
-
           {contentData
             ? contentData?.loopArtikel?.map((item: any) => item)
             : null}

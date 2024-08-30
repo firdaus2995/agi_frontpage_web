@@ -231,7 +231,7 @@ export const RequirementForm = (props: Props) => {
               type="submit"
               disabled={formIsValid ? (isChecked ? false : true) : true}
               onClick={() => onSubmitData()}
-              className={`${formIsValid ? (isChecked ? 'bg-purple_dark hover:bg-purple_light' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[44px] lg:h-[64px] w-full lg:w-[132px] rounded-lg mt-[12px] lg:mt-0 py-[12px] px-[40px] font-opensans text-[20px] font-semibold leading-[28px]`}
+              className={`${formIsValid ? (isChecked ? 'bg-purple_dark hover:bg-purple_light' : 'bg-dark-grey') : 'bg-dark-grey'} text-white lg:h-[64px] w-full lg:w-[132px] rounded-lg mt-[12px] lg:mt-0 py-[12px] px-[40px] font-opensans text-[20px] font-semibold lg:leading-[28px]`}
             >
               Kirim
             </button>

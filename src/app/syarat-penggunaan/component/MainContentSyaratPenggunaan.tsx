@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { useRef, useState } from 'react';
 
 import Disclaimer from '../tabs/Disclaimer';
 import KepemilikanInformasi from '../tabs/KepemilikanInformasi';
@@ -14,9 +13,6 @@ interface Props {
 }
 
 const MainContentSyaratPenggunaan = ({ content }: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [tab, setTab] = useState('Disclaimer');
   const [isOpen, setIsOpen] = useState(false);
   const disclaimerRef = useRef(null);
@@ -26,15 +22,8 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
 
   const handleTabClick = (tabs: string) => {
     setTab(tabs);
-    router.push(pathname + '?' + createQueryString('tab', tabs), {
-      scroll: false
-    });
-  };
-
-  const createQueryString = (name: string, value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(name, value);
-    return params.toString();
+    const ref = getRefByTab(tabs);
+    handleScrollToRef(ref);
   };
 
   const getRefByTab = (tab: string) => {
@@ -63,20 +52,6 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
       });
     }
   };
-
-  useEffect(() => {
-    const value = searchParams.get('tab');
-    if (value !== null) {
-      setTab(value);
-
-      // Ensure the ref is available before scrolling
-      const ref = getRefByTab(value);
-      if (ref && ref.current) {
-        // Use setTimeout to ensure the DOM is fully updated
-        setTimeout(() => handleScrollToRef(ref), 100);
-      }
-    }
-  }, [searchParams, disclaimerRef, syaratRef, kontenRef, kepemilikanRef]);
 
   const tabs = [
     'Disclaimer',

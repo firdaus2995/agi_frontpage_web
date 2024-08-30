@@ -28,14 +28,14 @@ const Agency = (props: agencyProps) => {
       )}
 
       <div
-        className={`flex xs:flex-col lg:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-4 ${tab.includes('Agency') && content ? 'mx-[2rem] lg:mx-[8.5rem] mb-[3.25rem]' : ''}`}
+        className={`flex xs:flex-col lg:flex-row items-center gap-4 justify-between border border-gray_light rounded-xl p-4 ${tab.includes('Agency') && content ? 'mx-[2rem] md:mx-[9.5rem] lg:mx-[8.5rem] mb-[3.25rem]' : ''}`}
       >
         <div className="flex flex-row gap-4 items-center">
           <h1 className="font-bold text-xl 2xl:text-2xl text-purple_dark">
             {contentStringTransformer(pageData['external-link-nama'])}
           </h1>
         </div>
-        <div className="xs:w-full lg:w-auto">
+        <div className="xs:w-full lg:w-auto flex items-center justify-center">
           <Link
             href={contentStringTransformer(pageData['external-link-button'])}
           >

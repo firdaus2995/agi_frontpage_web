@@ -160,7 +160,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
   }, []);
   return (
     <div className="w-full flex flex-col bg-white justify-center">
-      <div className="flex flex-col gap-4 px-[32px] pt-[50px] sm:px-[136px] sm:py-[72px]">
+      <div className="flex flex-col gap-4 px-[32px] pt-[50px] lg:px-[136px] lg:py-[72px]">
         <p
           className="xs:text-[30px] xs:-tracking-[1.44px] lg:text-sekilas-perusahaan-title font-light"
           dangerouslySetInnerHTML={{
@@ -182,13 +182,13 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
       </div>
       {visiMisi && <VisiMisi data={visiMisi} />}
 
-      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full xs:py-[2.25rem] xs:pb-[5rem] lg:py-[5rem] px-[32px] lg:px-[136px]">
-        <div className="flex justify-center items-center pb-[36px] lg:pb-[5rem]">
+      <div className="flex flex-col items-center justify-center bg-purple_superlight w-full py-[5rem] px-[32px] lg:px-[136px]">
+        <div className="flex justify-center items-center pb-[5rem]">
           <p className="font-karla text-center text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-bold text-purple_dark">
             {section2Title}
           </p>
         </div>
-        <div className="xs:hidden sm:block">
+        <div className="xs:hidden lg:block">
           <div className="grid grid-cols-3 gap-5">
             {purposeData?.map((val: any, idx: any) => (
               <PurposeCard
@@ -203,7 +203,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
           </div>
         </div>
 
-        <div className="w-full h-full sm:hidden">
+        <div className="w-full h-full lg:hidden">
           <div className="w-full overflow-x-auto overflow-y-hidden flex flex-row gap-5">
             {purposeData?.map((val: any, idx: any) => (
               <PurposeCard

@@ -4,7 +4,7 @@ import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA'
 
 function AsuransiKesehatan() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
       {[...Array(9)].map((_, index) => (
         <CardCategoryA
           key={index}

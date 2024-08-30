@@ -30,9 +30,9 @@ const FooterInformation = ({
     <div
       className={`w-full lg:px-[8.5rem] lg:pt-[6.25rem] lg:pb-[7.5rem] xs:px-[2rem] xs:py-[3.125rem] bg-avrast_product_bg justify-center ${outerClassName}`}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 rounded-[24px] bg-white overflow-hidden">
         <div
-          className={`xs:px-[1.5rem] xs:pb-[2.25rem] xs:min-h-[212px] sm:h-auto flex flex-col gap-[24px] lg:justify-center py-[2.25rem] lg:pl-[3rem] lg:pr-[2.25rem] xs:text-center lg:text-start ${bgColor}`}
+          className={`xs:px-[1.5rem] xs:pb-[2.25rem] xs:min-h-[212px] lg:h-auto flex flex-col gap-[24px] lg:justify-center py-[2.25rem] lg:pl-[3rem] lg:pr-[2.25rem] xs:text-center lg:text-start ${bgColor}`}
         >
           <div className="text-information-title-mobile lg:text-information-title-desktop">{title}</div>
           {buttonTitle && (
@@ -90,7 +90,7 @@ const FooterInformation = ({
             height={0}
             width={0}
             alt="footerInformationImage"
-            className="min-h-[160px] lg:min-h-[392px] w-full object-contain sm:object-cover"
+            className="min-h-[160px] lg:min-h-[392px] w-full object-contain lg:object-cover"
             src={image}
           />
         </div>

@@ -167,10 +167,10 @@ const FooterKlaim = () => {
         <Image src={val.icon} alt={val.title} className="w-20" />
       </div>
       <div
-        className={`w-full md:p-10 xs:p-4 flex h-full flex-col items-center justify gap-2`}
+        className={`w-full lg:p-10 xs:p-4 flex h-full flex-col items-center justify gap-2`}
       >
         <p
-          className={`md:text-lg xs:text-xs font-bold ${val.color ?? ''} text-center w-full`}
+          className={`lg:text-lg xs:text-xs font-bold ${val.color ?? ''} text-center w-full`}
         >
           {val.title}
         </p>
@@ -178,7 +178,7 @@ const FooterKlaim = () => {
           role="button"
           className="flex w-full flex-row items-center justify-center gap-4 whitespace-nowrap"
         >
-          <p className={`font-semibold md:text-lg xs:text-xs text-purple_dark`}>
+          <p className={`font-semibold lg:text-lg xs:text-xs text-purple_dark`}>
             {val.link1}
           </p>
         </div>
@@ -195,12 +195,12 @@ const FooterKlaim = () => {
         <div className="w-1/4 h-full bg-orange_border"></div>
         <div className="w-1/4 h-full bg-agi_grey rounded-tr-[65px]"></div>
       </div>
-      <div className="w-full px-20 grid grid-cols-4 md:grid xs:hidden gap-10">
+      <div className="w-full px-20 grid grid-cols-4 lg:grid xs:hidden gap-10">
         {data.map((val, idx) => (
           <div key={idx}>{renderCard(val)}</div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 md:hidden gap-4">
+      <div className="w-full grid grid-cols-1 lg:hidden gap-4">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;

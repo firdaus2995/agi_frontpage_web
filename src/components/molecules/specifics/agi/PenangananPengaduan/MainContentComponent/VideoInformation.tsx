@@ -17,7 +17,7 @@ export const VideoInformation = () => {
     <div className="w-full">
       <div className="w-full m-auto flex flex-col gap-4 mt-[64px]">
         <div
-          className={`transition-all hidden md:grid rounded-xl visible opacity-100 overflow-hidden`}
+          className={`transition-all hidden lg:grid rounded-xl visible opacity-100 overflow-hidden`}
         >
           <MainCard item={MOCK_VIDEO} />
         </div>

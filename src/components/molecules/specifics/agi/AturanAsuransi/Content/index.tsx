@@ -13,7 +13,7 @@ const Content = () => {
   const [tab, setTab] = useState(0);
   return (
     <div className="bg-purple_dark -mt-1">
-      <div className="bg-white pt-[100px] px-[32px] md:px-[136px] pb-2 rounded-t-[65px] flex xs:flex-col md:flex-row justify-between gap-10">
+      <div className="bg-white pt-[100px] px-[32px] lg:px-[136px] pb-2 rounded-t-[65px] flex xs:flex-col lg:flex-row justify-between gap-10">
         <ButtonMenuVertical
           item={[
             {
@@ -41,13 +41,13 @@ const Content = () => {
               }
             }
           ]}
-          outerClass="xs:w-full md:w-[18%]"
+          outerClass="xs:w-full lg:w-[18%]"
         />
-        <div className="xs:w-full md:w-[82%] flex flex-col gap-8">
-          <h1 className="xs:text-2xl md:text-4xl font-karla text-purple_dark font-medium">
+        <div className="xs:w-full lg:w-[82%] flex flex-col gap-8">
+          <h1 className="xs:text-2xl lg:text-4xl font-karla text-purple_dark font-medium">
             {title[tab]}
           </h1>
-          <h2 className="xs:text-4xl md:text-[50px] font-karla font-bold">
+          <h2 className="xs:text-4xl lg:text-[50px] font-karla font-bold">
             Pahami Bareng untuk Mendapatkan Manfaat dan Pelayanan Terbaik
           </h2>
           <div className="flex flex-col gap-8">
@@ -100,7 +100,7 @@ const Content = () => {
               </p>
             </span>
           </div>
-          <div className="p-4 border border-gray_light rounded-xl flex xs:flex-col md:flex-row justify-between xs:items-start md:items-center gap-4">
+          <div className="p-4 border border-gray_light rounded-xl flex xs:flex-col lg:flex-row justify-between xs:items-start lg:items-center gap-4">
             <p className="font-bold text-xl text-purple_dark">
               Kami berkomitmen menyelesaikan masalah adil dan konsisten{' '}
             </p>

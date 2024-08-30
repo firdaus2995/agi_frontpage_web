@@ -221,10 +221,10 @@ const Berita: React.FC<ParamsProps> = () => {
         imageUrl={data?.titleImageUrl ?? BlankImage}
         bottomImageFit={bannerImageFit}
       />
-      <CustomContainer className="pb-[5rem] xs:-mb-2 md:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] md:pt-[5rem] bg-white xs:-mt-[3.2rem] md:-mt-[6.2rem] z-[10]">
+      <CustomContainer className="pb-[5rem] xs:-mb-2 lg:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] lg:pt-[5rem] bg-white xs:-mt-[3.2rem] lg:-mt-[6.2rem] z-[10]">
         {/* Tab Desktop */}
-        <div className="w-full xs:hidden md:block">
-          <div className="flex sm:w-full xs:w-[90%] md:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
+        <div className="w-full xs:hidden lg:block">
+          <div className="flex lg:w-full xs:w-[90%] lg:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
             {tabs.map((val, idx) => (
               <div
                 key={idx}
@@ -241,7 +241,7 @@ const Berita: React.FC<ParamsProps> = () => {
         </div>
 
         {/* Tab Mobile */}
-        <div className="w-[100%] md:hidden mt-[20px]">
+        <div className="w-[100%] lg:hidden mt-[20px]">
           <SliderComponent
             selected={tab}
             slideItems={tabs}
@@ -274,7 +274,7 @@ const Berita: React.FC<ParamsProps> = () => {
         <FooterInformation
           title={
             <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+              className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
               dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }
@@ -285,7 +285,7 @@ const Berita: React.FC<ParamsProps> = () => {
         />
       </div>
 
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

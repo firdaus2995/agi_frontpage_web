@@ -64,7 +64,7 @@ export const BranchOffice = () => {
   return (
     data.length !== 0 && (
       <Card className="bg-white p-[1rem]">
-        <div className="grid sm:grid-cols-2 xs:grid-cols-1 gap-[0.75rem]">
+        <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-[0.75rem]">
           <span className="font-opensans font-bold text-[1.5rem]">
             Kantor Cabang
           </span>
@@ -74,7 +74,7 @@ export const BranchOffice = () => {
           />
         </div>
         {!isLoading ? (
-          <div className="grid sm:grid-cols-3 sm:grid-rows-2 xs:grid-cols-1 gap-x-[0.75rem] gap-y-[1.5rem] mt-[1.5rem]">
+          <div className="grid lg:grid-cols-3 lg:grid-rows-2 xs:grid-cols-1 gap-x-[0.75rem] gap-y-[1.5rem] mt-[1.5rem]">
             {data?.map((item) => (
               <CardAddress
                 key={item.id}

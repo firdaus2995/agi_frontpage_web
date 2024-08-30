@@ -13,7 +13,7 @@ const CustomContainer = ({
 }: ICustomContainer) => {
   return (
     <div
-      className={`w-full xs:px-[2rem] sm:px-[8.5rem] ${className}`}
+      className={`w-full xs:px-[2rem] lg:px-[8.5rem] ${className}`}
       onClick={onClick}
     >
       {children}

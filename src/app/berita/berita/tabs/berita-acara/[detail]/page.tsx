@@ -213,7 +213,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
             if (fieldType === 'YOUTUBE_URL' && isNotEmpty) {
               return (
                 <div
-                  className="w-full xs:h-[250px] md:h-[650px] xs:mb-10 md:mb-0"
+                  className="w-full xs:h-[250px] lg:h-[650px] xs:mb-10 lg:mb-0"
                   key={detailIndex}
                 >
                   <VideoPlayer
@@ -277,7 +277,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
         imageUrl={data?.titleImageUrl}
       />
 
-      <div className="flex items-center justify-center w-full px-[2rem] md:px-[20.5rem] pb-[6.25rem]">
+      <div className="flex items-center justify-center w-full px-[2rem] lg:px-[20.5rem] pb-[6.25rem]">
         <div className="flex flex-col gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem] -tracking-[0.03em]">
@@ -347,7 +347,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
         <FooterInformation
           title={
             <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+              className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
               dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }
@@ -357,7 +357,7 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
           openInNewTab
         />
       </div>
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

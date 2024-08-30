@@ -248,7 +248,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
               Formulir manfaat hidup ini dapat digunakan untuk beberapa manfaat
               berikut:
             </p>
-            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4">
+            <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-4">
               {detailStep1Data.map((val, idx) => (
                 <div
                   key={idx}
@@ -282,7 +282,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
         );
       case 2:
         return (
-          <div className="flex w-full md:flex-row xs:flex-col gap-4 shadow-xl justify-between rounded-lg border p-4">
+          <div className="flex w-full lg:flex-row xs:flex-col gap-4 shadow-xl justify-between rounded-lg border p-4">
             <div className="flex flex-col gap-2">
               <p className="text-[24px] font-bold">Klaim Manfaat Hidup</p>
               <div className="flex flex-row gap-2 text-purple_dark font-medium">
@@ -306,7 +306,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
               2020 atau melalui Avrist Life Insurance pada periode pembelian
               setelah 1 Desember 2020, kamu bisa mengirimkan dokumen ke:
             </p>
-            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2">
+            <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-2">
               {detailStep3Data.map((val, idx) => (
                 <div
                   key={idx}
@@ -343,8 +343,8 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
         </div>
       )}
 
-      <div className="w-full flex md:flex-row xs:flex-col gap-5 md:px-20 xs:px-5">
-        <div className="w-1/4 xs:hidden md:block">
+      <div className="w-full flex lg:flex-row xs:flex-col gap-5 lg:px-20 xs:px-5">
+        <div className="w-1/4 xs:hidden lg:block">
           <div
             className={`w-full flex flex-col ${isSelectedData ? 'bg-purple_light_bg' : 'bg-white'} rounded-lg`}
           >
@@ -386,7 +386,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
                   ))}
           </div>
         </div>
-        <div className="w-wull xs:block md:hidden">
+        <div className="w-wull xs:block lg:hidden">
           <div
             className={`w-full p-2 flex flex-col ${isSelectedData ? 'bg-purple_light_bg' : 'bg-white'} rounded-lg border-l-8 border-l-purple_dark font-semibold text-purple_dark`}
           >
@@ -451,7 +451,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
             )}
           </div>
         </div>
-        <div className="md:w-3/4 xs:w-full flex flex-col gap-4">
+        <div className="lg:w-3/4 xs:w-full flex flex-col gap-4">
           {!isSelectedData ? (
             <div className="flex flex-row gap-2">
               <Input
@@ -466,7 +466,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
               />
             </div>
           ) : (
-            <div className="flex md:flex-row xs:flex-col xs:divide-y md:divide-y-0 gap-4 justify-between border rounded-lg p-4 text-purple_dark font-semibold">
+            <div className="flex lg:flex-row xs:flex-col xs:divide-y lg:divide-y-0 gap-4 justify-between border rounded-lg p-4 text-purple_dark font-semibold">
               <div className="flex rlex-row items-center gap-2">
                 <Image src={HeartIcon} alt="heart-icon" className="w-7" />
                 <p>{selectedCategory}</p>

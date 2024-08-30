@@ -147,9 +147,9 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                 ) => (
                   <div
                     key={index}
-                    className="flex w-full h-[49rem] md:h-[40rem] relative"
+                    className="flex w-full h-[49rem] lg:h-[40rem] relative"
                   >
-                    <div className="md:hidden relative">
+                    <div className="lg:hidden relative">
                       <div className="h-[49rem] absolute bg-gradient-to-b from-white from-40% via-white via-10% to-transparent to-60% z-10 w-full"></div>
                       <div className="h-[19rem]" />
                       <Image
@@ -165,7 +165,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         className="w-full h-[30rem] object-cover object-right-bottom"
                       />
                     </div>
-                    <div className="md:block xs:hidden">
+                    <div className="lg:block xs:hidden">
                       <Image
                         alt="loop-image"
                         src={
@@ -179,14 +179,14 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                         className="w-full h-[40rem] object-cover"
                       />
                     </div>
-                    <div className="flex flex-col 2xl:w-[50%] md:px-[9rem] md:py-10 absolute z-50 top-10 w-full xs:items-center md:items-start gap-8">
+                    <div className="flex flex-col 2xl:w-[50%] lg:px-[9rem] lg:py-10 absolute z-50 top-10 w-full xs:items-center lg:items-start gap-8">
                       <p
-                        className={`xs:text-[1.5rem] md:text-[28px] px-[1rem] md:px-0 text-purple_dark font-karla font-medium xs:text-center md:text-left`}
+                        className={`xs:text-[1.5rem] lg:text-[28px] px-[1rem] lg:px-0 text-purple_dark font-karla font-medium xs:text-center lg:text-left`}
                       >
                         {contentStringTransformer(data['hero-teks1'])}
                       </p>
                       <div
-                        className="xs:px-[2rem] md:px-0 leading-none text-[1.5rem] xl:text-[2.25rem] xs:text-center md:text-left font-karla md:font-normal md:leading-9 tracking-tight text-shadow"
+                        className="xs:px-[2rem] lg:px-0 leading-none text-[1.5rem] xl:text-[2.25rem] xs:text-center lg:text-left font-karla lg:font-normal lg:leading-9 tracking-tight text-shadow"
                         dangerouslySetInnerHTML={{
                           __html: contentStringTransformer(data['hero-teks2'])
                         }}
@@ -211,14 +211,14 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                 )
               )}
           </Slider>
-          <div className="xs:hidden md:block absolute top-[50%] w-full">
+          <div className="xs:hidden lg:block absolute top-[50%] w-full">
             <div className="flex flex-row justify-between w-full px-10">
               <div
-                className="p-2 border-2 rounded-full border-purple_dark"
+                className="p-2 border-2 rounded-full border-purple_dark rotate-180"
                 role="button"
                 onClick={previous}
               >
-                <Icon name="chevronLeft" color="purple_dark" />
+                <Icon name="chevronRight" color="purple_dark" />
               </div>
               <div
                 className="p-2 border-2 rounded-full border-purple_dark"
@@ -230,27 +230,27 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
             </div>
           </div>
         </div>
-        <div className="w-full -mt-[6px] flex md:flex-row xs:flex-col">
-          <div className="flex py-10 px-[2rem] md:px-[8.5rem] md:pr-0 items-center xs:justify-start text-white md:text-4xl xs:text-xl text-left w-full md:max-w-[45%] lg:max-w-[35%] bg-agi_grey">
+        <div className="w-full -mt-[6px] flex lg:flex-row xs:flex-col">
+          <div className="flex py-10 px-[2rem] lg:px-[8.5rem] lg:pr-0 items-center xs:justify-start text-white lg:text-4xl xs:text-xl text-left w-full lg:max-w-[45%] lg:max-w-[35%] bg-agi_grey">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text1 }}
               className="font-karla font-light xs:w-full text-banner-footer-1-mobile lg:text-banner-footer-1-desktop"
             />
           </div>
-          <div className="flex xs:py-10 xs:px-[32px] md:pl-[4rem] md:pr-[8.5rem] flex-row justify-between items-center text-white md:text-[48px] xs:text-[24px] w-full bg-purple_light relative">
+          <div className="flex xs:py-10 xs:px-[32px] lg:pl-[4rem] lg:pr-[8.5rem] flex-row justify-between items-center text-white lg:text-[48px] xs:text-[24px] w-full bg-purple_light relative">
             <p
               dangerouslySetInnerHTML={{ __html: dropdownData?.text2 }}
               className="font-karla font-bold text-banner-footer-2-mobile lg:text-banner-footer-2-desktop"
             />
             <button
               id="drop-down"
-              className="text-white font-medium rounded-full text-sm p-2 text-center border-2 xs:w-[2rem] xs:h-[2rem] md:w-[2.5rem] md:h-[2.5rem] xs:max-md:mr-4"
+              className="text-white font-medium rounded-full text-sm p-2 text-center border-2 xs:w-[2rem] xs:h-[2rem] lg:w-[2.5rem] lg:h-[2.5rem] xs:max-lg:mr-4"
               type="button"
               onClick={toggleDropdown}
             >
               {dropdownVisible ? (
                 <>
-                  <div className="md:hidden rotate-[180deg]">
+                  <div className="lg:hidden rotate-[180deg]">
                     <Icon
                       name="chevronDown"
                       color="white"
@@ -258,13 +258,13 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                       height={12}
                     />
                   </div>
-                  <div className="xs:hidden md:block rotate-[180deg]">
+                  <div className="xs:hidden lg:block rotate-[180deg]">
                     <Icon name="chevronDown" color="white" />
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="md:hidden">
+                  <div className="lg:hidden">
                     <Icon
                       name="chevronDown"
                       color="white"
@@ -272,7 +272,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
                       height={12}
                     />
                   </div>
-                  <div className="xs:hidden md:block">
+                  <div className="xs:hidden lg:block">
                     <Icon name="chevronDown" color="white" />
                   </div>
                 </>
@@ -282,14 +282,14 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
           {dropdownVisible && (
             <div
               aria-label="drop-down"
-              className={`absolute shadow-xl flex flex-col xs:top-[1200px] md:top-[950px] lg:top-[950px] xl:top-[920px] rounded-md bg-white xs:left-0 md:left-[10rem] lg:left-[25rem] xl:left-[50rem] w-full md:w-[31.25rem] z-30 md:text-[36px]/[43.2px] md:-tracking-[1.44px] xs:text-[1.5rem] text-[#1A141F]`}
+              className={`absolute shadow-xl flex flex-col xs:top-[1200px] lg:top-[950px] lg:top-[950px] xl:top-[920px] rounded-md bg-white xs:left-0 lg:left-[10rem] lg:left-[25rem] xl:left-[50rem] w-full lg:w-[31.25rem] z-30 lg:text-[36px]/[43.2px] lg:-tracking-[1.44px] xs:text-[1.5rem] text-[#1A141F]`}
               ref={dropdownRef}
             >
               {dropdownData?.item?.map((item, index) => (
                 <Link
                   key={index}
                   href={item.link}
-                  className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium py-[24px] pr-[24px] pl-[32px] md:text-[36px] xs:text-[20px]"
+                  className="font-karla w-full rounded-md border border-purple_dark/[0.4] hover:bg-gray_light hover:border-l-purple_dark border-l-8 text-gray-400 hover:text-purple_dark hover:font-medium py-[24px] pr-[24px] pl-[32px] lg:text-[36px] xs:text-[20px]"
                 >
                   {item.label}
                 </Link>

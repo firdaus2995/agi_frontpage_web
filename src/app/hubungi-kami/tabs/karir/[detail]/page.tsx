@@ -65,6 +65,10 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await handleGetContentPage('hal-karir-agi-new');
@@ -186,7 +190,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         imageUrl={titleImage.imageUrl}
       />
 
-      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[5rem] md:pb-[6.25rem]">
+      <div className="flex items-center justify-center w-full px-[2rem] lg:px-[8.5rem] xs:pt-[2.5rem] lg:pt-0 xs:pb-[5rem] lg:pb-[6.25rem]">
         <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-5">
             <p className="font-semibold text-information-title-mobile lg:text-information-title-desktop">
@@ -234,8 +238,8 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
               >
                 <div className="flex items-center">
                   <Icon
-                    width={16}
-                    height={16}
+                    width={24}
+                    height={24}
                     name="share"
                     color="purple_verylight"
                   />
@@ -297,7 +301,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
             dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
           />
         }
@@ -306,7 +310,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         href={footerBtnUrl}
       />
 
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

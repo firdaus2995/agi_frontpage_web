@@ -116,7 +116,7 @@ const Chart = () => {
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center pb-64 relative">
-      <div className="w-full flex md:flex-row xs:flex-col gap-4 justify-between items-center">
+      <div className="w-full flex lg:flex-row xs:flex-col gap-4 justify-between items-center">
         <div className="flex flex-row gap-4">
           <div className="text-xl font-semibold">Kinerja</div>
           <div className="flex flex-row gap-2">

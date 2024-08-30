@@ -85,10 +85,10 @@ const Rekanan = (props: RekananProps) => {
   }, [search]);
 
   return (
-    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+    <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1
-          className="font-karla font-light text-[2.25rem] md:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
+          className="font-karla font-light text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
           dangerouslySetInnerHTML={{
             __html: contentStringTransformer(pageData['nama-section']) ?? ''
           }}
@@ -103,11 +103,11 @@ const Rekanan = (props: RekananProps) => {
           />
         </div>
       )}
-      <div className="flex xs:flex-col md:flex-row gap-10">
-        <div className="xs:w-[100%] md:w-[23%] h-full bg-purple_light_bg rounded-xl">
+      <div className="flex xs:flex-col lg:flex-row gap-10">
+        <div className="xs:w-[100%] lg:w-[23%] h-full bg-purple_light_bg rounded-xl">
           <ButtonMenuVertical item={btnVerticalData} />
         </div>
-        <div className="xs:w-[100%] md:w-[77%] xs:mt-12 lg:mt-0">
+        <div className="xs:w-[100%] lg:w-[77%] xs:mt-12 lg:mt-0">
           {tab === 'Bengkel' ? (
             <Bengkel
               data={contentData}

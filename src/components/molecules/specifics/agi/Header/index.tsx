@@ -130,16 +130,16 @@ const Header = () => {
           </div>
         </Menu>
 
-        <div className="flex flex-row justify-between gap-4 md:divide-x-2  justify-center items-center">
+        <div className="flex flex-row justify-between gap-4 lg:divide-x-2  justify-center items-center">
           <Link
             href={`/tanya-avgen`}
-            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden"
+            className="flex flex-row gap-2 cursor-pointer lg:flex xs:hidden"
           >
             <Icon name="helpcircle" color="gray_black" />
             <p className="font-bold text-top-heading-group">Tanya AvGen</p>
           </Link>
           <div
-            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden pl-3"
+            className="flex flex-row gap-2 cursor-pointer lg:flex xs:hidden pl-3"
             onClick={() => setIsShowEmailSubs(true)}
           >
             <Icon name="mail" color="gray_black" />
@@ -159,7 +159,7 @@ const Header = () => {
         paddingY="py-[1.25rem]"
       >
         <div className="flex justify-between items-center w-full gap-8">
-          <ul className="md:flex gap-[2.5rem] items-center hidden">
+          <ul className="lg:flex gap-[2.5rem] items-center hidden">
             <Link href={`/`}>
               <Button.IconButton>
                 <Icon name="homeIcon" color="white" width={24} isSquare />
@@ -187,7 +187,7 @@ const Header = () => {
             })}
           </ul>
           <Button.IconButton
-            customButtonClass="inline-block md:hidden"
+            customButtonClass="inline-block lg:hidden"
             onClick={() => setIsDropdownVisible((prevState) => !prevState)}
           >
             <Icon name="hamburgerMenuIcon" color="white" />

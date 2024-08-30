@@ -9,7 +9,7 @@ export default function NotFound() {
     return (
       <div>
         <div className="my-[96px] w-full flex flex-col items-center">
-          <p className="font-karla font-bold text-404-title-mobile lg:text-404-title-desktop text-purple_verylight">
+          <p className="font-karla font-bold text-[120px] lg:text-404-title-desktop text-purple_verylight">
             404
           </p>
           <div className="w-[324px] text-center">
@@ -34,7 +34,7 @@ export default function NotFound() {
   return (
     <div>
       <div className="my-[96px] w-full flex flex-col items-center">
-        <p className="font-karla font-bold text-[240px] text-purple_verylight">
+        <p className="font-karla font-bold text-[120px] lg:text-[240px] text-purple_verylight">
           404
         </p>
         <div className="w-[324px] text-center">

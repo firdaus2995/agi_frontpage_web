@@ -119,7 +119,7 @@ export const ApplyJobModal: FC<Props> = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full rounded-lg sm:w-[792px] transform overflow-hidden transition-all">
+              <Dialog.Panel className="w-full rounded-lg lg:w-[792px] transform overflow-hidden transition-all">
                 <div className=" bg-white ">
                   <div
                     onClick={onClose}
@@ -147,7 +147,7 @@ export const ApplyJobModal: FC<Props> = ({
                           type="submit"
                           disabled={!formIsValid}
                           onClick={() => onSubmitData()}
-                          className={`${formIsValid ? 'bg-purple_dark' : 'bg-dark-grey'} text-white py-[1.125rem] w-full md:w-[132px] rounded-lg mt-[12px] md:mt-0`}
+                          className={`${formIsValid ? 'bg-purple_dark' : 'bg-dark-grey'} text-white py-[1.125rem] w-full lg:w-[132px] rounded-lg mt-[12px] lg:mt-0`}
                         >
                           Kirim
                         </button>

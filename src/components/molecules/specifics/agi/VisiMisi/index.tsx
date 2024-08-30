@@ -17,7 +17,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex flex-col gap-[1.5rem] px-[2rem] md:px-[8.5rem] font-karla w-full xs:my-[3.125rem] sm:my-[5rem]">
+    <div className="flex flex-col gap-[1.5rem] px-[2rem] lg:px-[8.5rem] font-karla w-full xs:my-[3.125rem] lg:my-[5rem]">
       {data.map((val, idx) => (
         <div
           key={idx}
@@ -27,12 +27,12 @@ const VisiMisi = ({ data }: IVisiMisi) => {
             <div className="flex flex-row gap-4 items-center">
               <Image
                 src={val.icon}
-                className="xs:w-[2.25rem] md:w-[5rem]"
+                className="xs:w-[2.25rem] lg:w-[5rem]"
                 width={24}
                 height={24}
                 alt="logo"
               />
-              <p className="font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop font-semibold">
+              <p className="font-karla text-[30px] lg:text-tanya-avgen-detail-title-desktop font-semibold">
                 {val.title}
               </p>
             </div>
@@ -48,19 +48,19 @@ const VisiMisi = ({ data }: IVisiMisi) => {
           </div>
           {!Array.isArray(val.desc) ? (
             <p
-              className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+              className="xs:text-[20px] lg:text-[1.5rem] font-light -tracking-[1.08px]"
               dangerouslySetInnerHTML={{
                 __html: val.desc
               }}
             />
           ) : !isExpanded ? (
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row xs:gap-[2rem] md:gap-[3.75rem] items-center">
-                <p className="xs:text-[4rem] md:text-[5rem] font-bold text-purple_dark font-karla">
+              <div className="flex flex-row xs:gap-[2rem] lg:gap-[3.75rem] items-center">
+                <p className="xs:text-[4rem] lg:text-[5rem] font-bold text-purple_dark font-karla">
                   1
                 </p>
                 <p
-                  className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+                  className="xs:text-[20px] lg:text-[1.5rem] font-light -tracking-[1.08px]"
                   dangerouslySetInnerHTML={{
                     __html: val.desc[0]
                   }}
@@ -71,7 +71,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 onClick={() => setIsExpanded(true)}
                 className="w-full flex flex-row gap-2 items-center justify-end"
               >
-                <p className="text-2xl font-semibold text-purple_dark font-karla">
+                <p className="text-[24px] font-semibold text-purple_dark font-karla">
                   Lihat Lebih Lanjut
                 </p>
                 <Image
@@ -87,10 +87,10 @@ const VisiMisi = ({ data }: IVisiMisi) => {
                 key={index}
                 className="px-[1.5rem] pb-[2.25rem] pt-[1rem] flex flex-col gap-4 border border-b-8 border-b-purple_dark rounded-xl"
               >
-                <div className="flex xs:flex-col md:flex-row items-center w-full xs:text-center md:text-start">
+                <div className="flex xs:flex-col lg:flex-row items-center w-full xs:text-center lg:text-start">
                   <span className="w-[7rem]">
                     <p
-                      className={`xs:text-[4rem] md:text-[5rem] font-bold text-purple_dark font-karla ${index + 1 === 1 ? 'md:pl-4' : ''}`}
+                      className={`xs:text-[4rem] lg:text-[5rem] font-bold text-purple_dark font-karla ${index + 1 === 1 ? 'lg:pl-4' : ''}`}
                     >
                       {index + 1}
                     </p>
@@ -98,7 +98,7 @@ const VisiMisi = ({ data }: IVisiMisi) => {
 
                   <span className="w-full">
                     <p
-                      className="xs:text-xl md:text-[1.5rem] font-light -tracking-[1.08px]"
+                      className="xs:text-xl lg:text-[1.5rem] font-light -tracking-[1.08px]"
                       dangerouslySetInnerHTML={{
                         __html: value
                       }}

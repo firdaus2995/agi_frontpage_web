@@ -211,14 +211,12 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
             if (fieldType === 'YOUTUBE_URL' && isNotEmpty) {
               return (
                 <div
-                  className="w-full xs:h-[250px] md:h-[650px] xs:mb-10 md:mb-0"
+                  className="w-full xs:h-[250px] lg:h-[650px] xs:mb-10 lg:mb-0"
                   key={detailIndex}
                 >
                   <VideoPlayer
-                    thumbnail=""
                     url={detailItem.value ?? ''}
                     color="purple_dark"
-                    type="Artikel Video"
                     mute={true}
                   />
                 </div>
@@ -276,7 +274,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] md:px-[20.5rem] pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] lg:px-[20.5rem] pb-[6.25rem] gap-[3rem]">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               CSR
@@ -316,8 +314,8 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
                   onClick={() => setIsOPenPopover(!isOpenPopover)}
                 >
                   <Icon
-                    width={16}
-                    height={16}
+                    width={24}
+                    height={24}
                     name="share"
                     color="purple_verylight"
                   />
@@ -345,7 +343,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
         <FooterInformation
           title={
             <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+              className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
               dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }
@@ -354,7 +352,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
           href={data?.footerBtnUrl}
         />
       </div>
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

@@ -120,7 +120,7 @@ const Karir = (props: Props) => {
   return (
     <div className="w-full flex flex-col gap-4 bg-white justify-center">
       <div className="flex flex-col">
-        <div className="w-full flex flex-col items-center justify-center text-center pt-[5rem] px-[32px] md:px-[136px]">
+        <div className="w-full flex flex-col items-center justify-center text-center pt-[5rem] px-[32px] lg:px-[136px]">
           <p className="font-karla font-bold text-heading-1-mobile lg:text-heading-1-desktop text-center text-purple_dark flex flex-col">
             {contentStringTransformer(pageData['body-judul'])}
             <span className="text-heading-2-mobile lg:text-heading-2-desktop text-black font-normal">
@@ -128,8 +128,8 @@ const Karir = (props: Props) => {
             </span>
           </p>
         </div>
-        <div className="px-[2rem] md:px-[8.5rem] py-[5rem] flex flex-col gap-10 items-center justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="px-[2rem] lg:px-[8.5rem] py-[5rem] flex flex-col gap-10 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {purposeData.map((val, idx) => (
               <PurposeCard
                 key={idx}
@@ -142,7 +142,7 @@ const Karir = (props: Props) => {
             ))}
           </div>
         </div>
-        <div className="bg-purple_superlight px-[2rem] md:px-[8.5rem] py-[5rem] md:pt-[5rem] md:pb-[100px]">
+        <div className="bg-purple_superlight px-[2rem] lg:px-[8.5rem] py-[5rem] lg:pt-[5rem] lg:pb-[100px]">
           <h2 className="font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-center font-semibold pb-[5rem] lg:pb-0">
             Lihat Lowongan di{' '}
             <span className="text-purple_dark">Avrist General Insurance</span>
@@ -167,7 +167,7 @@ const Karir = (props: Props) => {
               }
             ]}
             customContent={
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
                 {paginatedData?.map((item, index) => (
                   <div
                     key={index}

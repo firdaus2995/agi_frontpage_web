@@ -80,9 +80,9 @@ const ProdukKorporasi: React.FC<ParamsProps> = () => {
         ]}
         bottomImage={GambarProdukKorporasi}
       />
-      <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:py-[72px] gap-[36px] sm:gap-[48px] sm:flex-row">
+      <div className="flex flex-col px-[32px] lg:px-[136px] py-[50px] lg:py-[72px] gap-[36px] lg:gap-[48px] lg:flex-row">
         {/* start tabs kiri */}
-        <div className="sm:block hidden rounded-lg">
+        <div className="lg:block hidden rounded-lg">
           <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
             {tabs.map((val, idx) =>
               tab === val ? (
@@ -109,7 +109,7 @@ const ProdukKorporasi: React.FC<ParamsProps> = () => {
             )}
           </div>
         </div>
-        <div className="relative sm:hidden block">
+        <div className="relative lg:hidden block">
           <div
             className="flex justify-between items-center border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer rounded-lg font-bold text-purple_dark bg-purple_light_bg text-[18px]"
             onClick={() => setIsOpen(!isOpen)}
@@ -157,7 +157,7 @@ const ProdukKorporasi: React.FC<ParamsProps> = () => {
             {/* end search */}
 
             {/* start button */}
-            <div className="flex flex-nowrap overflow-x-scroll sm:overflow-x-hidden py-1">
+            <div className="flex flex-nowrap overflow-x-scroll lg:overflow-x-hidden py-1">
               <div className="flex flex-row gap-[12px] w-full">
                 {buttonHelper.map((item, index) =>
                   item.type === 'button' ? (
@@ -184,7 +184,7 @@ const ProdukKorporasi: React.FC<ParamsProps> = () => {
           </div>
           {tab === 'Employee Benefit' && <EmployeeBenefit />}
 
-          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}
@@ -206,7 +206,7 @@ const ProdukKorporasi: React.FC<ParamsProps> = () => {
       <RoundedFrameBottom frameColor="bg-white" />
       <FooterInformation
         title={
-          <p className="text-[36px] sm:text-[56px] text-center sm:text-left">
+          <p className="text-[36px] lg:text-[56px] text-center lg:text-left">
             <span className="font-bold text-purple_dark">Hello,</span> Ada yang
             bisa <span className="font-bold text-purple_dark">Avrista</span>{' '}
             bantu?

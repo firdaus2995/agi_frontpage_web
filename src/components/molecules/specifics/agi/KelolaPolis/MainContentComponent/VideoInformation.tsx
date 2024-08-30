@@ -83,24 +83,24 @@ export const VideoInformation = () => {
       <div className="w-full m-auto p-8 xs:p-5 flex flex-col gap-4">
         {videoData.length >= 1 && (
           <div
-            className={`transition-all hidden md:grid rounded-xl ${isMainVisible ? 'visible opacity-100' : 'invisible opacity-0'}`}
+            className={`transition-all hidden lg:grid rounded-xl ${isMainVisible ? 'visible opacity-100' : 'invisible opacity-0'}`}
           >
             <MainCard item={videoData[0]} />
           </div>
         )}
-        <div className="hidden md:grid md:grid-cols-3 gap-8 mt-2">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mt-2">
           {renderSub()}
         </div>
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;
           }}
-          className="md:!hidden"
+          className="lg:!hidden"
           {...sliderSettings}
         >
           {renderMobileVideo()}
         </Slider>
-        <div className="flex flex-row justify-between mx-5 md:hidden xs:flex">
+        <div className="flex flex-row justify-between mx-5 lg:hidden xs:flex">
           <Image alt="prev" src={ARROW_LEFT} role="button" onClick={previous} />
           <Image alt="next" src={ARROW_RIGHT} role="button" onClick={next} />
         </div>

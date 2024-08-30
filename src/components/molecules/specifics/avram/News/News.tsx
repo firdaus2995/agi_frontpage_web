@@ -32,10 +32,10 @@ const sliderSettings2 = {
 
 const News = () => {
   return (
-    <div className="w-full md:p-20 xs:p-5 flex flex-col justify-center gap-5">
-      <div className="w-full flex md:flex-row xs:flex-col justify-center gap-5">
-        <div className="md:grid md:grid-cols-2 gap-5 xs:hidden relative pt-20">
-          <p className="w-full py-5 text-2xl font-bold absolute top-[-40] xs:hidden md:block">
+    <div className="w-full lg:p-20 xs:p-5 flex flex-col justify-center gap-5">
+      <div className="w-full flex lg:flex-row xs:flex-col justify-center gap-5">
+        <div className="lg:grid lg:grid-cols-2 gap-5 xs:hidden relative pt-20">
+          <p className="w-full py-5 text-2xl font-bold absolute top-[-40] xs:hidden lg:block">
             Berita Terkini
           </p>
           <div className="max-w-sm rounded-xl overflow-hidden shadow-lg">
@@ -124,8 +124,8 @@ const News = () => {
           </div>
         </div>
         {/* mobile */}
-        <div className="xs:block md:hidden mb-10">
-          <p className="w-full p-3 text-2xl font-bold xs:block md:hidden">
+        <div className="xs:block lg:hidden mb-10">
+          <p className="w-full p-3 text-2xl font-bold xs:block lg:hidden">
             Berita Terkini
           </p>
           <Slider {...sliderSettings1}>
@@ -244,7 +244,7 @@ const News = () => {
           </Slider>
         </div>
 
-        <div className="flex flex-col max-w-sm rounded-xl overflow-hidden shadow-lg md:block xs:hidden mt-20">
+        <div className="flex flex-col max-w-sm rounded-xl overflow-hidden shadow-lg lg:block xs:hidden mt-20">
           <div>
             <div className="px-6">
               <div className="grid grid-cols-2 divide-x-2 w-[90%] mb-2 mt-5">
@@ -335,7 +335,7 @@ const News = () => {
           </div>
         </div>
         {/* mobile */}
-        <div className="flex flex-col max-w-sm rounded-xl overflow-hidden shadow-lg md:hidden xs:block">
+        <div className="flex flex-col max-w-sm rounded-xl overflow-hidden shadow-lg lg:hidden xs:block">
           <Slider {...sliderSettings2}>
             <div>
               <div className="px-6">

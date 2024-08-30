@@ -25,9 +25,9 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
     <div
       className={`
         absolute top-full left-0 right-0 z-50
-        flex md:hidden flex-col items-stretchgap-4 
+        flex lg:hidden flex-col items-stretchgap-4 
         bg-[white]
-        text-white text-sm p-4
+        text-white text-sm pt-4 px-4 pb-8
         transition-all duration-300 ease-in-out
         max-h-[50vh] overflow-y-auto
         ${isVisible ? styles['show-menu'] : styles['hide-menu']}

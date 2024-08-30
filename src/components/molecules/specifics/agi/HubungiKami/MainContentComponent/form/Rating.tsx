@@ -28,7 +28,7 @@ export const RatingEmoji = (props: RatingEmojiProps) => {
   const [active, setActive] = React.useState('');
   return (
     <div>
-      <div className="sm:flex flex-row flex-wrap xs:hidden">
+      <div className="lg:flex flex-row flex-wrap xs:hidden">
         {listEmoji.map((i) => (
           <Image
             key={i.id}
@@ -44,7 +44,7 @@ export const RatingEmoji = (props: RatingEmojiProps) => {
           />
         ))}
       </div>
-      <div className="flex flex-row flex-wrap sm:hidden justify-between">
+      <div className="flex flex-row flex-wrap lg:hidden justify-between">
         {listEmoji.map((i) => (
           <Image
             key={i.id}

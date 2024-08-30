@@ -15,21 +15,21 @@ const LeadGenerator = () => {
         <div
           role="button"
           onClick={() => setActiveTab(1)}
-          className={`md:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 1 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
+          className={`lg:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 1 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
         >
           Keuangan
         </div>
         <div
           role="button"
           onClick={() => setActiveTab(2)}
-          className={`md:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 2 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
+          className={`lg:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 2 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
         >
           Perencanaan
         </div>
         <div
           role="button"
           onClick={() => setActiveTab(3)}
-          className={`md:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 3 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
+          className={`lg:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple ${activeTab === 3 ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
         >
           Profil
         </div>

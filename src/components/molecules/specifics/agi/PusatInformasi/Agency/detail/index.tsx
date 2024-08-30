@@ -167,13 +167,13 @@ const Detail = (props: agencyDetailProps) => {
   };
 
   return (
-    <div className="w-full px-[2rem] md:px-[20.5rem] xs:py-[3.125rem] md:pb-[6.25rem] md:pt-0">
+    <div className="w-full px-[2rem] lg:px-[20.5rem] xs:py-[3.125rem] lg:pb-[6.25rem] lg:pt-0">
       <div className="flex flex-col gap-[3rem]">
         <div className="flex flex-col gap-[1rem]">
           <p className="text-purple_dark font-semibold">
             {showContent(contentData.category)}
           </p>
-          <p className="font-bold font-karla xs:text-[2.25rem] md:text-[3.5rem]">
+          <p className="font-bold font-karla xs:text-[2.25rem] lg:text-[3.5rem]">
             {showContent(contentData.judulArtikel)}
           </p>
           <div className="flex flex-row justify-between items-center font-opensans">
@@ -256,7 +256,7 @@ const Detail = (props: agencyDetailProps) => {
         )}
         {contentData.paragraf3 !== '<p>-</p>' && (
           <div
-            className="flex flex-col md:flex-row"
+            className="flex flex-col lg:flex-row"
             dangerouslySetInnerHTML={{
               __html: showContent(contentData.paragraf3)
             }}

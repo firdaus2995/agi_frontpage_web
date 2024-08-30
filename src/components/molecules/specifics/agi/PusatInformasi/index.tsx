@@ -21,7 +21,7 @@ const MainContent = (props: mainContentProps) => {
   const content = searchParams.get('content');
 
   return (
-    <div className="pt-[3.125rem] md:pt-[6.25rem]">
+    <div className="pt-[3.125rem] lg:pt-[6.25rem]">
       {!content && (
         <ButtonMenu
           buttonList={[

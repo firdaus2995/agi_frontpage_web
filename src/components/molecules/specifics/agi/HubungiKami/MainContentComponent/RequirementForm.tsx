@@ -186,7 +186,7 @@ export const RequirementForm = (props: Props) => {
           <p className="font-karla font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop">
             Diskusikan kebutuhan Anda disini!
           </p>
-          <p className="mt-[1.5rem] md:mt-[2.25rem] font-opensans text-[0.875rem] md:text-[1rem] mb-[1rem]">
+          <p className="mt-[1.5rem] lg:mt-[2.25rem] font-opensans text-[0.875rem] lg:text-[1rem] mb-[1rem]">
             isi data berikut dan Kami akan menghubungi Anda.
           </p>
           {dataForm && (
@@ -206,7 +206,7 @@ export const RequirementForm = (props: Props) => {
             maxSizeValidation={maxSizeValidation}
             setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
           />
-          <div className="flex flex-row mt-[1.5rem] md:mt-[2.25rem]">
+          <div className="flex flex-row mt-[1.5rem] lg:mt-[2.25rem]">
             <div>
               <input
                 type="checkbox"
@@ -226,12 +226,12 @@ export const RequirementForm = (props: Props) => {
             </span>
           </div>
           {/* submit */}
-          <div className="mt-[2.25rem] flex sm:flex-row xs:flex-col justify-end items-center">
+          <div className="mt-[2.25rem] flex lg:flex-row xs:flex-col justify-end items-center">
             <button
               type="submit"
               disabled={formIsValid ? (isChecked ? false : true) : true}
               onClick={() => onSubmitData()}
-              className={`${formIsValid ? (isChecked ? 'bg-purple_dark hover:bg-purple_light' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[44px] md:h-[64px] w-full md:w-[132px] rounded-lg mt-[12px] md:mt-0 py-[12px] px-[40px] font-opensans text-[20px] font-semibold leading-[28px]`}
+              className={`${formIsValid ? (isChecked ? 'bg-purple_dark hover:bg-purple_light' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[44px] lg:h-[64px] w-full lg:w-[132px] rounded-lg mt-[12px] lg:mt-0 py-[12px] px-[40px] font-opensans text-[20px] font-semibold leading-[28px]`}
             >
               Kirim
             </button>

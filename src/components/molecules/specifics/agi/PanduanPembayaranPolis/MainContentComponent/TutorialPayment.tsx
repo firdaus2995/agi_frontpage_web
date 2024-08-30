@@ -51,8 +51,8 @@ export const TutorialPayment = () => {
 
   return (
     <div className={`w-full flex flex-col justify-center relative pb-28 pt-20`}>
-      <div className="w-full flex md:flex-row xs:flex-col">
-        <div className="xs:hidden md:block">
+      <div className="w-full flex lg:flex-row xs:flex-col">
+        <div className="xs:hidden lg:block">
           <div
             className={`flex flex-col bg-purple_light_bg rounded-lg w-[200px]`}
           >
@@ -71,7 +71,7 @@ export const TutorialPayment = () => {
           </div>
         </div>
 
-        <div className="md:w-3/4 xs:w-full flex flex-col gap-4 ml-[48px]">
+        <div className="lg:w-3/4 xs:w-full flex flex-col gap-4 ml-[48px]">
           {selectedData?.data.map((i) => (
             <CardMenuChildren desc={i.name} key={i.id}>
               <div className="font-opensans font-normal text-[20px] text-gray_body ml-[20px]">

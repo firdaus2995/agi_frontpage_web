@@ -47,7 +47,7 @@ const ButtonSelection: React.FC<ButtonSelectionProps> = ({
   };
 
   return (
-    <div className="flex flex-nowrap overflow-x-scroll sm:overflow-x-hidden py-1">
+    <div className="flex flex-nowrap overflow-x-scroll lg:overflow-x-hidden py-1">
       <div className="flex flex-row gap-[12px] w-full">
         {buttonHelperAdditional.map((item, index) =>
           item.type === 'button' ? (

@@ -6,7 +6,7 @@ const data = ['Info Produk', 'Kinerja', 'Fitur', 'Dokumen', 'Agen Penjual'];
 const NavigationBar = () => {
   const [selected, setSelected] = useState('');
   return (
-    <div className="w-full flex flex-col self-stretch items-center justify-center md:px-20 xs:px-4">
+    <div className="w-full flex flex-col self-stretch items-center justify-center lg:px-20 xs:px-4">
       <div className="flex flex-row gap-4 rounded-lg gap-2 flex-wrap">
         {data.map((val, idx) => (
           <div

@@ -85,7 +85,7 @@ const AvristSyariah: React.FC<ParamsProps> = () => {
               : HeroDplk1
         }
       />
-      <div className="flex flex-col justify-center mx-[32px] my-[50px] sm:mx-[136px] sm:my-[72px] gap-[64px]">
+      <div className="flex flex-col justify-center mx-[32px] my-[50px] lg:mx-[136px] lg:my-[72px] gap-[64px]">
         <div className="flex flex-nowrap w-full justify-between gap-2 items-stretch">
           {tabs.map((val, idx) => (
             <LinkScroll

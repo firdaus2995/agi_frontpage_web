@@ -32,9 +32,9 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
   }, [params, buttonList]);
 
   return (
-    <div className="xs:px-[2rem] md:px-[8.5rem]">
-      <div className="w-full xs:hidden md:block">
-        <div className="flex sm:w-full xs:w-[90%] md:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
+    <div className="xs:px-[2rem] lg:px-[8.5rem]">
+      <div className="w-full xs:hidden lg:block">
+        <div className="flex lg:w-full xs:w-[90%] lg:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">
           {buttonList.map((i) => (
             <Link
               href={{
@@ -51,7 +51,7 @@ const ButtonMenu: React.FC<IButtonMenu> = ({ buttonList, path }) => {
         </div>
       </div>
 
-      <div className="w-[100%] md:hidden">
+      <div className="w-[100%] lg:hidden">
         <div>
           <Slider
             {...sliderSettings}

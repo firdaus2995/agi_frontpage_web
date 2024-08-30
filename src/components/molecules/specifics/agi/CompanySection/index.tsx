@@ -42,10 +42,10 @@ const CompanySection = (props: CompanySection) => {
   const renderCard = (val: any) => {
     return (
       <div
-        className={`md:mx-[4.5rem] md:h-[50vh] flex mb-10 md:flex-row xs:flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
+        className={`lg:mx-[4.5rem] lg:h-[50vh] flex mb-10 lg:flex-row xs:flex-col gap-4 rounded-xl bg-white items-center justify-center text-center shadow-xl`}
       >
         <div
-          className={`h-[392px] md:w-1/2 xs:w-full lg:px-[48px] px-[24px] pt-[36px] lg:pb-[36px] pb-[24px] flex flex-col items-start justify-center gap-6`}
+          className={`h-[392px] lg:w-1/2 xs:w-full lg:px-[48px] px-[24px] pt-[36px] lg:pb-[36px] pb-[24px] flex flex-col items-start justify-center gap-6`}
         >
           <p className="font-karla text-information-slider-title-mobile lg:text-information-slider-title-desktop text-left text-purple_dark">
             {contentStringTransformer(val['why-us-text-1'])}
@@ -68,12 +68,12 @@ const CompanySection = (props: CompanySection) => {
           </Link>
         </div>
         <div
-          className={`md:w-1/2 xs:w-full h-full xs:max-md:h-[212px] md:rounded-r-xl md:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}
+          className={`lg:w-1/2 xs:w-full h-full xs:max-lg:h-[212px] lg:rounded-r-xl lg:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}
         >
           <Image
             src={singleImageTransformer(val['why-us-banner']).imageUrl}
             alt={singleImageTransformer(val['why-us-banner']).altText}
-            className="w-full md:rounded-r-xl md:rounded-bl-none xs:rounded-b-xl"
+            className="w-full lg:rounded-r-xl lg:rounded-bl-none xs:rounded-b-xl"
             fill
           />
         </div>
@@ -82,7 +82,7 @@ const CompanySection = (props: CompanySection) => {
   };
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center sm:py-32 xs:py-[5rem] px-[2rem] gap-[5rem] bg-purple_dark">
+    <div className="flex flex-col self-stretch items-center justify-center lg:py-32 xs:py-[5rem] px-[2rem] gap-[5rem] bg-purple_dark">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-white px-10 font-karla">
           {contentStringTransformer(content['why-us-title-section'])}
@@ -101,7 +101,7 @@ const CompanySection = (props: CompanySection) => {
           {sliderData.map((val: any, idx: any) => (
             <div
               key={idx}
-              className="w-full flex items-center justify-center sm:px-[24px] sm:py-[36px] xs:p-4"
+              className="w-full flex items-center justify-center lg:px-[24px] lg:py-[36px] xs:p-4"
             >
               {renderCard(val)}
             </div>

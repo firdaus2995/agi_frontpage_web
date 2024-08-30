@@ -28,9 +28,9 @@ const Content = () => {
       <Image
         alt="GROUP"
         src={GROUP_PHOTO}
-        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 md:mt-0"
+        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 lg:mt-0"
       />
-      <div className="bg-white pt-[100px] px-[32px] md:px-[136px] pb-2">
+      <div className="bg-white pt-[100px] px-[32px] lg:px-[136px] pb-2">
         <ButtonMenu
           buttonList={[
             'Informasi Nasabah',

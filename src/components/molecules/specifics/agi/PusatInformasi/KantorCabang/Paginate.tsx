@@ -10,7 +10,7 @@ export const Paginate = (props: Props) => {
   const { className } = props;
   return (
     <div
-      className={`w-full flex flex-col md:flex-row justify-between ${className}`}
+      className={`w-full flex flex-col lg:flex-row justify-between ${className}`}
     >
       <p className="text-xl">
         Menampilkan <span className="font-bold text-purple_dark">1-5</span> dari{' '}

@@ -40,7 +40,7 @@ const Content = (props: contentProps) => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     arrows: false,
     speed: 500,
@@ -48,7 +48,7 @@ const Content = (props: contentProps) => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           centerMode: false
         }
@@ -314,7 +314,7 @@ const Content = (props: contentProps) => {
           {contentStringTransformer(pageData['nama-section'])}
         </h2>
         <h2
-          className="text-[1.5rem] md:text-[2rem]"
+          className="text-[1.5rem] lg:text-[2rem]"
           dangerouslySetInnerHTML={{
             __html: contentStringTransformer(pageData['deskripsi-section'])
           }}
@@ -380,7 +380,7 @@ const Content = (props: contentProps) => {
               }
             })}
           </Slider>
-          <div className="flex flex-row justify-between w-full mt-10 md:mb-0">
+          <div className="flex flex-row justify-between w-full mt-10 lg:mb-0">
             <div
               className="p-2 border-2 rounded-full border-purple_dark rotate-180"
               role="button"
@@ -431,7 +431,7 @@ const Content = (props: contentProps) => {
           customContent={
             <>
               {paginatedData.length > 0 ? (
-                <div className="grid grid-cols-3 gap-[24px] xs:max-sm:grid-cols-1">
+                <div className="grid grid-cols-3 gap-[24px] xs:max-lg:grid-cols-1">
                   {paginatedData.map(
                     (
                       item: {
@@ -462,7 +462,7 @@ const Content = (props: contentProps) => {
             </>
           }
         />
-        <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+        <div className="flex flex-col gap-4 lg:flex-row justify-between mt-[24px]">
           <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">

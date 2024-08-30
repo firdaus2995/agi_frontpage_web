@@ -34,7 +34,7 @@ const Profil = () => {
   };
 
   return (
-    <div className="md:w-[80%] xs:w-full flex flex-col md:p-20 xs:p-5 flex flex-col justify-center gap-5">
+    <div className="lg:w-[80%] xs:w-full flex flex-col lg:p-20 xs:p-5 flex flex-col justify-center gap-5">
       <div className="flex flex-row items-center justify-center gap-2">
         {data?.map((val, idx) => (
           <div
@@ -50,7 +50,7 @@ const Profil = () => {
       {data?.map((val, idx) => (
         <div
           key={idx}
-          className={`flex flex-col gap-10 items-center justify-center md:p-10 xs:p-0 ${activeTab === idx + 1 ? '' : 'hidden'}`}
+          className={`flex flex-col gap-10 items-center justify-center lg:p-10 xs:p-0 ${activeTab === idx + 1 ? '' : 'hidden'}`}
         >
           <p className="text-3xl font-bold text-bright-purple text-center">
             {val.question}
@@ -59,7 +59,7 @@ const Profil = () => {
             {val.buttonList.map((buttonLabel, buttonIdx) => (
               <div
                 key={buttonIdx}
-                className={`md:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple text-center ${answer[idx] === buttonLabel ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
+                className={`lg:w-48 xs:w-32 py-2 border border-bright-purple text-sm rounded-lg flex items-center justify-center hover:text-white hover:bg-bright-purple text-center ${answer[idx] === buttonLabel ? 'text-white bg-bright-purple' : 'text-bright-purple'}`}
                 onClick={() => handleButtonClick(buttonLabel)}
               >
                 {buttonLabel}
@@ -68,7 +68,7 @@ const Profil = () => {
           </div>
         </div>
       ))}
-      <div className="flex flex-row justify-between md:p-10 xs:p-0">
+      <div className="flex flex-row justify-between lg:p-10 xs:p-0">
         <Button
           title="Kembali"
           customButtonClass="rounded-lg"

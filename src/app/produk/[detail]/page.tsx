@@ -600,12 +600,12 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
               Insurance.
             </label>
           </div>
-          <div className="mt-[24px] md:mt-[36px] flex flex-col md:flex-row md:justify-end md:items-center">
+          <div className="mt-[24px] lg:mt-[36px] flex flex-col lg:flex-row lg:justify-end lg:items-center">
             <button
               type="submit"
               disabled={formIsValid ? (isChecked ? false : true) : true}
               onClick={() => onSubmitData()}
-              className={`${formIsValid ? (isChecked ? 'bg-purple_dark' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[44px] md:h-[64px] w-full md:w-[132px] rounded-lg mt-[12px] md:mt-0`}
+              className={`${formIsValid ? (isChecked ? 'bg-purple_dark' : 'bg-dark-grey') : 'bg-dark-grey'} text-white h-[44px] lg:h-[64px] w-full lg:w-[132px] rounded-lg mt-[12px] lg:mt-0`}
             >
               Beli Sekarang
             </button>
@@ -641,7 +641,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       <FooterInformation
         title={
           <p
-            className="sm:text-[3.5rem] xs:text-[2.25rem] text-center sm:text-left line-clamp-3"
+            className="lg:text-[3.5rem] xs:text-[2.25rem] text-center lg:text-left line-clamp-3"
             dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
           />
         }

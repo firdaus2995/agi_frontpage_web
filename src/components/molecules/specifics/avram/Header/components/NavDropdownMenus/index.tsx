@@ -19,7 +19,7 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
     <div
       className={`
         absolute top-full left-0 right-0 z-50
-        flex md:hidden flex-col items-stretchgap-4 
+        flex lg:hidden flex-col items-stretchgap-4 
         bg-gradient-to-b from-purple_light to-purple_dark
         text-white text-sm p-4
         transition-all duration-300 ease-in-out

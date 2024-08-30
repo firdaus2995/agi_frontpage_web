@@ -69,7 +69,7 @@ const NavCard: React.FC<NavCardProps> = ({ content, customClass }) => {
           </div>
         </div>
         <Image
-          className="h-auto sm:max-w-[20rem] lg:max-w-[30rem] w-full hidden md:inline-block"
+          className="h-auto lg:max-w-[20rem] lg:max-w-[30rem] w-full hidden lg:inline-block"
           src={
             TEMPORARY_IMAGE_MAPPING[
               content.imageSource as keyof typeof TEMPORARY_IMAGE_MAPPING

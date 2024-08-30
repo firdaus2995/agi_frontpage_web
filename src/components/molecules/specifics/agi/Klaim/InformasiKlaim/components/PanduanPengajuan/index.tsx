@@ -64,7 +64,7 @@ const PanduanPengajuanTab = () => {
   };
   return (
     <div className="flex flex-col self-stretch items-center justify-center">
-      <div className="grid grid-cols-3 gap-5 xs:hidden md:grid">
+      <div className="grid grid-cols-3 gap-5 xs:hidden lg:grid">
         {data.map((val, idx) => (
           <div
             key={idx}
@@ -97,7 +97,7 @@ const PanduanPengajuanTab = () => {
           </div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 md:hidden gap-4">
+      <div className="w-full grid grid-cols-1 lg:hidden gap-4">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;

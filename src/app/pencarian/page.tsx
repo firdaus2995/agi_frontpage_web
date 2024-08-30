@@ -113,7 +113,7 @@ const Pencarian = () => {
         image={cta1Img.imageUrl}
       />
       <FooterCards
-        bgColor="md:bg-cta4_bg"
+        bgColor="lg:bg-cta4_bg"
         cards={[
           {
             title: cta4Data.cta41.title,

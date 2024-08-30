@@ -208,7 +208,7 @@ const SearchForm = () => {
 
   return (
     <div className=" w-full flex flex-col -mt-[-0.0625rem]">
-      <div className="sm:px-[8.5rem] pb-[5rem] xs:px-[2.25rem] bg-white rounded-t-[3.75rem] flex flex-col sm:gap-[3rem] xs:gap-[2.25rem]">
+      <div className="lg:px-[8.5rem] pb-[5rem] xs:px-[2.25rem] bg-white rounded-t-[3.75rem] flex flex-col lg:gap-[3rem] xs:gap-[2.25rem]">
         <SearchBox
           onSearch={(value: string) => {
             setSearchKeywords(value);
@@ -217,7 +217,7 @@ const SearchForm = () => {
           placeHolder="Ketik kata yang ingin dicari"
         />
 
-        <div className="px-[0.1875rem] hidden md:grid md:grid-cols-4 grid-cols-1 gap-[0.75rem]">
+        <div className="px-[0.1875rem] hidden lg:grid lg:grid-cols-4 grid-cols-1 gap-[0.75rem]">
           {tabs.map((tab) => (
             <Button
               key={tab.title}
@@ -236,7 +236,7 @@ const SearchForm = () => {
           ))}
         </div>
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <SliderComponent
             selected={selectedTab.title}
             slideItems={tabs}
@@ -263,7 +263,7 @@ const SearchForm = () => {
                   <div className="mx-3 rounded-xl border-2 border-gray_light px-[1.5rem] py-[2.25rem] flex flex-col gap-[12px]">
                     <p className="text-sm leading-[19.6px]">{item.date}</p>
                     <p
-                      className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 sm:line-clamp-none"
+                      className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none"
                       dangerouslySetInnerHTML={{
                         __html: item.title
                       }}
@@ -381,7 +381,7 @@ const SearchForm = () => {
           </div>
         )}
         {selectedTab.title !== 'Klaim' && (
-          <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between mt-[24px]">
             <p className="text-[20px]">
               Menampilkan{' '}
               <span className="font-bold text-purple_dark">

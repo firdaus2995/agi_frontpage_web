@@ -34,8 +34,8 @@ const FAQList = ({
   handlePageClick
 }: ICardsProps) => {
   return (
-    <div className="w-full bg-white flex flex-col gap-[5rem] items-center sm:px-[8.5rem] xs:pb-[1.5rem] sm:pb-[3rem] xs:px-[2rem]">
-      <h1 className="font-karla sm:text-[3.5rem] xs:text-[2.25rem] text-purple_dark font-extrabold text-center sm:leading-[67.2px] -tracking-[0.04em] xs:leading-[43.2px]">
+    <div className="w-full bg-white flex flex-col gap-[5rem] items-center lg:px-[8.5rem] xs:pb-[1.5rem] lg:pb-[3rem] xs:px-[2rem]">
+      <h1 className="font-karla lg:text-[3.5rem] xs:text-[2.25rem] text-purple_dark font-extrabold text-center lg:leading-[67.2px] -tracking-[0.04em] xs:leading-[43.2px]">
         {selected}
       </h1>
       {data?.length > 0 ? (
@@ -54,7 +54,7 @@ const FAQList = ({
               </Link>
             ))}
           </div>
-          <div className="w-full flex flex-col md:flex-row items-start justify-between py-8 gap-4">
+          <div className="w-full flex flex-col lg:flex-row items-start justify-between py-8 gap-4">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}

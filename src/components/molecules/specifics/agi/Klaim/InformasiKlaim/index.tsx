@@ -49,7 +49,7 @@ const InformasiKlaimComponent: React.FC<InformasiKlaimComponentProps> = ({
   );
 
   return (
-    <div className="w-full flex flex-col self-stretch items-center justify-center md:px-20 xs:px-4 bg-white py-20">
+    <div className="w-full flex flex-col self-stretch items-center justify-center lg:px-20 xs:px-4 bg-white py-20">
       <div className="flex flex-row gap-4 rounded-lg gap-2 flex-wrap mb-10">
         {data.map((val, idx) => (
           <div

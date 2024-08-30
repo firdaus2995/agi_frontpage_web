@@ -286,9 +286,9 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         imageUrl={data.titleImageUrl}
         bottomImageFit={bannerImageFit}
       />
-      <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:pt-[80px] sm:pb-[100px] gap-[36px] sm:gap-[48px] sm:flex-row">
+      <div className="flex flex-col px-[32px] lg:px-[136px] py-[50px] lg:pt-[80px] lg:pb-[100px] gap-[36px] lg:gap-[48px] lg:flex-row">
         <div className="flex flex-col gap-[24px] grow">
-          <div className="flex flex-col md:flex-row gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row gap-5 justify-between">
             <div className="w-full">
               <ButtonSelection
                 buttonHelper={[]}
@@ -321,7 +321,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
           )}
 
           {dataContent && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
               {paginatedData.map((item: any, index: number) => (
                 <CardCategoryA
                   key={index}
@@ -337,7 +337,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             </div>
           )}
           {dataContent?.length === 0 && (
-            <div className="w-full flex flex-col md:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
+            <div className="w-full flex flex-col lg:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
               <Image src={Search} alt="search" />
               <div className="flex flex-col gap-4">
                 <div className="w-[324px] text-center">
@@ -352,7 +352,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               </div>
             </div>
           )}
-          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}
@@ -393,7 +393,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3"
             dangerouslySetInnerHTML={{ __html: data.footerText ?? '' }}
           />
         }

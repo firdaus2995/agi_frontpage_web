@@ -27,7 +27,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
-    slidesToShow: 4,
+    slidesToShow: 1,
     initialSlide: 0,
     infinite: false,
     swipeToSlide: false,
@@ -35,7 +35,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
       setCurrentSlide(Math.ceil(newIndex)),
     responsive: [
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -58,7 +58,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
   return (
     <div className="overflow-hidden">
       {/* Desktop */}
-      <div className={`xs:hidden md:block ${bgColor ?? ''}`}>
+      <div className={`xs:hidden lg:block ${bgColor ?? ''}`}>
         <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] py-[5rem] h-full">
           {cards.map((item, index) => {
             const href =
@@ -77,7 +77,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                       : href ?? '#'
                 }
                 target={item.openInNewTab ? '_blank' : '_self'}
-                className="relative border border-gray_superlight w-full h-auto pt-[24px] pb-[36px] px-[24px] rounded-xl flex flex-col gap-[1.5rem] items-center text-center shadow-md bg-white xs:max-sm:mt-4"
+                className="relative border border-gray_superlight w-full h-auto pt-[24px] pb-[36px] px-[24px] rounded-xl flex flex-col gap-[1.5rem] items-center text-center shadow-md bg-white xs:max-lg:mt-4"
               >
                 <Image
                   alt={index.toString()}
@@ -106,7 +106,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
 
       {/* Mobile */}
       <div className={`${bgColor ?? ''}`}>
-        <div className="md:hidden py-[5rem] flex flex-col gap-[2.25rem]">
+        <div className="lg:hidden py-[5rem] flex flex-col gap-[2.25rem]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => {
               const href =

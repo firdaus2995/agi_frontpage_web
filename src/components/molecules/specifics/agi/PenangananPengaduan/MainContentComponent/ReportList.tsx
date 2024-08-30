@@ -24,8 +24,8 @@ export const ReportList = () => {
 
   return (
     <div className={`w-full flex flex-col justify-center relative pt-20`}>
-      <div className="w-full flex md:flex-row xs:flex-col">
-        <div className="xs:hidden md:block">
+      <div className="w-full flex lg:flex-row xs:flex-col">
+        <div className="xs:hidden lg:block">
           <div
             className={`flex flex-col bg-purple_light_bg rounded-lg w-[200px]`}
           >
@@ -44,7 +44,7 @@ export const ReportList = () => {
           </div>
         </div>
 
-        <div className="md:w-3/4 xs:w-full flex flex-col gap-4 ml-[48px]">
+        <div className="lg:w-3/4 xs:w-full flex flex-col gap-4 ml-[48px]">
           <div>
             {/* filter */}
             <div className="flex flex-row justify-between mb-[24px]">

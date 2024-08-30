@@ -86,7 +86,7 @@ const CategoryWithThreeCards = ({
     };
 
     return (
-      <div className="relative sm:hidden block">
+      <div className="relative lg:hidden block">
         <div
           className="flex justify-between items-center border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer rounded-lg font-bold text-purple_dark bg-purple_light_bg text-[18px]"
           onClick={() => setIsOpen(!isOpen)}
@@ -154,7 +154,7 @@ const CategoryWithThreeCards = ({
 
   return (
     <div
-      className={`${outerClass} w-full flex flex-col py-[12px] sm:pt-[80px] gap-[36px] sm:gap-[48px] md:flex-row`}
+      className={`${outerClass} w-full flex flex-col py-[12px] lg:pt-[80px] gap-[36px] lg:gap-[48px] lg:flex-row`}
     >
       {/* CATEGORIES */}
       {!hiddenCategory && (
@@ -180,7 +180,7 @@ const CategoryWithThreeCards = ({
           <div
             className={`flex ${filterRowLayout ? 'flex-row' : 'flex-col'} xs:max-lg:flex-wrap  gap-5 justify-between`}
           >
-            <div className="flex flex-wrap overflow-x-hidden sm:overflow-x-hidden py-1">
+            <div className="flex flex-wrap overflow-x-hidden lg:overflow-x-hidden py-1">
               <div className="flex flex-row flex-wrap gap-[12px] w-full">
                 {tabs.map(
                   (
@@ -227,10 +227,10 @@ const CategoryWithThreeCards = ({
                 )}
               </div>
             </div>
-            <div className="flex flex-row gap-[12px] xs:w-full md:w-auto">
+            <div className="flex flex-row gap-[12px] xs:w-full lg:w-auto">
               <input
                 placeholder={searchPlaceholder ?? 'Cari'}
-                className="focus:outline-none xs:w-full md:w-96 px-[16px] py-[12px] rounded-[12px] bg-purple_dark/[.06]"
+                className="focus:outline-none xs:w-full lg:w-96 px-[16px] py-[12px] rounded-[12px] bg-purple_dark/[.06]"
                 onChange={onSearchChange}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -246,7 +246,7 @@ const CategoryWithThreeCards = ({
           </div>
         )}
         {!customContent ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
             {[...Array(9)].map((_, index) =>
               categoryCard === 'B' ? (
                 <CardCategoryB
@@ -270,7 +270,7 @@ const CategoryWithThreeCards = ({
           customContent
         )}
         {!hidePagination && (
-          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}

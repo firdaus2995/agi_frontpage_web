@@ -62,7 +62,7 @@ const FundListItem: React.FC<FundListItemProps> = ({ item }) => {
     <div className="flex flex-col gap-6 border-1 border-solid border-gray_bglightgray rounded-xl p-8 shadow-lg">
       {/* Top content */}
       <div className="flex flex-col gap-2">
-        <p className="text-dark-purple text-xl sm:text-2xl font-bold">
+        <p className="text-dark-purple text-xl lg:text-2xl font-bold">
           {item.title}
         </p>
         <div className="flex gap-2">
@@ -81,7 +81,7 @@ const FundListItem: React.FC<FundListItemProps> = ({ item }) => {
             <TagPill>NAB</TagPill>
             {item.nab}
           </div>
-          <p className="text-3xl sm:text-5xl font-light !font-karla whitespace-nowrap">
+          <p className="text-3xl lg:text-5xl font-light !font-karla whitespace-nowrap">
             Rp. <span className="text-dark-purple font-bold">{item.rp}</span>
           </p>
         </div>
@@ -105,7 +105,7 @@ const FundListItem: React.FC<FundListItemProps> = ({ item }) => {
         {/* Kinerja per tahun majemuk */}
         <div className="flex flex-col gap-2 items-start">
           <TagPill>Kinerja per tahun majemuk</TagPill>
-          <div className="flex gap-x-6 sm:gap-x-9 gap-y-4 flex-wrap">
+          <div className="flex gap-x-6 lg:gap-x-9 gap-y-4 flex-wrap">
             {performanceData.map((performanceItem, index) => (
               <div className="flex flex-col gap-1" key={index}>
                 <p className="text-sm font-bold">{performanceItem.name}</p>

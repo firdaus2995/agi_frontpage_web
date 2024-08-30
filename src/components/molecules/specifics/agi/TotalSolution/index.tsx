@@ -140,7 +140,7 @@ const TotalSolution = (props: TotalSolution) => {
   );
 
   return (
-    <div className="flex flex-col self-stretch items-center justify-center sm:py-[100px] sm:px-[136px] gap-[5rem] xs:px-8 xs:pt-[5rem] xs:pb-[100px] bg-white rounded-b-[65px] relative">
+    <div className="flex flex-col self-stretch items-center justify-center lg:py-[100px] lg:px-[136px] gap-[5rem] xs:px-8 xs:pt-[5rem] xs:pb-[100px] bg-white rounded-b-[65px] relative">
       <div>
         <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark">
           {contentStringTransformer(content['produk-unggulan-title'])}

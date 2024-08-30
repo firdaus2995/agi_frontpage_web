@@ -50,7 +50,7 @@ const CategorySideBySideSixCards = ({
     const isUnordered = description.includes('<ul>');
     const defaultClassName = isRightSide
       ? 'text-sm font-opensans'
-      : 'xs:text-xl sm:text-2xl font-karla -tracking-[0.72px]';
+      : 'xs:text-xl lg:text-2xl font-karla -tracking-[0.72px]';
 
     if (isOrdered) {
       return (
@@ -86,8 +86,8 @@ const CategorySideBySideSixCards = ({
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 xs:gap-[1.5rem] md:gap-[4rem] h-full">
-      <div className="col-span-1 sm:col-span-2">
+    <div className="grid grid-cols-1 lg:grid-cols-3 xs:gap-[1.5rem] lg:gap-[4rem] h-full">
+      <div className="col-span-1 lg:col-span-2">
         <div
           className={`${customLeftSideClassname} h-full flex flex-col gap-[36px] p-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
         >

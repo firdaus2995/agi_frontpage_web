@@ -38,7 +38,7 @@ const LeftTabs: React.FC<LeftTabsProps> = ({
 
   return (
     <>
-      <div className="sm:block hidden rounded-lg">
+      <div className="lg:block hidden rounded-lg">
         <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
           {tabs.map((val) => (
             <Tab
@@ -50,7 +50,7 @@ const LeftTabs: React.FC<LeftTabsProps> = ({
           ))}
         </div>
       </div>
-      <div className="relative sm:hidden block">
+      <div className="relative lg:hidden block">
         <div
           className="flex justify-between items-center border-l-4 border-purple_dark px-[15px] py-[12px] cursor-pointer rounded-lg font-bold text-purple_dark bg-purple_light_bg text-[18px]"
           onClick={() => setIsOpen(!isOpen)}

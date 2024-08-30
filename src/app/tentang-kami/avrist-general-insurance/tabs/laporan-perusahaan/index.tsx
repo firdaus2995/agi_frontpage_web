@@ -190,7 +190,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
 
   const renderPage = () => {
     return (
-      <div className="flex flex-col gap-4 md:flex-row items-start justify-between font-opensans ">
+      <div className="flex flex-col gap-4 lg:flex-row items-start justify-between font-opensans ">
         <div>
           <p className="text-[20px]">
             Menampilkan{' '}
@@ -290,7 +290,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
                         (item: any, index: number) => (
                           <div
                             key={index}
-                            className="w-full flex xs:flex-col sm:flex-row xs:justify-start sm:justify-between  p-[1.5rem] border rounded-xl gap-2"
+                            className="w-full flex xs:flex-col lg:flex-row xs:justify-start lg:justify-between  p-[1.5rem] border rounded-xl gap-2"
                           >
                             <div className="flex flex-row gap-2 items-center">
                               <p className="font-bold text-2xl font-karla">
@@ -319,7 +319,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
                 {renderPage()}
               </>
             }
-            outerClass="sm:!py-[0px] px-0 md:px-[8.5rem]"
+            outerClass="lg:!py-[0px] px-0 lg:px-[8.5rem]"
           />
         </div>
       </div>

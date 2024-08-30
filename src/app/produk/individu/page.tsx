@@ -58,13 +58,13 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         ]}
       />
       <Image src={BLANK_IMAGE} alt="" className="w-full" />
-      <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:py-[72px] gap-[36px] sm:gap-[48px] sm:flex-row">
+      <div className="flex flex-col px-[32px] lg:px-[136px] py-[50px] lg:py-[72px] gap-[36px] lg:gap-[48px] lg:flex-row">
         {/* start content */}
         <div className="flex flex-col gap-[24px] grow">
           <div className="flex flex-col gap-5 justify-between">
             <div className="flex flex-row justify-between gap-5">
               {/* start button */}
-              <div className="w-full flex flex-nowrap overflow-x-scroll sm:overflow-x-hidden py-1">
+              <div className="w-full flex flex-nowrap overflow-x-scroll lg:overflow-x-hidden py-1">
                 <div className="w-full grid grid-cols-3 gap-[12px]">
                   {buttonHelper.map((item, index) =>
                     item.type === 'button' ? (
@@ -100,7 +100,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               {/* end search */}
             </div>
 
-            <div className="flex flex-nowrap overflow-x-scroll sm:overflow-x-hidden py-1">
+            <div className="flex flex-nowrap overflow-x-scroll lg:overflow-x-hidden py-1">
               <Menu>
                 {/* {({ open }) => (
                   <> */}
@@ -126,7 +126,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
           {tab === 'Asuransi Kesehatan' && <AsuransiKesehatan />}
           {tab === 'Asuransi Kecelakaan' && <AsuransiKecelakaan />}
           {tab === 'Asuransi Tambahan' && <AsuransiTambahan />}
-          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}
@@ -147,7 +147,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
       <FooterInformation
         title={
-          <p className="text-[36px] sm:text-[56px] text-center sm:text-left">
+          <p className="text-[36px] lg:text-[56px] text-center lg:text-left">
             Ada yang bisa{' '}
             <span className="font-bold text-purple_dark">AvGen</span> bantu
             untuk Anda?

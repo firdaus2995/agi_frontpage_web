@@ -75,9 +75,9 @@ const WordingPolis = (props: WordingPolisProps) => {
   }, [pageData]);
 
   return (
-    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+    <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla text-[2.25rem] md:text-[3.5rem] text-purple_dark">
+        <h1 className="font-karla text-[2.25rem] lg:text-[3.5rem] text-purple_dark">
           {contentStringTransformer(pageData['body-judul'])}
         </h1>
       </section>
@@ -111,7 +111,7 @@ const WordingPolis = (props: WordingPolisProps) => {
       ) : (
         <NotFound />
       )}
-      <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+      <div className="flex flex-col gap-4 lg:flex-row justify-between mt-[24px]">
         <p className="text-[20px]">
           Menampilkan{' '}
           <span className="font-bold text-purple_dark">

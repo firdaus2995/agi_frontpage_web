@@ -90,7 +90,7 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
       <div className="bg-white w-full min-h-[60px]">
         <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
           {/* start tabs kiri */}
-          <div className="sm:block hidden rounded-lg">
+          <div className="lg:block hidden rounded-lg">
             <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
               {tabs.map((val, idx) =>
                 tab === val ? (
@@ -150,7 +150,7 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
             )}
           </div>{' '}
           {/* end tabs kiri */}
-          <div className="sm:ml-[48px] flex flex-col xs:mt-[2rem] sm:mt-0">
+          <div className="lg:ml-[48px] flex flex-col xs:mt-[2rem] lg:mt-0">
             <div ref={disclaimerRef}>
               <Disclaimer content={content} />
             </div>

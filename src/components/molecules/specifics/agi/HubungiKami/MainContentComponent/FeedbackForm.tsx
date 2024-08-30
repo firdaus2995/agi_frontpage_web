@@ -87,7 +87,7 @@ export const FeedbackForm = (props: Props) => {
   };
 
   return (
-    <div className="bg-purple_superlight sm:px-[8.5rem] py-[5rem] xs:px-[1.3125rem]">
+    <div className="bg-purple_superlight lg:px-[8.5rem] py-[5rem] xs:px-[1.3125rem]">
       <div className="bg-white border rounded-xl flex flex-col justify-between overflow-hidden">
         <div className="p-[2.25rem]">
           <p className="font-bold font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-purple_dark mb-[1rem]">
@@ -118,7 +118,7 @@ export const FeedbackForm = (props: Props) => {
                     ? 'bg-purple_dark'
                     : 'bg-dark-grey'
                   : 'bg-dark-grey'
-              } text-white h-[2.75rem] md:h-[4rem] w-full md:w-[8.25rem] rounded-lg mt-[0.75rem] md:mt-0`}
+              } text-white h-[2.75rem] lg:h-[4rem] w-full lg:w-[8.25rem] rounded-lg mt-[0.75rem] lg:mt-0`}
             >
               Kirim
             </button>

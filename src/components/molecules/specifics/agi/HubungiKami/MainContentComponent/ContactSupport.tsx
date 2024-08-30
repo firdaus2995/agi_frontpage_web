@@ -42,8 +42,8 @@ export const ContactSupport = (props: Props) => {
 
   return (
     <>
-      <div className="hidden md:flex flex-row gap-[1.5rem] font-['Source Sans Pro']">
-        <div className="min-h-[340px] md:w-[373px] border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center md:items-start justify-between">
+      <div className="hidden lg:flex flex-row gap-[1.5rem] font-['Source Sans Pro']">
+        <div className="min-h-[340px] lg:w-[373px] border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col xs:items-center lg:items-start justify-between">
           <div className="p-[2.25rem] gap-[1.5rem] flex flex-col h-full">
             <Image
               src={
@@ -53,7 +53,7 @@ export const ContactSupport = (props: Props) => {
               width={100}
               height={100}
             />
-            <p className="font-karla font-extrabold  md:text-[3rem] leading-10 md:leading-[3.3rem] -tracking-[1.44px]">
+            <p className="font-karla font-extrabold  lg:text-[3rem] leading-10 lg:leading-[3.3rem] -tracking-[1.44px]">
               {contentStringTransformer(pageData['informasi-1-nama'])}
             </p>
           </div>
@@ -61,7 +61,7 @@ export const ContactSupport = (props: Props) => {
         <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-2-link'])}
-            className="h-full font-opensans md:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
+            className="h-full font-opensans lg:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
           >
             <Image
               src={
@@ -84,7 +84,7 @@ export const ContactSupport = (props: Props) => {
         <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-3-link'])}
-            className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
+            className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
           >
             <Image
               src={
@@ -108,7 +108,7 @@ export const ContactSupport = (props: Props) => {
         <div className="min-h-[340px] w-[240px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
             href={contentStringTransformer(pageData['informasi-4-link'])}
-            className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
+            className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
           >
             <Image
               src={
@@ -129,7 +129,7 @@ export const ContactSupport = (props: Props) => {
           </Link>
         </div>
       </div>
-      <div className="w-full md:hidden">
+      <div className="w-full lg:hidden">
         <Slider {...settings} ref={sliderRef} className="min-h-[300px]">
           <div className="w-full grid grid-cols-1 mx-2">
             <div className="min-h-[320px] w-[95%] border bg-white border-b-8 border-b-purple_dark rounded-2xl border-gray_light overflow-hidden flex flex-col items-start justify-between">
@@ -155,7 +155,7 @@ export const ContactSupport = (props: Props) => {
             <div className="min-h-[320px] w-[95%] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
               <Link
                 href="tel:021-5789-8188"
-                className="h-full font-opensans md:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
+                className="h-full font-opensans lg:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
               >
                 <Image
                   src={
@@ -185,7 +185,7 @@ export const ContactSupport = (props: Props) => {
             <div className="min-h-[320px] w-[95%] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
               <Link
                 href="mailto:customer-service@avrist.com"
-                className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
+                className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
               >
                 <Image
                   src={
@@ -214,7 +214,7 @@ export const ContactSupport = (props: Props) => {
           </div>
           <div className="w-full grid grid-cols-1 mx-2">
             <div className="min-h-[320px] w-[95%] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
-              <div className="h-full font-opensans font-bold md:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]">
+              <div className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]">
                 <Image
                   src={
                     singleImageTransformer(pageData['informasi-4-icon'])
@@ -240,7 +240,7 @@ export const ContactSupport = (props: Props) => {
             </div>
           </div>
         </Slider>
-        <div className="flex flex-row justify-between md:mx-[1.25rem] xs:mt-[36px] md:mt-0">
+        <div className="flex flex-row justify-between lg:mx-[1.25rem] xs:mt-[36px] lg:mt-0">
           <Image
             className={currentSlide === 0 ? 'opacity-50' : 'opacity-100'}
             alt="prev"

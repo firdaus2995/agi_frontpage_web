@@ -16,7 +16,7 @@ const MainBanner: React.FC<MainBannerProps> = ({
 }) => {
   return (
     <div
-      className={`${isWhiteColored ? 'bg-white' : 'bg-purple_light_bg'} w-full relative px-8 md:px-[136px] md:py-[100px] flex items-center isolate h-[45rem] md:h-[30rem]`}
+      className={`${isWhiteColored ? 'bg-white' : 'bg-purple_light_bg'} w-full relative px-8 lg:px-[136px] lg:py-[100px] flex items-center isolate h-[45rem] lg:h-[30rem]`}
     >
       <div className="flex justify-start items-start flex-col gap-10">
         {renderTitle()}
@@ -25,7 +25,7 @@ const MainBanner: React.FC<MainBannerProps> = ({
       <Image
         width={50}
         height={50}
-        className="h-auto w-[40rem] absolute right-0 bottom-0 md:top-0 -z-10"
+        className="h-auto w-[40rem] absolute right-0 bottom-0 lg:top-0 -z-10"
         src={imageUrl}
         alt="Banner"
       />

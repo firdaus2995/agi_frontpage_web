@@ -30,11 +30,11 @@ const SliderInformation = ({
   const [show, setShow] = useState(false);
 
   return (
-    <div className="xs:mx-[5px] md:mx-[5px]">
+    <div className="xs:mx-[5px] lg:mx-[5px]">
       {/* Desktop */}
-      <div className="flex lg:px-[40px] py-[72px] bg-white w-full sm:px-0 xs:hidden md:block">
+      <div className="flex lg:px-[40px] py-[72px] bg-white w-full lg:px-0 xs:hidden lg:block">
         <div
-          className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-md:flex-wrap xs:max-md:flex xs:max-md:grid-cols-1`}
+          className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-lg:flex-wrap xs:max-lg:flex xs:max-lg:grid-cols-1`}
         >
           <div className="flex flex-col gap-[24px] items-start justify-center py-[36px] px-[24px]">
             <div>{title}</div>
@@ -61,21 +61,23 @@ const SliderInformation = ({
       </div>
 
       {/* Mobile */}
-      <div className="flex py-[1.5rem] bg-white w-full md:hidden">
+      <div className="flex py-[1.5rem] bg-white w-full lg:hidden">
         <div
-          className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-sm:flex-wrap xs:max-sm:flex xs:max-sm:grid-cols-1`}
+          className={`w-full min-h-[900px] md:min-h-[700px] grid grid-cols-1 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border`}
         >
           <div
             className={`flex relative ${isVideo && 'cursor-pointer'}`}
             onClick={() => isVideo && setShow(true)}
           >
-            <Image
-              height={0}
-              width={0}
-              alt="sliderInformationImage"
-              className={`min-h-[400px] w-full object-cover rounded-t-3xl`}
-              src={imageUrl !== '' ? imageUrl : BlankImage}
-            />
+            <div className='flex w-full h-[400px]'>
+              <Image
+                height={0}
+                width={0}
+                alt="sliderInformationImage"
+                className={`w-full object-cover rounded-t-3xl`}
+                src={imageUrl !== '' ? imageUrl : BlankImage}
+              />
+            </div>
             {isVideo && (
               <div className="w-full h-full absolute flex items-center justify-center">
                 <Image alt={'play-button'} className="w-16" src={PlayButton} />

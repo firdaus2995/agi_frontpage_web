@@ -58,7 +58,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
-      <div className="md:p-16 p-8">
+      <div className="lg:p-16 p-8">
         <Image
           alt="Avrist"
           width={0}
@@ -196,9 +196,9 @@ const Footer = () => {
         {/* Separator */}
         <div className="border-solid border-purple_separator border-b my-8"></div>
         {/* Bottom content */}
-        <div className="flex md:flex-row flex-col justify-between md:gap-4 gap-8 flex-wrap">
+        <div className="flex lg:flex-row flex-col justify-between lg:gap-4 gap-8 flex-wrap">
           {/* Additional information */}
-          <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-4 md:items-center items-start sm:divide-x-2 sm:divide-x-0">
+          <div className="flex lg:flex-row flex-col justify-between gap-2 lg:gap-4 lg:items-center items-start lg:divide-x-2 lg:divide-x-0">
             {additionalInfo.map((item, index) => (
               <React.Fragment key={index}>
                 <Link href={item.href}>
@@ -236,7 +236,7 @@ const Footer = () => {
           alt="Whatsapp"
           height={0}
           width={0}
-          className="absolute bottom-full right-10 translate-y-1/2 aspect-square w-[6rem] sm:w-[10rem]"
+          className="absolute bottom-full right-10 translate-y-1/2 aspect-square w-[6rem] lg:w-[10rem]"
           src={WHATSAPP_IMAGE.src}
         />
       </Link>

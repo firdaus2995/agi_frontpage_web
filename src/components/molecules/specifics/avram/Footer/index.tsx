@@ -12,7 +12,7 @@ const Footer = () => {
     // Margin top can not be put in here because there are pages that --
     // requires the most bottom part to touch the footer (e.g. Bandingkan produk page)
     <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
-      <div className="md:p-16 p-8">
+      <div className="lg:p-16 p-8">
         <Image
           alt="Avrist"
           width={0}
@@ -102,9 +102,9 @@ const Footer = () => {
         {/* Separator */}
         <div className="border-solid border-purple_separator border-b my-8"></div>
         {/* Bottom content */}
-        <div className="flex md:flex-row flex-col justify-between md:gap-4 gap-8 flex-wrap">
+        <div className="flex lg:flex-row flex-col justify-between lg:gap-4 gap-8 flex-wrap">
           {/* Additional information */}
-          <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-4 md:items-center items-start">
+          <div className="flex lg:flex-row flex-col justify-between gap-2 lg:gap-4 lg:items-center items-start">
             {['Syarat Penggunaan', 'Keamanan Online', 'Kebijakan Cookie'].map(
               (item, index) => (
                 <React.Fragment key={index}>
@@ -137,7 +137,7 @@ const Footer = () => {
         alt="Whatsapp"
         height={0}
         width={0}
-        className="absolute bottom-full right-0 translate-y-1/2 aspect-square w-[8rem] md:w-[10rem]"
+        className="absolute bottom-full right-0 translate-y-1/2 aspect-square w-[8rem] lg:w-[10rem]"
         src={WHATSAPP_IMAGE.src}
       />
     </footer>

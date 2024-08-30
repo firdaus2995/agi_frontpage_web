@@ -19,7 +19,6 @@ type Props = {
 
 export const ContactSupport = (props: Props) => {
   const { pageData } = props;
-  console.log(pageData)
   const sliderRef: any = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 

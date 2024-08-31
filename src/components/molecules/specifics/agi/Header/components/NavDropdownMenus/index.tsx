@@ -65,10 +65,12 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
             >
               <Disclosure.Panel className="p-2 text-[black] items-stretch gap-4 pl-2">
                 {item.content.map((val, idx) => (
-                  <div key={idx} className="pt-4">
-                    <span className="text-[20px] leading-[38.4px] -tracking-[0.96px] cursor-pointer rounded font-bold outline-none px-2 py-[17.5px]">
-                      {val.title}
-                    </span>
+                  <div key={idx}>
+                    {val.title ? (
+                      <span className="text-[20px] leading-[38.4px] -tracking-[0.96px] cursor-pointer rounded font-bold outline-none px-2 py-[17.5px]">
+                        {val.title}
+                      </span>
+                    ) : null}
                     {val.subMenus.map((el, index) => (
                       <div key={index} className="mt-4">
                         <Link

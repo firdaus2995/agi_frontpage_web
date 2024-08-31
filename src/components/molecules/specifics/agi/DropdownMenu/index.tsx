@@ -22,7 +22,7 @@ const DropdownMenu: React.FC<IDropdownMenu> = ({
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
-    if (selectedData) {
+    if (selectedData !== -1) {
       setSelected(selectedData);
     }
   }, [selectedData]);

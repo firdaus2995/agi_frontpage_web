@@ -39,7 +39,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
     >
       <PopoverBody className="absolute right-0 mt-[30px] z-10 mt-2 w-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 lg:min-w-[350px]">
         <div
-          className="py-1 flex flex-row gap-5 xs:max-lg:flex-wrap"
+          className="py-4 px-4 flex flex-col md:flex-row gap-6 grow shrink-0"
           role="none"
         >
           <div
@@ -52,7 +52,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
               src={Whatsapp}
               alt="whatsapp"
             />
-            <div className="text-xs font-bold cursor-pointer">Whatsapp</div>
+            <div className="text-[14px] font-bold cursor-pointer">Whatsapp</div>
           </div>
           <EmailShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
@@ -65,7 +65,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
               src={Email}
               alt="email"
             />
-            <div className="text-xs font-bold cursor-pointer">Email</div>
+            <div className="text-[14px] font-bold cursor-pointer">Email</div>
           </EmailShareButton>
           <LinkedinShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
@@ -78,7 +78,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
               src={Linkedin}
               alt="linkedin"
             />
-            <div className="text-xs font-bold cursor-pointer">LinkedIn</div>
+            <div className="text-[14px] font-bold cursor-pointer">LinkedIn</div>
           </LinkedinShareButton>
           <FacebookShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
@@ -91,7 +91,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
               src={Facebook}
               alt="facebook"
             />
-            <div className="text-xs font-bold cursor-pointer">Facebook</div>
+            <div className="text-[14px] font-bold cursor-pointer">Facebook</div>
           </FacebookShareButton>
           <div className="flex flex-col gap-1 items-center xs:max-lg:m-auto">
             <div
@@ -108,7 +108,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
                 color="purple_verylight"
               />
             </div>
-            <div className="text-xs font-bold cursor-pointer">Copy URL</div>
+            <div className="text-[14px] font-bold cursor-pointer whitespace-nowrap">Copy URL</div>
           </div>
         </div>
       </PopoverBody>

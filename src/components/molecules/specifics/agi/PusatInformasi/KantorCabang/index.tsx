@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useMap } from 'react-leaflet';
 import { Card } from './Card';
@@ -33,6 +33,7 @@ import 'leaflet/dist/leaflet.css';
 const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
+  const mapsRef = useRef(null);
   const [contentData, setContentData] = useState<any>([]);
   const [tempData, setTempData] = useState<any>([]);
   const [search, setSearch] = useState('');
@@ -151,10 +152,23 @@ const KantorCabang = () => {
     }
   }, [dataHo]);
 
+  const handleScrollToRef = (
+    ref: React.MutableRefObject<HTMLElement | null> | null
+  ) => {
+    if (ref?.current) {
+      (ref.current as HTMLElement).scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'start'
+      });
+    }
+  };
+
   const onClickMarker = (lat: number, lng: number) => {
     if (lat !== 0 || lng !== 0) {
       setMapCenter([lat, lng]);
     }
+    handleScrollToRef(mapsRef);
   };
 
   const RenderMap = () => {
@@ -310,7 +324,10 @@ const KantorCabang = () => {
           </div>
         </Card>
       </div>
-      <div className="bg-gray_bglightgray px-[2rem] lg:px-[8.5rem] py-[5rem] lg:py-[6.25rem] flex flex-col gap-[5rem]">
+      <div
+        ref={mapsRef}
+        className="bg-gray_bglightgray px-[2rem] lg:px-[8.5rem] py-[5rem] lg:py-[6.25rem] flex flex-col gap-[5rem]"
+      >
         <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] text-center text-purple_dark">
           Lokasi Kantor Avrist General Assurance
         </p>

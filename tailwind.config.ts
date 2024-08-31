@@ -53,7 +53,7 @@ const config: Config = {
       'banner-title-desktop': [
         '36px',
         {
-          lineHeight: '43.2px',
+          lineHeight: '48.2px',
           letterSpacing: '-1.08px',
         },
       ],

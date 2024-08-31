@@ -97,7 +97,7 @@ export const ContactSupport = (props: Props) => {
               <p className="font-opensanspro font-bold">
                 {contentStringTransformer(pageData['informasi-2-nama'])}
               </p>
-              <p className="text-purple_dark text-[24px] font-opensanspro">
+              <p className="text-purple_dark text-[20px] font-opensanspro">
                 {contentStringTransformer(pageData['informasi-2-label-link'])}
               </p>
             </div>
@@ -121,7 +121,7 @@ export const ContactSupport = (props: Props) => {
               <p className="font-opensanspro font-bold">
                 {contentStringTransformer(pageData['informasi-3-nama'])}
               </p>
-              <p className="text-purple_dark text-[24px] font-opensanspro">
+              <p className="text-purple_dark text-[20px] font-opensanspro">
                 {contentStringTransformer(pageData['informasi-3-label-link'])}
               </p>
             </div>

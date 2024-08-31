@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import CustomerFund from '@/components/molecules/specifics/avram/_investasi/CustomerFund';
 import { format } from 'date-fns';
+import { id as idTime } from 'date-fns/locale';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
@@ -164,7 +165,9 @@ const Content = (props: contentProps) => {
           ({ contentData, id, createdAt, categoryName, title, shortDesc }) => {
             const category = categoryName;
             const description = shortDesc;
-            const date = format(new Date(createdAt), 'dd MMMM yyyy');
+            const date = format(new Date(createdAt), 'dd MMMM yyyy', {
+              locale: idTime
+            });
             const tags = contentStringTransformer(
               contentData.filter((item) => item.fieldId === 'tags')[0]
             )
@@ -336,8 +339,8 @@ const Content = (props: contentProps) => {
                     key={index}
                     bgColor="purple_superlight"
                     title={
-                      <div className="flex flex-col gap-4 text-left">
-                        <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[200px]">
+                      <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
+                        <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
                           {item.category !== '-' &&
                             item.category !== undefined && (
                               <div className="font-bold text-purple_dark">
@@ -348,22 +351,29 @@ const Content = (props: contentProps) => {
                             <div className="ml-2">{item.date}</div>
                           )}
                         </div>
-                        <p className="text-[36px] font-bold">
-                          {item.title !== '-' ? item.title : ''}
-                        </p>
-                        <p className="text-[16px] line-clamp-2">
-                          {item.description !== '-' ? item.description : ''}
-                        </p>
-                        <div className="flex flex-row flex-wrap gap-[12px]">
-                          {item.tags[0] !== '' && item.tags?.length > 0
-                            ? item.tags.map(
-                                (
-                                  value: string,
-                                  key: React.Key | null | undefined
-                                ) => <MediumTag key={key} title={value} />
-                              )
-                            : null}
+                        <div className="flex flex-col gap-3">
+                          <p className="text-[36px] font-bold">
+                            {item.title !== '-' ? item.title : ''}
+                          </p>
+                          <p className="text-[16px] line-clamp-2">
+                            {item.description !== '-' ? item.description : ''}
+                          </p>
                         </div>
+
+                        {item.tags[0] !== '' && item.tags?.length > 0 ? (
+                          <div className="flex flex-row flex-wrap gap-[12px]">
+                            {' '}
+                            {item.tags.map(
+                              (
+                                value: string,
+                                key: React.Key | null | undefined
+                              ) => (
+                                <MediumTag key={key} title={value} />
+                              )
+                            )}
+                          </div>
+                        ) : null}
+
                         <Link
                           href={`/pusat-informasi/pusat-informasi?tab=Agency&content=${item.id}`}
                         >

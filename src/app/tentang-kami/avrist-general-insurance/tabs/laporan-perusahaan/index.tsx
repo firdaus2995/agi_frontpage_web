@@ -73,7 +73,9 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
       });
 
       const categoryList = Object.keys(apiContent.data.categoryList);
-      categories.length < 1 && setCategories(categoryList);
+      if (categories.length < 1) {
+        setCategories(categoryList);
+      }
 
       setContentData(apiContent.data.categoryList[params.category]);
     } catch (err) {
@@ -258,9 +260,11 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
           </div>
           <CategoryWithThreeCards
             defaultSelectedCategory={'Laporan Perusahaan'}
-            onCategoryChange={(tab: any) => setParams({ ...params, category: tab })}
+            onCategoryChange={(tab: any) =>
+              setParams({ ...params, category: tab })
+            }
             filterRowLayout={true}
-            categories={contentData && categories ? categories : []}
+            categories={categories ? categories : []}
             tabs={[
               {
                 type: 'dropdown',
@@ -274,7 +278,9 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
               }
             ]}
             searchPlaceholder="Cari laporan"
-            onSearchChange={(e: { target: { value: React.SetStateAction<string>; }; }) => {
+            onSearchChange={(e: {
+              target: { value: React.SetStateAction<string> };
+            }) => {
               setSearch(e.target.value);
             }}
             onSearch={() => {

@@ -48,7 +48,7 @@ const SliderInformation = ({
               height={0}
               width={0}
               alt="sliderInformationImage"
-              className={`h-[470px] w-full object-cover ${imageClassName} rounded-r-3xl`}
+              className={`h-[360px] w-full object-cover ${imageClassName} rounded-r-3xl`}
               src={imageUrl !== '' ? imageUrl : BlankImage}
             />
             {isVideo && (
@@ -63,13 +63,13 @@ const SliderInformation = ({
       {/* Mobile */}
       <div className="flex py-[1.5rem] bg-white w-full lg:hidden">
         <div
-          className={`w-full min-h-[900px] md:min-h-[700px] grid grid-cols-1 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border`}
+          className={`w-full min-h-[480px] grid grid-cols-1 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border`}
         >
           <div
             className={`flex relative ${isVideo && 'cursor-pointer'}`}
             onClick={() => isVideo && setShow(true)}
           >
-            <div className='flex w-full h-[400px]'>
+            <div className='flex w-full h-[200px]'>
               <Image
                 height={0}
                 width={0}

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Open_Sans, Karla } from 'next/font/google';
 import './globals.css';
@@ -29,9 +30,11 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} ${karla.variable} w-full max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header />
+          {children}
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );

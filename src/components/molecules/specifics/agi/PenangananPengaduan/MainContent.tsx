@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Banner, ButtonMenu } from '../InformasiNasabah/MainContentComponent';
 import {
-  VideoInformation,
   ReportList,
   ContentCard,
   Content,
@@ -20,7 +19,6 @@ export const MainContent = () => {
         <div className="mt-[100px] mx-[32px] lg:mx-[136px]">
           <ButtonMenu />
           <Content />
-          <VideoInformation />
           <ContentCard />
           <ContentReportList />
           <ReportList />

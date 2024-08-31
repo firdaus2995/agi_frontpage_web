@@ -19,10 +19,10 @@ const SearchTerm = ({
 }) => {
   return (
     <div className="z-10 w-full bg-purple_dark -mt-[4rem] lg:-mt-[6.5rem] relative">
-      <div className="w-full h-[20rem] lg:h-[40rem] z-10 flex items-center absolute">
+      <div className="w-full h-[20rem] lg:h-[50vh] z-10 flex items-center absolute">
         <div className="w-full h-full grid lg:grid-cols-2 xs:grid-cols-1">
           <span />
-          <div className="flex flex-col xs:justify-center lg:gap-1 xs:gap-[36px] xs:px-[36px] lg:px-0 lg:pb-0 xs:pb-[4rem]">
+          <div className="flex flex-col xs:justify-center lg:gap-1 xs:px-[36px] lg:px-0 lg:pb-0 xs:pb-[4rem]">
             <div>
               <p className="font-karla text-[20px] lg:text-[48px] font-extrabold text-white text-shadow-h1 lg:leading-[57.6px] tracking-[0.03em]">
                 Halo, apa kabar?

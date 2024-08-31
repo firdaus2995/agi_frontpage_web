@@ -187,7 +187,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left justify-between lg:justify-center min-h-[290px] lg:h-[330px]">
+                <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
                   <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
@@ -201,20 +201,22 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
                       </div>
                     )}
                   </div>
-                  <p
-                    className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3"
-                    dangerouslySetInnerHTML={{
-                      __html: item.judul
-                    }}
-                  />
-                  <p
-                    className="text-[16px] line-clamp-2"
-                    dangerouslySetInnerHTML={{
-                      __html: item.deskripsi
-                        ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
-                        : '-'
-                    }}
-                  />
+                  <div className='flex flex-col gap-3'>
+                    <p
+                      className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-2"
+                      dangerouslySetInnerHTML={{
+                        __html: item.judul
+                      }}
+                    />
+                    <p
+                      className="text-[16px] line-clamp-2"
+                      dangerouslySetInnerHTML={{
+                        __html: item.deskripsi
+                          ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
+                          : '-'
+                      }}
+                    />
+                  </div>
 
                   <div className="flex flex-row flex-wrap gap-[12px]">
                     <MediumTag title={item.tags} />

@@ -92,7 +92,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     if (value !== null) {
       setActiveTab(value);
     }
-  }, [searchParams]);
+  }, [activeTab, categoryList, searchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -357,7 +357,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               <p className="text-[20px]">
                 Menampilkan{' '}
                 <span className="font-bold text-purple_dark">
-                  {dataContent?.length === 0 ? 0 : startIndex + 1}-
+                  {paginatedData?.length === 0 ? 0 : startIndex + 1}-
                   {Math.min(endIndex, dataContent ? dataContent.length : 0)}
                 </span>{' '}
                 dari <span className="font-bold">{dataContent?.length}</span>{' '}
@@ -365,24 +365,39 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               </p>
             </div>
             <div className="flex flex-row gap-[12px] items-center">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <div
-                    key={page}
-                    role="button"
-                    onClick={() => handlePageChange(page)}
-                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
-                      currentPage === page ? 'text-purple_dark font-bold' : ''
-                    }`}
-                  >
-                    {page}
-                  </div>
-                )
-              )}
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() =>
+                  handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+              <div className="flex flex-row flex-wrap">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <div
+                      key={page}
+                      role="button"
+                      onClick={() => handlePageChange(page)}
+                      className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                        currentPage === page ? 'text-purple_dark font-bold' : ''
+                      }`}
+                    >
+                      {page}
+                    </div>
+                  )
+                )}
+              </div>
               <span
                 className="mt-[3px]"
                 role="button"
-                onClick={() => handlePageChange(totalPages)}
+                onClick={() =>
+                  handlePageChange(
+                    currentPage === totalPages ? currentPage : currentPage + 1
+                  )
+                }
               >
                 <Icon name="chevronRight" color="purple_dark" />
               </span>

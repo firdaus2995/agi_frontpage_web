@@ -44,13 +44,13 @@ const Klaim = () => {
             const currentData =
               transformedData[Object.keys(transformedData)[idx]];
             const subcategories = getSubcategories(currentData);
-
+            
             return (
               <Accordion
                 key={idx}
                 bgColor="bg-purple_light_bg"
                 title={element}
-                description={currentData[0].categoryDescription}
+                description={currentData[0].categories[0].categoryDescription}
               >
                 <Accordion.Item>
                   {subcategories.map((list: any, index: number) => {

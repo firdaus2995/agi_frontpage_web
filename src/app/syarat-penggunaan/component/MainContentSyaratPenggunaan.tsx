@@ -45,10 +45,9 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
     ref: React.MutableRefObject<HTMLElement | null> | null
   ) => {
     if (ref?.current) {
-      (ref.current as HTMLElement).scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-        inline: 'start'
+      window.scrollTo({
+        top: ref?.current.offsetTop,
+        behavior: "smooth",
       });
     }
   };

@@ -97,7 +97,7 @@ export const HomeBannerModal = (props: HomeBannerModal) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="h-[100%] lg:w-[80%] lg:w-[60%] xs:w-[100%] transform overflow-hidden transition-all cursor-pointer">
+              <Dialog.Panel className="h-[100%] lg:w-[80%] 2xl:w-[60%] xs:w-[100%] transform overflow-hidden transition-all cursor-pointer">
                 <div className="absolute right-0 p-[24px]">
                   <button onClick={closeModal}>
                     <Icon name="close" width={24} height={24} color="white" />

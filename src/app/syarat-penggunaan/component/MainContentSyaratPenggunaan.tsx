@@ -46,8 +46,8 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
   ) => {
     if (ref?.current) {
       window.scrollTo({
-        top: ref?.current.offsetTop,
-        behavior: "smooth",
+        top: ref?.current.offsetTop + (window?.innerWidth > 768 ? 130 : 90),
+        behavior: 'smooth'
       });
     }
   };
@@ -110,7 +110,10 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
                 {tabs.map((val, idx) => (
                   <div
                     key={idx}
-                    onClick={() => handleTabClick(val)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleTabClick(val);
+                    }}
                     className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-footer-subtitle font-opensanspro ${
                       tab === val
                         ? 'border-purple_dark text-purple_dark'

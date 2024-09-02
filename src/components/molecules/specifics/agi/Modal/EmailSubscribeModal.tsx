@@ -125,7 +125,7 @@ export const EmailSubscribeModal = (props: Props) => {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-12 lg:px-[72px] lg:py-[90px] transition">
+                    <div className="p-12 lg:px-[72px] lg:py-[100px] transition">
                       <div className="absolute right-0 top-0 p-[24px]">
                         <button onClick={onClose}>
                           <Icon
@@ -158,7 +158,7 @@ export const EmailSubscribeModal = (props: Props) => {
                               }}
                             />
                             <form
-                              className="flex flex-1 xs:flex-col xm:flex-row mt-[40px] items-center gap-2"
+                              className="w-full   flex flex-1 xs:flex-col xm:flex-row mt-[40px] items-center gap-3"
                               onSubmit={(e) => {
                                 e.preventDefault();
                                 handleSubmit();
@@ -169,12 +169,12 @@ export const EmailSubscribeModal = (props: Props) => {
                                 placeholder="Masukkan email Anda"
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                className="flex-1 rounded-md p-[12px] border-1 border-purple_verylight text-white bg-purple_verylight/20"
+                                className="w-full flex rounded-md p-[12px] h-[45px] border-1 border-purple_verylight text-white bg-purple_verylight/20"
                               />
 
                               <button
                                 // type="submit"
-                                className="xm:ml-[12px] p-[12px] w-full bg-white rounded-md px-[20px] font-opensans font-semibold text-[16px] text-purple_dark"
+                                className="py-[8px] bg-white rounded-md px-[20px] h-[45px] font-opensans font-semibold text-[16px] text-purple_dark"
                               >
                                 {contentStringTransformer(
                                   contentData['label-button']

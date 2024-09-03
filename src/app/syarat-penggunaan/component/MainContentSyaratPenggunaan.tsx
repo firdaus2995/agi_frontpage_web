@@ -46,7 +46,7 @@ const MainContentSyaratPenggunaan = ({ content }: Props) => {
   ) => {
     if (ref?.current) {
       window.scrollTo({
-        top: ref?.current.offsetTop + (window?.innerWidth > 768 ? 130 : 90),
+        top: ref?.current.offsetTop + (window?.innerWidth > 1024 ? 130 : 90),
         behavior: 'smooth'
       });
     }

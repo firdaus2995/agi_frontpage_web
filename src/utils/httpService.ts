@@ -11,7 +11,7 @@ type Environment =
   | '';
 
 export interface QueryParams {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 interface FetchOptions extends RequestInit {
@@ -20,6 +20,9 @@ interface FetchOptions extends RequestInit {
   headers?: {
     Authorization?: string;
     'Content-Type': string;
+  };
+  next?: {
+    revalidate?: number;
   };
 }
 
@@ -32,12 +35,23 @@ export async function httpService<T>(
   const urlWithParams = buildURL(baseUrl + '/' + endpoint, options.queryParams);
 
   try {
-    const response = await fetch(urlWithParams, options);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    const response = await fetch(urlWithParams, {
+      ...options,
+      next: {
+        revalidate: options.next?.revalidate ?? 60
+      }
+    });
 
-    return (await response.json()) as T;
+    const responseBody = await response.json();
+
+    if (!response.ok) {
+      throw {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody
+      };
+    }
+    return responseBody as T;
   } catch (error) {
     console.error('Error fetching data:', error);
 

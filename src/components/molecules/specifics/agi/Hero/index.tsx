@@ -67,7 +67,7 @@ const Hero: React.FC<IHero> = ({
 
   return (
     <div
-      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] lg:h-[35.5rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
+      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] lg:h-[30.5rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
       style={{
         marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
       }}

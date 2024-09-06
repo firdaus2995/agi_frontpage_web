@@ -3,7 +3,7 @@ import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import Link from 'next/link';
-import { handleDownload } from '@/utils/helpers';
+import Button from '@/components/atoms/Button/Button';
 
 interface ICategorySideBySideSixCards {
   leftSide: {
@@ -171,8 +171,7 @@ const CategorySideBySideSixCards = ({
                     <button
                       type="button"
                       onClick={async () =>
-                        item.urlDownload &&
-                        (await handleDownload(item.urlDownload))
+                        window.open(item.urlDownload, '_blank')
                       }
                       className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
                     >
@@ -180,12 +179,14 @@ const CategorySideBySideSixCards = ({
                     </button>
                   ) : (
                     item.urlDownload && (
-                      <Link
-                        href={item.urlDownload}
-                        className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
-                      >
-                        <p>{item.btnLabel}</p>
-                      </Link>
+                      <Button
+                        title={item.btnLabel}
+                        customButtonClass={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
+                        customTextClass="text-white font-opensans font-semibold leading-[23.68px]"
+                        onClick={async () =>
+                          window.open(item.urlDownload, '_blank')
+                        }
+                      />
                     )
                   )}
                 </div>

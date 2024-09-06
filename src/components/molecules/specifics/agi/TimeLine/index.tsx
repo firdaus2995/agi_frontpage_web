@@ -157,7 +157,7 @@ const Timeline = ({ data, title }: IFooterInformation) => {
         </div>
       </div>
       <div className="w-full px-[2rem] lg:px-[8.5rem] mt-10">
-        <div className="mt-3 w-full flex flex-col gap-8 rounded-xl p-5 shadow-xl">
+        <div className="mt-3 w-full flex flex-col gap-8 rounded-xl p-5 shadow-xl border">
           {data
             .filter((val) => val.year === selectedItem)
             .map((filteredVal) =>

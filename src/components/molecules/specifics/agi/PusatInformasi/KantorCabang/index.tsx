@@ -245,7 +245,7 @@ const KantorCabang = () => {
     <div className="flex flex-col gap-[6.25rem] w-full">
       <div className="px-[2rem] lg:px-[8.5rem]">
         <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] text-center text-purple_dark my-[80px] leading-[120%] -tracking-[0.04em]">
-          Lokasi Kantor Cabang Avrist General Assurance
+          Lokasi Kantor Cabang Avrist General Insurance
         </p>
         <Card className="bg-white p-[1.5rem]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -329,7 +329,7 @@ const KantorCabang = () => {
         className="bg-gray_bglightgray px-[2rem] lg:px-[8.5rem] py-[5rem] lg:py-[6.25rem] flex flex-col gap-[5rem]"
       >
         <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] text-center text-purple_dark">
-          Lokasi Kantor Avrist General Assurance
+          Lokasi Kantor Avrist General Insurance
         </p>
         <Card className="bg-white p-[1.5rem] grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <CardAddress

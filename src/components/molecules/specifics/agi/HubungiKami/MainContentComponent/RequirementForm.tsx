@@ -92,7 +92,7 @@ export const RequirementForm = (props: Props) => {
   const onSubmitData = async () => {
     let queryParams = {};
 
-    const dataForm = formValue.concat(dataUpload)
+    const dataForm = formValue.concat(dataUpload);
     if (attachmentFile === '') {
       queryParams = {
         id: formId,
@@ -218,7 +218,7 @@ export const RequirementForm = (props: Props) => {
             </div>
             <span className="ml-[0.75rem]">
               Saya /kami telah membaca, memahami dan memberikan persetujuan
-              saya/kami kepada Avrist Life Insurance untuk mengumpulkan,
+              saya/kami kepada Avrist General Insurance untuk mengumpulkan,
               menggunakan dan mengungkapkan data pribadi saya/kami sesuai dengan{' '}
               <span className="font-bold text-purple_dark">
                 Deklarasi Privasi *

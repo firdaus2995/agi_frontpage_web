@@ -586,7 +586,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
               }}
             />
             <label className="cursor-pointer" htmlFor="setuju">
-              Saya setuju memberikan data pribadi Saya kepada Avrist Life
+              Saya setuju memberikan data pribadi Saya kepada Avrist General
               Insurance dan telah membaca{' '}
               <span
                 className="text-purple_dark font-bold"
@@ -594,10 +594,10 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
               >
                 Keamanan Online
               </span>{' '}
-              Avrist Life Insurance. Selanjutnya, Saya bersedia untuk dihubungi
-              oleh Avrist Life Insurance melalui media komunikasi pribadi Saya
-              sesuai hari dan jam operasional yang berlaku di Avrist Life
-              Insurance.
+              Avrist General Insurance. Selanjutnya, Saya bersedia untuk
+              dihubungi oleh Avrist General Insurance melalui media komunikasi
+              pribadi Saya sesuai hari dan jam operasional yang berlaku di
+              Avrist General Insurance.
             </label>
           </div>
           <div className="mt-[24px] lg:mt-[36px] flex flex-col lg:flex-row lg:justify-end lg:items-center">

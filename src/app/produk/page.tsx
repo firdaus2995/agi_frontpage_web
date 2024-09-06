@@ -301,6 +301,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             <div className="w-full">
               <SearchBar
                 placeholder="Cari"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e)}
                 searchButtonTitle="Cari"
                 searchButtonClassname="bg-purple_dark border border-purple_dark text-white font-semibold"
                 onSearch={handleChangeSearchParams}
@@ -311,11 +313,12 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             <DropdownMenu
               item={btnVerticalData}
               selectedData={categoryList.indexOf(activeTab)}
-              setSelectedData={(value) =>
+              setSelectedData={(value) => {
+                setSearchValue('');
                 router.push(pathname + '?' + createQueryString('tab', value), {
                   scroll: false
-                })
-              }
+                });
+              }}
               outerClass="w-full"
             />
           )}

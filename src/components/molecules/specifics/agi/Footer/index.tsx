@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import IconWrapper from './components/IconWrapper';
@@ -19,13 +19,15 @@ const additionalInfo = [
     href: '/keamanan-online'
   },
   {
-    title: 'Kebijakan Cookie',
-    href: '/kebijakan-cookies'
+    title: 'Hak Cipta & Merk Dagang',
+    href: '/hak-cipta'
   }
 ];
 
 const Footer = () => {
   const [globalConfig, setGlobalConfig] = useState<any>([]);
+  const [isAtFooter, setIsAtFooter] = useState(false);
+  const footerRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +36,25 @@ const Footer = () => {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsAtFooter(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
   }, []);
 
   const getLink = (value: string) => {
@@ -57,7 +78,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative">
+    <footer
+      ref={footerRef}
+      className="bg-gradient-to-b from-purple_soft to-purple_dark text-white relative"
+    >
       <div className="lg:p-16 p-8">
         <Image
           alt="Avrist"
@@ -257,7 +281,11 @@ const Footer = () => {
           alt="Whatsapp"
           height={0}
           width={0}
-          className="absolute bottom-full right-10 translate-y-1/2 aspect-square w-[6rem] lg:w-[10rem]"
+          className={`${
+            isAtFooter
+              ? 'absolute bottom-full right-10 md:right-[100px] xl:right-[185px] translate-y-1/2'
+              : 'fixed right-10 md:right-[100px] xl:right-[185px] 2xl:right-[calc((100vw-1536px)/2+185px)] 3xl:right-[calc((100vw-2000px)/2+185px)] bottom-24 z-[999]'
+          } aspect-square w-[6rem] lg:w-[10rem]`}
           src={WHATSAPP_IMAGE.src}
         />
       </Link>

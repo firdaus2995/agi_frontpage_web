@@ -101,7 +101,7 @@ const BannerAvrast = (props: BannerAvrastPopUp) => {
       <div
         style={{
           position: 'absolute',
-          left: window.innerWidth > 480 ? 136 : 156,
+          left: window.innerWidth > 480 ? 136 : window.innerWidth * 0.4,
           width: 150,
           bottom: 50
         }}

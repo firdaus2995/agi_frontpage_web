@@ -104,7 +104,7 @@ export const FeedbackForm = (props: Props) => {
           )}
           <div className="mt-[2.25rem]">
             <RatingEmoji
-              title="Penilaian Anda terhadap produk dan layanan Avrist Life Insurance"
+              title="Penilaian Anda terhadap produk dan layanan Avrist General Insurance"
               onChange={onEmojiChange}
             />
           </div>

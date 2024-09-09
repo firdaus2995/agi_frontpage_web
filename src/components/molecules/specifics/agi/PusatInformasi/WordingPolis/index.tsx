@@ -70,14 +70,10 @@ const WordingPolis = (props: WordingPolisProps) => {
     fetchContent();
   }, [search]);
 
-  useEffect(() => {
-    console.log(pageData);
-  }, [pageData]);
-
   return (
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla text-[2.25rem] lg:text-[3.5rem] text-purple_dark">
+        <h1 className="font-karla text-[2.25rem] lg:text-[3.5rem] text-purple_dark font-bold">
           {contentStringTransformer(pageData['body-judul'])}
         </h1>
       </section>

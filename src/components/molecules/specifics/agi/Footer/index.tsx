@@ -284,7 +284,7 @@ const Footer = () => {
           className={`${
             isAtFooter
               ? 'absolute bottom-full right-10 md:right-[100px] xl:right-[185px] translate-y-1/2'
-              : 'fixed right-10 md:right-[100px] xl:right-[185px] 2xl:right-[calc((100vw-1536px)/2+185px)] 3xl:right-[calc((100vw-2000px)/2+185px)] bottom-24 z-[999]'
+              : 'fixed right-10 md:right-[100px] xl:right-[185px] 2xl:right-[calc((100vw-1536px)/2+185px)] 3xl:right-[calc((100vw-2000px)/2+185px)] bottom-0 z-[999]'
           } aspect-square w-[6rem] lg:w-[10rem]`}
           src={WHATSAPP_IMAGE.src}
         />

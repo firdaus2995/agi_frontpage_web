@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Open_Sans, Karla } from 'next/font/google';
 import './globals.css';
 import packageJson from "../../package.json";
-import AGI_LOGO from '@/assets/images/agi-logo.svg';
 import Footer from '@/components/molecules/specifics/agi/Footer';
 import Header from '@/components/molecules/specifics/agi/Header';
 
@@ -16,9 +15,7 @@ const karla = Karla({ subsets: ['latin'], variable: '--font-karla' });
 export const metadata: Metadata = {
   title: 'Avrist General Insurance',
   description: 'Avrist General Insurance',
-  icons: {
-    icon: AGI_LOGO
-  }
+  icons:  [{ rel: 'icon', url: "next.svg" }],
 };
 
 export default function RootLayout({

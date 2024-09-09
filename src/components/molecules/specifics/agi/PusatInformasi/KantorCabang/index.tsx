@@ -146,12 +146,6 @@ const KantorCabang = () => {
     fetchContent();
   }, []);
 
-  useEffect(() => {
-    if (dataHo) {
-      onClickMarker(dataHo?.latOffice, dataHo?.longOffice);
-    }
-  }, [dataHo]);
-
   const handleScrollToRef = (
     ref: React.MutableRefObject<HTMLElement | null> | null
   ) => {

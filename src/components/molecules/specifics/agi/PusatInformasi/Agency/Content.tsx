@@ -2,9 +2,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import CustomerFund from '@/components/molecules/specifics/avram/_investasi/CustomerFund';
-import { format } from 'date-fns';
-import { id as idTime } from 'date-fns/locale';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
@@ -162,12 +159,21 @@ const Content = (props: contentProps) => {
           .flat()
           .filter((item) => item !== undefined && item !== null);
         const contentData = newDataContentWithCategory?.map(
-          ({ contentData, id, createdAt, categoryName, title, shortDesc }) => {
+          ({ contentData, id, categoryName, title, shortDesc }) => {
             const category = categoryName;
             const description = shortDesc;
-            const date = format(new Date(createdAt), 'dd MMMM yyyy', {
-              locale: idTime
-            });
+            const date = `${contentStringTransformer(
+              contentData.filter((item) => item.fieldId === 'tanggal')[0]
+            )} ${
+              monthDropdown().find(
+                (item) =>
+                  item.value ===
+                  contentData.filter((item) => item.fieldId === 'bulan')[0]
+                    .value
+              )?.label
+            } ${contentStringTransformer(
+              contentData.filter((item) => item.fieldId === 'tahun')[0]
+            )}`;
             const tags = contentStringTransformer(
               contentData.filter((item) => item.fieldId === 'tags')[0]
             )

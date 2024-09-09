@@ -15,7 +15,7 @@ const karla = Karla({ subsets: ['latin'], variable: '--font-karla' });
 export const metadata: Metadata = {
   title: 'Avrist General Insurance',
   description: 'Avrist General Insurance',
-  icons:  [{ rel: 'icon', url: "/favicon.svg" }],
+  icons:  [{ rel: 'icon', url: "next.svg" }],
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
         <link
           rel="icon"
           type="image/svg+xml"
-          href="/favicon.svg"
+          href="next.svg"
         />
         <meta content={packageJson.version} name="version" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

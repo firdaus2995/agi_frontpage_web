@@ -198,7 +198,7 @@ const CategorySideBySideSixCards = ({
                 {extraBox.title}
               </p>
               <Link
-                className="flex flex-row gap-[0.5rem] bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem] items-center"
+                className="flex flex-row gap-[0.5rem] bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[40px] items-center"
                 href={extraBox.url}
               >
                 <Image
@@ -207,7 +207,7 @@ const CategorySideBySideSixCards = ({
                   alt="symbol"
                   src={extraBox?.icon}
                 />
-                <p className="font-opensans font-semibold text-purple_dark text-[20px] whitespace-nowrap">
+                <p className="font-opensans font-semibold text-purple_dark text-[20px]">
                   {extraBox?.buttonTitle}
                 </p>
               </Link>

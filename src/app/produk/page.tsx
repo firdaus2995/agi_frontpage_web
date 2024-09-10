@@ -419,36 +419,35 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         image={data.footerInfoImageUrl}
         href={data.footerBtnUrl}
       />
-      <div className="pt-[60px]">
-        <FooterCards
-          cards={[
-            {
-              title: data.cta41.title,
-              icon: data.cta41.icon,
-              subtitle: data.cta41.subtitle,
-              href: data.cta41.url
-            },
-            {
-              title: data.cta42.title,
-              icon: data.cta42.icon,
-              subtitle: data.cta42.subtitle,
-              href: data.cta42.url
-            },
-            {
-              title: data.cta43.title,
-              icon: data.cta43.icon,
-              subtitle: data.cta43.subtitle,
-              href: data.cta43.url
-            },
-            {
-              title: data.cta44.title,
-              icon: data.cta44.icon,
-              subtitle: data.cta44.subtitle,
-              href: data.cta44.url
-            }
-          ]}
-        />
-      </div>
+      <FooterCards
+        bgColor="lg:bg-cta4_bg"
+        cards={[
+          {
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
+          },
+          {
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
+          },
+          {
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
+          },
+          {
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
+          }
+        ]}
+      />
     </div>
   );
 };

@@ -308,7 +308,7 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
               </div>
               <div className="flex flex-col gap-1 items-center">
                 <div
-                  className="flex items-center"
+                  className="flex flex-col gap-[2px] items-center"
                   role="button"
                   id="PopoverFocus"
                   onClick={() => setIsOPenPopover(!isOpenPopover)}
@@ -319,9 +319,9 @@ const DetailCSR = ({ params }: { params: { detail: string } }) => {
                     name="share"
                     color="purple_verylight"
                   />
+                  <div className="text-xs font-bold">Share</div>
                 </div>
 
-                <div className="text-xs font-bold">Share</div>
                 <ContentPopover
                   isOpenPopover={isOpenPopover}
                   setIsOPenPopover={() => setIsOPenPopover(false)}

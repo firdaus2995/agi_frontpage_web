@@ -196,7 +196,7 @@ const Detail = (props: agencyDetailProps) => {
             </div>
             <div className="flex flex-col gap-1 items-center">
               <div
-                className="flex items-center"
+                className="flex flex-col gap-[2px] items-center"
                 id="PopoverFocus"
                 role="button"
                 onClick={() => setIsOPenPopover(!isOpenPopover)}
@@ -207,9 +207,9 @@ const Detail = (props: agencyDetailProps) => {
                   name="share"
                   color="purple_verylight"
                 />
+                <div className="text-xs font-bold">Share</div>
               </div>
 
-              <div className="text-xs font-bold">Share</div>
               <ContentPopover
                 isOpenPopover={isOpenPopover}
                 setIsOPenPopover={() => setIsOPenPopover(false)}

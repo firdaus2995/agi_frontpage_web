@@ -154,7 +154,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
           dangerouslySetInnerHTML={{
             __html: description.replace(
               /<ol>/g,
-              `<ol class="list-decimal pl-6 font-karla">`
+              `<ol class="list-decimal pl-6 font-opensans">`
             )
           }}
         />
@@ -166,7 +166,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
           dangerouslySetInnerHTML={{
             __html: description.replace(
               /<ul>/g,
-              `<ul class="list-disc pl-6 font-karla">`
+              `<ul class="list-disc pl-6 font-opensans">`
             )
           }}
         />
@@ -236,16 +236,16 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                 onClick={() => setIsOPenPopover(!isOpenPopover)}
                 className="flex flex-row gap-1 items-center"
               >
-                <div className="flex items-center">
+                <div className="flex flex-col gap-[2px] items-center">
                   <Icon
                     width={24}
                     height={24}
                     name="share"
                     color="purple_verylight"
                   />
+                  <div className="text-xs font-bold">Share</div>
                 </div>
 
-                <div className="text-xs font-bold">Share</div>
                 <ContentPopover
                   isOpenPopover={isOpenPopover}
                   setIsOPenPopover={() => setIsOPenPopover(false)}

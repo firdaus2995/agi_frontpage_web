@@ -231,14 +231,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         setChannels(Array.from(uniqueChannels));
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    searchParams,
-    selectedChannels,
-    search,
-    activeTab,
-    isCategoryChange
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, selectedChannels, search, activeTab, isCategoryChange]);
 
   const handleSelectedChannels = (value: any) => {
     if (selectedChannels === value) {
@@ -337,7 +331,11 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
                   symbol={item.kategoriProdukIcon.imageUrl}
                   title={activeTab}
                   summary={item.namaProduk}
-                  description={item.deskripsiSingkatProduk}
+                  description={
+                    item.deskripsiSingkatProduk !== '-'
+                      ? item.deskripsiSingkatProduk
+                      : ''
+                  }
                   tags={item.tags.split(',')}
                   href={`/produk/${item.id}`}
                 />

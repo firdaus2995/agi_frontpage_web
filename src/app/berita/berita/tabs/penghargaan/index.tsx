@@ -142,6 +142,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
   };
 
   useEffect(() => {
+    setContentData([]);
     setPagination({
       currentPage: 1,
       itemsPerPage: 6

@@ -85,6 +85,7 @@ const Rekanan = (props: RekananProps) => {
       currentPage: 1,
       itemsPerPage: 5
     });
+    setContentData([]);
     fetchContent();
   }, [search]);
 

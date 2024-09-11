@@ -20,7 +20,7 @@ const WordingPolis = (props: WordingPolisProps) => {
   const { pageData } = props;
   const [contentData, setContentData] = useState<any>([]);
   const [search, setSearch] = useState('');
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -68,6 +68,7 @@ const WordingPolis = (props: WordingPolisProps) => {
 
   useEffect(() => {
     setCurrentPage(1);
+    setContentData([]);
     fetchContent();
   }, [search]);
 

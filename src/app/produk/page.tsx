@@ -96,7 +96,6 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   }, [activeTab, categoryList, searchParams]);
 
   useEffect(() => {
-    setCurrentPage(1);
     const fetchData = async () => {
       try {
         const data = await handleGetContentPage('Hal-Produk-AGI');
@@ -254,6 +253,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   };
 
   const handleChangeSearchParams = (value: string) => {
+    setDataContent([]);
+    setCurrentPage(1);
     setSearchValue(value);
     setSearch(value);
   };

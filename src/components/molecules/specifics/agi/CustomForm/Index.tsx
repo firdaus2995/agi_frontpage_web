@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import RatingEmoji from '../HubungiKami/MainContentComponent/form/Rating';
 import DocumentForm from './Components/Document';
 import CaptchaPicture from '@/assets/images/form-captcha.svg';
 import Radio from '@/components/atoms/Radio';
@@ -1297,9 +1298,11 @@ const CustomForm: React.FC<CustomFormProps> = ({
                   <p>{attribute.name}</p>
                 ) : (
                   <div>
-                    <p className="font-bold mb-2 leading-[21.79px]">
-                      {attribute.name} <span className="text-reddist">*</span>
-                    </p>
+                    {attribute.fieldType !== 'RATING' && (
+                      <p className="font-bold mb-2 leading-[21.79px]">
+                        {attribute.name} <span className="text-reddist">*</span>
+                      </p>
+                    )}
                     {attribute.fieldType === 'RADIO_BUTTON' ? (
                       <div className="flex flex-row gap-1">
                         {attribute.value
@@ -1617,6 +1620,16 @@ const CustomForm: React.FC<CustomFormProps> = ({
                             {JSON.parse(attribute.config).min_value}!
                           </p>
                         )}
+                      </div>
+                    ) : attribute.fieldType === 'RATING' ? (
+                      <div className="flex flex-col">
+                        <RatingEmoji
+                          title={attribute.name}
+                          onChange={(id) => {
+                            updateFormDataByName(attribute.componentId, id);
+                          }}
+                          ids={attribute.value}
+                        />
                       </div>
                     ) : (
                       <input

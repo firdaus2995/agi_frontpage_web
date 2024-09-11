@@ -81,6 +81,10 @@ const Rekanan = (props: RekananProps) => {
   };
 
   useEffect(() => {
+    setPagination({
+      currentPage: 1,
+      itemsPerPage: 5
+    });
     fetchContent();
   }, [search]);
 

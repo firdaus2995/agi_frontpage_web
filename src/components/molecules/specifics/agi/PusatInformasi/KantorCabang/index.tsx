@@ -225,6 +225,7 @@ const KantorCabang = () => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     if (search === '') {
       setContentData(tempData);
     } else {

@@ -195,7 +195,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
                         </div>
                       )}
                     <div className="xm:pl-2 flex flex-row whitespace-nowrap">
-                      {item.date !== '-' && item.date}{' '}
+                      {item.date !== '-' && item.date?.substr(0, 2)}{' '}
                       {item.waktu !== '-' && item.waktu}
                     </div>
                   </div>
@@ -306,7 +306,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
                     <CardCategoryC
                       summary={item.judul}
                       name=""
-                      position={`${item.date} ${item.waktu}`}
+                      position={`${item.date !== '-' ? item.date?.substr(0, 2) : ''} ${item.waktu && item.waktu}`}
                       image={item.image}
                     />
                   </Link>

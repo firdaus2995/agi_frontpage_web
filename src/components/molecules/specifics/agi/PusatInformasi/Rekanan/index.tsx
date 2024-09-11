@@ -88,7 +88,7 @@ const Rekanan = (props: RekananProps) => {
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1
-          className="font-karla font-light text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
+          className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
           dangerouslySetInnerHTML={{
             __html: contentStringTransformer(pageData['nama-section']) ?? ''
           }}

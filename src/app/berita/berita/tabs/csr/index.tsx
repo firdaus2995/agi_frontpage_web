@@ -175,7 +175,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         </h2>
       </div>
 
-      <div className="w-full h-full px-[2rem]">
+      <div className="w-full h-full px-[2rem] lg:px-[8.5rem]">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;
@@ -241,7 +241,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
             />
           ))}
         </Slider>
-        <div className="flex flex-row justify-between w-full mt-10 lg:mb-0 lg:px-[6.5rem]">
+        <div className="flex flex-row justify-between w-full">
           <div
             className="p-2 border-2 rounded-full border-purple_dark rotate-180"
             role="button"

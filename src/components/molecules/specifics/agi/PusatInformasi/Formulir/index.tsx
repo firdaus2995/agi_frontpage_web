@@ -72,9 +72,9 @@ const Formulir = () => {
   return (
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla font-light text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
+        <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
           Temukan{' '}
-          <span className="font-bold text-purple_dark">
+          <span className="text-purple_dark">
             formulir yang Anda butuhkan
           </span>{' '}
           di bawah ini

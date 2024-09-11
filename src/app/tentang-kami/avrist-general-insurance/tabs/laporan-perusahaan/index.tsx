@@ -248,7 +248,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-[5rem]">
           <div className="flex flex-col">
-            <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-extrabold text-purple_dark font-karla">
+            <p className="text-heading-1-mobile lg:text-heading-1-desktop text-center font-bold text-purple_dark font-karla">
               {title}
             </p>
             <p

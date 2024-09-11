@@ -55,7 +55,7 @@ export async function httpService<T>(
   } catch (error) {
     console.error('Error fetching data:', error);
 
-    throw error;
+    return error as T;
   }
 }
 

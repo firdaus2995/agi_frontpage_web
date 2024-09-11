@@ -631,7 +631,11 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
                 symbol={item.kategoriProdukIcon.imageUrl}
                 title={item.categoryName || ''}
                 summary={item.namaProduk}
-                description={item.deskripsiSingkatProduk}
+                description={
+                  item.deskripsiSingkatProduk !== '-'
+                    ? item.deskripsiSingkatProduk
+                    : ''
+                }
                 tags={item.tags.split(',')}
                 href={`/produk/${item.id}`}
                 imageProduk={item.produkImage.imageUrl}

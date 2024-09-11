@@ -105,28 +105,29 @@ const CategorySideBySideSixCards = ({
                   description: string;
                 },
                 index: number
-              ) => (
-                <React.Fragment key={index}>
-                  <div className="flex flex-col gap-[18px]">
-                    <div className="flex flex-row items-center gap-[12px]">
-                      <Image
-                        width={36}
-                        height={36}
-                        alt="symbol"
-                        src={item.symbol}
-                      />
-                      <p className="font-semibold text-[20px] leading-[28px] font-opensans">
-                        {item.title}
-                      </p>
+              ) =>
+                item.description !== '<p>-</p>' ? (
+                  <React.Fragment key={index}>
+                    <div className="flex flex-col gap-[18px]">
+                      <div className="flex flex-row items-center gap-[12px]">
+                        <Image
+                          width={36}
+                          height={36}
+                          alt="symbol"
+                          src={item.symbol}
+                        />
+                        <p className="font-semibold text-[20px] leading-[28px] font-opensans">
+                          {item.title}
+                        </p>
+                      </div>
+                      {item.description &&
+                        renderedDescription(item.description, false)}
                     </div>
-                    {item.description &&
-                      renderedDescription(item.description, false)}
-                  </div>
-                  {index !== leftSide.length - 1 && (
-                    <div className="border-b border-b-gray_light" />
-                  )}
-                </React.Fragment>
-              )
+                    {index !== leftSide.length - 1 && (
+                      <div className="border-b border-b-gray_light" />
+                    )}
+                  </React.Fragment>
+                ) : null
             )}
           </div>
         </div>
@@ -182,7 +183,6 @@ const CategorySideBySideSixCards = ({
                       <Button
                         title={item.btnLabel}
                         customButtonClass={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
-                        customTextClass="text-white font-opensans font-semibold leading-[23.68px]"
                         onClick={async () =>
                           window.open(item.urlDownload, '_blank')
                         }
@@ -207,7 +207,7 @@ const CategorySideBySideSixCards = ({
                   alt="symbol"
                   src={extraBox?.icon}
                 />
-                <p className="font-opensans font-semibold text-purple_dark text-[20px]">
+                <p className="font-opensans font-semibold text-purple_dark text-[16px]">
                   {extraBox?.buttonTitle}
                 </p>
               </Link>

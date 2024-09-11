@@ -15,3 +15,13 @@ export const handleSubscribe = async (query: QueryParams) => {
     body: JSON.stringify(query)
   });
 };
+
+export const handleVerifySubscribe = async (query: string) => {
+  return await httpService<SubscribeResponse>(
+    'default',
+    `subscribe/verifying?code=${query}`,
+    {
+      method: 'GET'
+    }
+  );
+};

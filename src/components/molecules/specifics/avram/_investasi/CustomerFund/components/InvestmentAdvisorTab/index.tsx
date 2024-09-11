@@ -21,13 +21,13 @@ const InvestmentAdvisor = () => {
   ];
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="grid lg:grid-cols-2 gap-6">
       {/* Percentage circle */}
       <div className="place-self-center w-full max-w-[400px] aspect-square p-4 border-solid border-purple_dark border-[20px] rounded-full flex items-center justify-center flex-col gap-4">
-        <p className="font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-karla tracking-tighter">
+        <p className="font-bold text-4xl lg:text-6xl lg:text-7xl lg:text-8xl font-karla tracking-tighter">
           100 %
         </p>
-        <p className="text-center text-sm sm:text-base">
+        <p className="text-center text-sm lg:text-base">
           Avrist Asset Management funds outperformed their peer averages
         </p>
       </div>

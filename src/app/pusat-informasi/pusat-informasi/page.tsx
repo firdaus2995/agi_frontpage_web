@@ -172,7 +172,7 @@ const PusatInformasi = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla leading-[120%] -tracking-[0.04em]"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla leading-[120%] -tracking-[0.04em]"
             dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
           />
         }
@@ -182,7 +182,7 @@ const PusatInformasi = () => {
       />
 
       <FooterCards
-        bgColor="md:bg-cta4_bg"
+        bgColor="lg:bg-cta4_bg"
         cards={[
           {
             title: data.cta41.title,

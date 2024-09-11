@@ -83,17 +83,17 @@ const NavCard: React.FC<NavCardProps> = ({
             className={`w-full flex flex-col ${idx === 0 ? 'pr-[2.25rem]' : 'pl-[2.25rem]'}`}
           >
             {xPosition ? (
-              <div className="absolute top-[-16px]" style={{ left: xPosition }}>
+              <div className="absolute top-[-15px]" style={{ left: xPosition }}>
                 <TriangleMarker />
               </div>
             ) : null}
 
             <div className="flex flex-col gap-6">
-              <h2 className="text-menu-header-title-desktop font-bold text-gray_title font-karla">
+              <h2 className="text-menu-header-title font-bold text-gray_title font-karla">
                 {val.title}
               </h2>
               <div
-                className={`${val.title === '' && 'mt-10'} flex flex-col justify-between gap-6 w-full cursor-pointer`}
+                className={`${val.title === '' && 'mt-9'} flex flex-col justify-between gap-6 w-full cursor-pointer`}
               >
                 {val?.subMenus?.map((item, index) =>
                   item?.listMenu ? (

@@ -19,7 +19,12 @@ import BlackOverlay from '@/components/atoms/BlackOverlay';
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import SimpleContainer from '@/components/molecules/specifics/agi/Containers/Simple';
+import { handleGetContentCategory } from '@/services/content-page.api';
 import { EXTERNAL_URL } from '@/utils/baseUrl';
+import {
+  contentCategoryTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const Header = () => {
   const menuRef: any = useRef(null);
@@ -29,6 +34,7 @@ const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isShowEmailSubs, setIsShowEmailSubs] = useState(false);
   const [xPositions, setXPositions] = useState<number[]>([]);
+  const [contentData, setContentData] = useState<any>({});
 
   useEffect(() => {
     function handleClickOutside(event: any) {
@@ -54,10 +60,8 @@ const Header = () => {
       const itemWidth = rect.width / 2.5;
 
       let adjustment = 0;
-      if (windowWidth > 1536 && windowWidth <= 1920) {
+      if (windowWidth > 1536) {
         adjustment = (windowWidth - 1536) / 2;
-      } else if (windowWidth > 1920) {
-        adjustment = (windowWidth - 1920) / 2;
       }
 
       leftPosition -= adjustment;
@@ -65,6 +69,16 @@ const Header = () => {
       const middlePositions = leftPosition + itemWidth;
       totalMiddlePositions.push(middlePositions);
     });
+
+    const fetchData = async () => {
+      const fetchApi = await handleGetContentCategory('Header-Footer-AGI', {
+        includeAttributes: 'true'
+      });
+      const transformedData = contentCategoryTransformer(fetchApi, '');
+      setContentData(transformedData[0]?.content);
+    };
+
+    fetchData();
 
     setXPositions(totalMiddlePositions);
   }, []);
@@ -89,7 +103,9 @@ const Header = () => {
                 src={VectorLogo}
                 alt="vector-logo"
               />
-              <p className="text-top-heading-group font-bold text-black">Avrist Group</p>
+              <p className="text-top-heading-group font-bold text-black">
+                Avrist Group
+              </p>
               <span
                 className={`transform transition-transform ${
                   isDropdownHeaderVisible ? 'rotate-180' : ''
@@ -132,16 +148,34 @@ const Header = () => {
           </div>
         </Menu>
 
-        <div className="flex flex-row justify-between gap-4 md:divide-x-2  justify-center items-center">
-          <Link
-            href={`/tanya-avgen`}
-            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden"
-          >
-            <Icon name="helpcircle" color="gray_black" />
-            <p className="font-bold text-top-heading-group">Tanya AvGen</p>
-          </Link>
+        <div className="flex flex-row justify-between gap-4 lg:divide-x-2  justify-center items-center">
+          {contentData['top-header-looping']
+            ? contentData['top-header-looping']?.contentData?.map(
+                (item: any, index: any) => (
+                  <Link
+                    key={index}
+                    href={item?.details[2].value}
+                    className="flex flex-row gap-2 cursor-pointer lg:flex xs:hidden"
+                  >
+                    <Image
+                      src={
+                        singleImageTransformer(item?.details[0])?.imageUrl ?? ''
+                      }
+                      alt={
+                        singleImageTransformer(item?.details[0])?.altText ?? ''
+                      }
+                      width={20}
+                      height={20}
+                    />
+                    <p className="font-bold text-top-heading-group">
+                      {item?.details[1].value}
+                    </p>
+                  </Link>
+                )
+              )
+            : null}
           <div
-            className="flex flex-row gap-2 cursor-pointer md:flex xs:hidden pl-3"
+            className="flex flex-row gap-2 cursor-pointer lg:flex xs:hidden pl-3"
             onClick={() => setIsShowEmailSubs(true)}
           >
             <Icon name="mail" color="gray_black" />
@@ -161,10 +195,17 @@ const Header = () => {
         paddingY="py-[1.25rem]"
       >
         <div className="flex justify-between items-center w-full gap-8">
-          <ul className="md:flex gap-[2.5rem] items-center hidden">
+          <ul className="lg:flex gap-[2.5rem] items-center hidden">
             <Link href={`/`}>
               <Button.IconButton>
-                <Icon name="homeIcon" color="white" width={24} isSquare />
+                <Image
+                  alt="home"
+                  width={24}
+                  height={24}
+                  src={
+                    singleImageTransformer(contentData['home-icon'])?.imageUrl
+                  }
+                />
               </Button.IconButton>
             </Link>
             {menus.map((item, idx) => {
@@ -189,13 +230,21 @@ const Header = () => {
             })}
           </ul>
           <Button.IconButton
-            customButtonClass="inline-block md:hidden"
+            customButtonClass="inline-block lg:hidden"
             onClick={() => setIsDropdownVisible((prevState) => !prevState)}
           >
             <Icon name="hamburgerMenuIcon" color="white" />
           </Button.IconButton>
           <Link href={`/`}>
-            <Image alt="Avrist Logo" src={AVRIST_LOGO} width={94} height={48} />
+            <Image
+              alt="Avrist"
+              width={94}
+              height={48}
+              src={
+                singleImageTransformer(contentData['logo-image'])?.imageUrl ??
+                AVRIST_LOGO
+              }
+            />
           </Link>
         </div>
         <NavDropdownMenus

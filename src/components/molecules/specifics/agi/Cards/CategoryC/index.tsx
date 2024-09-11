@@ -45,14 +45,14 @@ const CardCategoryC = ({
             className="w-full h-[190px] object-cover rounded-t-xl"
           />
           {isVideo && (
-            <div className="w-full h-full absolute flex items-center justify-center md:justify-between">
+            <div className="w-full h-full absolute flex items-center justify-center lg:justify-between">
               <Image alt={'play-button'} className="w-16" src={PlayButton} />
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-4 px-[24px] pb-[36px] h-full">
-          <p className="text-[24px] font-bold text-left">{summary}</p>
-          <p className="text-[14px] text-left h-full flex items-end">
+        <div className="flex flex-col gap-4 px-[24px] pb-[36px] h-full justify-between">
+          <p className="text-[24px] font-bold text-left line-clamp-2 font-karla leading-[28.8px] -tracking-[0.03em]">{summary}</p>
+          <p className="text-[14px] text-left flex items-end">
             <span className="font-bold text-purple_dark">{name}</span>{' '}
             {position}
           </p>

@@ -2,8 +2,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import CustomerFund from '@/components/molecules/specifics/avram/_investasi/CustomerFund';
-import { format } from 'date-fns';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
@@ -46,14 +44,6 @@ const Content = (props: contentProps) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 640,
-        settings: {
-          centerMode: false
-        }
-      }
-    ]
   };
 
   const router = useRouter();
@@ -161,10 +151,21 @@ const Content = (props: contentProps) => {
           .flat()
           .filter((item) => item !== undefined && item !== null);
         const contentData = newDataContentWithCategory?.map(
-          ({ contentData, id, createdAt, categoryName, title, shortDesc }) => {
+          ({ contentData, id, categoryName, title, shortDesc }) => {
             const category = categoryName;
             const description = shortDesc;
-            const date = format(new Date(createdAt), 'dd MMMM yyyy');
+            const date = `${contentStringTransformer(
+              contentData.filter((item) => item.fieldId === 'tanggal')[0]
+            )} ${
+              monthDropdown().find(
+                (item) =>
+                  item.value ===
+                  contentData.filter((item) => item.fieldId === 'bulan')[0]
+                    .value
+              )?.label
+            } ${contentStringTransformer(
+              contentData.filter((item) => item.fieldId === 'tahun')[0]
+            )}`;
             const tags = contentStringTransformer(
               contentData.filter((item) => item.fieldId === 'tags')[0]
             )
@@ -202,7 +203,7 @@ const Content = (props: contentProps) => {
         console.error('Error:', error);
       }
     };
-
+    setCurrentPage(1);
     fetchData();
   }, [params]);
 
@@ -310,11 +311,11 @@ const Content = (props: contentProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-center py-2 pt-[5rem] pb-[32px] lg:pb-[64px]">
       <div className="text-center lg:pb-2 xs:pb-[56px]">
-        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-medium text-purple_dark">
+        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-bold text-purple_dark">
           {contentStringTransformer(pageData['nama-section'])}
         </h2>
         <h2
-          className="text-[1.5rem] md:text-[2rem]"
+          className="text-[1.5rem] lg:text-[2rem]"
           dangerouslySetInnerHTML={{
             __html: contentStringTransformer(pageData['deskripsi-section'])
           }}
@@ -336,8 +337,8 @@ const Content = (props: contentProps) => {
                     key={index}
                     bgColor="purple_superlight"
                     title={
-                      <div className="flex flex-col gap-4 text-left">
-                        <div className="grid grid-cols-2 divide-x-2 text-[14px] w-[200px]">
+                      <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
+                        <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
                           {item.category !== '-' &&
                             item.category !== undefined && (
                               <div className="font-bold text-purple_dark">
@@ -348,22 +349,29 @@ const Content = (props: contentProps) => {
                             <div className="ml-2">{item.date}</div>
                           )}
                         </div>
-                        <p className="text-[36px] font-bold">
-                          {item.title !== '-' ? item.title : ''}
-                        </p>
-                        <p className="text-[16px] line-clamp-2">
-                          {item.description !== '-' ? item.description : ''}
-                        </p>
-                        <div className="flex flex-row flex-wrap gap-[12px]">
-                          {item.tags[0] !== '' && item.tags?.length > 0
-                            ? item.tags.map(
-                                (
-                                  value: string,
-                                  key: React.Key | null | undefined
-                                ) => <MediumTag key={key} title={value} />
-                              )
-                            : null}
+                        <div className="flex flex-col gap-3">
+                          <p className="text-[36px] font-bold">
+                            {item.title !== '-' ? item.title : ''}
+                          </p>
+                          <p className="text-[16px] line-clamp-2">
+                            {item.description !== '-' ? item.description : ''}
+                          </p>
                         </div>
+
+                        {item.tags[0] !== '' && item.tags?.length > 0 ? (
+                          <div className="flex flex-row flex-wrap gap-[12px]">
+                            {' '}
+                            {item.tags?.slice(0, 2).map(
+                              (
+                                value: string,
+                                key: React.Key | null | undefined
+                              ) => (
+                                <MediumTag key={key} title={value} />
+                              )
+                            )}
+                          </div>
+                        ) : null}
+
                         <Link
                           href={`/pusat-informasi/pusat-informasi?tab=Agency&content=${item.id}`}
                         >
@@ -380,13 +388,13 @@ const Content = (props: contentProps) => {
               }
             })}
           </Slider>
-          <div className="flex flex-row justify-between w-full mt-10 md:mb-0">
+          <div className="flex flex-row justify-between w-full">
             <div
-              className="p-2 border-2 rounded-full border-purple_dark"
+              className="p-2 border-2 rounded-full border-purple_dark rotate-180"
               role="button"
               onClick={previous}
             >
-              <Icon name="chevronLeft" color="purple_dark" />
+              <Icon name="chevronRight" color="purple_dark" />
             </div>
             <div
               className="p-2 border-2 rounded-full border-purple_dark"
@@ -401,7 +409,7 @@ const Content = (props: contentProps) => {
 
       <div className="flex flex-col w-full">
         <CategoryWithThreeCards
-          outerClass={'!py-[48px]'}
+          outerClass={'xs:pb-[24px] lg:!pb-[48px] pt-[5rem]'}
           hiddenCategory
           hidePagination
           defaultSelectedCategory={category}
@@ -431,7 +439,7 @@ const Content = (props: contentProps) => {
           customContent={
             <>
               {paginatedData.length > 0 ? (
-                <div className="grid grid-cols-3 gap-[24px] xs:max-sm:grid-cols-1">
+                <div className="grid grid-cols-3 gap-[24px] xs:max-lg:grid-cols-1">
                   {paginatedData.map(
                     (
                       item: {
@@ -462,7 +470,7 @@ const Content = (props: contentProps) => {
             </>
           }
         />
-        <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+        <div className="flex flex-col gap-4 lg:flex-row justify-between mt-[24px]">
           <p className="text-[20px]">
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">

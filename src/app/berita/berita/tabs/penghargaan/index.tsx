@@ -16,6 +16,7 @@ import SliderInformation from '@/components/molecules/specifics/agi/SliderInform
 import { getPenghargaan } from '@/services/berita';
 import { mergeAllData } from '@/utils/helpers';
 import {
+  contentStringTransformer,
   handleTransformedContent,
   singleImageTransformer
 } from '@/utils/responseTransformer';
@@ -67,15 +68,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
     arrows: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 640,
-        settings: {
-          centerMode: false
-        }
-      }
-    ]
+    slidesToScroll: 1
   };
 
   const fetchContent = async () => {
@@ -115,8 +108,10 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
           content['artikel-thumbnail']
         ).imageUrl;
         const id = item.id;
-        const tags = content['tags'].value;
-        const date = new Date(item.createdAt).getDate();
+        const tags = contentStringTransformer(content['tags'])
+          .split(',')
+          .map((tag: string) => tag.trim());
+        const date = content['tanggal'].value;
         const artikelTopic = 'Berita dan Acara';
 
         return {
@@ -147,6 +142,11 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
   };
 
   useEffect(() => {
+    setContentData([]);
+    setPagination({
+      currentPage: 1,
+      itemsPerPage: 6
+    });
     fetchContent();
   }, [params]);
 
@@ -165,17 +165,17 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center py-2">
-      <div className="text-center px-[2rem] md:px-[8.5rem] lg:pb-[8px] xs:pb-[56px] flex flex-col gap-[0.75rem]">
-        <h2 className="text-[2.25rem] md:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
+      <div className="text-center px-[2rem] lg:px-[8.5rem] lg:pb-[8px] xs:pb-[56px] flex flex-col gap-[0.75rem]">
+        <h2 className="text-[2.25rem] lg:text-[3.5rem] font-bold text-purple_dark leading-[2.7rem]">
           {title ?? 'Penghargaan Avrist General Insurance'}
         </h2>
-        <h2 className="text-[1.125rem] md:text-[2.25rem]">
+        <h2 className="text-[1.125rem] lg:text-[2.25rem]">
           {description ??
             'Informasi terkini dari siaran pers hingga aktivitas sosial.'}
         </h2>
       </div>
 
-      <div className="w-full h-full px-[2rem]">
+      <div className="w-full h-full px-[2rem] lg:px-[8.5rem]">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;
@@ -187,7 +187,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
               key={index}
               bgColor="purple_superlight"
               title={
-                <div className="flex flex-col gap-4 text-left justify-between md:justify-center min-h-[290px] md:h-[330px]">
+                <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
                   <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
@@ -195,34 +195,43 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                           {item.artikelTopic}
                         </div>
                       )}
-                    {item.date !== '-' && item.date !== undefined && (
-                      <div className="xm:pl-2 flex flex-row whitespace-nowrap">
-                        {item.date} {item.waktu}
-                      </div>
+                    <div className="xm:pl-2 flex flex-row whitespace-nowrap">
+                      {item.date !== '-' && item.date?.substr(0, 2)}{' '}
+                      {item.waktu !== '-' && item.waktu}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <p
+                      className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3 "
+                      dangerouslySetInnerHTML={{
+                        __html: item.judul
+                      }}
+                    />
+                    {!item.deskripsi[0]?.value?.includes('-') && (
+                      <p
+                        className="text-[16px] line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: item.deskripsi
+                            ? item.deskripsi[0]?.value
+                            : '-'
+                        }}
+                      />
                     )}
                   </div>
-                  <p
-                    className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3 "
-                    dangerouslySetInnerHTML={{
-                      __html: item.judul
-                    }}
-                  />
-                  <p
-                    className={
-                      item.deskripsi[0]?.value?.substring(0, 250) === '<p>-</p>'
-                        ? 'hidden'
-                        : 'text-[16px] line-clamp-2'
-                    }
-                    dangerouslySetInnerHTML={{
-                      __html: item.deskripsi
-                        ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
-                        : '-'
-                    }}
-                  />
 
-                  <div className="flex flex-row flex-wrap gap-[12px]">
-                    <MediumTag title={item.tags} />
-                  </div>
+                  {item.tags[0] !== '' && item.tags?.length > 0 ? (
+                    <div className="flex flex-row flex-wrap gap-[12px]">
+                      {' '}
+                      {item.tags
+                        ?.slice(0, 2)
+                        .map(
+                          (
+                            value: string,
+                            key: React.Key | null | undefined
+                          ) => <MediumTag key={key} title={value} />
+                        )}
+                    </div>
+                  ) : null}
                   <Link
                     href={{
                       pathname: `/berita/berita/tabs/penghargaan/${item.id}`
@@ -239,13 +248,13 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
             />
           ))}
         </Slider>
-        <div className="flex flex-row justify-between w-full mt-10 md:mb-0 md:px-[6.5rem]">
+        <div className="flex flex-row justify-between w-full">
           <div
-            className="p-2 border-2 rounded-full border-purple_dark"
+            className="p-2 border-2 rounded-full border-purple_dark rotate-180"
             role="button"
             onClick={previous}
           >
-            <Icon name="chevronLeft" color="purple_dark" />
+            <Icon name="chevronRight" color="purple_dark" />
           </div>
           <div
             className="p-2 border-2 rounded-full border-purple_dark"
@@ -258,7 +267,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
       </div>
 
       <CategoryWithThreeCards
-        outerClass="px-[2rem] pt-[2rem] md:px-[8.5rem] w-full pb-[100px]"
+        outerClass="px-[2rem] py-[5rem] lg:px-[8.5rem] w-full"
         defaultSelectedCategory={'Berita dan Kegiatan'}
         filterRowLayout={true}
         hiddenCategory
@@ -287,7 +296,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         customContent={
           paginatedData.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
                 {paginatedData?.map((item: any, index: number) => (
                   <Link
                     key={index}
@@ -298,7 +307,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                     <CardCategoryC
                       summary={item.judul}
                       name=""
-                      position={`${item.date} ${item.waktu}`}
+                      position={`${item.date !== '-' ? item.date?.substr(0, 2) : ''} ${item.waktu && item.waktu}`}
                       image={item.image}
                     />
                   </Link>

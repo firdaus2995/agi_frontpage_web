@@ -19,7 +19,8 @@ const config: Config = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      '2xl': '1536px'
+      '2xl': '1536px',
+      '3xl': '2000px'
     },
     fontSize: {
       'heading-1-desktop': [
@@ -53,7 +54,7 @@ const config: Config = {
       'banner-title-desktop': [
         '36px',
         {
-          lineHeight: '43.2px',
+          lineHeight: '48.2px',
           letterSpacing: '-1.08px',
         },
       ],

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { monthDropdown } from '../../../components/dropdown-filter';
 import ContentPopover from '@/app/berita/berita/components/popover';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon from '@/components/atoms/Icon';
@@ -80,6 +81,11 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
   const [visibleSubscribeModal, setVisibleSubscribeModal] =
     useState<boolean>(false);
   // const [emailContent, setEmailContent] = useState('');
+  const [keyParams, setKeyParams] = useState({
+    yearFilter: '',
+    monthFilter: '',
+    searchFilter: ''
+  });
 
   const fetchData = () => {
     try {
@@ -173,7 +179,13 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
     const bulan = content['bulan'].value;
     const tahun = content['tahun'].value;
     const artikel = content['artikel-looping'].contentData;
-    const tanggal = content['tanggal'].value;
+    const tanggal = `${content['tanggal'].value} ${
+      monthDropdown(keyParams, setKeyParams).find(
+        (item) =>
+          item.value === content['bulan'].value ||
+          item.label === content['bulan'].value
+      )?.label
+    } ${content['tahun'].value}`;
     const loopArtikel = artikel.map((item: any, itemIndex: number) => {
       return (
         <React.Fragment key={itemIndex}>
@@ -214,7 +226,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
             if (fieldType === 'YOUTUBE_URL' && isNotEmpty) {
               return (
                 <div
-                  className="w-full xs:h-[250px] md:h-[650px] xs:mb-10 md:mb-0"
+                  className="w-full xs:h-[250px] lg:h-[650px] xs:mb-10 lg:mb-0"
                   key={detailIndex}
                 >
                   <VideoPlayer
@@ -279,7 +291,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] md:px-[20.5rem] pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] lg:px-[20.5rem] pb-[6.25rem] gap-[3rem] w-full">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               Penghargaan
@@ -313,7 +325,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
               </div>
               <div className="flex flex-col gap-1 items-center">
                 <div
-                  className="flex items-center"
+                  className="flex flex-col gap-[2px] items-center"
                   role="button"
                   id="PopoverFocus"
                   onClick={() => setIsOPenPopover(!isOpenPopover)}
@@ -324,9 +336,9 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
                     name="share"
                     color="purple_verylight"
                   />
+                  <div className="text-xs font-bold">Share</div>
                 </div>
 
-                <div className="text-xs font-bold">Share</div>
                 <ContentPopover
                   isOpenPopover={isOpenPopover}
                   setIsOPenPopover={() => setIsOPenPopover(false)}
@@ -348,7 +360,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
         <FooterInformation
           title={
             <p
-              className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+              className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
               dangerouslySetInnerHTML={{ __html: data?.footerText ?? '' }}
             />
           }
@@ -357,7 +369,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
           href={data?.footerBtnUrl}
         />
       </div>
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

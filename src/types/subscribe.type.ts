@@ -1,4 +1,5 @@
 export interface SubscribeResponse {
+    body: any
     code: number
     status: string
     data: DataSubscribe

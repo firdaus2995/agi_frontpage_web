@@ -3,7 +3,7 @@ import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import Link from 'next/link';
-import { handleDownload } from '@/utils/helpers';
+import Button from '@/components/atoms/Button/Button';
 
 interface ICategorySideBySideSixCards {
   leftSide: {
@@ -50,7 +50,7 @@ const CategorySideBySideSixCards = ({
     const isUnordered = description.includes('<ul>');
     const defaultClassName = isRightSide
       ? 'text-sm font-opensans'
-      : 'xs:text-xl sm:text-2xl font-karla -tracking-[0.72px]';
+      : 'xs:text-xl lg:text-2xl font-karla -tracking-[0.72px]';
 
     if (isOrdered) {
       return (
@@ -86,8 +86,8 @@ const CategorySideBySideSixCards = ({
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 xs:gap-[1.5rem] md:gap-[4rem] h-full">
-      <div className="col-span-1 sm:col-span-2">
+    <div className="grid grid-cols-1 lg:grid-cols-3 xs:gap-[1.5rem] lg:gap-[4rem] h-full">
+      <div className="col-span-1 lg:col-span-2">
         <div
           className={`${customLeftSideClassname} h-full flex flex-col gap-[36px] p-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
         >
@@ -105,28 +105,29 @@ const CategorySideBySideSixCards = ({
                   description: string;
                 },
                 index: number
-              ) => (
-                <React.Fragment key={index}>
-                  <div className="flex flex-col gap-[18px]">
-                    <div className="flex flex-row items-center gap-[12px]">
-                      <Image
-                        width={36}
-                        height={36}
-                        alt="symbol"
-                        src={item.symbol}
-                      />
-                      <p className="font-semibold text-[20px] leading-[28px] font-opensans">
-                        {item.title}
-                      </p>
+              ) =>
+                item.description !== '<p>-</p>' ? (
+                  <React.Fragment key={index}>
+                    <div className="flex flex-col gap-[18px]">
+                      <div className="flex flex-row items-center gap-[12px]">
+                        <Image
+                          width={36}
+                          height={36}
+                          alt="symbol"
+                          src={item.symbol}
+                        />
+                        <p className="font-semibold text-[20px] leading-[28px] font-opensans">
+                          {item.title}
+                        </p>
+                      </div>
+                      {item.description &&
+                        renderedDescription(item.description, false)}
                     </div>
-                    {item.description &&
-                      renderedDescription(item.description, false)}
-                  </div>
-                  {index !== leftSide.length - 1 && (
-                    <div className="border-b border-b-gray_light" />
-                  )}
-                </React.Fragment>
-              )
+                    {index !== leftSide.length - 1 && (
+                      <div className="border-b border-b-gray_light" />
+                    )}
+                  </React.Fragment>
+                ) : null
             )}
           </div>
         </div>
@@ -144,51 +145,52 @@ const CategorySideBySideSixCards = ({
                 icon?: string;
               },
               index: number
-            ) => (
-              <div
-                key={index}
-                className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
-              >
-                <span className="flex flex-row gap-[1.188rem] items-center">
-                  <Image
-                    width={61}
-                    height={61}
-                    alt="symbol"
-                    src={item?.icon ?? ''}
-                    className={`${!item?.icon ? 'hidden' : 'block'}`}
-                  />
-                  <p
-                    className={`${rightTitleClassname} font-bold text-banner-title-mobile lg:text-banner-title-desktop font-karla -tracking-[1.08px]`}
-                  >
-                    {item.title}
-                  </p>
-                </span>
+            ) =>
+              item?.title !== '' && (
+                <div
+                  key={index}
+                  className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
+                >
+                  <span className="flex flex-row gap-[1.188rem] items-center">
+                    <Image
+                      width={61}
+                      height={61}
+                      alt="symbol"
+                      src={item?.icon ?? ''}
+                      className={`${!item?.icon ? 'hidden' : 'block'}`}
+                    />
+                    <p
+                      className={`${rightTitleClassname} font-bold text-banner-title-mobile lg:text-banner-title-desktop font-karla -tracking-[1.08px]`}
+                    >
+                      {item.title}
+                    </p>
+                  </span>
 
-                {item.description &&
-                  renderedDescription(item.description, true)}
-                {item.hasDownloadButton ? (
-                  <button
-                    type="button"
-                    onClick={async () =>
-                      item.urlDownload &&
-                      (await handleDownload(item.urlDownload))
-                    }
-                    className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
-                  >
-                    <p>{item.btnLabel}</p>
-                  </button>
-                ) : (
-                  item.urlDownload && (
-                    <Link
-                      href={item.urlDownload}
-                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
+                  {item.description &&
+                    renderedDescription(item.description, true)}
+                  {item.hasDownloadButton ? (
+                    <button
+                      type="button"
+                      onClick={async () =>
+                        window.open(item.urlDownload, '_blank')
+                      }
+                      className={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans`}
                     >
                       <p>{item.btnLabel}</p>
-                    </Link>
-                  )
-                )}
-              </div>
-            )
+                    </button>
+                  ) : (
+                    item.urlDownload && (
+                      <Button
+                        title={item.btnLabel}
+                        customButtonClass={`${buttonClassname} border-1 px-10 py-3 rounded-[8px] text-[20px] font-semibold font-opensans text-center`}
+                        onClick={async () =>
+                          window.open(item.urlDownload, '_blank')
+                        }
+                      />
+                    )
+                  )}
+                </div>
+              )
           )}
           {extraBox && extraBox.title && (
             <div className="flex flex-col gap-[1.5rem] bg-purple_superlight py-[2.25rem] px-[1.5rem] rounded-xl items-center">
@@ -196,7 +198,7 @@ const CategorySideBySideSixCards = ({
                 {extraBox.title}
               </p>
               <Link
-                className="flex flex-row gap-[0.5rem] bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[4.031rem] items-center"
+                className="flex flex-row gap-[0.5rem] bg-white border border-purple_dark rounded-xl py-[0.75rem] px-[40px] items-center"
                 href={extraBox.url}
               >
                 <Image
@@ -205,7 +207,7 @@ const CategorySideBySideSixCards = ({
                   alt="symbol"
                   src={extraBox?.icon}
                 />
-                <p className="font-opensans font-semibold text-purple_dark text-[20px] whitespace-nowrap">
+                <p className="font-opensans font-semibold text-purple_dark text-[16px]">
                   {extraBox?.buttonTitle}
                 </p>
               </Link>

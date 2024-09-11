@@ -31,7 +31,7 @@ const PerformanceProgressBar: React.FC<PerformanceProgressBarProps> = ({
       <span className="text-sm">Rendah</span>
       <progress
         data-progress-color={determineThreshold(value)}
-        className={`${styles['progress-bar']} w-[5rem] sm:w-[10rem]`}
+        className={`${styles['progress-bar']} w-[5rem] lg:w-[10rem]`}
         value={value}
         max={1}
       >

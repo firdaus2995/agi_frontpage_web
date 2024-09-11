@@ -122,7 +122,7 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
             }
           ]}
         />
-        <div className="xs:-mt-[3.4rem] md:-mt-[6.3rem] relative z-[10]">
+        <div className="xs:-mt-[3.4rem] lg:-mt-[6.3rem] relative z-[10]">
           <ArtikelTanyaAvrista
             title={titleContent}
             content={mainContent as string}
@@ -130,7 +130,7 @@ const DetailTanyaAvgen = ({ params }: { params: { detail: string } }) => {
         </div>
         <FooterInformation
           title={
-            <p className="font-karla text-[2.5rem] md:text-[3.5rem] md:tracking-[-0.3%] md:leading-[61.6px]">
+            <p className="font-karla text-[2.5rem] lg:text-[3.5rem] lg:tracking-[-0.3%] lg:leading-[61.6px]">
               Ada yang bisa{' '}
               <span className="font-bold text-purple_dark">AvGen</span> bantu
               untuk Anda?

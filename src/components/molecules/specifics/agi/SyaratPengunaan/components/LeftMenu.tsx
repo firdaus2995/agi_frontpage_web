@@ -8,7 +8,7 @@ export const LeftMenu = (props: LeftMenuProps) => {
   const { active, data, onClick } = props;
   return (
     <div>
-      <div className="xs:hidden md:block">
+      <div className="xs:hidden lg:block">
         <div
           className={`flex flex-col bg-purple_light_bg rounded-lg w-[200px]`}
         >

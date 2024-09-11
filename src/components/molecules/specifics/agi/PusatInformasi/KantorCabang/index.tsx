@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useMap } from 'react-leaflet';
 import { Card } from './Card';
@@ -33,6 +33,7 @@ import 'leaflet/dist/leaflet.css';
 const L = typeof window !== 'undefined' ? require('leaflet') : undefined;
 
 const KantorCabang = () => {
+  const mapsRef = useRef(null);
   const [contentData, setContentData] = useState<any>([]);
   const [tempData, setTempData] = useState<any>([]);
   const [search, setSearch] = useState('');
@@ -145,16 +146,23 @@ const KantorCabang = () => {
     fetchContent();
   }, []);
 
-  useEffect(() => {
-    if (dataHo) {
-      onClickMarker(dataHo?.latOffice, dataHo?.longOffice);
+  const handleScrollToRef = (
+    ref: React.MutableRefObject<HTMLElement | null> | null
+  ) => {
+    if (ref?.current) {
+      (ref.current as HTMLElement).scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'start'
+      });
     }
-  }, [dataHo]);
+  };
 
   const onClickMarker = (lat: number, lng: number) => {
     if (lat !== 0 || lng !== 0) {
       setMapCenter([lat, lng]);
     }
+    handleScrollToRef(mapsRef);
   };
 
   const RenderMap = () => {
@@ -217,6 +225,7 @@ const KantorCabang = () => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     if (search === '') {
       setContentData(tempData);
     } else {
@@ -229,12 +238,12 @@ const KantorCabang = () => {
 
   return (
     <div className="flex flex-col gap-[6.25rem] w-full">
-      <div className="px-[2rem] md:px-[8.5rem]">
-        <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem] text-center text-purple_dark my-[80px] leading-[120%] -tracking-[0.04em]">
-          Lokasi Kantor Cabang Avrist General Assurance
+      <div className="px-[2rem] lg:px-[8.5rem]">
+        <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] text-center text-purple_dark my-[80px] leading-[120%] -tracking-[0.04em]">
+          Lokasi Kantor Cabang Avrist General Insurance
         </p>
         <Card className="bg-white p-[1.5rem]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <span className="font-opensans font-bold text-[24px]">
               Kantor Cabang
             </span>
@@ -244,7 +253,7 @@ const KantorCabang = () => {
             />
           </div>
           {paginatedData?.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[12px] gap-y-[24px] mt-[24px]">
               {paginatedData?.map((i: any, index: number) => (
                 <CardAddress
                   key={index}
@@ -261,7 +270,7 @@ const KantorCabang = () => {
           ) : (
             <NotFound />
           )}
-          <div className="flex flex-col gap-4 md:flex-row justify-between mt-[24px]">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between mt-[24px]">
             <p className="text-[20px]">
               Menampilkan{' '}
               <span className="font-bold text-purple_dark">
@@ -310,11 +319,14 @@ const KantorCabang = () => {
           </div>
         </Card>
       </div>
-      <div className="bg-gray_bglightgray px-[2rem] md:px-[8.5rem] py-[5rem] md:py-[6.25rem] flex flex-col gap-[5rem]">
-        <p className="font-karla font-bold text-[2.25rem] md:text-[3.5rem] text-center text-purple_dark">
-          Lokasi Kantor Avrist General Assurance
+      <div
+        ref={mapsRef}
+        className="bg-gray_bglightgray px-[2rem] lg:px-[8.5rem] py-[5rem] lg:py-[6.25rem] flex flex-col gap-[5rem]"
+      >
+        <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] text-center text-purple_dark">
+          Lokasi Kantor Avrist General Insurance
         </p>
-        <Card className="bg-white p-[1.5rem] grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <Card className="bg-white p-[1.5rem] grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <CardAddress
             title={dataHo?.title}
             address={dataHo?.addressOffice}
@@ -325,7 +337,7 @@ const KantorCabang = () => {
             onChangeCenter={onClickMarker}
           />
           {dataHo?.latOffice ? (
-            <Card className="md:col-span-2 min-h-[100%] w-full">
+            <Card className="lg:col-span-2 min-h-[100%] w-full">
               {RenderMap()}
             </Card>
           ) : null}

@@ -118,7 +118,7 @@ const InfoKlaimTab = () => {
           <span className="font-bold">efisien.</span>
         </h2>
       </div>
-      <div className="grid grid-cols-3 gap-5 xs:hidden md:grid">
+      <div className="grid grid-cols-3 gap-5 xs:hidden lg:grid">
         {data.map((val, idx) => (
           <div
             key={idx}
@@ -126,10 +126,10 @@ const InfoKlaimTab = () => {
           >
             <Image src={val.icon} alt={val.title} className="w-20" />
             <div className="flex flex-col items-center justify-center gap-2">
-              <h5 className="mb-2 md:text-[24px] xs:text-[20px] font-bold tracking-tight text-gray-900 dark:text-white mt-5 text-center">
+              <h5 className="mb-2 lg:text-[24px] xs:text-[20px] font-bold tracking-tight text-gray-900 dark:text-white mt-5 text-center">
                 {val.title}
               </h5>
-              <p className="mb-3 font-normal md:text-[16px] xs:text-[12px] text-gray-500 dark:text-gray-400 line-clamp-3 text-center">
+              <p className="mb-3 font-normal lg:text-[16px] xs:text-[12px] text-gray-500 dark:text-gray-400 line-clamp-3 text-center">
                 {val.desc}
               </p>
               <div
@@ -143,7 +143,7 @@ const InfoKlaimTab = () => {
           </div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 md:hidden gap-4">
+      <div className="w-full grid grid-cols-1 lg:hidden gap-4">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;

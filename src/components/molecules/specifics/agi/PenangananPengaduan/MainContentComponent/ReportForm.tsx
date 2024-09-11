@@ -79,6 +79,7 @@ const UploadBox = (props: UploadBoxProps) => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
             multiple
+            accept="application/pdf"
           />
         </div>
       ) : (
@@ -87,7 +88,7 @@ const UploadBox = (props: UploadBoxProps) => {
           onClick={() => onDeleteData()}
         >
           <Icon name="close" height={24} width={24} color="purple_dark" />
-          <p className="font-opensans font-normal text-[14px] text-center">
+          <p className="font-opensans font-normal text-[14px] text-center line-clamp-2 break-all">
             {value?.name}
           </p>
           <p className="font-opensans font-normal text-[14px] text-center">
@@ -99,6 +100,7 @@ const UploadBox = (props: UploadBoxProps) => {
             style={{ display: 'none' }}
             onChange={handleFileChange}
             multiple
+            accept="application/pdf"
           />
         </div>
       )}
@@ -120,7 +122,7 @@ export const ReportForm = (props: ReportFormProps) => {
     setMaxSizeValidation,
     onSetFormData
   } = props;
-  const [attachmentFile, setAttachmentFile] = useState('');
+  const [attachmentFiles, setAttachmentFiles] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState({});
   const [fileKtp, setFileKtp] = useState<any>('');
   const [fileFormulir, setFileFormulir] = useState<any>('');
@@ -139,24 +141,32 @@ export const ReportForm = (props: ReportFormProps) => {
     } else {
       setFileDocument({ file: uploadedFile, value });
     }
-    if (attachmentFile === '') {
-      setAttachmentFile(value);
-    } else {
-      setAttachmentFile(attachmentFile + '|' + value);
-    }
+
+    setAttachmentFiles((prevFiles) => {
+      const newFiles = prevFiles.filter((file) => file !== value);
+      return [...newFiles, value];
+    });
+
     onSetFormData(uploadedFile.name, title);
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const handleDeleteData = (value: string, fileStateSetter: Function) => {
+    setAttachmentFiles((prevFiles) => prevFiles.filter((file) => file !== value));
+    fileStateSetter('');
+  };
+
   useEffect(() => {
-    if (attachmentFile) {
-      onChangeData(attachmentFile, selectedFile, 'add');
+    if (attachmentFiles.length > 0) {
+      const combinedFiles = attachmentFiles.join('|');
+      onChangeData(combinedFiles, selectedFile, 'add');
     }
-  }, [attachmentFile]);
+  }, [attachmentFiles]);
 
   return (
     <div>
       <form className="mt-[2.25rem]">
-        <div className="grid sm:grid-cols-2 xs:grid-cols-1 gap-8 mt-[2.25rem]">
+        <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-8 mt-[2.25rem]">
           {/* upload */}
           <div>
             <div className="">
@@ -169,16 +179,13 @@ export const ReportForm = (props: ReportFormProps) => {
                 </p>
               )}
             </div>
-            <div className="grid sm:grid-cols-3 xs:grid-cols-1 gap-2 mt-[0.5rem]">
+            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-2 mt-[0.5rem]">
               <UploadBox
                 title="Upload KTP"
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileKtp?.file}
-                onDeleteData={() => {
-                  onChangeData(fileKtp?.value, fileKtp?.file, 'delete');
-                  setFileKtp('');
-                }}
+                onDeleteData={() => handleDeleteData(fileKtp?.value, setFileKtp)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -186,14 +193,7 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileFormulir?.file}
-                onDeleteData={() => {
-                  onChangeData(
-                    fileFormulir?.value,
-                    fileFormulir?.file,
-                    'delete'
-                  );
-                  setFileFormulir('');
-                }}
+                onDeleteData={() => handleDeleteData(fileFormulir?.value, setFileFormulir)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -201,21 +201,14 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileDocument?.file}
-                onDeleteData={() => {
-                  onChangeData(
-                    fileDocument?.value,
-                    fileDocument?.file,
-                    'delete'
-                  );
-                  setFileDocument('');
-                }}
+                onDeleteData={() => handleDeleteData(fileDocument?.value, setFileDocument)}
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
             </div>
           </div>
           {/* contact support */}
           <div className="border border-gray_light rounded-xl flex flex-col justify-between overflow-hidden gap-[12px] p-[1rem] lg:p-[1.5rem] border-b-8 border-b-purple_dark">
-            <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
+            <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
               <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image
                   width={24}
@@ -227,31 +220,31 @@ export const ReportForm = (props: ReportFormProps) => {
                   Layanan Nasabah
                 </span>
               </div>
-              <span className="sm:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] sm:ml-0">
+              <span className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0">
                 021 5740 0381
               </span>
             </div>
             {/*  */}
-            <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
+            <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
               <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image width={24} height={24} alt="symbol" src={EMAIL} />
                 <span className="font-opensans font-bold text-[1rem]">
                   Email
                 </span>
               </div>
-              <span className="w-1/2 text-purple_dark font-normal text-[1rem] xs:ml-[36px] sm:ml-0 break-all">
+              <span className="w-1/2 text-purple_dark font-normal text-[1rem] xs:ml-[36px] lg:ml-0 break-all">
                 avrist.general@avrist.com
               </span>
             </div>
             {/*  */}
-            <div className="flex sm:flex-row xs:flex-col xs:items-start sm:items-center justify-between sm:gap-[24px] xs:gap-[0px]">
+            <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
               <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image width={24} height={24} alt="symbol" src={CLOCK} />
                 <span className="font-opensans font-bold text-[1rem]">
                   Waktu Operasional
                 </span>
               </div>
-              <span className="sm:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] xs:ml-[36px] sm:ml-0">
+              <span className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] xs:ml-[36px] lg:ml-0">
                 Senin - Jumat, 08.00 - 17.00 WIB
               </span>
             </div>

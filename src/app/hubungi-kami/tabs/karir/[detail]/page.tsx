@@ -65,6 +65,10 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await handleGetContentPage('hal-karir-agi-new');
@@ -150,7 +154,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
           dangerouslySetInnerHTML={{
             __html: description.replace(
               /<ol>/g,
-              `<ol class="list-decimal pl-6 font-karla">`
+              `<ol class="list-decimal pl-6 font-opensans">`
             )
           }}
         />
@@ -162,7 +166,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
           dangerouslySetInnerHTML={{
             __html: description.replace(
               /<ul>/g,
-              `<ul class="list-disc pl-6 font-karla">`
+              `<ul class="list-disc pl-6 font-opensans">`
             )
           }}
         />
@@ -186,13 +190,13 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         imageUrl={titleImage.imageUrl}
       />
 
-      <div className="flex items-center justify-center w-full px-[2rem] md:px-[8.5rem] xs:pt-[2.5rem] md:pt-[5rem] xs:pb-[5rem] md:pb-[6.25rem]">
+      <div className="flex items-center justify-center w-full px-[2rem] lg:px-[8.5rem] xs:pt-[2.5rem] lg:pt-[5rem] -mt-[3.5rem] lg:-mt-[6.5rem] xs:pb-[5rem] lg:pb-[6.25rem]">
         <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-5">
             <p className="font-semibold text-information-title-mobile lg:text-information-title-desktop">
               {title}
             </p>
-            <div className="flex flex-col lg:flex-row justify-end lg:justify-between items-end lg:items-center gap-4 lg:gap-10">
+            <div className="flex flex-row justify-between gap-4 lg:gap-10">
               <div className="flex flex-row gap-4 text-nowrap flex-wrap text-md">
                 <div className="flex flex-row items-center gap-2">
                   <Image
@@ -232,16 +236,16 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
                 onClick={() => setIsOPenPopover(!isOpenPopover)}
                 className="flex flex-row gap-1 items-center"
               >
-                <div className="flex items-center">
+                <div className="flex flex-col gap-[2px] items-center">
                   <Icon
-                    width={16}
-                    height={16}
+                    width={24}
+                    height={24}
                     name="share"
                     color="purple_verylight"
                   />
+                  <div className="text-xs font-bold">Share</div>
                 </div>
 
-                <div className="text-xs font-bold">Share</div>
                 <ContentPopover
                   isOpenPopover={isOpenPopover}
                   setIsOPenPopover={() => setIsOPenPopover(false)}
@@ -297,7 +301,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3 font-karla"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3 font-karla"
             dangerouslySetInnerHTML={{ __html: footerText ?? '' }}
           />
         }
@@ -306,7 +310,7 @@ const DetailKarir = ({ params }: { params: { detail: string } }) => {
         href={footerBtnUrl}
       />
 
-      <div className="w-full h-full md:bg-cta4_bg">
+      <div className="w-full h-full lg:bg-cta4_bg">
         <FooterCards
           cards={[
             {

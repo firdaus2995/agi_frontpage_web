@@ -39,7 +39,7 @@ export const SubmittedFormModal = (props: Props) => {
             >
               <Dialog.Panel className="transform transition-all overflow-hidden">
                 <CardRainbow className="bg-[#7e3f96] overflow-hidden">
-                  <div className="sm:h-[50vh] sm:w-[50vw] xs:w-full xs:h-full transition xs:p-4">
+                  <div className="lg:h-[50vh] lg:w-[50vw] xs:w-full xs:h-full transition xs:p-4">
                     <div className="absolute right-0 p-[1.5rem]">
                       <button onClick={onClose}>
                         <Icon
@@ -51,7 +51,7 @@ export const SubmittedFormModal = (props: Props) => {
                       </button>
                     </div>
                     <div className="flex flex-1 flex-col items-center justify-center h-full text-center px-[4.5rem]">
-                      <p className="font-karla font-semibold sm:text-[3rem] xs:text-[2rem]  text-white">
+                      <p className="font-karla font-semibold lg:text-[3rem] xs:text-[2rem]  text-white">
                         Terima kasih atas langganan Anda!
                       </p>
                       <p className="font-opensans font-normal text-[1.25rem] text-white">

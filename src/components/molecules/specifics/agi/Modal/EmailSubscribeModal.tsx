@@ -56,12 +56,17 @@ export const EmailSubscribeModal = (props: Props) => {
       entity: 'AGI'
     };
     const data = await handleSubscribe(queryParams);
+
     if (data.status === 'OK') {
       setIsSuccessSubs(true);
     }
 
+    if (data.body.status === 'EMAIL_ALREADY_EXISTS'){
+      setEmailError('Email sudah terdaftar');
+    }
+
     if (data.status !== 'OK') {
-      console.error('Error:', data.errors.message);
+      console.error('Error:', data.body.status);
     }
   };
 
@@ -115,8 +120,8 @@ export const EmailSubscribeModal = (props: Props) => {
                           />
                         </button>
                       </div>
-                      <div className="flex flex-1 flex-col items-center justify-center h-full text-center sm:px-[4.5rem] sm:py-[6.25rem] xs:px-[2rem] xs:py-[3.125rem] gap-[36px]">
-                        <p className="font-karla font-extrabold xs:text-[2.25rem] md:text-[3.5rem] text-white xs:leading-[43.2px] sm:leading-[57.6px] -tracking-[1.92px] mb-2">
+                      <div className="flex flex-1 flex-col items-center justify-center h-full text-center lg:px-[4.5rem] lg:py-[6.25rem] xs:px-[2rem] xs:py-[3.125rem] gap-[36px]">
+                        <p className="font-karla font-extrabold xs:text-[2.25rem] lg:text-[3.5rem] text-white xs:leading-[43.2px] lg:leading-[57.6px] -tracking-[1.92px] mb-2">
                           Terima kasih atas langganan Anda!
                         </p>
                         <p className="font-opensans font-normal text-[1.125rem] text-white leading-[25.2px]">
@@ -125,7 +130,7 @@ export const EmailSubscribeModal = (props: Props) => {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-12 lg:px-[72px] lg:py-[90px] transition">
+                    <div className="p-12 lg:px-[72px] lg:py-[100px] transition">
                       <div className="absolute right-0 top-0 p-[24px]">
                         <button onClick={onClose}>
                           <Icon
@@ -158,7 +163,7 @@ export const EmailSubscribeModal = (props: Props) => {
                               }}
                             />
                             <form
-                              className="flex flex-1 xs:flex-col xm:flex-row mt-[40px] items-center gap-2"
+                              className="w-full   flex flex-1 xs:flex-col xm:flex-row mt-[40px] items-center gap-3"
                               onSubmit={(e) => {
                                 e.preventDefault();
                                 handleSubmit();
@@ -169,12 +174,12 @@ export const EmailSubscribeModal = (props: Props) => {
                                 placeholder="Masukkan email Anda"
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                className="flex-1 rounded-md p-[12px] border-1 border-purple_verylight text-white bg-purple_verylight/20"
+                                className="w-full flex rounded-md p-[12px] h-[45px] border-1 border-purple_verylight text-white bg-purple_verylight/20"
                               />
 
                               <button
                                 // type="submit"
-                                className="xm:ml-[12px] p-[12px] w-full bg-white rounded-md px-[20px] font-opensans font-semibold text-[16px] text-purple_dark"
+                                className="py-[8px] bg-white rounded-md px-[20px] h-[45px] font-opensans font-semibold text-[16px] text-purple_dark"
                               >
                                 {contentStringTransformer(
                                   contentData['label-button']
@@ -182,7 +187,7 @@ export const EmailSubscribeModal = (props: Props) => {
                               </button>
                             </form>
                             {emailError && (
-                              <p className="text-red-500 ml-2">{emailError}</p>
+                              <p className="text-red-500 ml-2 text-left w-full">{emailError}</p>
                             )}
                           </div>
                         </div>

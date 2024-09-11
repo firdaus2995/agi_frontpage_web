@@ -227,7 +227,7 @@ const AccordionItem = ({
         onClick={() => setIsExpanded(index)}
       >
         <div className="flex w-full flex-row justify-between">
-          <div className="md:text-[20px] xs:text-[16px] font-bold">{title}</div>
+          <div className="lg:text-[20px] xs:text-[16px] font-bold">{title}</div>
           <div className="text-[24px] font-semibold text-purple_verylight">
             {isExpanded === index ? '-' : '+'}
           </div>
@@ -352,7 +352,7 @@ const AvrampediaList = () => {
   });
 
   return (
-    <div className="w-full flex flex-col bg-white md:px-20 xs:p-5 md:py-10 bg-purple_dark/[.03] gap-10">
+    <div className="w-full flex flex-col bg-white lg:px-20 xs:p-5 lg:py-10 bg-purple_dark/[.03] gap-10">
       <div className="flex flex-row justify-center items-center divide-x border rounded-lg bg-white flex-wrap">
         {headers.map((header, idx) => (
           <div
@@ -374,7 +374,7 @@ const AvrampediaList = () => {
         ))}
       </div>
       <div className="p-10 bg-white rounded-lg shadow-xl flex flex-col gap-4">
-        <p className="md:text-[56px] xs:text-[38px] font-bold text-purple_dark">
+        <p className="lg:text-[56px] xs:text-[38px] font-bold text-purple_dark">
           {selected}
         </p>
         <AccordionList data={data} selected={selected} />

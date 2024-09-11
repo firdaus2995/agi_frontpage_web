@@ -81,6 +81,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState('');
+  const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState(
     searchParams.get('tab') ?? categoryList[0]
   );
@@ -92,7 +93,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     if (value !== null) {
       setActiveTab(value);
     }
-  }, [searchParams]);
+  }, [activeTab, categoryList, searchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -230,13 +231,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         setChannels(Array.from(uniqueChannels));
       }
     });
-  }, [
-    searchParams,
-    selectedChannels,
-    searchValue,
-    activeTab,
-    isCategoryChange
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, selectedChannels, search, activeTab, isCategoryChange]);
 
   const handleSelectedChannels = (value: any) => {
     if (selectedChannels === value) {
@@ -251,7 +247,10 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   };
 
   const handleChangeSearchParams = (value: string) => {
+    setDataContent([]);
+    setCurrentPage(1);
     setSearchValue(value);
+    setSearch(value);
   };
 
   const btnVerticalData = categoryList?.map((item: any) => {
@@ -286,9 +285,9 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         imageUrl={data.titleImageUrl}
         bottomImageFit={bannerImageFit}
       />
-      <div className="flex flex-col px-[32px] sm:px-[136px] py-[50px] sm:pt-[80px] sm:pb-[100px] gap-[36px] sm:gap-[48px] sm:flex-row">
+      <div className="flex flex-col px-[32px] lg:px-[136px] py-[50px] lg:pt-[80px] lg:pb-[100px] gap-[36px] lg:gap-[48px] lg:flex-row">
         <div className="flex flex-col gap-[24px] grow">
-          <div className="flex flex-col md:flex-row gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row gap-5 justify-between">
             <div className="w-full">
               <ButtonSelection
                 buttonHelper={[]}
@@ -301,6 +300,8 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             <div className="w-full">
               <SearchBar
                 placeholder="Cari"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e)}
                 searchButtonTitle="Cari"
                 searchButtonClassname="bg-purple_dark border border-purple_dark text-white font-semibold"
                 onSearch={handleChangeSearchParams}
@@ -311,17 +312,18 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             <DropdownMenu
               item={btnVerticalData}
               selectedData={categoryList.indexOf(activeTab)}
-              setSelectedData={(value) =>
+              setSelectedData={(value) => {
+                setSearchValue('');
                 router.push(pathname + '?' + createQueryString('tab', value), {
                   scroll: false
-                })
-              }
+                });
+              }}
               outerClass="w-full"
             />
           )}
 
           {dataContent && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
               {paginatedData.map((item: any, index: number) => (
                 <CardCategoryA
                   key={index}
@@ -329,7 +331,11 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
                   symbol={item.kategoriProdukIcon.imageUrl}
                   title={activeTab}
                   summary={item.namaProduk}
-                  description={item.deskripsiSingkatProduk}
+                  description={
+                    item.deskripsiSingkatProduk !== '-'
+                      ? item.deskripsiSingkatProduk
+                      : ''
+                  }
                   tags={item.tags.split(',')}
                   href={`/produk/${item.id}`}
                 />
@@ -337,7 +343,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             </div>
           )}
           {dataContent?.length === 0 && (
-            <div className="w-full flex flex-col md:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
+            <div className="w-full flex flex-col lg:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
               <Image src={Search} alt="search" />
               <div className="flex flex-col gap-4">
                 <div className="w-[324px] text-center">
@@ -352,12 +358,12 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               </div>
             </div>
           )}
-          <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row justify-between">
             <div>
               <p className="text-[20px]">
                 Menampilkan{' '}
                 <span className="font-bold text-purple_dark">
-                  {dataContent?.length === 0 ? 0 : startIndex + 1}-
+                  {paginatedData?.length === 0 ? 0 : startIndex + 1}-
                   {Math.min(endIndex, dataContent ? dataContent.length : 0)}
                 </span>{' '}
                 dari <span className="font-bold">{dataContent?.length}</span>{' '}
@@ -365,24 +371,39 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
               </p>
             </div>
             <div className="flex flex-row gap-[12px] items-center">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <div
-                    key={page}
-                    role="button"
-                    onClick={() => handlePageChange(page)}
-                    className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
-                      currentPage === page ? 'text-purple_dark font-bold' : ''
-                    }`}
-                  >
-                    {page}
-                  </div>
-                )
-              )}
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() =>
+                  handlePageChange(currentPage > 1 ? currentPage - 1 : 1)
+                }
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
+              <div className="flex flex-row flex-wrap">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <div
+                      key={page}
+                      role="button"
+                      onClick={() => handlePageChange(page)}
+                      className={`w-6 h-6 flex items-center justify-center cursor-pointer ${
+                        currentPage === page ? 'text-purple_dark font-bold' : ''
+                      }`}
+                    >
+                      {page}
+                    </div>
+                  )
+                )}
+              </div>
               <span
                 className="mt-[3px]"
                 role="button"
-                onClick={() => handlePageChange(totalPages)}
+                onClick={() =>
+                  handlePageChange(
+                    currentPage === totalPages ? currentPage : currentPage + 1
+                  )
+                }
               >
                 <Icon name="chevronRight" color="purple_dark" />
               </span>
@@ -393,7 +414,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
       <FooterInformation
         title={
           <p
-            className="text-[36px] sm:text-[56px] text-center sm:text-left line-clamp-3"
+            className="text-[36px] lg:text-[56px] text-center lg:text-left line-clamp-3"
             dangerouslySetInnerHTML={{ __html: data.footerText ?? '' }}
           />
         }
@@ -401,36 +422,35 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         image={data.footerInfoImageUrl}
         href={data.footerBtnUrl}
       />
-      <div className="pt-[60px]">
-        <FooterCards
-          cards={[
-            {
-              title: data.cta41.title,
-              icon: data.cta41.icon,
-              subtitle: data.cta41.subtitle,
-              href: data.cta41.url
-            },
-            {
-              title: data.cta42.title,
-              icon: data.cta42.icon,
-              subtitle: data.cta42.subtitle,
-              href: data.cta42.url
-            },
-            {
-              title: data.cta43.title,
-              icon: data.cta43.icon,
-              subtitle: data.cta43.subtitle,
-              href: data.cta43.url
-            },
-            {
-              title: data.cta44.title,
-              icon: data.cta44.icon,
-              subtitle: data.cta44.subtitle,
-              href: data.cta44.url
-            }
-          ]}
-        />
-      </div>
+      <FooterCards
+        bgColor="lg:bg-cta4_bg"
+        cards={[
+          {
+            title: data.cta41.title,
+            icon: data.cta41.icon,
+            subtitle: data.cta41.subtitle,
+            href: data.cta41.url
+          },
+          {
+            title: data.cta42.title,
+            icon: data.cta42.icon,
+            subtitle: data.cta42.subtitle,
+            href: data.cta42.url
+          },
+          {
+            title: data.cta43.title,
+            icon: data.cta43.icon,
+            subtitle: data.cta43.subtitle,
+            href: data.cta43.url
+          },
+          {
+            title: data.cta44.title,
+            icon: data.cta44.icon,
+            subtitle: data.cta44.subtitle,
+            href: data.cta44.url
+          }
+        ]}
+      />
     </div>
   );
 };

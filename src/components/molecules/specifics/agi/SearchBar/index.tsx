@@ -7,6 +7,7 @@ interface SearchBarProps {
   searchButtonTitle?: string;
   searchButtonClassname?: string;
   onSearch?: (target: string) => void;
+  onChange?: (target: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -15,9 +16,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholderClassname,
   searchButtonTitle,
   searchButtonClassname,
-  onSearch
+  onSearch,
+  onChange
 }) => {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState(value ?? '');
 
   return (
     <form
@@ -31,7 +33,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={(ev) => setKeyword(ev.target.value)}
+        onChange={(ev) => {
+          onChange && onChange(ev.target.value);
+          setKeyword(ev.target.value);
+        }}
         className={`${placeholderClassname} focus:outline-none px-[16px] py-[12px] rounded-[12px] bg-purple_dark/[.06] grow text-card-subtitle-desktop`}
       />
       <button

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Banner, ButtonMenu } from '../InformasiNasabah/MainContentComponent';
 import {
-  VideoInformation,
   ReportList,
   ContentCard,
   Content,
@@ -17,10 +16,9 @@ export const MainContent = () => {
     <div className=" w-full flex flex-col">
       <div className="bg-white rounded-t-[80px] flex flex-col gap-6">
         <Banner alt="banner-informasi-nasabah" url={urlBanner} />
-        <div className="mt-[100px] mx-[32px] md:mx-[136px]">
+        <div className="mt-[100px] mx-[32px] lg:mx-[136px]">
           <ButtonMenu />
           <Content />
-          <VideoInformation />
           <ContentCard />
           <ContentReportList />
           <ReportList />

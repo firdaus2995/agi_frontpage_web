@@ -25,9 +25,9 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
     <div
       className={`
         absolute top-full left-0 right-0 z-50
-        flex md:hidden flex-col items-stretchgap-4 
+        flex lg:hidden flex-col items-stretchgap-4 
         bg-[white]
-        text-white text-sm p-4
+        text-white text-sm pt-4 px-4 pb-8
         transition-all duration-300 ease-in-out
         max-h-[50vh] overflow-y-auto
         ${isVisible ? styles['show-menu'] : styles['hide-menu']}
@@ -65,10 +65,12 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
             >
               <Disclosure.Panel className="p-2 text-[black] items-stretch gap-4 pl-2">
                 {item.content.map((val, idx) => (
-                  <div key={idx} className="pt-4">
-                    <span className="text-[20px] leading-[38.4px] -tracking-[0.96px] cursor-pointer rounded font-bold outline-none px-2 py-[17.5px]">
-                      {val.title}
-                    </span>
+                  <div key={idx}>
+                    {val.title ? (
+                      <span className="text-[20px] leading-[38.4px] -tracking-[0.96px] cursor-pointer rounded font-bold outline-none px-2 py-[17.5px]">
+                        {val.title}
+                      </span>
+                    ) : null}
                     {val.subMenus.map((el, index) => (
                       <div key={index} className="mt-4">
                         <Link
@@ -103,24 +105,6 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
           <Icon name="helpcircle" color="gray_black" />
           <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Tanya Avgen</p>
         </Link>
-        <Link
-          href={'https://shop.avrist.com/'}
-          target="blank"
-          className="flex flex-row gap-2 cursor-pointer ml-2"
-          onClick={() => setVisibility(false)}
-        >
-          <Icon name="shoppingCart" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Beli Online</p>
-        </Link>
-        <a
-          href={'https://my.avrist.com/welcome'}
-          target="_blank"
-          className="flex flex-row gap-2 cursor-pointer ml-2"
-          onClick={() => setVisibility(false)}
-        >
-          <Icon name="lightBulb" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Avrist Solution</p>
-        </a>
         <div
           className="flex flex-row gap-2 cursor-pointer ml-2"
           onClick={() => {

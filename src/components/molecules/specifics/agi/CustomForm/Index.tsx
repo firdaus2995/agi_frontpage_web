@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import RatingEmoji from '../HubungiKami/MainContentComponent/form/Rating';
 import DocumentForm from './Components/Document';
 import CaptchaPicture from '@/assets/images/form-captcha.svg';
 import Radio from '@/components/atoms/Radio';
@@ -525,12 +526,12 @@ const CustomForm: React.FC<CustomFormProps> = ({
         className={`${customFormClassname} flex flex-col self-stretch bg-white ${type === 'Karir' ? '' : 'gap-[20px] border border-gray_light '} border-b-8 rounded-[12px]`}
       >
         {title !== ' ' && (
-          <p className="font-karla font-bold text-[2.25rem] sm:text-[3.5rem] pt-4 px-4 sm:pb-4 -tracking-[3px] sm:-tracking-[2.24px] xs:leading-[2.5rem] md:leading-[67.2px]">
+          <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] pt-4 px-4 lg:pb-4 -tracking-[3px] lg:-tracking-[2.24px] xs:leading-[2.5rem] lg:leading-[67.2px]">
             {title ? title : 'Saya berminat memiliki proteksi ini'}
           </p>
         )}
         {type === 'Hubungi Kami' ? (
-          <div className="sm:grid sm:grid-cols-2 xs:flex xs:flex-col xs:gap-[1.5rem] sm:gap-[2.25rem]">
+          <div className="lg:grid lg:grid-cols-2 xs:flex xs:flex-col xs:gap-[1.5rem] lg:gap-[2.25rem]">
             {leftSide?.map((attribute: Attribute, idx) => {
               if (attribute.name.includes('produk')) {
                 return null;
@@ -734,9 +735,9 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         </section>
                       ) : attribute.fieldType === 'RANGE_DATE_PICKER' ? (
                         <section className="flex flex-col">
-                          <div className="flex xs:flex-col sm:flex-row w-full gap-2">
+                          <div className="flex xs:flex-col lg:flex-row w-full gap-2">
                             <div className="flex flex-row gap-2 items-center w-full">
-                              <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                              <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                                 From
                               </p>
                               <input
@@ -765,7 +766,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                               />
                             </div>
                             <div className="flex flex-row gap-2 items-center w-full">
-                              <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                              <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                                 To
                               </p>
                               <input
@@ -1131,9 +1132,9 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         </section>
                       ) : attribute.fieldType === 'RANGE_DATE_PICKER' ? (
                         <section className="flex flex-col">
-                          <div className="flex xs:flex-col sm:flex-row w-full gap-2">
+                          <div className="flex xs:flex-col lg:flex-row w-full gap-2">
                             <div className="flex flex-row gap-2 items-center w-full">
-                              <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                              <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                                 From
                               </p>
                               <input
@@ -1162,7 +1163,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                               />
                             </div>
                             <div className="flex flex-row gap-2 items-center w-full">
-                              <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                              <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                                 To
                               </p>
                               <input
@@ -1287,7 +1288,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
             })}
           </div>
         ) : type === 'Form Saran' ? (
-          <div className="grid grid-cols-1 xs:gap-[1.5rem] sm:gap-[2.25rem]">
+          <div className="grid grid-cols-1 xs:gap-[1.5rem] lg:gap-[2.25rem]">
             {attributeList?.map((attribute: Attribute) => (
               <div
                 key={attribute.id}
@@ -1297,9 +1298,11 @@ const CustomForm: React.FC<CustomFormProps> = ({
                   <p>{attribute.name}</p>
                 ) : (
                   <div>
-                    <p className="font-bold mb-2 leading-[21.79px]">
-                      {attribute.name} <span className="text-reddist">*</span>
-                    </p>
+                    {attribute.fieldType !== 'RATING' && (
+                      <p className="font-bold mb-2 leading-[21.79px]">
+                        {attribute.name} <span className="text-reddist">*</span>
+                      </p>
+                    )}
                     {attribute.fieldType === 'RADIO_BUTTON' ? (
                       <div className="flex flex-row gap-1">
                         {attribute.value
@@ -1506,9 +1509,9 @@ const CustomForm: React.FC<CustomFormProps> = ({
                       </section>
                     ) : attribute.fieldType === 'RANGE_DATE_PICKER' ? (
                       <section className="flex flex-col">
-                        <div className="flex xs:flex-col sm:flex-row w-full gap-2">
+                        <div className="flex xs:flex-col lg:flex-row w-full gap-2">
                           <div className="flex flex-row gap-2 items-center w-full">
-                            <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                            <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                               From
                             </p>
                             <input
@@ -1536,7 +1539,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                             />
                           </div>
                           <div className="flex flex-row gap-2 items-center w-full">
-                            <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                            <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                               To
                             </p>
                             <input
@@ -1618,6 +1621,16 @@ const CustomForm: React.FC<CustomFormProps> = ({
                           </p>
                         )}
                       </div>
+                    ) : attribute.fieldType === 'RATING' ? (
+                      <div className="flex flex-col">
+                        <RatingEmoji
+                          title={attribute.name}
+                          onChange={(id) => {
+                            updateFormDataByName(attribute.componentId, id);
+                          }}
+                          ids={attribute.value}
+                        />
+                      </div>
                     ) : (
                       <input
                         className="w-full px-[1rem] py-[0.625rem] border border-gray_light rounded-[0.875rem] text-[0.875rem]"
@@ -1648,10 +1661,10 @@ const CustomForm: React.FC<CustomFormProps> = ({
           </div>
         ) : (
           <div
-            className={`grid xs:grid-cols-1 ${type === 'Karir' ? 'gap-[0.25rem] sm:gap-[1rem]' : 'sm:grid-cols-2 gap-[2rem]'} p-4`}
+            className={`grid xs:grid-cols-1 ${type === 'Karir' ? 'gap-[0.25rem] lg:gap-[1rem]' : 'lg:grid-cols-2 gap-[2rem]'} p-4`}
           >
             <div
-              className={`flex flex-col xs:gap-[1.5rem] sm:gap-[2.25rem] font-opensans ${type === 'Karir' && 'sm:gap-[1rem]'}`}
+              className={`flex flex-col xs:gap-[1.5rem] lg:gap-[2.25rem] font-opensans ${type === 'Karir' && 'lg:gap-[1rem]'}`}
             >
               {leftSide?.map((attribute: Attribute) => (
                 <div
@@ -1840,7 +1853,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
               ))}
             </div>
             <div
-              className={`flex flex-col xs:gap-[1.5rem] sm:gap-[2.25rem] ${type === 'Karir' && 'sm:gap-[2rem]'}`}
+              className={`flex flex-col xs:gap-[1.5rem] lg:gap-[2.25rem] ${type === 'Karir' && 'lg:gap-[2rem]'}`}
             >
               {rightSide?.map((attribute: Attribute) => {
                 return (
@@ -2015,9 +2028,9 @@ const CustomForm: React.FC<CustomFormProps> = ({
                       </section>
                     ) : attribute.fieldType === 'RANGE_DATE_PICKER' ? (
                       <section className="flex flex-col">
-                        <div className="flex xs:flex-col sm:flex-row w-full gap-2">
+                        <div className="flex xs:flex-col lg:flex-row w-full gap-2">
                           <div className="flex flex-row gap-2 items-center w-full">
-                            <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                            <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                               From
                             </p>
                             <input
@@ -2060,7 +2073,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                             />
                           </div>
                           <div className="flex flex-row gap-2 items-center w-full">
-                            <p className="text-sm font-bold font-opensans xs:w-[15%] sm:w-auto">
+                            <p className="text-sm font-bold font-opensans xs:w-[15%] lg:w-auto">
                               To
                             </p>
                             <input
@@ -2201,12 +2214,12 @@ const CustomForm: React.FC<CustomFormProps> = ({
   return !dataForm ? (
     <>
       <div
-        className={`${customFormClassname} flex flex-col self-stretch bg-white p-[2.25rem] xs:gap-[1.5rem] sm:gap-[2.25rem] border border-gray_light border-b-8 rounded-[0.75rem] rounded-b-[0.5rem]`}
+        className={`${customFormClassname} flex flex-col self-stretch bg-white p-[2.25rem] xs:gap-[1.5rem] lg:gap-[2.25rem] border border-gray_light border-b-8 rounded-[0.75rem] rounded-b-[0.5rem]`}
       >
-        <p className="font-karla font-bold text-[2.25rem] sm:text-[3.5rem]">
+        <p className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem]">
           Saya berminat memiliki proteksi ini
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[2rem]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[2rem]">
           <div className="flex flex-col gap-[0.25rem]">
             <p className="font-bold">
               Saya adalah <span className="text-reddist">*</span>
@@ -2281,7 +2294,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
             Insurance.
           </label>
         </div>
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-[2rem]">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-[2rem]">
           <Image alt="captcha" src={CaptchaPicture} />
           <button
             type="button"

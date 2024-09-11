@@ -27,7 +27,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
-    slidesToShow: 4,
+    slidesToShow: 1,
     initialSlide: 0,
     infinite: false,
     swipeToSlide: false,
@@ -39,6 +39,16 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          vertical: false,
+          swipeToSlide: true,
+          verticalSwiping: true
+        }
+      },
+      {
+        breakpoint: 770,
+        settings: {
+          slidesToShow: 2.8,
+          slidesToScroll: 1.2,
           vertical: false,
           swipeToSlide: true,
           verticalSwiping: true
@@ -58,7 +68,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
   return (
     <div className="overflow-hidden">
       {/* Desktop */}
-      <div className={`xs:hidden md:block ${bgColor ?? ''}`}>
+      <div className={`xs:hidden lg:block ${bgColor ?? ''}`}>
         <div className="flex flex-row justify-between px-[8.5rem] gap-[1.5rem] py-[5rem] h-full">
           {cards.map((item, index) => {
             const href =
@@ -77,7 +87,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                       : href ?? '#'
                 }
                 target={item.openInNewTab ? '_blank' : '_self'}
-                className="relative border border-gray_superlight w-full h-auto pt-[24px] pb-[36px] px-[24px] rounded-xl flex flex-col gap-[1.5rem] items-center text-center shadow-md bg-white xs:max-sm:mt-4"
+                className="relative border border-gray_superlight w-full h-auto pt-[24px] pb-[36px] px-[24px] rounded-xl flex flex-col gap-[1.5rem] items-center text-center shadow-md bg-white xs:max-lg:mt-4"
               >
                 <Image
                   alt={index.toString()}
@@ -106,7 +116,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
 
       {/* Mobile */}
       <div className={`${bgColor ?? ''}`}>
-        <div className="md:hidden py-[5rem] flex flex-col gap-[2.25rem]">
+        <div className="lg:hidden py-[5rem] flex flex-col gap-[2.25rem] md:px-[32px]">
           <Slider {...settings} ref={sliderRef}>
             {cards.map((item, index) => {
               const href =
@@ -125,7 +135,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                             : href ?? '#'
                       }
                       target={item.openInNewTab ? '_blank' : '_self'}
-                      className="flex flex-col justify-between w-full mx-[2.5rem] h-full min-h-[18.75rem] px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-[0.75rem] shadow-md bg-white"
+                      className="flex flex-col h-[250px] justify-between w-full mx-[2.5rem] md:mx-[12px] h-full min-h-[18.75rem] px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-[0.75rem] shadow-md bg-white"
                     >
                       <div className="flex justify-center">
                         <Image
@@ -154,7 +164,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
               );
             })}
           </Slider>
-          <div className="w-full flex flex-row justify-between px-[2.5rem]">
+          <div className="w-full flex flex-row justify-between px-[2.5rem] md:hidden">
             <Image
               width={36}
               height={36}
@@ -171,6 +181,26 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
               onClick={next}
               className={
                 currentSlide === cards.length - 1 ? 'opacity-50' : 'opacity-100'
+              }
+            />
+          </div>
+          <div className="w-full md:flex flex-row justify-between px-[2.5rem] hidden">
+            <Image
+              width={36}
+              height={36}
+              alt="next"
+              src={ArrowCarouselLeft}
+              onClick={previous}
+              className={currentSlide === 0 ? 'opacity-50' : 'opacity-100'}
+            />
+            <Image
+              width={36}
+              height={36}
+              alt="next"
+              src={ArrowCarouselRight}
+              onClick={next}
+              className={
+                currentSlide === 2 ? 'opacity-50' : 'opacity-100'
               }
             />
           </div>

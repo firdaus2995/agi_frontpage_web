@@ -56,11 +56,11 @@ const Form = () => {
   return (
     <div className="z-[1] w-full bg-purple_dark -mt-1">
       <Image
-        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 md:mt-0"
+        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 lg:mt-0"
         alt="gambar-produk-individu"
         src={FAMILY_4}
       />
-      <div className="bg-white pt-[100px] px-[32px] md:px-[136px] pb-2">
+      <div className="bg-white pt-[100px] px-[32px] lg:px-[136px] pb-2">
         <ButtonMenu
           buttonList={[
             'Informasi Nasabah',
@@ -85,11 +85,11 @@ const Form = () => {
         </section>
 
         <section className="mb-2">
-          <div className="flex xs:flex-col md:flex-row gap-10">
-            <div className="xs:w-[100%] md:w-[23%] h-full bg-purple_light_bg rounded-xl">
+          <div className="flex xs:flex-col lg:flex-row gap-10">
+            <div className="xs:w-[100%] lg:w-[23%] h-full bg-purple_light_bg rounded-xl">
               <ButtonMenuVertical item={btnVerticalData} />
             </div>
-            <div className="xs:w-[100%] md:w-[77%] -mt-3">
+            <div className="xs:w-[100%] lg:w-[77%] -mt-3">
               <SearchBox onSearch={() => {}} placeHolder="Cari Formulir" />
               <div className="flex flex-col gap-3">
                 <Accordion

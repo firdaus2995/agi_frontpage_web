@@ -61,7 +61,7 @@ const Timeline = ({ data, title }: IFooterInformation) => {
       </TitleContainer>
 
       <div className="flex flex-row w-full h-full items-center justify-center pb-1">
-        <div className="w-full relative overflow-hidden xs:hidden sm:block">
+        <div className="w-full relative overflow-hidden xs:hidden lg:block">
           <div className="w-full absolute bg-purple_verylight h-[2px] mt-[1.375rem]" />
           <Slider {...settings}>
             {data.map(
@@ -96,7 +96,7 @@ const Timeline = ({ data, title }: IFooterInformation) => {
                         )}
                       </span>
                       <button
-                        className={`${selectedItem === val.year ? 'bg-purple_dark text-white' : 'bg-white border border-purple_dark text-purple_dark'} xs:p-[0.5rem] md:px-[2.5rem] md:py-[0.75rem] md:text-[1.25rem] rounded-lg`}
+                        className={`${selectedItem === val.year ? 'bg-purple_dark text-white' : 'bg-white border border-purple_dark text-purple_dark'} xs:p-[0.5rem] lg:px-[2.5rem] lg:py-[0.75rem] lg:text-[1.25rem] rounded-lg`}
                       >
                         {val.year === '' ? '-' : val.year}
                       </button>
@@ -111,7 +111,7 @@ const Timeline = ({ data, title }: IFooterInformation) => {
           </Slider>
         </div>
 
-        <div className="w-full relative overflow-hidden sm:hidden">
+        <div className="w-full relative overflow-hidden lg:hidden">
           <div className="w-full absolute bg-purple_verylight h-[2px] mt-[1.375rem]" />
           <Slider {...settingsMobile}>
             {data.map(
@@ -141,7 +141,7 @@ const Timeline = ({ data, title }: IFooterInformation) => {
                         )}
                       </span>
                       <button
-                        className={`${selectedItem === val.year ? 'bg-purple_dark text-white' : 'bg-white border border-purple_dark text-purple_dark'} xs:p-[0.5rem] md:px-[2.5rem] md:py-[0.75rem] md:text-[1.25rem] rounded-lg`}
+                        className={`${selectedItem === val.year ? 'bg-purple_dark text-white' : 'bg-white border border-purple_dark text-purple_dark'} xs:p-[0.5rem] lg:px-[2.5rem] lg:py-[0.75rem] lg:text-[1.25rem] rounded-lg`}
                       >
                         {val.year === '' ? '-' : val.year}
                       </button>
@@ -156,8 +156,8 @@ const Timeline = ({ data, title }: IFooterInformation) => {
           </Slider>
         </div>
       </div>
-      <div className="w-full px-[2rem] md:px-[8.5rem] mt-10">
-        <div className="mt-3 w-full flex flex-col gap-8 rounded-xl p-5 shadow-xl">
+      <div className="w-full px-[2rem] lg:px-[8.5rem] mt-10">
+        <div className="mt-3 w-full flex flex-col gap-8 rounded-xl p-5 shadow-xl border">
           {data
             .filter((val) => val.year === selectedItem)
             .map((filteredVal) =>

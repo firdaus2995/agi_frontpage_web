@@ -3,8 +3,8 @@ import Icon from "@/components/atoms/Icon";
 
 const SquaresDownload = () => {
   return (
-    <div className="w-full flex flex-col self-stretch items-center justify-center md:px-20">
-      <div className="grid md:grid-cols-4 xs:grid-cols-1 bg-white p-5 rounded-lg gap-2">
+    <div className="w-full flex flex-col self-stretch items-center justify-center lg:px-20">
+      <div className="grid lg:grid-cols-4 xs:grid-cols-1 bg-white p-5 rounded-lg gap-2">
         <div className="p-6 bg-purple_verylight/[.04] border border-gray-200 rounded-lg shadow gap-4">
           <a href="#">
             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">

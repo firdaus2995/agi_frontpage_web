@@ -126,7 +126,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       </GridContainer>
       <FooterInformation
         title={
-          <p className="text-[36px] sm:text-[56px] text-center sm:text-left">
+          <p className="text-[36px] lg:text-[56px] text-center lg:text-left">
             Ada yang bisa{' '}
             <span className="font-bold text-purple_dark">AvGen</span> bantu
             untuk Anda?

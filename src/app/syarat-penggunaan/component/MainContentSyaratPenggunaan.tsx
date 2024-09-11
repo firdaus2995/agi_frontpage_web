@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { useRef, useState } from 'react';
 
 import Disclaimer from '../tabs/Disclaimer';
 import KepemilikanInformasi from '../tabs/KepemilikanInformasi';
@@ -8,14 +7,12 @@ import KontenSitus from '../tabs/KontenSitus';
 import SyaratPenggunaan from '../tabs/SyaratPenggunaan';
 
 import Icon from '@/components/atoms/Icon';
+
 interface Props {
   content: any;
 }
 
-const MainContentSyaratPenggunaan = ({content}: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+const MainContentSyaratPenggunaan = ({ content }: Props) => {
   const [tab, setTab] = useState('Disclaimer');
   const [isOpen, setIsOpen] = useState(false);
   const disclaimerRef = useRef(null);
@@ -25,15 +22,8 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
 
   const handleTabClick = (tabs: string) => {
     setTab(tabs);
-    router.push(pathname + '?' + createQueryString('tab', tabs), {
-      scroll: false
-    });
-  };
-
-  const createQueryString = (name: string, value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(name, value);
-    return params.toString();
+    const ref = getRefByTab(tabs);
+    handleScrollToRef(ref);
   };
 
   const getRefByTab = (tab: string) => {
@@ -51,23 +41,16 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
     }
   };
 
-  const handleScrollToRef = (ref: React.MutableRefObject<null> | null) => {
+  const handleScrollToRef = (
+    ref: React.MutableRefObject<HTMLElement | null> | null
+  ) => {
     if (ref?.current) {
-      (ref.current! as HTMLElement).scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-        inline: 'start'
+      window.scrollTo({
+        top: ref?.current.offsetTop + (window?.innerWidth > 1024 ? 130 : 90),
+        behavior: 'smooth'
       });
     }
   };
-
-  useEffect(() => {
-    const value = searchParams.get('tab');
-    if (value !== null) {
-      setTab(value);
-      handleScrollToRef(getRefByTab(value));
-    }
-  }, [searchParams]);
 
   const tabs = [
     'Disclaimer',
@@ -75,12 +58,13 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
     'Konten Situs',
     'Kepemilikan Informasi'
   ];
+
   return (
-    <div className=" w-full flex flex-col  relative bottom-[70px]">
+    <div className="w-full flex flex-col relative bottom-[70px]">
       <div className="bg-white w-full min-h-[60px]">
         <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
           {/* start tabs kiri */}
-          <div className="sm:block hidden rounded-lg">
+          <div className="lg:block hidden rounded-lg">
             <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
               {tabs.map((val, idx) =>
                 tab === val ? (
@@ -126,7 +110,10 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
                 {tabs.map((val, idx) => (
                   <div
                     key={idx}
-                    onClick={() => handleTabClick(val)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleTabClick(val);
+                    }}
                     className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-footer-subtitle font-opensanspro ${
                       tab === val
                         ? 'border-purple_dark text-purple_dark'
@@ -140,7 +127,7 @@ const MainContentSyaratPenggunaan = ({content}: Props) => {
             )}
           </div>{' '}
           {/* end tabs kiri */}
-          <div className="sm:ml-[48px] flex flex-col xs:mt-[2rem] sm:mt-0">
+          <div className="lg:ml-[48px] flex flex-col xs:mt-[2rem] lg:mt-0">
             <div ref={disclaimerRef}>
               <Disclaimer content={content} />
             </div>

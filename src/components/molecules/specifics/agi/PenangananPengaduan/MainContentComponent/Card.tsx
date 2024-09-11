@@ -31,7 +31,7 @@ const mockData = [
 export const ContentCard = () => {
   return (
     <div className="mt-[64px]">
-      <div className="grid grid-cols-3 gap-5 xs:hidden md:grid">
+      <div className="grid grid-cols-3 gap-5 xs:hidden lg:grid">
         {mockData.map((i) => (
           <div
             key={i.id}
@@ -40,7 +40,7 @@ export const ContentCard = () => {
             <div className="flex flex-1 flex-col items-center justify-center p-6">
               <img src={i.icon} alt={i.title} className="w-20" />
               <div className="flex flex-col gap-2">
-                <h5 className="mb-2 md:text-[24px] xs:text-[20px] tracking-tight font-bold font-karla text-[32px] text-gray_body mt-5 text-center">
+                <h5 className="mb-2 lg:text-[24px] xs:text-[20px] tracking-tight font-bold font-karla text-[32px] text-gray_body mt-5 text-center">
                   {i.title}
                 </h5>
                 <Link href={i.link}>

@@ -28,9 +28,9 @@ const Content = () => {
       <Image
         alt="family"
         src={FAMILY}
-        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 md:mt-0"
+        className="rounded-t-[65px] w-full object-fill h-auto -mt-20 lg:mt-0"
       />
-      <div className="bg-white pt-[100px] px-[32px] md:px-[136px] pb-2">
+      <div className="bg-white pt-[100px] px-[32px] lg:px-[136px] pb-2">
         <ButtonMenu
           buttonList={[
             'Informasi Nasabah',
@@ -49,8 +49,8 @@ const Content = () => {
           </h2>
         </section>
 
-        <section className="flex xs:flex-col md:flex-row gap-10">
-          <div className="xs:w-[100%] md:w-[23%]">
+        <section className="flex xs:flex-col lg:flex-row gap-10">
+          <div className="xs:w-[100%] lg:w-[23%]">
             <ButtonMenuVertical item={btnVerticalData} />
           </div>
 

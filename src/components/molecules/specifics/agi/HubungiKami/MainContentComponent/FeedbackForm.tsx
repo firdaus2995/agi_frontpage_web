@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import CustomForm from '../../CustomForm/Index';
 import { SuccessModal } from '../../Modal';
 import { DividerPurple } from './Divider';
-import { RatingEmoji } from './form/Rating';
 import { handleSendEmail } from '@/services/form.api';
 
 type Props = {
@@ -18,9 +17,6 @@ export const FeedbackForm = (props: Props) => {
   const [formPic, setFormPic] = useState<any>();
   const [formValue, setFormValue] = useState([{ name: '', value: '' }]);
   const [formIsValid, setFormIsValid] = useState(false);
-  //temporary disabled rating
-  const [, setRating] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
@@ -81,13 +77,8 @@ export const FeedbackForm = (props: Props) => {
     }
   };
 
-  const onEmojiChange = (e: any) => {
-    setRating(e);
-    setIsChecked(true);
-  };
-
   return (
-    <div className="bg-purple_superlight sm:px-[8.5rem] sm:py-[5rem] xs:py-[1.875rem] xs:px-[1.3125rem]">
+    <div className="bg-purple_superlight lg:px-[8.5rem] py-[5rem] xs:px-[1.3125rem]">
       <div className="bg-white border rounded-xl flex flex-col justify-between overflow-hidden">
         <div className="p-[2.25rem]">
           <p className="font-bold font-karla text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop text-purple_dark mb-[1rem]">
@@ -103,22 +94,12 @@ export const FeedbackForm = (props: Props) => {
             />
           )}
           <div className="mt-[2.25rem]">
-            <RatingEmoji
-              title="Penilaian Anda terhadap produk dan layanan Avrist Life Insurance"
-              onChange={onEmojiChange}
-            />
-          </div>
-          <div className="mt-[2.25rem]">
             <button
-              disabled={formIsValid ? (isChecked ? false : true) : true}
+              disabled={formIsValid ? false : true}
               onClick={() => onSubmitData()}
               className={`${
-                formIsValid
-                  ? isChecked
-                    ? 'bg-purple_dark'
-                    : 'bg-dark-grey'
-                  : 'bg-dark-grey'
-              } text-white h-[2.75rem] md:h-[4rem] w-full md:w-[8.25rem] rounded-lg mt-[0.75rem] md:mt-0`}
+                formIsValid ? 'bg-purple_dark' : 'bg-dark-grey'
+              } text-white h-[2.75rem] lg:h-[4rem] w-full lg:w-[8.25rem] rounded-lg mt-[0.75rem] lg:mt-0`}
             >
               Kirim
             </button>

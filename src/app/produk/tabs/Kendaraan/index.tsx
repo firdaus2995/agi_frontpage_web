@@ -4,7 +4,7 @@ import CardCategoryA from '@/components/molecules/specifics/agi/Cards/CategoryA'
 function Kendaraan({ data }: { data: any }) {
   return (
     data && (
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[24px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
         {data.map((item: IDataCard, index: number) => (
           <CardCategoryA
             key={index}

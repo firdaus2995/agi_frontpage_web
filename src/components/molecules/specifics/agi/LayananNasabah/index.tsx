@@ -80,16 +80,16 @@ const LayananNasabah = (props: LayananNasabah) => {
   }) => (
     <div className="w-full flex items-center justify-center">
       <div
-        className={`xs:w-[90%] lg:w-full min-h-[240px] sm:gap-[32px] xs:gap-[24px] flex mb-10 md:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
+        className={`xs:w-[90%] lg:w-full min-h-[240px] lg:gap-[32px] xs:gap-[24px] flex mb-10 lg:flex-row xs:flex-col rounded-xl bg-white border-1 items-center justify-center text-center shadow-xl border-b-8 border-b-purple_dark`}
       >
-        <div className="xs:block md:hidden flex items-start w-full pt-6 pl-5">
+        <div className="xs:block lg:hidden flex items-start w-full pt-6 pl-5">
           <Image src={val.icon} alt={val.title} width={80} height={80} />
         </div>
         <div
-          className={`w-full md:py-[24px] md:px-[32px] xs:px-8 xs:pb-6 flex h-full flex-col items-start md:justify-center xs:justify-start md:gap-[24px] xs:gap-5`}
+          className={`w-full lg:py-[24px] lg:px-[32px] xs:px-8 xs:pb-6 flex h-full flex-col items-start lg:justify-center xs:justify-start lg:gap-[24px] xs:gap-5`}
         >
           <div className="flex flex-row items-center gap-8">
-            <div className="xs:hidden md:block">
+            <div className="xs:hidden lg:block">
               <Image
                 src={val.icon}
                 alt={val.title}
@@ -178,12 +178,12 @@ const LayananNasabah = (props: LayananNasabah) => {
           className="text-heading-2-mobile lg:text-heading-2-desktop text-gray_bold_dark text-center px-10"
         />
       </div>
-      <div className="w-full sm:flex sm:flex-row items-center justify-center gap-10 xs:hidden md:flex xs:grid xs:grid-cols-1">
+      <div className="w-full items-center justify-center gap-10 xs:hidden lg:flex xs:grid xs:grid-cols-1">
         {data.map((val, idx) => (
           <div key={idx}>{renderCard(val)}</div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 md:hidden gap-4">
+      <div className="w-full grid grid-cols-1 lg:hidden gap-4">
         <Slider
           ref={(slider) => {
             sliderRef.current = slider;

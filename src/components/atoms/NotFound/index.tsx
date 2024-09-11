@@ -4,7 +4,7 @@ import Search from '@/assets/images/common/search.svg';
 
 const NotFound = () => {
   return (
-    <div className="w-full flex flex-col md:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
+    <div className="w-full flex flex-col lg:px-52 2xl:px-[345px] mt-8 mb-10 gap-4 items-center justify-center">
       <Image src={Search} alt="search" />
       <div className="flex flex-col gap-4">
         <div className="w-[324px] text-center">

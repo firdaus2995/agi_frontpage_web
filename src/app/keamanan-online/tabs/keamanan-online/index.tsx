@@ -21,7 +21,12 @@ const KeamananOnline = ({ content }: Props) => {
         className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]"
         dangerouslySetInnerHTML={{
           __html:
-            content['struktur-artikel']?.contentData[0]?.details[1]?.value ?? ''
+            content[
+              'struktur-artikel'
+            ]?.contentData[0]?.details[1]?.value.replace(
+              /<ol>/g,
+              `<ol class="list-decimal pl-6 font-karla">`
+            ) ?? ''
         }}
       />
     </div>

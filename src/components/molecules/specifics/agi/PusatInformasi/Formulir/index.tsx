@@ -66,15 +66,17 @@ const Formulir = () => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
+    setContentData([]);
     fetchContent();
   }, [search]);
 
   return (
-    <div className="flex flex-col px-[2rem] md:px-[8.5rem] pb-[6.25rem]">
+    <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla font-light text-[2.25rem] md:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
+        <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
           Temukan{' '}
-          <span className="font-bold text-purple_dark">
+          <span className="text-purple_dark">
             formulir yang Anda butuhkan
           </span>{' '}
           di bawah ini
@@ -103,7 +105,7 @@ const Formulir = () => {
         )}
       </div>
       <div
-        className={`flex flex-col gap-4 pt-[44px] md:flex-row justify-between`}
+        className={`flex flex-col gap-4 pt-[44px] lg:flex-row justify-between`}
       >
         <div>
           <p className="text-[20px]">

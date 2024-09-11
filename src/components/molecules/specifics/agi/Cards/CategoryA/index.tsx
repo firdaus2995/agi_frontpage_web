@@ -55,7 +55,7 @@ const CardCategoryA = ({
           className="line-clamp-3 text-card-subtitle-desktop"
           dangerouslySetInnerHTML={{ __html: description ?? '' }}
         />
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-row flex-wrap gap-2">
           {tags
             .slice(0, 4)
             .map(

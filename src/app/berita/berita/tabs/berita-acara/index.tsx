@@ -141,6 +141,7 @@ const BeritaAcara: FC<IBeritaAcara> = ({ title, description }) => {
   };
 
   useEffect(() => {
+    setContentData([]);
     setPagination({
       currentPage: 1,
       itemsPerPage: 6

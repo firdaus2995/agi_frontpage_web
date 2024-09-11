@@ -150,6 +150,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
   };
 
   useEffect(() => {
+    setContentData([]);
     setPagination({
       currentPage: 1,
       itemsPerPage: 6

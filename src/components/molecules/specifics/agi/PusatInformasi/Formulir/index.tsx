@@ -67,6 +67,7 @@ const Formulir = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+    setContentData([]);
     fetchContent();
   }, [search]);
 

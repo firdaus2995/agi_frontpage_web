@@ -119,7 +119,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         const tags = contentStringTransformer(content['tags'])
           .split(',')
           .map((tag: string) => tag.trim());
-        const date = new Date(item.createdAt).getDate();
+        const date = content['tanggal'].value;
         const artikelTopic = 'Berita dan Acara';
 
         return {
@@ -202,11 +202,10 @@ const CSR: FC<ICSR> = ({ title, description }) => {
                           {item.artikelTopic}
                         </div>
                       )}
-                    {item.date !== '-' && item.date !== undefined && (
-                      <div className="xm:pl-2 flex flex-row whitespace-nowrap">
-                        {item.date} {item.waktu}
-                      </div>
-                    )}
+                    <div className="xm:pl-2 flex flex-row whitespace-nowrap">
+                      {item.date !== '-' && item.date}{' '}
+                      {item.waktu !== '-' && item.waktu}
+                    </div>
                   </div>
                   <div className="flex flex-col gap-3">
                     <p
@@ -215,19 +214,16 @@ const CSR: FC<ICSR> = ({ title, description }) => {
                         __html: item.judul
                       }}
                     />
-                    <p
-                      className={
-                        item.deskripsi[0]?.value?.substring(0, 250) ===
-                        '<p>-</p>'
-                          ? 'hidden'
-                          : 'text-[16px] line-clamp-2'
-                      }
-                      dangerouslySetInnerHTML={{
-                        __html: item.deskripsi
-                          ? item.deskripsi[0]?.value?.substring(0, 250) + '...'
-                          : '-'
-                      }}
-                    />
+                    {!item.deskripsi[0]?.value?.includes('-') && (
+                      <p
+                        className="text-[16px] line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: item.deskripsi
+                            ? item.deskripsi[0]?.value
+                            : '-'
+                        }}
+                      />
+                    )}
                   </div>
 
                   {item.tags[0] !== '' && item.tags?.length > 0 ? (

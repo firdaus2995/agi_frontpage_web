@@ -56,6 +56,7 @@ const LaporanPerusahaan: React.FC<ISetData> = ({ setData }) => {
 
   useEffect(() => {
     setCurrentPage(1);
+    setContentData([]);
     fetchContent();
   }, [params]);
 

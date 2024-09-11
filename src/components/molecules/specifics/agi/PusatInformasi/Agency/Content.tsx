@@ -203,7 +203,7 @@ const Content = (props: contentProps) => {
         console.error('Error:', error);
       }
     };
-
+    setCurrentPage(1);
     fetchData();
   }, [params]);
 
@@ -361,7 +361,7 @@ const Content = (props: contentProps) => {
                         {item.tags[0] !== '' && item.tags?.length > 0 ? (
                           <div className="flex flex-row flex-wrap gap-[12px]">
                             {' '}
-                            {item.tags.map(
+                            {item.tags?.slice(0, 2).map(
                               (
                                 value: string,
                                 key: React.Key | null | undefined

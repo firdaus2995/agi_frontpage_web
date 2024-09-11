@@ -66,7 +66,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   const [dataContent, setDataContent] = useState<IDataContent[]>();
   const [channels, setChannels] = useState<any>([]);
   const [selectedChannels, setSelectedChannels] = useState<any>('');
-  const itemsPerPage = 9;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -95,6 +95,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   }, [activeTab, categoryList, searchParams]);
 
   useEffect(() => {
+    setCurrentPage(1);
     const fetchData = async () => {
       try {
         const data = await handleGetContentPage('Hal-Produk-AGI');

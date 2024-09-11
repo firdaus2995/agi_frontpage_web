@@ -67,6 +67,7 @@ const WordingPolis = (props: WordingPolisProps) => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     fetchContent();
   }, [search]);
 

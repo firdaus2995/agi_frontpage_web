@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,6 +8,7 @@ import ARROW_LEFT from '@/assets/images/agi/component/total-solution/arrow-left.
 import ARROW_RIGHT from '@/assets/images/agi/component/total-solution/arrow-right.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getListGlobalConfig } from '@/services/global-config.api';
 import {
   contentStringTransformer,
   singleImageTransformer
@@ -21,6 +22,7 @@ export const ContactSupport = (props: Props) => {
   const { pageData } = props;
   const sliderRef: any = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [globalConfig, setGlobalConfig] = useState<any>([]);
 
   const settings = {
     slidesToShow: 1,
@@ -62,6 +64,36 @@ export const ContactSupport = (props: Props) => {
     sliderRef.current.slickPrev();
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const globalConfig = await getListGlobalConfig();
+
+      setGlobalConfig(globalConfig.data.configs);
+    };
+
+    fetchData();
+  }, []);
+
+  const getLink = (value: string) => {
+    if (globalConfig.length === 0) {
+      return '';
+    }
+
+    const foundItem = globalConfig.filter(
+      (item: { variable: string }) => item.variable === value
+    )[0];
+
+    if (foundItem) {
+      let linkValue = foundItem.value;
+      if (linkValue.startsWith('0')) {
+        linkValue = '62' + linkValue.slice(1);
+      }
+      return linkValue;
+    }
+
+    return '';
+  };
+
   return (
     <>
       <div className="hidden lg:flex flex-row gap-[1.5rem] font-['Source Sans Pro']">
@@ -82,7 +114,7 @@ export const ContactSupport = (props: Props) => {
         </div>
         <div className="min-h-[340px] w-[320px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
-            href={contentStringTransformer(pageData['informasi-2-link'])}
+            href={`tel:+${getLink('phoneAGI')}`}
             className="h-full font-opensans lg:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
           >
             <Image
@@ -98,14 +130,20 @@ export const ContactSupport = (props: Props) => {
                 {contentStringTransformer(pageData['informasi-2-nama'])}
               </p>
               <p className="text-purple_dark text-[20px] font-opensanspro">
-                {contentStringTransformer(pageData['informasi-2-label-link'])}
+                {globalConfig.filter(
+                  (item: { variable: string }) => item.variable === 'phoneAGI'
+                )[0]?.value ?? ''}
               </p>
             </div>
           </Link>
         </div>
         <div className="min-h-[340px] w-[320px] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
           <Link
-            href={contentStringTransformer(pageData['informasi-3-link'])}
+            href={`mailto:${
+              globalConfig.filter(
+                (item: { variable: string }) => item.variable === 'emailAGI'
+              )[0]?.value ?? ''
+            }`}
             className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
           >
             <Image
@@ -122,7 +160,9 @@ export const ContactSupport = (props: Props) => {
                 {contentStringTransformer(pageData['informasi-3-nama'])}
               </p>
               <p className="text-purple_dark text-[20px] font-opensanspro">
-                {contentStringTransformer(pageData['informasi-3-label-link'])}
+                {globalConfig.filter(
+                  (item: { variable: string }) => item.variable === 'emailAGI'
+                )[0]?.value ?? ''}
               </p>
             </div>
           </Link>
@@ -153,7 +193,7 @@ export const ContactSupport = (props: Props) => {
           <div className="w-full grid grid-cols-1 mx-2">
             <div className="min-h-[375px] w-[95%] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
               <Link
-                href="tel:021-5789-8188"
+                href={`tel:+${getLink('phoneAGI')}`}
                 className="h-full font-opensans lg:text-[1.5rem] font-bold  flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
               >
                 <Image
@@ -172,9 +212,10 @@ export const ContactSupport = (props: Props) => {
                     {contentStringTransformer(pageData['informasi-2-nama'])}
                   </p>
                   <p className="text-purple_dark text-[24px] font-opensanspro">
-                    {contentStringTransformer(
-                      pageData['informasi-2-label-link']
-                    )}
+                    {globalConfig.filter(
+                      (item: { variable: string }) =>
+                        item.variable === 'phoneAGI'
+                    )[0]?.value ?? ''}
                   </p>
                 </div>
               </Link>
@@ -183,7 +224,11 @@ export const ContactSupport = (props: Props) => {
           <div className="w-full grid grid-cols-1 mx-2">
             <div className="min-h-[375px] w-[95%] border border-b-8 border-b-purple_dark bg-white rounded-2xl border-gray_light overflow-hidden flex flex-col justify-between">
               <Link
-                href="mailto:customer-service@avrist.com"
+                href={`mailto:${
+                  globalConfig.filter(
+                    (item: { variable: string }) => item.variable === 'emailAGI'
+                  )[0]?.value ?? ''
+                }`}
                 className="h-full font-opensans font-bold lg:text-[1.5rem] flex flex-col items-center text-center px-[1.5rem] py-[2.25rem] gap-[1.5rem]"
               >
                 <Image
@@ -203,9 +248,10 @@ export const ContactSupport = (props: Props) => {
                     {contentStringTransformer(pageData['informasi-3-nama'])}
                   </p>
                   <p className="text-purple_dark text-[24px] font-opensanspro">
-                    {contentStringTransformer(
-                      pageData['informasi-3-label-link']
-                    )}
+                    {globalConfig.filter(
+                      (item: { variable: string }) =>
+                        item.variable === 'emailAGI'
+                    )[0]?.value ?? ''}
                   </p>
                 </div>
               </Link>

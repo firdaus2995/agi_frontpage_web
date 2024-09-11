@@ -16,6 +16,7 @@ import SliderInformation from '@/components/molecules/specifics/agi/SliderInform
 import { getPenghargaan } from '@/services/berita';
 import { mergeAllData } from '@/utils/helpers';
 import {
+  contentStringTransformer,
   handleTransformedContent,
   singleImageTransformer
 } from '@/utils/responseTransformer';
@@ -107,7 +108,9 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
           content['artikel-thumbnail']
         ).imageUrl;
         const id = item.id;
-        const tags = content['tags'].value;
+        const tags = contentStringTransformer(content['tags'])
+          .split(',')
+          .map((tag: string) => tag.trim());
         const date = new Date(item.createdAt).getDate();
         const artikelTopic = 'Berita dan Acara';
 
@@ -139,6 +142,10 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
   };
 
   useEffect(() => {
+    setPagination({
+      currentPage: 1,
+      itemsPerPage: 6
+    });
     fetchContent();
   }, [params]);
 
@@ -193,7 +200,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                       </div>
                     )}
                   </div>
-                  <div className='flex flex-col gap-3'>
+                  <div className="flex flex-col gap-3">
                     <p
                       className="text-banner-title-mobile lg:text-banner-title-desktop font-bold line-clamp-3 "
                       dangerouslySetInnerHTML={{
@@ -202,7 +209,8 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                     />
                     <p
                       className={
-                        item.deskripsi[0]?.value?.substring(0, 250) === '<p>-</p>'
+                        item.deskripsi[0]?.value?.substring(0, 250) ===
+                        '<p>-</p>'
                           ? 'hidden'
                           : 'text-[16px] line-clamp-2'
                       }
@@ -214,9 +222,19 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                     />
                   </div>
 
-                  <div className="flex flex-row flex-wrap gap-[12px]">
-                    <MediumTag title={item.tags} />
-                  </div>
+                  {item.tags[0] !== '' && item.tags?.length > 0 ? (
+                    <div className="flex flex-row flex-wrap gap-[12px]">
+                      {' '}
+                      {item.tags
+                        ?.slice(0, 2)
+                        .map(
+                          (
+                            value: string,
+                            key: React.Key | null | undefined
+                          ) => <MediumTag key={key} title={value} />
+                        )}
+                    </div>
+                  ) : null}
                   <Link
                     href={{
                       pathname: `/berita/berita/tabs/penghargaan/${item.id}`

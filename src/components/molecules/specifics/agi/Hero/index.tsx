@@ -67,7 +67,7 @@ const Hero: React.FC<IHero> = ({
 
   return (
     <div
-      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] lg:h-[30.5rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
+      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] xl:h-[30.5rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
       style={{
         marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
       }}
@@ -87,7 +87,7 @@ const Hero: React.FC<IHero> = ({
               <React.Fragment key={index}>
                 <Link
                   href={item.href}
-                  className={`line-clamp-1 font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default' : ''}`}
+                  className={`line-clamp-1 font-opensans text-white text-[1.125rem] ${index === breadcrumbsData.length - 1 ? 'font-bold cursor-default xs:max-w-[200px] xm:max-w-[230px] lg:max-w-full' : 'min-w-[80px]'}`}
                 >
                   {item.title}
                 </Link>
@@ -101,7 +101,7 @@ const Hero: React.FC<IHero> = ({
       </div>
       {imageUrl && !imageUrl.includes('no-image') ? (
         <Image
-          className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[9.375rem] lg:h-[17.5rem]' : 'h-[100px]'}`}
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom ${bottomImage ? 'h-[100px] lg:h-[17.5rem]' : 'h-[100px]'}`}
           alt="Avrist"
           src={imageUrl ?? ''}
           width={0}
@@ -109,11 +109,11 @@ const Hero: React.FC<IHero> = ({
         />
       ) : (
         <div
-          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[100px] bg-purple_soft`}
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[85px] bg-purple_soft`}
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem] lg:top-[5.5rem] absolute">
+        <div className="-z-[1] w-full top-[5.25rem] absolute">
           <Image
             ref={bannerRef}
             className={`w-full xs:h-auto lg:h-full lg:h-[50vh] ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}

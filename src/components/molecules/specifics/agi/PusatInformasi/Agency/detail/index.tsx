@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import ContentPopover from '../content-popover';
+import { monthDropdown } from '@/app/berita/berita/components/dropdown-filter';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon from '@/components/atoms/Icon';
 import MediumTag from '@/components/atoms/Tag/MediumTag';
@@ -46,6 +47,11 @@ const Detail = (props: agencyDetailProps) => {
     externalLinkLabelBtn: '',
     externalLinkUrl: ''
   });
+  const [keyParams, setKeyParams] = useState({
+    yearFilter: '',
+    monthFilter: '',
+    searchFilter: ''
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +61,13 @@ const Detail = (props: agencyDetailProps) => {
         const loopingItem = content['artikel-looping'].contentData[0].details;
         const category = data.data.categoryName;
         const judulArtikel = data.data.title;
-        const tanggal = contentStringTransformer(content['tanggal']);
+        const tanggal = `${content['tanggal'].value} ${
+          monthDropdown(keyParams, setKeyParams).find(
+            (item) =>
+              item.value === content['bulan'].value ||
+              item.label === content['bulan'].value
+          )?.label
+        } ${content['tahun'].value}`;
         const tags = contentStringTransformer(content['tags'])
           .split(',')
           .map((tag: string) => tag.trim());

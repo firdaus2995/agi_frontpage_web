@@ -29,7 +29,7 @@ const CardCategoryB = ({
       />
       <div className="h-full flex flex-col justify-between px-5 pb-5">
         <p
-          className={`text-[20px] font-bold font-karla line-clamp-3 ${lineClamp?.toString() ?? ''}`}
+          className={`text-[20px] font-bold font-karla line-clamp-2 ${lineClamp?.toString() ?? ''}`}
           dangerouslySetInnerHTML={{
             __html: summary
           }}

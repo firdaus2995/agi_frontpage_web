@@ -32,7 +32,7 @@ const SliderInformation = ({
   return (
     <div className="xs:mx-[5px] lg:mx-[5px]">
       {/* Desktop */}
-      <div className="flex py-[72px] bg-white w-full xs:hidden lg:block">
+      <div className="flex pt-[80px] pb-[16px] bg-white w-full xs:hidden lg:block">
         <div
           className={`grid grid-cols-2 rounded-[24px] ${bgColor ? `bg-${bgColor}` : 'bg-white'} border xs:max-lg:flex-wrap xs:max-lg:flex xs:max-lg:grid-cols-1`}
         >

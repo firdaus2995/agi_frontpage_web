@@ -49,7 +49,13 @@ const SliderInformation = ({
               width={0}
               alt="sliderInformationImage"
               className={`h-[360px] w-full object-cover ${imageClassName} rounded-r-3xl`}
-              src={imageUrl !== '' ? imageUrl : BlankImage}
+              src={
+                imageUrl !== ''
+                  ? !imageUrl?.includes('no-image')
+                    ? imageUrl
+                    : BlankImage
+                  : BlankImage
+              }
             />
             {isVideo && (
               <div className="w-full h-full absolute flex items-center justify-center">
@@ -69,7 +75,7 @@ const SliderInformation = ({
             className={`flex relative ${isVideo && 'cursor-pointer'}`}
             onClick={() => isVideo && setShow(true)}
           >
-            <div className='flex w-full h-[200px]'>
+            <div className="flex w-full h-[200px]">
               <Image
                 height={0}
                 width={0}

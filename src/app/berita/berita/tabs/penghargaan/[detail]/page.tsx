@@ -291,7 +291,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
       />
 
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col px-[2rem] lg:px-[20.5rem] pb-[6.25rem] gap-[3rem]">
+        <div className="flex flex-col px-[2rem] lg:px-[20.5rem] pb-[6.25rem] gap-[3rem] w-full">
           <div className="flex flex-col">
             <p className="text-purple_dark font-bold mb-[0.5rem] font-karla text-[1.5rem]">
               Penghargaan

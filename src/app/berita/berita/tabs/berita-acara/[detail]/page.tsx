@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { monthDropdown } from '../../../components/dropdown-filter';
 import ContentPopover from '@/app/berita/berita/components/popover';
 import BlankImage from '@/assets/images/blank-image.svg';
 import Icon from '@/components/atoms/Icon';
@@ -79,6 +80,11 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
   const [data, setData] = useState<typeof initialData>(initialData);
   const [visibleSubscribeModal, setVisibleSubscribeModal] =
     useState<boolean>(false);
+  const [keyParams, setKeyParams] = useState({
+    yearFilter: '',
+    monthFilter: '',
+    searchFilter: ''
+  });
   // const [emailContent, setEmailContent] = useState('');
 
   const fetchData = () => {
@@ -173,7 +179,13 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
     const bulan = content['bulan'].value;
     const tahun = content['tahun'].value;
     const artikel = content['artikel-looping'].contentData;
-    const tanggal = content['tanggal'].value;
+    const tanggal = `${content['tanggal'].value} ${
+      monthDropdown(keyParams, setKeyParams).find(
+        (item) =>
+          item.value === content['bulan'].value ||
+          item.label === content['bulan'].value
+      )?.label
+    } ${content['tahun'].value}`;
     const loopArtikel = artikel.map((item: any, itemIndex: number) => {
       return (
         <React.Fragment key={itemIndex}>

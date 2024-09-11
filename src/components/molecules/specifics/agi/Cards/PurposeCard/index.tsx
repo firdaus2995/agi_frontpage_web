@@ -25,21 +25,21 @@ const PurposeCard: React.FC<PurposeCardProps> = ({
     <div className="flex flex-col gap-4 items-center">
       <Image src={icon} alt="img" className="w-20" width={80} height={80} />
       <p
-        className="text-[1.5rem] xm:text-[2rem] font-bold font-karla -tracking-[0.96px] leading-[2.5rem]"
+        className="text-[1.5rem] xm:text-[2rem] font-bold font-karla -tracking-[0.96px] leading-[2.5rem] line-clamp-2"
         dangerouslySetInnerHTML={{
           __html: title
         }}
       />
     </div>
     <p
-      className="font-opensans leading-[22.4px]"
+      className="font-opensans leading-[22.4px] line-clamp-2"
       dangerouslySetInnerHTML={{
         __html: desc
       }}
     />
     {href && (
       <Link href={href ?? ''}>
-        <p className="font-bold text-purple_dark">{link}</p>
+        <p className="font-bold text-purple_dark line-clamp-1">{link}</p>
       </Link>
     )}
   </div>

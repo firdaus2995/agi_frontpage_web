@@ -44,14 +44,6 @@ const Content = (props: contentProps) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          centerMode: false
-        }
-      }
-    ]
   };
 
   const router = useRouter();
@@ -319,7 +311,7 @@ const Content = (props: contentProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-center py-2 pt-[5rem] pb-[32px] lg:pb-[64px]">
       <div className="text-center lg:pb-2 xs:pb-[56px]">
-        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-medium text-purple_dark">
+        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-bold text-purple_dark">
           {contentStringTransformer(pageData['nama-section'])}
         </h2>
         <h2
@@ -396,7 +388,7 @@ const Content = (props: contentProps) => {
               }
             })}
           </Slider>
-          <div className="flex flex-row justify-between w-full mt-10 lg:mb-0">
+          <div className="flex flex-row justify-between w-full">
             <div
               className="p-2 border-2 rounded-full border-purple_dark rotate-180"
               role="button"

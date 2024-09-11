@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 
 type BengkelProps = {
   data: Array<any>;
+  contentData: Array<any>;
   handlePageChange: (page: number) => void;
   totalPages: any;
+  currentPage: any;
+  startIndex: any;
+  endIndex: any;
 };
 
 const Bengkel: React.FC<BengkelProps> = ({
   data,
+  contentData,
   handlePageChange,
-  totalPages
+  totalPages,
+  currentPage,
+  startIndex,
+  endIndex
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
   return (
     <div className="flex flex-col gap-6 mt-5">
       {data?.length > 0 ? (
@@ -38,9 +42,9 @@ const Bengkel: React.FC<BengkelProps> = ({
             Menampilkan{' '}
             <span className="font-bold text-purple_dark">
               {data?.length === 0 ? 0 : startIndex + 1}-
-              {Math.min(endIndex, data ? data.length : 0)}
+              {Math.min(endIndex, contentData ? contentData.length : 0)}
             </span>{' '}
-            dari <span className="font-bold">{data?.length}</span> hasil
+            dari <span className="font-bold">{contentData?.length}</span> hasil
           </p>
         </div>
         <div className="flex flex-row gap-[12px] items-center">
@@ -62,7 +66,6 @@ const Bengkel: React.FC<BengkelProps> = ({
               key={page}
               role="button"
               onClick={() => {
-                setCurrentPage(page);
                 handlePageChange(page);
               }}
               className={`w-6 h-6 flex items-center justify-center cursor-pointer ${

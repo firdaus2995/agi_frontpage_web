@@ -62,7 +62,7 @@ export const EmailSubscribeModal = (props: Props) => {
     }
 
     if (data.body.status === 'EMAIL_ALREADY_EXISTS'){
-      setEmailError('Email telah digunakan');
+      setEmailError('Email sudah terdaftar');
     }
 
     if (data.status !== 'OK') {

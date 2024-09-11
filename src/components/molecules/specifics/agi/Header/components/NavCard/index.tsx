@@ -83,7 +83,7 @@ const NavCard: React.FC<NavCardProps> = ({
             className={`w-full flex flex-col ${idx === 0 ? 'pr-[2.25rem]' : 'pl-[2.25rem]'}`}
           >
             {xPosition ? (
-              <div className="absolute top-[-16px]" style={{ left: xPosition }}>
+              <div className="absolute top-[-15px]" style={{ left: xPosition }}>
                 <TriangleMarker />
               </div>
             ) : null}

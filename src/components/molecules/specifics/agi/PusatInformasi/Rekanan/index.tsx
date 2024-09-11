@@ -88,6 +88,12 @@ const Rekanan = (props: RekananProps) => {
     fetchContent();
   }, [search]);
 
+  const startIndex = (pagination.currentPage - 1) * pagination.itemsPerPage;
+  const endIndex = startIndex + pagination.itemsPerPage;
+  const paginatedData = contentData
+    ? contentData?.slice(startIndex, endIndex)
+    : [];
+
   return (
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
@@ -114,9 +120,13 @@ const Rekanan = (props: RekananProps) => {
         <div className="xs:w-[100%] lg:w-[77%] xs:mt-12 lg:mt-0">
           {tab === 'Bengkel' ? (
             <Bengkel
-              data={contentData}
+              contentData={contentData}
+              data={paginatedData}
               handlePageChange={handlePageChange}
               totalPages={totalPages}
+              currentPage={pagination?.currentPage}
+              startIndex={startIndex}
+              endIndex={endIndex}
             />
           ) : (
             <Bank />

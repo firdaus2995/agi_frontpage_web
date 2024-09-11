@@ -66,7 +66,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
   const [dataContent, setDataContent] = useState<IDataContent[]>();
   const [channels, setChannels] = useState<any>([]);
   const [selectedChannels, setSelectedChannels] = useState<any>('');
-  const itemsPerPage = 3;
+  const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -81,6 +81,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState('');
+  const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState(
     searchParams.get('tab') ?? categoryList[0]
   );
@@ -231,10 +232,11 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
         setChannels(Array.from(uniqueChannels));
       }
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     searchParams,
     selectedChannels,
-    searchValue,
+    search,
     activeTab,
     isCategoryChange
   ]);
@@ -253,6 +255,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
 
   const handleChangeSearchParams = (value: string) => {
     setSearchValue(value);
+    setSearch(value);
   };
 
   const btnVerticalData = categoryList?.map((item: any) => {

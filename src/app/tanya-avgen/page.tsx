@@ -41,10 +41,11 @@ const handleGetContent = async (slug: string) => {
   }
 };
 
-const handleGetListFaq = async (slug: string) => {
+const handleGetListFaq = async (slug: string, tags: string) => {
   try {
     const queryParams: QueryParams = {
-      includeAttributes: 'true'
+      includeAttributes: 'true',
+      tagsFilter: tags
     };
     const data = await getListFaq(slug, queryParams);
     return data;
@@ -123,9 +124,6 @@ const TanyaAvgen = () => {
     const fetchData = async () => {
       try {
         const data = await handleGetContent('hal-tanya-avgen');
-        const listFaq = await handleGetListFaq(
-          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen'
-        );
         const { content } = pageTransformer(data);
 
         setTitleImage(singleImageTransformer(content['title-image']));
@@ -177,6 +175,11 @@ const TanyaAvgen = () => {
         setCards(listCards);
         setSelectedCards(listCards[0].title);
 
+        const listFaq = await handleGetListFaq(
+          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen',
+          listCards[0].title
+        );
+
         const tempData = listFaq?.data?.categoryList[''];
         const transformedData = tempData.map((item) => {
           const title = item.title;
@@ -210,6 +213,7 @@ const TanyaAvgen = () => {
 
   const handleGetListFaqFilter = async (slug: string) => {
     try {
+      setCurrentPage(1);
       setLoadingSearch(true);
       const queryParams: QueryParams = {
         includeAttributes: 'true',

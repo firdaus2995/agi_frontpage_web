@@ -171,22 +171,24 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
                   src={detailData.image}
                   width={213}
                   height={213}
-                  className="xs:rounded-t-xl lg:rounded-xl xs:w-full xs:h-full lg:w-[213px] lg:h-[213px]"
+                  className="xs:rounded-t-xl lg:rounded-xl object-cover xs:w-full xs:h-full lg:w-[213px] lg:h-[213px]"
                 />
               </div>
               <div className="flex flex-col gap-2 xs:text-center lg:text-start xs:mb-7 lg:mb-0">
                 <p className="text-[36px] font-bold -tracking-[1.08px] font-karla">
-                  {detailData.name}
+                  {detailData.name !== '-' && detailData.name}
                 </p>
                 <p className="text-[24px] font-semibold text-purple_dark">
-                  {detailData.role}
+                  {detailData.role !== '-' && detailData.role}
                 </p>
               </div>
             </div>
-            <p
-              className="font-opensans text-xl text-justify"
-              dangerouslySetInnerHTML={{ __html: detailData.desc }}
-            />
+            {detailData.desc !== '-' && (
+              <p
+                className="font-opensans text-xl text-justify"
+                dangerouslySetInnerHTML={{ __html: detailData.desc }}
+              />
+            )}
           </div>
         </div>
       ) : contentData ? (

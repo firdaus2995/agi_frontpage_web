@@ -93,7 +93,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
     handleGetContent(BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.SEKILAS_PERUSAHAAN, {
       includeAttributes: 'true'
     }).then((res) => {
-      const newDataContent = res.data.contentDataList.map((item: any) => {
+      const newDataContent = res?.data?.contentDataList?.map((item: any) => {
         return {
           ...handleTransformedContent(item.contentData, item.title),
           categoryName: item.categoryName,

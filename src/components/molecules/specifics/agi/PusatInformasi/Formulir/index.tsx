@@ -48,8 +48,7 @@ const Formulir = () => {
         transformedContent?.map(async (item: any) => {
           const apiDetailContent = await handleGetContentDetail(item.id);
           const { content } = contentDetailTransformer(apiDetailContent);
-
-          const title = content['Title'].value;
+          const title = item?.title;
           const file = singleImageTransformer(content['file']).imageUrl;
           const fileType = singleImageTransformer(content['file'])
             .imageUrl.split('.')

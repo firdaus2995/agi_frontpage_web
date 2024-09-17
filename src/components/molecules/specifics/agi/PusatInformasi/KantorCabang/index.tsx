@@ -51,7 +51,16 @@ const KantorCabang = () => {
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setCurrentPage(page);
   };
-  const [mapCenter, setMapCenter] = useState<[number, number]>([0, 0]);
+
+  // Set the initial map center to highOfficeCoordinate on page load
+  const highOfficeCoordinate = {
+    lat: dataHo?.latOffice ?? -6.227327498160391,
+    lng: dataHo?.longOffice ?? 106.80040672857899
+  };
+  const [mapCenter, setMapCenter] = useState<[number, number]>([
+    highOfficeCoordinate.lat,
+    highOfficeCoordinate.lng
+  ]);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -166,12 +175,8 @@ const KantorCabang = () => {
   };
 
   const RenderMap = () => {
-    const highOfficeCoordinate = {
-      lat: dataHo?.latOffice,
-      lng: dataHo?.longOffice
-    };
     const defaultProps = {
-      center: highOfficeCoordinate,
+      center: mapCenter,
       zoom: 16
     };
 
@@ -336,7 +341,7 @@ const KantorCabang = () => {
             lng={dataHo?.longOffice}
             onChangeCenter={onClickMarker}
           />
-          {dataHo?.latOffice ? (
+          {dataHo?.latOffice && dataHo?.longOffice ? (
             <Card className="lg:col-span-2 min-h-[100%] w-full">
               {RenderMap()}
             </Card>

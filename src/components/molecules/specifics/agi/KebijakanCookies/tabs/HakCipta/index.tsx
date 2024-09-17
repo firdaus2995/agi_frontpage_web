@@ -4,7 +4,7 @@ interface Props {
   content: any;
 }
 
-const Disclaimer = ({ content }: Props) => {
+const HakCipta = ({ content }: Props) => {
   if (!content) return null;
   return (
     <div>
@@ -19,4 +19,4 @@ const Disclaimer = ({ content }: Props) => {
   );
 };
 
-export default Disclaimer;
+export default HakCipta;

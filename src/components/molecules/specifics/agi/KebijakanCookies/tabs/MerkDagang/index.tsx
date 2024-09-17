@@ -4,7 +4,7 @@ interface Props {
   content: any;
 }
 
-const SyaratPengunaan = ({ content }: Props) => {
+const MerkDagang = ({ content }: Props) => {
   if (!content) return null;
   return (
     <div>
@@ -16,4 +16,4 @@ const SyaratPengunaan = ({ content }: Props) => {
   );
 };
 
-export default SyaratPengunaan;
+export default MerkDagang;

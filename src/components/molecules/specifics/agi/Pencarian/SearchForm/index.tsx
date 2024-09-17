@@ -261,19 +261,25 @@ const SearchForm = () => {
                   }}
                 >
                   <div className="mx-3 rounded-xl border-2 border-gray_light px-[1.5rem] py-[2.25rem] flex flex-col gap-[12px]">
-                    <p className="text-sm leading-[19.6px]">{item.date}</p>
-                    <p
-                      className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none"
-                      dangerouslySetInnerHTML={{
-                        __html: item.title
-                      }}
-                    />
-                    <div
-                      className="text-body-text-1 line-clamp-2"
-                      dangerouslySetInnerHTML={{
-                        __html: item.description
-                      }}
-                    />
+                    <p className="text-sm leading-[19.6px]">
+                      {item.date && item.date}
+                    </p>
+                    {item.title !== '-' && (
+                      <p
+                        className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none"
+                        dangerouslySetInnerHTML={{
+                          __html: item.title
+                        }}
+                      />
+                    )}
+                    {item.description !== '-' && (
+                      <div
+                        className="text-body-text-1 line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: item.description
+                        }}
+                      />
+                    )}
                   </div>
                 </Link>
               ))
@@ -334,16 +340,18 @@ const SearchForm = () => {
           <div className="w-full flex flex-col gap-[12px]">
             {dataContent?.length > 0 ? (
               paginatedData?.map((item: any, index: any) => (
-                <Link
-                  href={item?.href ?? ''}
-                  key={index}
-                  className="w-full border border-gray_light rounded-xl p-[1.5rem] flex flex-row justify-between items-center shadow-[0_13px_20px_0px_purple_dark/[0/03]]"
-                >
-                  <p className="text-2xl font-semibold leading-[30.17px] font-opensanspro">
-                    {item?.title}
-                  </p>
-                  <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
-                </Link>
+                item?.title !== '-' && (
+                  <Link
+                    href={item?.href ?? ''}
+                    key={index}
+                    className="w-full border border-gray_light rounded-xl p-[1.5rem] flex flex-row justify-between items-center shadow-[0_13px_20px_0px_purple_dark/[0/03]]"
+                  >
+                    <p className="text-2xl font-semibold leading-[30.17px] font-opensanspro">
+                      {item?.title}
+                    </p>
+                    <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
+                  </Link>
+                )
               ))
             ) : (
               <NotFound />

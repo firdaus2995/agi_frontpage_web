@@ -50,7 +50,6 @@ const HakCipta = () => {
       try {
         const data = await handleGetContentPage('Halaman-Hak-Cipta-Merk-Dagang');
         const { content } = pageTransformer(data);
-        console.log(content)
         setContentData(content);
         setTitleImg(singleImageTransformer(content['title-image']));
         setTitle(contentStringTransformer(content['title-judul']));

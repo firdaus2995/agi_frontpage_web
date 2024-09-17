@@ -1,55 +1,134 @@
-import { LeftMenu } from '../SyaratPengunaan/components/LeftMenu';
+'use client';
+import React, { useRef, useState } from 'react';
 
-const listMenu = [{ id: '1', label: 'Hak Cipta & Merk Dagang' }];
-export const MainContent = () => {
+import HakCipta from './tabs/HakCipta';
+import MerkDagang from './tabs/MerkDagang';
+
+import Icon from '@/components/atoms/Icon';
+
+interface Props {
+  content: any;
+}
+
+const MainContent = ({ content }: Props) => {
+  const [tab, setTab] = useState('Hak Cipta');
+  const [isOpen, setIsOpen] = useState(false);
+  const hakCiptaRef = useRef(null);
+  const merkDagangRef = useRef(null);
+
+  const handleTabClick = (tabs: string) => {
+    setTab(tabs);
+    const ref = getRefByTab(tabs);
+    handleScrollToRef(ref);
+  };
+
+  const getRefByTab = (tab: string) => {
+    switch (tab) {
+      case 'Hak Cipta':
+        return hakCiptaRef;
+      case 'Merk Dagang':
+        return merkDagangRef;
+      default:
+        return null;
+    }
+  };
+
+  const handleScrollToRef = (
+    ref: React.MutableRefObject<HTMLElement | null> | null
+  ) => {
+    if (ref?.current) {
+      window.scrollTo({
+        top: ref?.current.offsetTop + (window?.innerWidth > 1024 ? 130 : 90),
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const tabs = [
+    'Hak Cipta',
+    'Merk Dagang'
+  ];
+
   return (
-    <div className=" w-full flex flex-col  relative bottom-[70px]">
+    <div className="w-full flex flex-col relative bottom-[70px]">
       <div className="bg-white w-full min-h-[60px]">
-        <div className="px-[136px] py-[100px] flex flex-row">
-          <LeftMenu
-            active={listMenu[0].id}
-            data={listMenu}
-            onClick={() => {}}
-          />
-          <div className="ml-[48px]">
-            <p className="font-karla font-bold text-tanya-avgen-detail-title-mobile lg:text-tanya-avgen-detail-title-desktop">
-              HAK CIPTA DAN MEREK DAGANG
-            </p>
-            <p className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]">
-              Semua yang Anda lihat atau baca di situs ini harus diasumsikan
-              telah dilindungi hak cipta kecuali ditentukan sebaliknya, dan
-              tidak dapat disalin, digunakan atau didistribusikan dengan cara
-              apapun tanpa izin tertulis dari Avrist, kecuali secara tegas
-              ditentukan lain di dalam situs ini. Avrist tidak memberikan
-              jaminan bahwa penggunaan material yang ditampilkan di situs ini
-              tidak akan melanggar hak-hak pihak ketiga yang tidak dimiliki oleh
-              atau berafiliasi dengan Avrist.
-            </p>
-            <p className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]">
-              Gambar-gambar yang ditampilkan dalam situs ini adalah properti
-              dari, atau digunakan dengan izin oleh Avrist. Penggunaan
-              gambar-gambar tersebut oleh Anda, atau setiap orang lain yang
-              diberikan kewenangan oleh Anda, dilarang kecuali apabila diizinkan
-              secara khusus oleh Avrist. Setiap penggunaan gambar-gambar tanpa
-              izin dapat melanggar peraturan dan perundangundangan yang berlaku,
-              khususnya tentang hak cipta, merek dagang, kerahasiaan, dan
-              peraturan-peraturan serta statuta-statuta tentang komunikasi.
-            </p>
-            <p className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]">
-              Semua merek dagang, merek jasa, nama dagang, logo, dan ikon (“
-              <span className="font-bold">Merek Dagang</span>”) merupakan milik
-              Avrist, baik terdaftar maupun tidak terdaftar. Tidak satu pun isi
-              situs ini yang dapat ditafsirkan sebagai memberikan, secara
-              tersirat, estoppel, atau yang selainnya, lisensi atau hak
-              penggunaan setiap Merek Dagang yang ditampilkan dalam situs ini
-              tanpa izin tertulis dari Avrist. Penggunaan Anda atas Merek Dagang
-              yang ditampilkan dalam situs ini, atau setiap isi lainnya dalam
-              situs web ini, kecuali secara tegas ditentukan lain di dalam situs
-              ini, dilarang keras.
-            </p>
+        <div className="lg:px-[136px] xs:px-[36px] lg:py-[100px] xs:pt-[50px] xs:pb-[100px] flex lg:flex-row xs:flex-col">
+          {/* start tabs kiri */}
+          <div className="lg:block hidden rounded-lg">
+            <div className="flex flex-col shrink min-w-[210px] bg-purple_light_bg rounded-r-[12px] rounded-l-[4px] overflow-hidden">
+              {tabs.map((val, idx) =>
+                tab === val ? (
+                  <div
+                    key={idx}
+                    className="border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer text-left"
+                  >
+                    <span className="font-bold text-purple_dark text-footer-subtitle font-opensanspro">
+                      {val}
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    key={idx}
+                    role="button"
+                    onClick={() => handleTabClick(val)}
+                    className="border-l-4 border-purple_mediumlight px-[15px] py-[10px] cursor-pointer text-left"
+                  >
+                    <span className="font-bold text-purple_mediumlight text-footer-subtitle font-opensanspro">
+                      {val}
+                    </span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="relative lg:hidden block">
+            <div
+              className="flex justify-between items-center border-l-4 border-purple_dark px-[15px] py-[10px] cursor-pointer rounded-lg font-bold text-purple_dark bg-purple_light_bg text-[18px]"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <span>{tab}</span>
+              <div
+                className={`transform transition-transform duration-200 ${
+                  isOpen ? 'rotate-180' : ''
+                }`}
+              >
+                <Icon name="chevronDown" color="purple_dark" />
+              </div>
+            </div>
+            {isOpen && (
+              <div className="absolute w-full mt-1 rounded-lg bg-purple_light_bg shadow-lg">
+                {tabs.map((val, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleTabClick(val);
+                    }}
+                    className={`border-l-4 px-[15px] py-[10px] cursor-pointer font-bold text-footer-subtitle font-opensanspro ${
+                      tab === val
+                        ? 'border-purple_dark text-purple_dark'
+                        : 'border-purple_mediumlight text-purple_mediumlight'
+                    }`}
+                  >
+                    {val}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>{' '}
+          {/* end tabs kiri */}
+          <div className="lg:ml-[48px] flex flex-col xs:mt-[2rem] lg:mt-0">
+            <div ref={hakCiptaRef}>
+              <HakCipta content={content} />
+            </div>
+            <div ref={merkDagangRef}>
+              <MerkDagang content={content} />
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default MainContent;

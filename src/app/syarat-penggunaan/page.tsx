@@ -5,6 +5,7 @@ import MainContentSyaratPenggunaan from './component/MainContentSyaratPenggunaan
 import FooterCards from '@/components/molecules/specifics/agi/FooterCards';
 import FooterInformation from '@/components/molecules/specifics/agi/FooterInformation';
 import Hero from '@/components/molecules/specifics/agi/Hero';
+import { handleGetContentPage } from '@/services/content-page.api';
 import {
   contentStringTransformer,
   pageTransformer,
@@ -52,11 +53,7 @@ const SyaratPengunaan = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          'https://api-front-sit.avristcms.barito.tech/api/page/halaman-syarat-penggunaan-agi',
-          { method: 'GET' }
-        );
-        const data = await response.json();
+        const data = await handleGetContentPage('halaman-syarat-penggunaan-agi');
         const { content } = pageTransformer(data);
         setContentData(content);
         setTitleImg(singleImageTransformer(content['title-image']));

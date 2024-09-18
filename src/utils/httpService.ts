@@ -5,6 +5,7 @@ type Environment =
   | 'content'
   | 'default'
   | 'content/category'
+  | 'content/filter'
   | 'content-detail'
   | 'form'
   | 'cms'
@@ -29,13 +30,15 @@ interface FetchOptions extends RequestInit {
 export async function httpService<T>(
   env: Environment,
   endpoint: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {},
+  type?: string
 ): Promise<T> {
   const baseUrl = getBaseUrl(env);
+  const url = buildURL(baseUrl + '/' + endpoint);
   const urlWithParams = buildURL(baseUrl + '/' + endpoint, options.queryParams);
 
   try {
-    const response = await fetch(urlWithParams, {
+    const response = await fetch(type === 'body' ? url : urlWithParams, {
       ...options,
       next: {
         revalidate: options.next?.revalidate ?? 60
@@ -67,6 +70,8 @@ function getBaseUrl(env: Environment): string {
       return BASE_URL.contentPage;
     case 'content/category':
       return BASE_URL.contentCategoryPage;
+    case 'content/filter':
+      return BASE_URL.contentFilter;
     case 'default':
       return BASE_URL.default;
     case 'content-detail':

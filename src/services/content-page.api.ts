@@ -53,6 +53,26 @@ export const getContentCategory = async (slug: string, query: QueryParams) => {
   });
 };
 
+export const getContentFilter = async (slug: string, query: any) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/filter',
+    slug,
+    {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      }
+    },
+    'body'
+  );
+};
+
 export const handleGetContentPage = async (slug: string) => {
   try {
     const data = await getContentPage(slug);
@@ -86,6 +106,18 @@ export const handleGetContentCategory = async (
 ) => {
   try {
     const data = await getContentCategory(slug, query);
+    return data;
+  } catch (error) {
+    return notFound();
+  }
+};
+
+export const handleGetContentFilter = async (
+  slug: string,
+  query: QueryParams
+) => {
+  try {
+    const data = await getContentFilter(slug, query);
     return data;
   } catch (error) {
     return notFound();

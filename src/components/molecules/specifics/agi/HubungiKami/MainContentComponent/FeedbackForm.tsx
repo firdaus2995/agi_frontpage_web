@@ -52,14 +52,23 @@ export const FeedbackForm = (props: Props) => {
     setFormValue(data);
   };
 
+  const emailSubmitterComponent = dataForm?.find(
+    (item: any) => item.fieldId === 'EMAIL_SUBMITTER'
+  )?.componentId ?? '';
+
   const onSubmitData = async () => {
     const dataForm = [...formValue];
+
     const queryParams = {
       id: formId,
       pic: formPic,
       placeholderValue: dataForm,
       emailSubject,
       emailBody,
+      emailSubmitter: emailSubmitterComponent
+        ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+            ?.value
+        : '',
       emailSubjectSubmitter,
       emailBodySubmitter
     };

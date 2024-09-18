@@ -195,7 +195,6 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
             }
           );
           const data = await contentCategoryResponse.json();
-          console.log(data)
           const transformedDataContent = contentCategoryTransformer(
             data,
             activeTab

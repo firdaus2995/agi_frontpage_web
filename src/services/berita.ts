@@ -19,6 +19,26 @@ export const getBeritaAcara = async (query: QueryParams) => {
   );
 };
 
+export const getBeritaAcaraNew = async (query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/filter',
+    BASE_SLUG.BERITA.CONTENT.BERITA_ACARA,
+    {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      }
+    },
+    'body'
+  );
+};
+
 export const getPenghargaan = async (query: QueryParams) => {
   return await httpService<ContentCategoryResponse>(
     'content/category',
@@ -35,6 +55,26 @@ export const getPenghargaan = async (query: QueryParams) => {
   );
 };
 
+export const getPenghargaanNew = async (query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/filter',
+    BASE_SLUG.BERITA.CONTENT.PENGHARGAAN,
+    {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      }
+    },
+    'body'
+  );
+};
+
 export const getCSR = async (query: QueryParams) => {
   return await httpService<ContentCategoryResponse>(
     'content/category',
@@ -48,6 +88,26 @@ export const getCSR = async (query: QueryParams) => {
       },
       queryParams: filterAttributes(query)
     }
+  );
+};
+
+export const getCSRNew = async (query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/filter',
+    BASE_SLUG.BERITA.CONTENT.CSR,
+    {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      }
+    },
+    'body'
   );
 };
 

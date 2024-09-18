@@ -8,8 +8,9 @@ import { SearchInput } from './form/Input';
 import maps from '@/assets/images/Map-Pin.svg';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
-import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
+import { QueryParams } from '@/utils/httpService';
 import {
   contentCategoryTransformer,
   contentStringTransformer
@@ -63,13 +64,20 @@ const KantorCabang = () => {
   ]);
 
   useEffect(() => {
+    const queryParams: QueryParams = {
+      includeAttributes: true,
+      searchRequest: {
+        keyword: search || '',
+        fieldIds: ['kota'],
+        postData: true
+      },
+      category: ''
+    };
     const fetchContent = async () => {
       try {
-        const apiContent = await handleGetContentCategory(
+        const apiContent = await handleGetContentFilter(
           BASE_SLUG.PUSAT_INFORMASI.CONTENT.KANTOR_CABANG,
-          {
-            includeAttributes: 'true'
-          }
+          queryParams
         );
         const transformedContent = contentCategoryTransformer(apiContent, '');
         if (transformedContent?.length === 0) {

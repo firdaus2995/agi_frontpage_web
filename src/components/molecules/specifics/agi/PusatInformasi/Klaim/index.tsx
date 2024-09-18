@@ -3,7 +3,7 @@ import NotFound from '@/components/atoms/NotFound';
 import Accordion from '@/components/molecules/specifics/agi/Accordion';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
-import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { QueryParams } from '@/utils/httpService';
 import { singleImageTransformer } from '@/utils/responseTransformer';
@@ -25,12 +25,12 @@ const Klaim = () => {
       <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
           <span className="text-purple_dark">Transparansi</span> dan{' '}
-          <span className="text-purple_dark">efisiensi</span> dalam
-          menangani permohonan klaim nasabah.
+          <span className="text-purple_dark">efisiensi</span> dalam menangani
+          permohonan klaim nasabah.
         </h1>
       </section>
 
-      <div className='pb-[24px] lg:pb-[48px]'>
+      <div className="pb-[24px] lg:pb-[48px]">
         <SearchBox
           onSearch={(value: string) => {
             setSearchKeywords(value);
@@ -44,7 +44,7 @@ const Klaim = () => {
             const currentData =
               transformedData[Object.keys(transformedData)[idx]];
             const subcategories = getSubcategories(currentData);
-            
+
             return (
               <Accordion
                 key={idx}
@@ -90,12 +90,17 @@ export default Klaim;
 
 const fetchContentDataWithCategory = async (params: any) => {
   const queryParams: QueryParams = {
-    includeAttributes: 'true',
-    searchFilter: params?.searchKeyWords || ''
+    includeAttributes: true,
+    searchRequest: {
+      keyword: params?.searchKeyWords || '',
+      fieldIds: ['title'],
+      postData: true
+    },
+    category: ''
   };
 
   try {
-    const apiContent = await handleGetContentCategory(
+    const apiContent = await handleGetContentFilter(
       BASE_SLUG.PUSAT_INFORMASI.CONTENT.KLAIM,
       queryParams
     );

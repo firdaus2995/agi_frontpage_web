@@ -4,8 +4,9 @@ import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
-import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
+import { QueryParams } from '@/utils/httpService';
 import {
   contentCategoryTransformer,
   contentStringTransformer,
@@ -38,13 +39,19 @@ const WordingPolis = (props: WordingPolisProps) => {
   );
 
   const fetchContent = async () => {
+    const queryParams: QueryParams = {
+      includeAttributes: true,
+      searchRequest: {
+        keyword: search || '',
+        fieldIds: ['title'],
+        postData: true
+      },
+      category: ''
+    };
     try {
-      const apiContent = await handleGetContentCategory(
+      const apiContent = await handleGetContentFilter(
         BASE_SLUG.PUSAT_INFORMASI.CONTENT.WORDING_KLAUSULA,
-        {
-          includeAttributes: 'true',
-          searchFilter: search
-        }
+        queryParams
       );
 
       const listData: any = [];

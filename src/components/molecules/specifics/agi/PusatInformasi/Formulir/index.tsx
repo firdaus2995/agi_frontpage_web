@@ -5,10 +5,11 @@ import NotFound from '@/components/atoms/NotFound';
 import DownloadFileButton from '@/components/molecules/specifics/agi/DownloadFileButton';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
 import {
-  handleGetContentCategory,
-  handleGetContentDetail
+  handleGetContentDetail,
+  handleGetContentFilter
 } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
+import { QueryParams } from '@/utils/httpService';
 import {
   contentDetailTransformer,
   singleImageTransformer
@@ -34,12 +35,19 @@ const Formulir = () => {
   };
 
   const fetchContent = async () => {
+    const queryParams: QueryParams = {
+      includeAttributes: true,
+      searchRequest: {
+        keyword: search || '',
+        fieldIds: ['title'],
+        postData: true
+      },
+      category: ''
+    };
     try {
-      const apiContent = await handleGetContentCategory(
+      const apiContent = await handleGetContentFilter(
         BASE_SLUG.PUSAT_INFORMASI.CONTENT.FORMULIR,
-        {
-          searchFilter: search
-        }
+        queryParams
       );
 
       const transformedContent = apiContent.data.categoryList[''] ?? [];
@@ -75,9 +83,7 @@ const Formulir = () => {
       <section className="w-full flex flex-col items-center text-center py-[80px]">
         <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
           Temukan{' '}
-          <span className="text-purple_dark">
-            formulir yang Anda butuhkan
-          </span>{' '}
+          <span className="text-purple_dark">formulir yang Anda butuhkan</span>{' '}
           di bawah ini
         </h1>
       </section>

@@ -1,7 +1,6 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation';
 import { IDataContent } from '../page';
 import GiveHeartSymbol from '@/assets/symbols/giveheart-symbol.svg';
 import HeartChatSymbol from '@/assets/symbols/heartchat-symbol.svg';
@@ -36,7 +35,6 @@ import {
 } from '@/utils/responseTransformer';
 
 const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
-  const router = useRouter();
   const [dataRekomendasi, setDataRekomendasi] = useState<IDataContent[]>();
   const [data, setData] = useState<any>({
     titleImage: '',
@@ -447,12 +445,20 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       return item;
     });
 
+    const emailSubmitterComponent = dataForm.find(
+      (item: any) => item.fieldId === 'EMAIL_SUBMITTER'
+    ).componentId;
+
     const queryParams = {
       id: formId,
       pic: formPic,
       placeholderValue: updatedData,
       emailSubject,
       emailBody,
+      emailSubmitter: emailSubmitterComponent
+        ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+            ?.value
+        : '',
       emailSubjectSubmitter,
       emailBodySubmitter
     };
@@ -464,7 +470,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
 
     if (data.status !== 'OK') {
       console.error('Error:', data.errors.message);
-      router.refresh();
+      window.location.reload();
     }
   };
 
@@ -577,14 +583,16 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           />
         )}
         <div className="flex flex-col bg-white p-[36px] rounded-b-[8px] border-b-purple_dark border-b-8">
-          <div className="accent-purple_dark flex flex-row items-center gap-[12px]">
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={(e) => {
-                setIsChecked(e.target.checked);
-              }}
-            />
+          <div className="accent-purple_dark flex flex-row gap-[12px]">
+            <div>
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => {
+                  setIsChecked(e.target.checked);
+                }}
+              />
+            </div>
             <label className="cursor-pointer" htmlFor="setuju">
               Saya setuju memberikan data pribadi Saya kepada Avrist General
               Insurance dan telah membaca{' '}

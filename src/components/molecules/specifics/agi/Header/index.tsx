@@ -120,6 +120,7 @@ const Header = () => {
                 <Menu.Item>
                   <Link
                     href={`${EXTERNAL_URL.avrasUrl}/produk/individu?tab=Asuransi+Jiwa`}
+                    target="_blank"
                     className="font-karla hover:text-purple_dark hover:font-medium"
                   >
                     Avrist Life Insurance
@@ -128,7 +129,7 @@ const Header = () => {
                 <Menu.Item>
                   <Link
                     href="/produk?tab=Kendaraan"
-                    target="blank"
+                    target="_blank"
                     className="font-karla hover:text-purple_dark hover:font-medium"
                   >
                     Avrist General Insurance
@@ -137,7 +138,7 @@ const Header = () => {
                 <Menu.Item>
                   <Link
                     href={EXTERNAL_URL.avramUrl}
-                    target="blank"
+                    target="_blank"
                     className="font-karla hover:text-purple_dark hover:font-medium"
                   >
                     Avrist Asset Management
@@ -192,6 +193,7 @@ const Header = () => {
       {/* Purple Section */}
       <SimpleContainer
         className="bg-gradient-to-b from-purple_dark to-purple_light w-full m-0 text-white relative"
+        bgColor='gradient-to-b from-purple_dark to-purple_light'
         paddingY="py-[1.25rem]"
       >
         <div className="flex justify-between items-center w-full gap-8">

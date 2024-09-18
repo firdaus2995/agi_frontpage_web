@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import CustomForm from '../../CustomForm/Index';
 import { SuccessModal } from '../../Modal';
 import { ReportForm } from '../../PenangananPengaduan/MainContentComponent';
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export const RequirementForm = (props: Props) => {
-  const router = useRouter();
   const { Id } = props;
   const [dataForm, setDataForm] = useState<any>();
   const [dataUpload, setDataUpload] = useState<any>();
@@ -89,6 +87,10 @@ export const RequirementForm = (props: Props) => {
     }
   }, [dataUpload]);
 
+  const emailSubmitterComponent =
+    dataForm?.find((item: any) => item.fieldId === 'EMAIL_SUBMITTER')
+      ?.componentId ?? '';
+
   const onSubmitData = async () => {
     let queryParams = {};
 
@@ -100,6 +102,10 @@ export const RequirementForm = (props: Props) => {
         placeholderValue: dataForm,
         emailSubject,
         emailBody,
+        emailSubmitter: emailSubmitterComponent
+          ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+              ?.value
+          : '',
         emailSubjectSubmitter,
         emailBodySubmitter
       };
@@ -112,6 +118,10 @@ export const RequirementForm = (props: Props) => {
         attachmentPath: attachmentFile,
         emailSubject,
         emailBody,
+        emailSubmitter: emailSubmitterComponent
+          ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+              ?.value
+          : '',
         emailSubjectSubmitter,
         emailBodySubmitter
       };
@@ -127,7 +137,7 @@ export const RequirementForm = (props: Props) => {
 
       if (data.status !== 'OK') {
         console.error('Error:', data.errors.message);
-        router.refresh();
+        window.location.reload();
       }
     }
   };
@@ -244,7 +254,7 @@ export const RequirementForm = (props: Props) => {
           show={showSuccess}
           onClose={() => {
             setShowSuccess(false);
-            router.refresh();
+            window.location.reload();
           }}
         />
       </div>

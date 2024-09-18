@@ -68,7 +68,7 @@ const Footer = () => {
       if (linkValue.startsWith('0')) {
         linkValue = '62' + linkValue.slice(1);
       }
-      return linkValue;
+      return linkValue?.replace(" ", "");
     }
 
     return '';
@@ -290,7 +290,7 @@ const Footer = () => {
               ? contentData['icon-looping']?.contentData?.map(
                   (item: any, index: any) => (
                     <IconWrapper key={index}>
-                      <Link href={item?.details[1].value} target="blank">
+                      <Link href={item?.details[1].value} target="_blank">
                         <Image
                           src={
                             singleImageTransformer(item?.details[0])

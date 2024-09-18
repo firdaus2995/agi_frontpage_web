@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import CustomForm from '../../CustomForm/Index';
 import { SuccessModal } from '../../Modal';
 import { DividerPurple } from './Divider';
@@ -10,7 +9,6 @@ type Props = {
   Id?: string;
 };
 export const FeedbackForm = (props: Props) => {
-  const router = useRouter();
   const { Id } = props;
   const [dataForm, setDataForm] = useState<any>();
   const [formId, setFormId] = useState<any>();
@@ -54,14 +52,23 @@ export const FeedbackForm = (props: Props) => {
     setFormValue(data);
   };
 
+  const emailSubmitterComponent = dataForm?.find(
+    (item: any) => item.fieldId === 'EMAIL_SUBMITTER'
+  )?.componentId ?? '';
+
   const onSubmitData = async () => {
     const dataForm = [...formValue];
+
     const queryParams = {
       id: formId,
       pic: formPic,
       placeholderValue: dataForm,
       emailSubject,
       emailBody,
+      emailSubmitter: emailSubmitterComponent
+        ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+            ?.value
+        : '',
       emailSubjectSubmitter,
       emailBodySubmitter
     };
@@ -73,7 +80,7 @@ export const FeedbackForm = (props: Props) => {
 
     if (data.status !== 'OK') {
       console.error('Error:', data.errors.message);
-      router.refresh();
+      window.location.reload();
     }
   };
 
@@ -112,7 +119,7 @@ export const FeedbackForm = (props: Props) => {
           show={showSuccess}
           onClose={() => {
             setShowSuccess(false);
-            router.refresh();
+            window.location.reload();
           }}
         />
       </div>

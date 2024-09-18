@@ -16,6 +16,7 @@ import Hero from '@/components/molecules/specifics/agi/Hero';
 import SearchBar from '@/components/molecules/specifics/agi/SearchBar';
 
 import { handleGetContentPage } from '@/services/content-page.api';
+import { BASE_URL } from '@/utils/baseUrl';
 import { ParamsProps } from '@/utils/globalTypes';
 import {
   contentCategoryTransformer,
@@ -164,8 +165,34 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
     const fetchDataContentWithCategory = async () => {
       try {
         if (activeTab === searchParams.get('tab')) {
+          const queryParams = {
+            includeAttributes: true,
+            searchRequest: {
+              keyword: searchValue ?? '',
+              fieldIds: ['title', 'tags'],
+              postData: true
+            },
+            filters: [
+              ...(selectedChannels && selectedChannels !== ''
+                ? [
+                    {
+                      fieldId: 'channel',
+                      keyword: selectedChannels
+                    }
+                  ]
+                : [])
+            ],
+            category: activeTab
+          };
           const contentCategoryResponse = await fetch(
-            `/api/produk/content-category?category=${activeTab}&channelFilter=${selectedChannels}&searchFilter=${searchValue}`
+            `${BASE_URL.contentFilter}/Produk AGI`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(queryParams)
+            }
           );
           const data = await contentCategoryResponse.json();
           const transformedDataContent = contentCategoryTransformer(
@@ -228,6 +255,7 @@ const IndividuProduk: React.FC<ParamsProps> = () => {
           channelValues?.filter((channel: string) => channel !== '')
         );
         setIsCategoryChange(false);
+        setSelectedChannels('');
         setChannels(Array.from(uniqueChannels));
       }
     });

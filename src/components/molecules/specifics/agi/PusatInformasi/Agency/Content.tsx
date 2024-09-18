@@ -11,8 +11,7 @@ import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CardCategoryB from '@/components/molecules/specifics/agi/Cards/CategoriB';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 import SliderInformation from '@/components/molecules/specifics/agi/SliderInformation';
-import { handleGetContentCategory } from '@/services/content-page.api';
-import { QueryParams } from '@/utils/httpService';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import {
   contentStringTransformer,
   singleImageTransformer
@@ -43,7 +42,7 @@ const Content = (props: contentProps) => {
     arrows: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToScroll: 1
   };
 
   const router = useRouter();
@@ -113,13 +112,34 @@ const Content = (props: contentProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const queryParams: QueryParams = {
-          includeAttributes: 'true',
-          searchFilter: params.searchFilter,
-          yearFilter: params.yearFilter,
-          monthFilter: params.monthFilter
+        const queryParams = {
+          includeAttributes: true,
+          searchRequest: {
+            keyword: params.searchFilter ?? '',
+            fieldIds: ['title'],
+            postData: true
+          },
+          filters: [
+            ...(params.yearFilter && params.yearFilter !== ''
+              ? [
+                  {
+                    fieldId: 'tahun',
+                    keyword: params.yearFilter
+                  }
+                ]
+              : []),
+            ...(params.monthFilter && params.monthFilter !== ''
+              ? [
+                  {
+                    fieldId: 'bulan',
+                    keyword: params.monthFilter
+                  }
+                ]
+              : [])
+          ],
+          category: ''
         };
-        const data = await handleGetContentCategory(
+        const data = await handleGetContentFilter(
           'Berita-dan-Acara-Agency-AGI',
           queryParams
         );
@@ -151,8 +171,8 @@ const Content = (props: contentProps) => {
           .flat()
           .filter((item) => item !== undefined && item !== null);
         const contentData = newDataContentWithCategory?.map(
-          ({ contentData, id, categoryName, title, shortDesc }) => {
-            const category = categoryName;
+          ({ contentData, id, categories, title, shortDesc }) => {
+            const category = categories[0]?.categoryName;
             const description = shortDesc;
             const date = `${contentStringTransformer(
               contentData.filter((item) => item.fieldId === 'tanggal')[0]
@@ -338,15 +358,18 @@ const Content = (props: contentProps) => {
                     bgColor="purple_superlight"
                     title={
                       <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
-                        <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
+                        <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[200px]">
                           {item.category !== '-' &&
+                            item.category !== '' &&
                             item.category !== undefined && (
-                              <div className="font-bold text-purple_dark">
+                              <div className="font-bold text-purple_dark whitespace-nowrap">
                                 {item.category}
                               </div>
                             )}
                           {item.date !== '-' && item.date !== undefined && (
-                            <div className="ml-2">{item.date}</div>
+                            <div className="pl-2 whitespace-nowrap">
+                              {item.date}
+                            </div>
                           )}
                         </div>
                         <div className="flex flex-col gap-3">
@@ -361,14 +384,14 @@ const Content = (props: contentProps) => {
                         {item.tags[0] !== '' && item.tags?.length > 0 ? (
                           <div className="flex flex-row flex-wrap gap-[12px]">
                             {' '}
-                            {item.tags?.slice(0, 2).map(
-                              (
-                                value: string,
-                                key: React.Key | null | undefined
-                              ) => (
-                                <MediumTag key={key} title={value} />
-                              )
-                            )}
+                            {item.tags
+                              ?.slice(0, 2)
+                              .map(
+                                (
+                                  value: string,
+                                  key: React.Key | null | undefined
+                                ) => <MediumTag key={key} title={value} />
+                              )}
                           </div>
                         ) : null}
 

@@ -14,7 +14,7 @@ import CHEVRON_RIGHT_PURPLE from '@/assets/images/common/chevron-right-purple.sv
 import Button from '@/components/atoms/Button/Button';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
-import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { mergeAllData } from '@/utils/helpers';
 import { QueryParams } from '@/utils/httpService';
@@ -48,10 +48,22 @@ const SearchForm = () => {
       try {
         let listData = [];
         const queryParams: QueryParams = {
-          includeAttributes: 'true',
-          searchFilter: searchKeyWords ?? ''
+          includeAttributes: true,
+          searchRequest: {
+            keyword: searchKeyWords || '',
+            fieldIds:
+              selectedTab.title === 'Produk'
+                ? ['title', 'tags']
+                : selectedTab.title === 'Klaim'
+                  ? ['title']
+                  : selectedTab.title === 'Berita Pers'
+                    ? ['title', 'tags']
+                    : ['pertanyaan-tanya-avgen'],
+            postData: true
+          },
+          category: ''
         };
-        const data = await handleGetContentCategory(
+        const data = await handleGetContentFilter(
           selectedTab.slug,
           queryParams
         );
@@ -150,12 +162,24 @@ const SearchForm = () => {
 
   const fetchContentDataWithCategory = async (params: any) => {
     const queryParams: QueryParams = {
-      includeAttributes: 'true',
-      searchFilter: params?.searchKeyWords || ''
+      includeAttributes: true,
+      searchRequest: {
+        keyword: params?.searchKeyWords || '',
+        fieldIds:
+          selectedTab.title === 'Produk'
+            ? ['title', 'tags']
+            : selectedTab.title === 'Klaim'
+              ? ['title']
+              : selectedTab.title === 'Berita Pers'
+                ? ['title', 'tags']
+                : ['pertanyaan-tanya-avgen'],
+        postData: true
+      },
+      category: ''
     };
 
     try {
-      const apiContent = await handleGetContentCategory(
+      const apiContent = await handleGetContentFilter(
         BASE_SLUG.PUSAT_INFORMASI.CONTENT.KLAIM,
         queryParams
       );
@@ -261,19 +285,26 @@ const SearchForm = () => {
                   }}
                 >
                   <div className="mx-3 rounded-xl border-2 border-gray_light px-[1.5rem] py-[2.25rem] flex flex-col gap-[12px]">
-                    <p className="text-sm leading-[19.6px]">{item.date}</p>
-                    <p
-                      className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none"
-                      dangerouslySetInnerHTML={{
-                        __html: item.title
-                      }}
-                    />
-                    <div
-                      className="text-body-text-1 line-clamp-2"
-                      dangerouslySetInnerHTML={{
-                        __html: item.description
-                      }}
-                    />
+                    <p className="text-sm leading-[19.6px]">
+                      {item.date && item.date}
+                    </p>
+                    {item.title !== '-' && (
+                      <p
+                        className="text-[24px] font-bold font-opensanspro xs:line-clamp-3 lg:line-clamp-none"
+                        dangerouslySetInnerHTML={{
+                          __html: item.title
+                        }}
+                      />
+                    )}
+                    {item.description !== '<p>-</p>' &&
+                      (item.description !== '<p>-&nbsp;</p>' && (
+                        <div
+                          className="text-body-text-1 line-clamp-2"
+                          dangerouslySetInnerHTML={{
+                            __html: item.description
+                          }}
+                        />
+                      ))}
                   </div>
                 </Link>
               ))
@@ -333,18 +364,21 @@ const SearchForm = () => {
         ) : selectedTab.title === 'Tanya AvGen' ? (
           <div className="w-full flex flex-col gap-[12px]">
             {dataContent?.length > 0 ? (
-              paginatedData?.map((item: any, index: any) => (
-                <Link
-                  href={item?.href ?? ''}
-                  key={index}
-                  className="w-full border border-gray_light rounded-xl p-[1.5rem] flex flex-row justify-between items-center shadow-[0_13px_20px_0px_purple_dark/[0/03]]"
-                >
-                  <p className="text-2xl font-semibold leading-[30.17px] font-opensanspro">
-                    {item?.title}
-                  </p>
-                  <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
-                </Link>
-              ))
+              paginatedData?.map(
+                (item: any, index: any) =>
+                  item?.title !== '-' && (
+                    <Link
+                      href={item?.href ?? ''}
+                      key={index}
+                      className="w-full border border-gray_light rounded-xl p-[1.5rem] flex flex-row justify-between items-center shadow-[0_13px_20px_0px_purple_dark/[0/03]]"
+                    >
+                      <p className="text-2xl font-semibold leading-[30.17px] font-opensanspro">
+                        {item?.title}
+                      </p>
+                      <Image alt="chevron" src={CHEVRON_RIGHT_PURPLE} />
+                    </Link>
+                  )
+              )
             ) : (
               <NotFound />
             )}

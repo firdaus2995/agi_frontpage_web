@@ -8,8 +8,9 @@ import { SearchInput } from './form/Input';
 import maps from '@/assets/images/Map-Pin.svg';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
-import { handleGetContentCategory } from '@/services/content-page.api';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
+import { QueryParams } from '@/utils/httpService';
 import {
   contentCategoryTransformer,
   contentStringTransformer
@@ -51,16 +52,32 @@ const KantorCabang = () => {
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setCurrentPage(page);
   };
-  const [mapCenter, setMapCenter] = useState<[number, number]>([0, 0]);
+
+  // Set the initial map center to highOfficeCoordinate on page load
+  const highOfficeCoordinate = {
+    lat: dataHo?.latOffice ?? -6.227327498160391,
+    lng: dataHo?.longOffice ?? 106.80040672857899
+  };
+  const [mapCenter, setMapCenter] = useState<[number, number]>([
+    highOfficeCoordinate.lat,
+    highOfficeCoordinate.lng
+  ]);
 
   useEffect(() => {
+    const queryParams: QueryParams = {
+      includeAttributes: true,
+      searchRequest: {
+        keyword: search || '',
+        fieldIds: ['kota'],
+        postData: true
+      },
+      category: ''
+    };
     const fetchContent = async () => {
       try {
-        const apiContent = await handleGetContentCategory(
+        const apiContent = await handleGetContentFilter(
           BASE_SLUG.PUSAT_INFORMASI.CONTENT.KANTOR_CABANG,
-          {
-            includeAttributes: 'true'
-          }
+          queryParams
         );
         const transformedContent = contentCategoryTransformer(apiContent, '');
         if (transformedContent?.length === 0) {
@@ -166,12 +183,8 @@ const KantorCabang = () => {
   };
 
   const RenderMap = () => {
-    const highOfficeCoordinate = {
-      lat: dataHo?.latOffice,
-      lng: dataHo?.longOffice
-    };
     const defaultProps = {
-      center: highOfficeCoordinate,
+      center: mapCenter,
       zoom: 16
     };
 
@@ -336,7 +349,7 @@ const KantorCabang = () => {
             lng={dataHo?.longOffice}
             onChangeCenter={onClickMarker}
           />
-          {dataHo?.latOffice ? (
+          {dataHo?.latOffice && dataHo?.longOffice ? (
             <Card className="lg:col-span-2 min-h-[100%] w-full">
               {RenderMap()}
             </Card>

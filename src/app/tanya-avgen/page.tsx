@@ -8,7 +8,7 @@ import Hero from '@/components/molecules/specifics/agi/Hero';
 import FAQList from '@/components/molecules/specifics/agi/TanyaAvrista/FAQList';
 import SearchTerm from '@/components/molecules/specifics/agi/TanyaAvrista/SearchTerm';
 import TopicsCard from '@/components/molecules/specifics/agi/TanyaAvrista/TopicsCard';
-import { getListFaq, getTanyaAvgen } from '@/services/tanya-avgen.api';
+import { getListFaqNew, getTanyaAvgen } from '@/services/tanya-avgen.api';
 import { QueryParams } from '@/utils/httpService';
 import {
   contentStringTransformer,
@@ -44,9 +44,15 @@ const handleGetContent = async (slug: string) => {
 const handleGetListFaq = async (slug: string) => {
   try {
     const queryParams: QueryParams = {
-      includeAttributes: 'true'
+      includeAttributes: true,
+      searchRequest: {
+        keyword: '',
+        fieldIds: ['pertanyaan-tanya-avgen', 'tags'],
+        postData: true
+      },
+      category: ''
     };
-    const data = await getListFaq(slug, queryParams);
+    const data = await getListFaqNew(slug, queryParams);
     return data;
   } catch (error) {
     return notFound();
@@ -123,9 +129,6 @@ const TanyaAvgen = () => {
     const fetchData = async () => {
       try {
         const data = await handleGetContent('hal-tanya-avgen');
-        const listFaq = await handleGetListFaq(
-          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen'
-        );
         const { content } = pageTransformer(data);
 
         setTitleImage(singleImageTransformer(content['title-image']));
@@ -177,6 +180,10 @@ const TanyaAvgen = () => {
         setCards(listCards);
         setSelectedCards(listCards[0].title);
 
+        const listFaq = await handleGetListFaq(
+          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen'
+        );
+
         const tempData = listFaq?.data?.categoryList[''];
         const transformedData = tempData.map((item) => {
           const title = item.title;
@@ -210,13 +217,24 @@ const TanyaAvgen = () => {
 
   const handleGetListFaqFilter = async (slug: string) => {
     try {
+      setCurrentPage(1);
       setLoadingSearch(true);
       const queryParams: QueryParams = {
-        includeAttributes: 'true',
-        searchFilter: keyword,
-        tagsFilter: selectedCards
+        includeAttributes: true,
+        searchRequest: {
+          keyword: keyword ?? '',
+          fieldIds: ['pertanyaan-tanya-avgen', 'tags'],
+          postData: true
+        },
+        filters: [
+          {
+            fieldId: 'tags',
+            keyword: selectedCards
+          }
+        ],
+        category: ''
       };
-      const listFaq: any = await getListFaq(slug, queryParams);
+      const listFaq: any = await getListFaqNew(slug, queryParams);
       const tempData = listFaq?.data?.categoryList[''];
       const transformedData =
         tempData === undefined
@@ -246,11 +264,21 @@ const TanyaAvgen = () => {
     try {
       setLoadingSearch(true);
       const queryParams: QueryParams = {
-        includeAttributes: 'true',
-        searchFilter: keyword,
-        tagsFilter: title
+        includeAttributes: true,
+        searchRequest: {
+          keyword: keyword ?? '',
+          fieldIds: ['pertanyaan-tanya-avgen', 'tags'],
+          postData: true
+        },
+        filters: [
+          {
+            fieldId: 'tags',
+            keyword: title
+          }
+        ],
+        category: ''
       };
-      const listFaq: any = await getListFaq(slug, queryParams);
+      const listFaq: any = await getListFaqNew(slug, queryParams);
       const tempData = listFaq?.data?.categoryList[''];
       const transformedData =
         tempData === undefined

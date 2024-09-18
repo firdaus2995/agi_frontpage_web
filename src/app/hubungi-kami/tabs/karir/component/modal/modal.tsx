@@ -68,16 +68,25 @@ export const ApplyJobModal: FC<Props> = ({
   };
 
   const onSubmitData = async () => {
+    const emailSubmitterComponent = dataForm.find(
+      (item: any) => item.fieldId === 'EMAIL_SUBMITTER'
+    ).componentId;
     const queryParams = {
       id: idForm,
       pic: formPic,
       placeholderValue: formValue,
       emailSubject,
       emailBody,
+      emailSubmitter: emailSubmitterComponent
+        ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+            ?.value
+        : '',
       emailSubjectSubmitter,
       emailBodySubmitter,
       attachment: true,
-      attachmentPath: formValue?.filter((item) => item.value.includes('files'))[0]?.value
+      attachmentPath: formValue?.filter((item) =>
+        item.value.includes('files')
+      )[0]?.value
     };
 
     const data = await handleSendEmail(queryParams);

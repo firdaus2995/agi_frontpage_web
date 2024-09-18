@@ -87,6 +87,10 @@ export const RequirementForm = (props: Props) => {
     }
   }, [dataUpload]);
 
+  const emailSubmitterComponent =
+    dataForm?.find((item: any) => item.fieldId === 'EMAIL_SUBMITTER')
+      ?.componentId ?? '';
+
   const onSubmitData = async () => {
     let queryParams = {};
 
@@ -98,6 +102,10 @@ export const RequirementForm = (props: Props) => {
         placeholderValue: dataForm,
         emailSubject,
         emailBody,
+        emailSubmitter: emailSubmitterComponent
+          ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+              ?.value
+          : '',
         emailSubjectSubmitter,
         emailBodySubmitter
       };
@@ -110,6 +118,10 @@ export const RequirementForm = (props: Props) => {
         attachmentPath: attachmentFile,
         emailSubject,
         emailBody,
+        emailSubmitter: emailSubmitterComponent
+          ? formValue.find((item: any) => item.name === emailSubmitterComponent)
+              ?.value
+          : '',
         emailSubjectSubmitter,
         emailBodySubmitter
       };

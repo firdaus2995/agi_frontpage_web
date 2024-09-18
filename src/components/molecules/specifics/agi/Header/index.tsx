@@ -193,6 +193,7 @@ const Header = () => {
       {/* Purple Section */}
       <SimpleContainer
         className="bg-gradient-to-b from-purple_dark to-purple_light w-full m-0 text-white relative"
+        bgColor='gradient-to-b from-purple_dark to-purple_light'
         paddingY="py-[1.25rem]"
       >
         <div className="flex justify-between items-center w-full gap-8">

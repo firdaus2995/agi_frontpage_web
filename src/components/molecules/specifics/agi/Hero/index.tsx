@@ -109,7 +109,7 @@ const Hero: React.FC<IHero> = ({
         />
       ) : (
         <div
-          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[85px] bg-purple_soft`}
+          className={`-z-[2] w-full top-0 absolute object-cover object-bottom h-[95px] bg-purple_soft`}
         ></div>
       )}
       {bottomImage && (

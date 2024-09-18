@@ -5,10 +5,11 @@ import Bengkel from './Bengkel';
 import ButtonMenuVertical from '@/components/molecules/specifics/agi/ButtonMenuVertical';
 import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
 import {
-  handleGetContentCategory,
-  handleGetContentDetail
+  handleGetContentDetail,
+  handleGetContentFilter
 } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
+import { QueryParams } from '@/utils/httpService';
 import {
   contentDetailTransformer,
   contentStringTransformer,
@@ -52,12 +53,19 @@ const Rekanan = (props: RekananProps) => {
   };
 
   const fetchContent = async () => {
+    const queryParams: QueryParams = {
+      includeAttributes: true,
+      searchRequest: {
+        keyword: search || '',
+        fieldIds: ['title'],
+        postData: true
+      },
+      category: ''
+    };
     try {
-      const apiContent = await handleGetContentCategory(
+      const apiContent = await handleGetContentFilter(
         BASE_SLUG.PUSAT_INFORMASI.CONTENT.BENGKEL,
-        {
-          searchFilter: search
-        }
+        queryParams
       );
       const transformedContent = apiContent.data.categoryList[tab] ?? [];
       const transformedData = await Promise.all(

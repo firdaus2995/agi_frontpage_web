@@ -24,3 +24,23 @@ export const getListFaq = async (slug: string, query: QueryParams) => {
     queryParams: query
   });
 };
+
+export const getListFaqNew = async (slug: string, query: QueryParams) => {
+  return await httpService<ContentCategoryResponse>(
+    'content/filter',
+    slug,
+    {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: {
+        revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
+          ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
+          : 60
+      }
+    },
+    'body'
+  );
+};

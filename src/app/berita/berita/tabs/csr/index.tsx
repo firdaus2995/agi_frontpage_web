@@ -13,7 +13,7 @@ import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CardCategoryC from '@/components/molecules/specifics/agi/Cards/CategoryC';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 import SliderInformation from '@/components/molecules/specifics/agi/SliderInformation';
-import { getCSR } from '@/services/berita';
+import { getCSRNew } from '@/services/berita';
 import { mergeAllData } from '@/utils/helpers';
 import {
   contentStringTransformer,
@@ -81,12 +81,34 @@ const CSR: FC<ICSR> = ({ title, description }) => {
 
   const fetchContent = async () => {
     try {
-      const fetchContentCategory = await getCSR({
-        includeAttributes: 'true',
-        searchFilter: params.searchFilter,
-        yearFilter: params.yearFilter,
-        monthFilter: params.monthFilter
-      });
+      const queryParams = {
+        includeAttributes: true,
+        searchRequest: {
+          keyword: params.searchFilter ?? '',
+          fieldIds: ['title'],
+          postData: true
+        },
+        filters: [
+          ...(params.yearFilter && params.yearFilter !== ''
+            ? [
+                {
+                  fieldId: 'tahun',
+                  keyword: params.yearFilter
+                }
+              ]
+            : []),
+          ...(params.monthFilter && params.monthFilter !== ''
+            ? [
+                {
+                  fieldId: 'bulan',
+                  keyword: params.monthFilter
+                }
+              ]
+            : [])
+        ],
+        category: ''
+      };
+      const fetchContentCategory = await getCSRNew(queryParams);
 
       const categoryList = fetchContentCategory.data.categoryList;
 

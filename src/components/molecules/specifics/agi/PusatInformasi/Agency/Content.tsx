@@ -11,8 +11,7 @@ import MediumTag from '@/components/atoms/Tag/MediumTag';
 import CardCategoryB from '@/components/molecules/specifics/agi/Cards/CategoriB';
 import CategoryWithThreeCards from '@/components/molecules/specifics/agi/CategoryWithThreeCards';
 import SliderInformation from '@/components/molecules/specifics/agi/SliderInformation';
-import { handleGetContentCategory } from '@/services/content-page.api';
-import { QueryParams } from '@/utils/httpService';
+import { handleGetContentFilter } from '@/services/content-page.api';
 import {
   contentStringTransformer,
   singleImageTransformer
@@ -113,13 +112,34 @@ const Content = (props: contentProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const queryParams: QueryParams = {
-          includeAttributes: 'true',
-          searchFilter: params.searchFilter,
-          yearFilter: params.yearFilter,
-          monthFilter: params.monthFilter
+        const queryParams = {
+          includeAttributes: true,
+          searchRequest: {
+            keyword: params.searchFilter ?? '',
+            fieldIds: ['title'],
+            postData: true
+          },
+          filters: [
+            ...(params.yearFilter && params.yearFilter !== ''
+              ? [
+                  {
+                    fieldId: 'tahun',
+                    keyword: params.yearFilter
+                  }
+                ]
+              : []),
+            ...(params.monthFilter && params.monthFilter !== ''
+              ? [
+                  {
+                    fieldId: 'bulan',
+                    keyword: params.monthFilter
+                  }
+                ]
+              : [])
+          ],
+          category: ''
         };
-        const data = await handleGetContentCategory(
+        const data = await handleGetContentFilter(
           'Berita-dan-Acara-Agency-AGI',
           queryParams
         );
@@ -347,7 +367,9 @@ const Content = (props: contentProps) => {
                               </div>
                             )}
                           {item.date !== '-' && item.date !== undefined && (
-                            <div className="pl-2 whitespace-nowrap">{item.date}</div>
+                            <div className="pl-2 whitespace-nowrap">
+                              {item.date}
+                            </div>
                           )}
                         </div>
                         <div className="flex flex-col gap-3">

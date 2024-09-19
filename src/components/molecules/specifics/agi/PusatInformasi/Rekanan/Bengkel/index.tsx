@@ -79,7 +79,7 @@ const Bengkel: React.FC<BengkelProps> = ({
             className="mt-[3px]"
             role="button"
             onClick={() => {
-              if (currentPage === data?.length) {
+              if (currentPage === totalPages) {
                 handlePageChange(currentPage);
               } else {
                 handlePageChange(currentPage + 1);

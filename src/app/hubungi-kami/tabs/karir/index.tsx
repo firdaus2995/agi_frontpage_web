@@ -173,7 +173,9 @@ const Karir = (props: Props) => {
                     key={index}
                     className="w-full flex flex-col gap-2 items-start p-4 border rounded-xl bg-white"
                   >
-                    <p className="font-bold text-[24px] font-opensanspro">{item.title}</p>
+                    <p className="font-bold text-[24px] font-opensanspro">
+                      {item.title}
+                    </p>
                     <div className="flex w-full flex-row items-center gap-2">
                       <Image
                         src={item?.icon1.imageUrl}
@@ -223,6 +225,19 @@ const Karir = (props: Props) => {
               dari <span className="font-bold">{totalItem}</span> hasil
             </p>
             <div className="flex flex-row gap-[12px] items-center">
+              <span
+                className="mt-[3px] rotate-180"
+                role="button"
+                onClick={() => {
+                  if (currentPage > 1) {
+                    handleChangePage(currentPage - 1);
+                  } else {
+                    handleChangePage(1);
+                  }
+                }}
+              >
+                <Icon name="chevronRight" color="purple_dark" />
+              </span>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
                   <div
@@ -240,7 +255,13 @@ const Karir = (props: Props) => {
               <span
                 className="mt-[3px]"
                 role="button"
-                onClick={() => handleChangePage(totalPages)}
+                onClick={() => {
+                  if (currentPage === totalPages) {
+                    handleChangePage(currentPage);
+                  } else {
+                    handleChangePage(currentPage + 1);
+                  }
+                }}
               >
                 <Icon name="chevronRight" color="purple_dark" />
               </span>

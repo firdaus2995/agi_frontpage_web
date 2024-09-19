@@ -68,7 +68,7 @@ const Footer = () => {
       if (linkValue.startsWith('0')) {
         linkValue = '62' + linkValue.slice(1);
       }
-      return linkValue?.replace(" ", "");
+      return linkValue?.replace(/\D/g, '');
     }
 
     return '';

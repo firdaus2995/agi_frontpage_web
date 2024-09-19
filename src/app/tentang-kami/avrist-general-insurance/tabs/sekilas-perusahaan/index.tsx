@@ -213,7 +213,7 @@ const SekilasPerusahaan: React.FC<ISetData> = ({ setData }) => {
                 link={val.link}
                 icon={val.icon}
                 href={val.href}
-                customClassName="flex-none !w-[85%] !h-[400px]"
+                customClassName="flex-none !w-[85%] !h-[300px]"
               />
             ))}
           </div>

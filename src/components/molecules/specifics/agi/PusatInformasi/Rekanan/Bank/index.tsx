@@ -89,6 +89,19 @@ const Bank = () => {
           dari <span className="font-bold">{totalItem}</span> hasil
         </p>
         <div className="flex flex-row gap-[12px] items-center">
+          <span
+            className="mt-[3px] rotate-180"
+            role="button"
+            onClick={() => {
+              if (currentPage > 1) {
+                handleChangePage(currentPage - 1);
+              } else {
+                handleChangePage(1);
+              }
+            }}
+          >
+            <Icon name="chevronRight" color="purple_dark" />
+          </span>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <div
               key={page}
@@ -104,7 +117,13 @@ const Bank = () => {
           <span
             className="mt-[3px]"
             role="button"
-            onClick={() => handleChangePage(totalPages)}
+            onClick={() => {
+              if (currentPage === totalPages) {
+                handleChangePage(currentPage);
+              } else {
+                handleChangePage(currentPage + 1);
+              }
+            }}
           >
             <Icon name="chevronRight" color="purple_dark" />
           </span>

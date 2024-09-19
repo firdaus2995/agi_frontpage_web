@@ -41,7 +41,7 @@ const handleGetContent = async (slug: string) => {
   }
 };
 
-const handleGetListFaq = async (slug: string) => {
+const handleGetListFaq = async (slug: string, title: string) => {
   try {
     const queryParams: QueryParams = {
       includeAttributes: true,
@@ -50,6 +50,12 @@ const handleGetListFaq = async (slug: string) => {
         fieldIds: ['pertanyaan-tanya-avgen', 'tags'],
         postData: true
       },
+      filters: [
+        {
+          fieldId: 'tags',
+          keyword: title
+        }
+      ],
       category: ''
     };
     const data = await getListFaqNew(slug, queryParams);
@@ -181,7 +187,8 @@ const TanyaAvgen = () => {
         setSelectedCards(listCards[0].title);
 
         const listFaq = await handleGetListFaq(
-          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen'
+          'List-Pertanyaan-dan-Jawaban-Tanya-Avgen',
+          listCards[0].title
         );
 
         const tempData = listFaq?.data?.categoryList[''];

@@ -371,7 +371,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
             return dateB - dateA;
           }
         );
-
         setDataRekomendasi(sortedData);
         return dataContentValues;
       } catch (error: any) {
@@ -644,7 +643,7 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
                     ? item.deskripsiSingkatProduk
                     : ''
                 }
-                tags={item.tags.split(',')}
+                tags={item.tags.split(',')?.slice(0, 3)}
                 href={`/produk/${item.id}`}
                 imageProduk={item.produkImage.imageUrl}
               />

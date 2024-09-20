@@ -247,7 +247,7 @@ export const ContactSupport = (props: Props) => {
                   <p className="text-[24px]">
                     {contentStringTransformer(pageData['informasi-3-nama'])}
                   </p>
-                  <p className="text-purple_dark text-[20px] font-opensanspro">
+                  <p className="text-purple_dark xs:text-[14px] xm:text-[20px] font-opensanspro">
                     {globalConfig.filter(
                       (item: { variable: string }) =>
                         item.variable === 'emailAGI'

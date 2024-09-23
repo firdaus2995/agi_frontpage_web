@@ -179,13 +179,16 @@ const DetailBeritaAcara = ({ params }: { params: { detail: string } }) => {
     const bulan = content['bulan'].value;
     const tahun = content['tahun'].value;
     const artikel = content['artikel-looping'].contentData;
-    const tanggal = `${content['tanggal'].value} ${
-      monthDropdown(keyParams, setKeyParams).find(
-        (item) =>
-          item.value === content['bulan'].value ||
-          item.label === content['bulan'].value
-      )?.label
-    } ${content['tahun'].value}`;
+    const tanggal =
+      content['bulan'].value !== '-' && content['tahun'].value !== '-'
+        ? `${content['tanggal'].value !== '-' ? content['tanggal'].value?.substr(0, 2) : ''} ${
+            monthDropdown(keyParams, setKeyParams).find(
+              (item) =>
+                item.value === content['bulan'].value ||
+                item.label === content['bulan'].value
+            )?.label
+          } ${content['tahun'].value}`
+        : '-';
     const loopArtikel = artikel.map((item: any, itemIndex: number) => {
       return (
         <React.Fragment key={itemIndex}>

@@ -61,13 +61,16 @@ const Detail = (props: agencyDetailProps) => {
         const loopingItem = content['artikel-looping'].contentData[0].details;
         const category = data.data.categoryName;
         const judulArtikel = data.data.title;
-        const tanggal = `${content['tanggal'].value} ${
-          monthDropdown(keyParams, setKeyParams).find(
-            (item) =>
-              item.value === content['bulan'].value ||
-              item.label === content['bulan'].value
-          )?.label
-        } ${content['tahun'].value}`;
+        const tanggal =
+          content['bulan'].value !== '-' && content['tahun'].value !== '-'
+            ? `${content['tanggal'].value !== '-' ? content['tanggal'].value?.substr(0, 2) : ''} ${
+                monthDropdown(keyParams, setKeyParams).find(
+                  (item) =>
+                    item.value === content['bulan'].value ||
+                    item.label === content['bulan'].value
+                )?.label
+              } ${content['tahun'].value}`
+            : '-';
         const tags = contentStringTransformer(content['tags'])
           .split(',')
           .map((tag: string) => tag.trim());

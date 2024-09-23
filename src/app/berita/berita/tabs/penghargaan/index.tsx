@@ -2,10 +2,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
-import {
-  yearDropdown,
-  monthDropdown
-} from '@/app/berita/berita/components/dropdown-filter';
+import { yearDropdown } from '@/app/berita/berita/components/dropdown-filter';
 import Paginate from '@/app/berita/berita/components/paginate';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
@@ -118,13 +115,20 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         );
 
         const judul = item.title;
-        const waktu = `${
-          monthDropdown(params, setParams).find(
-            (item) =>
-              item.value === content['bulan'].value ||
-              item.label === content['bulan'].value
-          )?.label
-        } ${content['tahun'].value}`;
+        const tanggal = content['tanggal'].value;
+        const bulan = content['bulan'].value;
+        const tahun = content['tahun'].value;
+        const fullDate = `${tahun}-${bulan}-${tanggal}`;
+        const waktu =
+          content['bulan'].value !== '-' && content['tahun'].value !== '-'
+            ? `${
+                monthDropdown().find(
+                  (item) =>
+                    item.value === content['bulan'].value ||
+                    item.label === content['bulan'].value
+                )?.label
+              } ${content['tahun'].value}`
+            : '';
         const deskripsi = content['artikel-looping'].contentData[0].details;
         const image = singleImageTransformer(
           content['artikel-thumbnail']
@@ -139,6 +143,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         return {
           judul,
           waktu,
+          fullDate,
           deskripsi,
           image,
           id,
@@ -148,19 +153,118 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         };
       });
 
-      if (!transformedData) {
-        setContentData([]);
-      } else {
-        if (sliderData?.length > 0) {
-          setContentData(getDifference(transformedData, sliderData));
-        } else {
-          setSliderData(transformedData.slice(0, 5));
-          setContentData(transformedData.slice(5));
+      const sortedData = transformedData.sort((a: any, b: any) => {
+        const dateA = new Date(a.fullDate).getTime();
+        const dateB = new Date(b.fullDate).getTime();
+
+        if (isNaN(dateA)) {
+          return 1;
         }
+        if (isNaN(dateB)) {
+          return -1;
+        }
+
+        return dateB - dateA;
+      });
+
+      if (sliderData?.length > 0) {
+        if (sortedData.length < 6) {
+          setContentData(sortedData);
+        } else {
+          setContentData(getDifference(sortedData, sliderData));
+        }
+      } else {
+        setSliderData(sortedData.slice(0, 5));
+        setContentData(sortedData.slice(5));
       }
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const monthDropdown = () => {
+    const month = [
+      {
+        label: 'Pilih Bulan',
+        value: '',
+        onClick: () => setParams({ ...params, monthFilter: '' }),
+        selected: params.monthFilter === ''
+      },
+      {
+        label: 'Januari',
+        value: '01',
+        onClick: () => setParams({ ...params, monthFilter: '01' }),
+        selected: params.monthFilter === '01'
+      },
+      {
+        label: 'Februari',
+        value: '02',
+        onClick: () => setParams({ ...params, monthFilter: '02' }),
+        selected: params.monthFilter === '02'
+      },
+      {
+        label: 'Maret',
+        value: '03',
+        onClick: () => setParams({ ...params, monthFilter: '03' }),
+        selected: params.monthFilter === '03'
+      },
+      {
+        label: 'April',
+        value: '04',
+        onClick: () => setParams({ ...params, monthFilter: '04' }),
+        selected: params.monthFilter === '04'
+      },
+      {
+        label: 'Mei',
+        value: '05',
+        onClick: () => setParams({ ...params, monthFilter: '05' }),
+        selected: params.monthFilter === '05'
+      },
+      {
+        label: 'Juni',
+        value: '06',
+        onClick: () => setParams({ ...params, monthFilter: '06' }),
+        selected: params.monthFilter === '06'
+      },
+      {
+        label: 'Juli',
+        value: '07',
+        onClick: () => setParams({ ...params, monthFilter: '07' }),
+        selected: params.monthFilter === '07'
+      },
+      {
+        label: 'Agustus',
+        value: '08',
+        onClick: () => setParams({ ...params, monthFilter: '08' }),
+        selected: params.monthFilter === '08'
+      },
+      {
+        label: 'September',
+        value: '09',
+        onClick: () => setParams({ ...params, monthFilter: '09' }),
+        selected: params.monthFilter === '09'
+      },
+      {
+        label: 'Oktober',
+        value: '10',
+        onClick: () => setParams({ ...params, monthFilter: '10' }),
+        selected: params.monthFilter === '10'
+      },
+      {
+        label: 'November',
+        value: '11',
+        onClick: () => setParams({ ...params, monthFilter: '11' }),
+        selected: params.monthFilter === '11'
+      },
+      {
+        label: 'Desember',
+        value: '12',
+        onClick: () => setParams({ ...params, monthFilter: '12' }),
+        selected: params.monthFilter === '12'
+      }
+    ];
+
+    return month;
   };
 
   useEffect(() => {
@@ -312,7 +416,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
           {
             type: 'dropdown',
             label: 'Bulan',
-            options: monthDropdown(params, setParams)
+            options: monthDropdown()
           }
         ]}
         customContent={

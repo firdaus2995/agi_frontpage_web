@@ -209,15 +209,29 @@ const Content = (props: contentProps) => {
           }
         );
 
+        const sortedData = contentData.sort((a: any, b: any) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+
+          if (isNaN(dateA)) {
+            return 1;
+          }
+          if (isNaN(dateB)) {
+            return -1;
+          }
+
+          return dateB - dateA;
+        });
+
         if (sliderData?.length > 0) {
-          if (contentData.length < 6) {
-            setListData(contentData);
+          if (sortedData.length < 6) {
+            setListData(sortedData);
           } else {
-            setListData(getDifference(contentData, sliderData));
+            setListData(getDifference(sortedData, sliderData));
           }
         } else {
-          setSliderData(contentData.slice(0, 5));
-          setListData(contentData.slice(5));
+          setSliderData(sortedData.slice(0, 5));
+          setListData(sortedData.slice(5));
         }
       } catch (error) {
         console.error('Error:', error);

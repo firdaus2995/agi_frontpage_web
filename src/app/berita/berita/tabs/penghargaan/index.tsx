@@ -121,7 +121,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
         const fullDate = `${tahun}-${bulan}-${tanggal}`;
         const waktu =
           content['bulan'].value !== '-' && content['tahun'].value !== '-'
-            ? `${
+            ? `${content['tanggal'].value !== '-' ? content['tanggal'].value?.substr(0, 2) : ''} ${
                 monthDropdown().find(
                   (item) =>
                     item.value === content['bulan'].value ||
@@ -314,7 +314,9 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
               bgColor="purple_superlight"
               title={
                 <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
-                  <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
+                  <div
+                    className={`grid xs:grid-cols-1 xm:grid-cols-2 ${item.waktu !== '' ? 'xs:divide-x-0 xm:divide-x-2' : ''} text-[14px] max-w-[250px]`}
+                  >
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
                         <div className="font-bold text-purple_dark whitespace-nowrap">
@@ -322,7 +324,6 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                         </div>
                       )}
                     <div className="xm:pl-2 flex flex-row whitespace-nowrap">
-                      {item.date !== '-' && item.date?.substr(0, 2)}{' '}
                       {item.waktu !== '-' && item.waktu}
                     </div>
                   </div>
@@ -433,7 +434,7 @@ const Penghargaan: FC<IPenghargaan> = ({ title, description }) => {
                     <CardCategoryC
                       summary={item.judul}
                       name=""
-                      position={`${item.date !== '-' ? item.date?.substr(0, 2) : ''} ${item.waktu && item.waktu}`}
+                      position={`${item.waktu !== '' && item.waktu}`}
                       image={item.image}
                     />
                   </Link>

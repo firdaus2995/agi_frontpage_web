@@ -41,7 +41,11 @@ const CardCategoryC = ({
             alt="blank-image"
             width={0}
             height={190}
-            src={imageUrl ?? BlankImage}
+            src={
+              imageUrl?.includes('no-image') || imageUrl === ''
+                ? BlankImage
+                : imageUrl
+            }
             className="w-full h-[190px] object-cover rounded-t-xl"
           />
           {isVideo && (
@@ -51,10 +55,12 @@ const CardCategoryC = ({
           )}
         </div>
         <div className="flex flex-col gap-4 px-[24px] pb-[36px] h-full justify-between">
-          <p className="text-[24px] font-bold text-left line-clamp-2 font-karla leading-[28.8px] -tracking-[0.03em]">{summary}</p>
+          <p className="text-[24px] font-bold text-left line-clamp-2 font-karla leading-[28.8px] -tracking-[0.03em]">
+            {summary}
+          </p>
           <p className="text-[14px] text-left flex items-end">
             <span className="font-bold text-purple_dark">{name}</span>{' '}
-            {position}
+            {position !== 'false' && position}
           </p>
         </div>
       </div>

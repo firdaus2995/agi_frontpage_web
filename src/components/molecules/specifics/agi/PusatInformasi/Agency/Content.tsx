@@ -174,18 +174,39 @@ const Content = (props: contentProps) => {
           ({ contentData, id, categories, title, shortDesc }) => {
             const category = categories[0]?.categoryName;
             const description = shortDesc;
-            const date = `${contentStringTransformer(
-              contentData.filter((item) => item.fieldId === 'tanggal')[0]
-            )} ${
-              monthDropdown().find(
-                (item) =>
-                  item.value ===
-                  contentData.filter((item) => item.fieldId === 'bulan')[0]
-                    .value
-              )?.label
-            } ${contentStringTransformer(
+            const date =
+              contentData.filter((item) => item.fieldId === 'bulan')[0]
+                .value !== '-' &&
               contentData.filter((item) => item.fieldId === 'tahun')[0]
-            )}`;
+                .value !== '-'
+                ? `${
+                    contentStringTransformer(
+                      contentData.filter(
+                        (item) => item.fieldId === 'tanggal'
+                      )[0]
+                    ) !== '-'
+                      ? contentStringTransformer(
+                          contentData.filter(
+                            (item) => item.fieldId === 'tanggal'
+                          )[0]
+                        )?.substr(0, 2)
+                      : ''
+                  } ${
+                    monthDropdown().find(
+                      (item) =>
+                        item.value ===
+                          contentData.filter(
+                            (item) => item.fieldId === 'bulan'
+                          )[0].value ||
+                        item.label ===
+                          contentData.filter(
+                            (item) => item.fieldId === 'bulan'
+                          )[0].value
+                    )?.label
+                  } ${contentStringTransformer(
+                    contentData.filter((item) => item.fieldId === 'tahun')[0]
+                  )}`
+                : '';
             const tags = contentStringTransformer(
               contentData.filter((item) => item.fieldId === 'tags')[0]
             )
@@ -209,15 +230,29 @@ const Content = (props: contentProps) => {
           }
         );
 
+        const sortedData = contentData.sort((a: any, b: any) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+
+          if (isNaN(dateA)) {
+            return 1;
+          }
+          if (isNaN(dateB)) {
+            return -1;
+          }
+
+          return dateB - dateA;
+        });
+
         if (sliderData?.length > 0) {
-          if (contentData.length < 6) {
-            setListData(contentData);
+          if (sortedData.length < 6) {
+            setListData(sortedData);
           } else {
-            setListData(getDifference(contentData, sliderData));
+            setListData(getDifference(sortedData, sliderData));
           }
         } else {
-          setSliderData(contentData.slice(0, 5));
-          setListData(contentData.slice(5));
+          setSliderData(sortedData.slice(0, 5));
+          setListData(sortedData.slice(5));
         }
       } catch (error) {
         console.error('Error:', error);
@@ -358,7 +393,9 @@ const Content = (props: contentProps) => {
                     bgColor="purple_superlight"
                     title={
                       <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
-                        <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[200px]">
+                        <div
+                          className={`grid xs:grid-cols-1 xm:grid-cols-2 ${item.date !== '' ? 'xs:divide-x-0 xm:divide-x-2' : ''} text-[14px] max-w-[250px]`}
+                        >
                           {item.category !== '-' &&
                             item.category !== '' &&
                             item.category !== undefined && (
@@ -366,7 +403,7 @@ const Content = (props: contentProps) => {
                                 {item.category}
                               </div>
                             )}
-                          {item.date !== '-' && item.date !== undefined && (
+                          {item.date !== '-' && item.date !== '' && (
                             <div className="pl-2 whitespace-nowrap">
                               {item.date}
                             </div>

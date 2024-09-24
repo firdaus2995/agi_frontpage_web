@@ -2,10 +2,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
-import {
-  yearDropdown,
-  monthDropdown
-} from '@/app/berita/berita/components/dropdown-filter';
+import { yearDropdown } from '@/app/berita/berita/components/dropdown-filter';
 import Paginate from '@/app/berita/berita/components/paginate';
 import Icon from '@/components/atoms/Icon';
 import NotFound from '@/components/atoms/NotFound';
@@ -126,13 +123,20 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         );
 
         const judul = item.title;
-        const waktu = `${
-          monthDropdown(params, setParams).find(
-            (item) =>
-              item.value === content['bulan'].value ||
-              item.label === content['bulan'].value
-          )?.label
-        } ${content['tahun'].value}`;
+        const tanggal = content['tanggal'].value;
+        const bulan = content['bulan'].value;
+        const tahun = content['tahun'].value;
+        const fullDate = `${tahun}-${bulan}-${tanggal}`;
+        const waktu =
+          content['bulan'].value !== '-' && content['tahun'].value !== '-'
+            ? `${content['tanggal'].value !== '-' ? content['tanggal'].value?.substr(0, 2) : ''} ${
+                monthDropdown().find(
+                  (item) =>
+                    item.value === content['bulan'].value ||
+                    item.label === content['bulan'].value
+                )?.label
+              } ${content['tahun'].value}`
+            : '';
         const deskripsi = content['artikel-looping'].contentData[0].details;
         const image = singleImageTransformer(
           content['artikel-thumbnail']
@@ -147,6 +151,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         return {
           judul,
           waktu,
+          fullDate,
           deskripsi,
           image,
           id,
@@ -156,19 +161,118 @@ const CSR: FC<ICSR> = ({ title, description }) => {
         };
       });
 
+      const sortedData = transformedData.sort((a: any, b: any) => {
+        const dateA = new Date(a.fullDate).getTime();
+        const dateB = new Date(b.fullDate).getTime();
+
+        if (isNaN(dateA)) {
+          return 1;
+        }
+        if (isNaN(dateB)) {
+          return -1;
+        }
+
+        return dateB - dateA;
+      });
+
       if (sliderData?.length > 0) {
-        if (transformedData.length < 6) {
-          setContentData(transformedData);
+        if (sortedData.length < 6) {
+          setContentData(sortedData);
         } else {
-          setContentData(getDifference(transformedData, sliderData));
+          setContentData(getDifference(sortedData, sliderData));
         }
       } else {
-        setSliderData(transformedData.slice(0, 5));
-        setContentData(transformedData.slice(5));
+        setSliderData(sortedData.slice(0, 5));
+        setContentData(sortedData.slice(5));
       }
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const monthDropdown = () => {
+    const month = [
+      {
+        label: 'Pilih Bulan',
+        value: '',
+        onClick: () => setParams({ ...params, monthFilter: '' }),
+        selected: params.monthFilter === ''
+      },
+      {
+        label: 'Januari',
+        value: '01',
+        onClick: () => setParams({ ...params, monthFilter: '01' }),
+        selected: params.monthFilter === '01'
+      },
+      {
+        label: 'Februari',
+        value: '02',
+        onClick: () => setParams({ ...params, monthFilter: '02' }),
+        selected: params.monthFilter === '02'
+      },
+      {
+        label: 'Maret',
+        value: '03',
+        onClick: () => setParams({ ...params, monthFilter: '03' }),
+        selected: params.monthFilter === '03'
+      },
+      {
+        label: 'April',
+        value: '04',
+        onClick: () => setParams({ ...params, monthFilter: '04' }),
+        selected: params.monthFilter === '04'
+      },
+      {
+        label: 'Mei',
+        value: '05',
+        onClick: () => setParams({ ...params, monthFilter: '05' }),
+        selected: params.monthFilter === '05'
+      },
+      {
+        label: 'Juni',
+        value: '06',
+        onClick: () => setParams({ ...params, monthFilter: '06' }),
+        selected: params.monthFilter === '06'
+      },
+      {
+        label: 'Juli',
+        value: '07',
+        onClick: () => setParams({ ...params, monthFilter: '07' }),
+        selected: params.monthFilter === '07'
+      },
+      {
+        label: 'Agustus',
+        value: '08',
+        onClick: () => setParams({ ...params, monthFilter: '08' }),
+        selected: params.monthFilter === '08'
+      },
+      {
+        label: 'September',
+        value: '09',
+        onClick: () => setParams({ ...params, monthFilter: '09' }),
+        selected: params.monthFilter === '09'
+      },
+      {
+        label: 'Oktober',
+        value: '10',
+        onClick: () => setParams({ ...params, monthFilter: '10' }),
+        selected: params.monthFilter === '10'
+      },
+      {
+        label: 'November',
+        value: '11',
+        onClick: () => setParams({ ...params, monthFilter: '11' }),
+        selected: params.monthFilter === '11'
+      },
+      {
+        label: 'Desember',
+        value: '12',
+        onClick: () => setParams({ ...params, monthFilter: '12' }),
+        selected: params.monthFilter === '12'
+      }
+    ];
+
+    return month;
   };
 
   useEffect(() => {
@@ -218,7 +322,9 @@ const CSR: FC<ICSR> = ({ title, description }) => {
               bgColor="purple_superlight"
               title={
                 <div className="flex flex-col gap-3 lg:gap-6 text-left justify-between lg:justify-center lg:h-[281px]">
-                  <div className="grid xs:grid-cols-1 xm:grid-cols-2 xs:divide-x-0 xm:divide-x-2 text-[14px] max-w-[250px]">
+                  <div
+                    className={`grid xs:grid-cols-1 xm:grid-cols-2 ${item.waktu !== '' ? 'xs:divide-x-0 xm:divide-x-2' : ''} text-[14px] max-w-[250px]`}
+                  >
                     {item.artikelTopic !== '-' &&
                       item.artikelTopic !== undefined && (
                         <div className="font-bold text-purple_dark whitespace-nowrap">
@@ -226,7 +332,6 @@ const CSR: FC<ICSR> = ({ title, description }) => {
                         </div>
                       )}
                     <div className="xm:pl-2 flex flex-row whitespace-nowrap">
-                      {item.date !== '-' && item.date?.substr(0, 2)}{' '}
                       {item.waktu !== '-' && item.waktu}
                     </div>
                   </div>
@@ -320,7 +425,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
           {
             type: 'dropdown',
             label: 'Bulan',
-            options: monthDropdown(params, setParams)
+            options: monthDropdown()
           }
         ]}
         customContent={
@@ -337,7 +442,7 @@ const CSR: FC<ICSR> = ({ title, description }) => {
                     <CardCategoryC
                       summary={item.judul}
                       name=""
-                      position={`${item.date !== '-' ? item.date?.substr(0, 2) : ''} ${item.waktu && item.waktu}`}
+                      position={`${item.waktu !== '' && item.waktu}`}
                       image={item.image}
                     />
                   </Link>

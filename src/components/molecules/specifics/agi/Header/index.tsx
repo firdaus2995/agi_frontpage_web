@@ -150,7 +150,7 @@ const Header = () => {
         </Menu>
 
         <div className="flex flex-row justify-between gap-4 lg:divide-x-2  justify-center items-center">
-          {contentData['top-header-looping']
+          {contentData && contentData['top-header-looping']
             ? contentData['top-header-looping']?.contentData?.map(
                 (item: any, index: any) => (
                   <Link
@@ -198,18 +198,20 @@ const Header = () => {
       >
         <div className="flex justify-between items-center w-full gap-8">
           <ul className="lg:flex gap-[2.5rem] items-center hidden">
-            <Link href={`/`}>
-              <Button.IconButton>
-                <Image
-                  alt="home"
-                  width={24}
-                  height={24}
-                  src={
-                    singleImageTransformer(contentData['home-icon'])?.imageUrl
-                  }
-                />
-              </Button.IconButton>
-            </Link>
+            {contentData && (
+              <Link href={`/`}>
+                <Button.IconButton>
+                  <Image
+                    alt="home"
+                    width={24}
+                    height={24}
+                    src={
+                      singleImageTransformer(contentData['home-icon'])?.imageUrl
+                    }
+                  />
+                </Button.IconButton>
+              </Link>
+            )}
             {menus.map((item, idx) => {
               return (
                 <React.Fragment key={item.title}>

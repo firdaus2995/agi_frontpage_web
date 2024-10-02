@@ -7,12 +7,12 @@ const message = {
   success: {
     title: 'Subsribe Berhasil',
     subtitle:
-      'Selamat, Anda telah berlangganan berita dari Avrist Life Insurance.'
+      'Selamat, Anda telah berlangganan berita dari Avrist General Insurance.'
   },
   error: {
     title: 'Subscribe Gagal',
     subtitle:
-      'Maaf, Anda belum berhasil berlangganan berita dari Avrist Life Insurance. Pastikan link verifikasi sudah benar dan link tersebut belum expired.'
+      'Maaf, Anda belum berhasil berlangganan berita dari Avrist General Insurance. Pastikan link verifikasi sudah benar dan link tersebut belum expired.'
   },
   internalError: {
     title: 'Subscribe Gagal',

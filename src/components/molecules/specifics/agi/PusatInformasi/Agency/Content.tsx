@@ -366,9 +366,12 @@ const Content = (props: contentProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-center py-2 pt-[5rem] pb-[32px] lg:pb-[64px]">
       <div className="text-center lg:pb-2 xs:pb-[56px]">
-        <h2 className="text-[2.25rem] 2xl:text-[3.5rem] font-bold text-purple_dark">
-          {contentStringTransformer(pageData['nama-section'])}
-        </h2>
+        <h1
+          className="font-karla font-bold text-purple_dark text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
+          dangerouslySetInnerHTML={{
+            __html: contentStringTransformer(pageData['nama-section'])
+          }}
+        />
         <h2
           className="text-[1.5rem] lg:text-[2rem]"
           dangerouslySetInnerHTML={{

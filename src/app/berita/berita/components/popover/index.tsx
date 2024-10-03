@@ -5,27 +5,27 @@ import {
   LinkedinShareButton,
   EmailShareButton
 } from 'react-share';
-import { UncontrolledPopover, PopoverBody } from 'reactstrap';
-import Email from '@/assets/images/email.svg';
-import Facebook from '@/assets/images/facebook.svg';
-import Linkedin from '@/assets/images/linkedin.svg';
-import Whatsapp from '@/assets/images/wa.svg';
+import { PopoverBody, UncontrolledPopover } from 'reactstrap';
+import Email from '@/assets/images/common/email_color.svg';
+import Facebook from '@/assets/images/common/facebook_color.svg';
+import Linkedin from '@/assets/images/common/linkedin_color.svg';
+import Whatsapp from '@/assets/images/common/wa.svg';
 import Icon from '@/components/atoms/Icon';
 
 interface ContentPopoverProps {
   isOpenPopover: boolean;
-  message: any;
-  setIsOPenPopover?: any;
+  setIsOpenPopover?: any;
 }
 
 const ContentPopover: React.FC<ContentPopoverProps> = ({
   isOpenPopover,
-  setIsOPenPopover,
-  message
+  setIsOpenPopover,
 }) => {
+  // Ensure window is accessed only in the browser
+  const url = typeof window !== 'undefined' ? window.location.href : '';
+
   const shareWa = () => {
-    console.log(message); // Do not delete this console
-    const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(window?.location.href)}`;
+    const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
     window?.open(shareUrl, '_blank');
   };
 
@@ -35,11 +35,11 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
       target="PopoverFocus"
       trigger="focus"
       isOpen={isOpenPopover}
-      toggle={() => setIsOPenPopover(false)}
+      toggle={() => setIsOpenPopover(false)}
     >
       <PopoverBody className="absolute right-0 mt-[30px] z-10 mt-2 w-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 lg:min-w-[350px]">
         <div
-          className="py-4 px-4 flex flex-col md:flex-row gap-6 grow shrink-0"
+          className="py-1 flex flex-row gap-5 xs:max-lg:flex-wrap"
           role="none"
         >
           <div
@@ -52,53 +52,55 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
               src={Whatsapp}
               alt="whatsapp"
             />
-            <div className="text-[14px] font-bold cursor-pointer">Whatsapp</div>
+            <div className="text-xs font-bold cursor-pointer">Whatsapp</div>
           </div>
+
           <EmailShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
-            url={encodeURIComponent(window?.location.href)}
+            url={url}
+            body={url}
           >
             <Image
               role="button"
-              // onClick={() => setIsVisible(!isVisible)}
               className="h-auto w-5"
               src={Email}
               alt="email"
             />
-            <div className="text-[14px] font-bold cursor-pointer">Email</div>
+            <div className="text-xs font-bold cursor-pointer">Email</div>
           </EmailShareButton>
+
           <LinkedinShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
-            url={encodeURIComponent(window?.location.href)}
+            url={url}
           >
             <Image
               role="button"
-              // onClick={() => setIsVisible(!isVisible)}
               className="h-auto w-5"
               src={Linkedin}
               alt="linkedin"
             />
-            <div className="text-[14px] font-bold cursor-pointer">LinkedIn</div>
+            <div className="text-xs font-bold cursor-pointer">LinkedIn</div>
           </LinkedinShareButton>
+
           <FacebookShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
-            url={encodeURIComponent(window?.location.href)}
+            url={url}
           >
             <Image
               role="button"
-              // onClick={() => setIsVisible(!isVisible)}
               className="h-auto w-5"
               src={Facebook}
               alt="facebook"
             />
-            <div className="text-[14px] font-bold cursor-pointer">Facebook</div>
+            <div className="text-xs font-bold cursor-pointer">Facebook</div>
           </FacebookShareButton>
+
           <div className="flex flex-col gap-1 items-center xs:max-lg:m-auto">
             <div
               role="button"
               className="items-center"
               onClick={() => {
-                navigator.clipboard.writeText(window?.location.href);
+                navigator.clipboard.writeText(url);
               }}
             >
               <Icon
@@ -108,7 +110,7 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
                 color="purple_verylight"
               />
             </div>
-            <div className="text-[14px] font-bold cursor-pointer whitespace-nowrap">Copy URL</div>
+            <div className="text-xs font-bold cursor-pointer">Copy URL</div>
           </div>
         </div>
       </PopoverBody>

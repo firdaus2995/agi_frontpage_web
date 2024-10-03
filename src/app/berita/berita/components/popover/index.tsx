@@ -58,7 +58,6 @@ const ContentPopover: React.FC<ContentPopoverProps> = ({
           <EmailShareButton
             className="flex flex-col gap-1 items-center xs:max-lg:m-auto"
             url={url}
-            body={url}
           >
             <Image
               role="button"

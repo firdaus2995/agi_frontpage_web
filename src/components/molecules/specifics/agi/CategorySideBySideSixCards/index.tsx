@@ -80,7 +80,9 @@ const CategorySideBySideSixCards = ({
     return (
       <p
         className={defaultClassName}
-        dangerouslySetInnerHTML={{ __html: description }}
+        dangerouslySetInnerHTML={{
+          __html: description !== '<p>-</p>' ? description : ''
+        }}
       ></p>
     );
   };

@@ -6,9 +6,17 @@ import SearchBox from '@/components/molecules/specifics/agi/SearchBox';
 import { handleGetContentFilter } from '@/services/content-page.api';
 import { BASE_SLUG } from '@/utils/baseSlug';
 import { QueryParams } from '@/utils/httpService';
-import { singleImageTransformer } from '@/utils/responseTransformer';
+import {
+  contentStringTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
-const Klaim = () => {
+type klaimProps = {
+  pageData: any;
+};
+
+const Klaim = (props: klaimProps) => {
+  const { pageData } = props;
   const [transformedData, setTransFormedData] = useState<any>([]);
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [searchKeyWords, setSearchKeywords] = useState('');
@@ -23,11 +31,12 @@ const Klaim = () => {
   return (
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
-          <span className="text-purple_dark">Transparansi</span> dan{' '}
-          <span className="text-purple_dark">efisiensi</span> dalam menangani
-          permohonan klaim nasabah.
-        </h1>
+        <h1
+          className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
+          dangerouslySetInnerHTML={{
+            __html: contentStringTransformer(pageData['nama-section'])
+          }}
+        />
       </section>
 
       <div className="pb-[24px] lg:pb-[48px]">

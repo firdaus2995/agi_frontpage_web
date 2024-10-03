@@ -227,8 +227,7 @@ const Detail = (props: agencyDetailProps) => {
 
               <ContentPopover
                 isOpenPopover={isOpenPopover}
-                setIsOPenPopover={() => setIsOPenPopover(false)}
-                message={showContent(contentData.judulArtikel)}
+                setIsOpenPopover={() => setIsOPenPopover(false)}
               />
             </div>
           </div>

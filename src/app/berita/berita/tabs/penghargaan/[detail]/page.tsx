@@ -344,8 +344,7 @@ const DetailPenghargaan = ({ params }: { params: { detail: string } }) => {
 
                 <ContentPopover
                   isOpenPopover={isOpenPopover}
-                  setIsOPenPopover={() => setIsOPenPopover(false)}
-                  message={''}
+                  setIsOpenPopover={() => setIsOPenPopover(false)}
                 />
               </div>
             </div>

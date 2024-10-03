@@ -12,10 +12,16 @@ import { BASE_SLUG } from '@/utils/baseSlug';
 import { QueryParams } from '@/utils/httpService';
 import {
   contentDetailTransformer,
+  contentStringTransformer,
   singleImageTransformer
 } from '@/utils/responseTransformer';
 
-const Formulir = () => {
+type formulirProps = {
+  pageData: any;
+};
+
+const Formulir = (props: formulirProps) => {
+  const { pageData } = props;
   const [contentData, setContentData] = useState<any>();
   const [search, setSearch] = useState('');
   const [itemsPerPage] = useState(5);
@@ -81,11 +87,12 @@ const Formulir = () => {
   return (
     <div className="flex flex-col px-[2rem] lg:px-[8.5rem] pb-[6.25rem]">
       <section className="w-full flex flex-col items-center text-center py-[80px]">
-        <h1 className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]">
-          Temukan{' '}
-          <span className="text-purple_dark">formulir yang Anda butuhkan</span>{' '}
-          di bawah ini
-        </h1>
+        <h1
+          className="font-karla font-bold text-[2.25rem] lg:text-[3.5rem] leading-[120%] -tracking-[0.04em]"
+          dangerouslySetInnerHTML={{
+            __html: contentStringTransformer(pageData['nama-section'])
+          }}
+        />
       </section>
       <div className="pb-[24px] lg:pb-[48px]">
         <SearchBox

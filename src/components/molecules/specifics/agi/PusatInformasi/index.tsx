@@ -36,9 +36,9 @@ const MainContent = (props: mainContentProps) => {
       )}
 
       {params.includes('Formulir') ? (
-        <Formulir />
+        <Formulir pageData={pageData} />
       ) : params.includes('Klaim') ? (
-        <Klaim />
+        <Klaim pageData={pageData} />
       ) : params.includes('Rekanan') ? (
         <Rekanan pageData={pageData} />
       ) : params.includes('Kantor Cabang') ? (
@@ -48,7 +48,7 @@ const MainContent = (props: mainContentProps) => {
       ) : params.includes('Agency') ? (
         <Agency pageData={pageData} />
       ) : (
-        <Formulir />
+        <Formulir pageData={pageData} />
       )}
     </div>
   );

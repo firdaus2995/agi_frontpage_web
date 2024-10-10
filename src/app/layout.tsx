@@ -16,7 +16,7 @@ const G_ID: string = process.env.NEXT_PUBLIC_GOOGLE_ID ?? "";
 
 const data = {
   image:
-    'https://upload.wikimedia.org/wikipedia/commons/4/4d/Avrist-asset-management.png',
+    'https://upload.wikimedia.org/wikipedia/id/3/32/Logo-avristgi.png',
   title: 'Avrist General Insurance',
   description: 'Avrist General Insurance',
 };

@@ -193,7 +193,7 @@ const Header = () => {
       {/* Purple Section */}
       <SimpleContainer
         className="bg-gradient-to-b from-purple_dark to-purple_light w-full m-0 text-white relative"
-        bgColor='gradient-to-b from-purple_dark to-purple_light'
+        bgColor="gradient-to-b from-purple_dark to-purple_light"
         paddingY="py-[1.25rem]"
       >
         <div className="flex justify-between items-center w-full gap-8">
@@ -217,7 +217,9 @@ const Header = () => {
                 <React.Fragment key={item.title}>
                   <li
                     className={`font-opensans cursor-pointer font-semibold text-list-menu-header-desktop relative ${styles['nav-list-item']}`}
-                    ref={(el) => (listRef.current[idx] = el)}
+                    ref={(el) => {
+                      listRef.current[idx] = el;
+                    }}
                   >
                     {item.title}{' '}
                   </li>

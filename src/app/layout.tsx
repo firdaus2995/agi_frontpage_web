@@ -16,17 +16,23 @@ const G_ID: string = process.env.NEXT_PUBLIC_GOOGLE_ID ?? "";
 
 const data = {
   image:
-    'https://upload.wikimedia.org/wikipedia/id/3/32/Logo-avristgi.png',
+    'https://i.ibb.co.com/1v73tzM/og-agi.png',
   title: 'Avrist General Insurance',
   description: 'Avrist General Insurance',
 };
 
 export const metadata: Metadata = {
-  title: data.title,
+  title: {
+    template: `%s | ${data.title}`,
+    default: data.title
+  },
   description: data.description,
   icons:  [{ rel: 'icon', url: "next.svg" }],
   openGraph: {
-    title: data.title,
+    title: {
+      template: `%s | ${data.title}`,
+      default: data.title
+    },
     description: data.description,
     images: data.image,
   }
@@ -47,6 +53,7 @@ export default function RootLayout({
         />
         <meta content={packageJson.version} name="version" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:image"content="https://i.ibb.co.com/1v73tzM/og-agi.png"/>
         <title>Avrist General Insurance</title>
       </head>
       <GoogleTagManager gtmId={G_ID} />

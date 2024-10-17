@@ -151,7 +151,7 @@ const CategorySideBySideSixCards = ({
               item?.title !== '' && (
                 <div
                   key={index}
-                  className={`${item.hasDownloadButton && !item.btnLabel ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
+                  className={`${item.hasDownloadButton && item.urlDownload === '-' ? 'hidden' : 'block'} ${customRightSideClassname} flex flex-col gap-[24px] px-[24px] py-[36px] border border-gray_light border-b-8  rounded-[12px] rounded-b-[12px]`}
                 >
                   <span className="flex flex-row gap-[1.188rem] items-center">
                     <Image

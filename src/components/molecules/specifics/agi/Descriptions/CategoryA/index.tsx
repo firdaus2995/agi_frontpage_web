@@ -21,6 +21,39 @@ const DescriptionCategoryA = ({
   deskripsiLengkapProduk = ''
 }: IDescriptionCategoryA) => {
   const [showMoreTags, setShowMoreTags] = useState(false);
+
+  const renderedDescription = (description: string) => {
+    const isOrdered = description.includes('<ol>');
+    const isUnordered = description.includes('<ul>');
+
+    if (isOrdered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              /<ol>/g,
+              `<ol class="list-decimal pl-6 font-opensans">`
+            )
+          }}
+        />
+      );
+    }
+    if (isUnordered) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: description.replace(
+              /<ul>/g,
+              `<ul class="list-disc pl-6 font-opensans">`
+            )
+          }}
+        />
+      );
+    }
+
+    return <p dangerouslySetInnerHTML={{ __html: description }}></p>;
+  };
+
   return (
     <div className="flex flex-col gap-[24px] font-karla">
       <div className="flex flex-col gap-[8px]">
@@ -45,10 +78,9 @@ const DescriptionCategoryA = ({
           className="font-karla xs:text-[1.5rem] lg:text-[2.25rem] font-bold lg:pb-0 -tracking-[1.08px] xs:leading-[28.8px] lg:leading-[43.2px]"
           dangerouslySetInnerHTML={{ __html: tagLineProduk ?? '' }}
         />
-        <p
-          className="font-karla lg:text-[24px] xs:text-[24px] -tracking-[0.72px] leading-[33.6px]"
-          dangerouslySetInnerHTML={{ __html: deskripsiLengkapProduk ?? '' }}
-        />
+        <p className="font-karla lg:text-[24px] xs:text-[24px] -tracking-[0.72px] leading-[33.6px]">
+          {renderedDescription(deskripsiLengkapProduk)}
+        </p>
         {tags[0] !== '' && (
           <div className="flex flex-row flex-wrap gap-[8px] font-opensans">
             {tags

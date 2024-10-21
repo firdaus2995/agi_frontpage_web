@@ -551,7 +551,7 @@ const ProsesKlaim: React.FC<ProsesKlaimComponentProps> = ({
             </div>
           )}
           {selectedData && (
-            <div className='text-[36px] font-bold'>{selectedData}</div>
+            <div className="text-[36px] font-bold">{selectedData}</div>
           )}
           {selectedData && renderStep(selectedDetailCategory)}
         </div>

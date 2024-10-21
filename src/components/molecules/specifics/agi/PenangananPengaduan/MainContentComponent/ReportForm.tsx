@@ -153,8 +153,10 @@ export const ReportForm = (props: ReportFormProps) => {
   };
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  const handleDeleteData = (value: string, file: any, fileStateSetter: Function) => {
-    setAttachmentFiles((prevFiles) => prevFiles.filter((file) => file !== value));
+  const handleDeleteData = (value: string, file: any, fileStateSetter: any) => {
+    setAttachmentFiles((prevFiles) =>
+      prevFiles.filter((file) => file !== value)
+    );
     fileStateSetter('');
     onChangeData(value, file, 'delete');
     setStatus('delete');
@@ -189,7 +191,9 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileKtp?.file}
-                onDeleteData={() => handleDeleteData(fileKtp?.value, fileKtp?.file, setFileKtp)}
+                onDeleteData={() =>
+                  handleDeleteData(fileKtp?.value, fileKtp?.file, setFileKtp)
+                }
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -197,7 +201,13 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileFormulir?.file}
-                onDeleteData={() => handleDeleteData(fileFormulir?.value, fileFormulir?.file, setFileFormulir)}
+                onDeleteData={() =>
+                  handleDeleteData(
+                    fileFormulir?.value,
+                    fileFormulir?.file,
+                    setFileFormulir
+                  )
+                }
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
               <UploadBox
@@ -205,7 +215,13 @@ export const ReportForm = (props: ReportFormProps) => {
                 fileType="DOCUMENT"
                 onChangeData={handleChangeData}
                 value={fileDocument?.file}
-                onDeleteData={() => handleDeleteData(fileDocument?.value, fileDocument?.file, setFileDocument)}
+                onDeleteData={() =>
+                  handleDeleteData(
+                    fileDocument?.value,
+                    fileDocument?.file,
+                    setFileDocument
+                  )
+                }
                 setMaxSizeValidation={(bool) => setMaxSizeValidation(bool)}
               />
             </div>

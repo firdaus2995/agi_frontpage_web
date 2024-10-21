@@ -61,7 +61,7 @@ export const EmailSubscribeModal = (props: Props) => {
       setIsSuccessSubs(true);
     }
 
-    if (data.body.status === 'EMAIL_ALREADY_EXISTS'){
+    if (data.body.status === 'EMAIL_ALREADY_EXISTS') {
       setEmailError('Email sudah terdaftar');
     }
 
@@ -187,7 +187,9 @@ export const EmailSubscribeModal = (props: Props) => {
                               </button>
                             </form>
                             {emailError && (
-                              <p className="text-red-500 ml-2 text-left w-full">{emailError}</p>
+                              <p className="text-red-500 ml-2 text-left w-full">
+                                {emailError}
+                              </p>
                             )}
                           </div>
                         </div>

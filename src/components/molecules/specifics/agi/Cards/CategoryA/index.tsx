@@ -49,7 +49,9 @@ const CardCategoryA = ({
               {title}
             </p>
           </div>
-          <p className="text-card-title-desktop font-bold line-clamp-3">{summary}</p>
+          <p className="text-card-title-desktop font-bold line-clamp-3">
+            {summary}
+          </p>
         </div>
         <p
           className="line-clamp-3 text-card-subtitle-desktop"

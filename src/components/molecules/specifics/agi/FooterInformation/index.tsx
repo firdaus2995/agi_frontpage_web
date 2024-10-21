@@ -34,7 +34,9 @@ const FooterInformation = ({
         <div
           className={`xs:px-[1.5rem] xs:pb-[2.25rem] xs:min-h-[212px] lg:h-auto flex flex-col gap-[24px] lg:justify-center py-[2.25rem] lg:pl-[3rem] lg:pr-[2.25rem] xs:text-center lg:text-start ${bgColor}`}
         >
-          <div className="text-information-title-mobile lg:text-information-title-desktop">{title}</div>
+          <div className="text-information-title-mobile lg:text-information-title-desktop">
+            {title}
+          </div>
           {buttonTitle && (
             <div className="w-auto">
               <Link

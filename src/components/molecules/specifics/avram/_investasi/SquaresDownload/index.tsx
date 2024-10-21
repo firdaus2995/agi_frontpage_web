@@ -1,5 +1,5 @@
-import Button from "@/components/atoms/Button/Button";
-import Icon from "@/components/atoms/Icon";
+import Button from '@/components/atoms/Button/Button';
+import Icon from '@/components/atoms/Icon';
 
 const SquaresDownload = () => {
   return (
@@ -29,9 +29,7 @@ const SquaresDownload = () => {
           <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900">
             Fun Fact Sheet
           </h5>
-          <p className="mb-3 font-normal text-xs text-gray-500">
-            477.92 KB
-          </p>
+          <p className="mb-3 font-normal text-xs text-gray-500">477.92 KB</p>
           <p className="mb-3 font-normal text-xs text-gray-500">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -59,9 +57,7 @@ const SquaresDownload = () => {
           <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900">
             Prospectus
           </h5>
-          <p className="mb-3 font-normal text-xs text-gray-500">
-            299.23 KB
-          </p>
+          <p className="mb-3 font-normal text-xs text-gray-500">299.23 KB</p>
           <p className="mb-3 font-normal text-xs text-gray-500">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -89,9 +85,7 @@ const SquaresDownload = () => {
           <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900">
             Info Produk
           </h5>
-          <p className="mb-3 font-normal text-xs text-gray-500">
-            432.12 KB
-          </p>
+          <p className="mb-3 font-normal text-xs text-gray-500">432.12 KB</p>
           <p className="mb-3 font-normal text-xs text-gray-500">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -111,7 +105,7 @@ const SquaresDownload = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SquaresDownload;

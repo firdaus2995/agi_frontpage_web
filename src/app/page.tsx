@@ -40,16 +40,13 @@ const Avrist = () => {
     <div className="flex flex-col items-center justify-center bg-purple_light_bg">
       {contentData !== null && (
         <>
-          <BannerAvrast
-            content={contentData}
-          />
+          <BannerAvrast content={contentData} />
           <TotalSolution content={contentData} />
           <CompanySection content={contentData} />
           <LayananNasabah content={contentData} />
           <HomeBannerModal content={contentData} />
         </>
       )}
-
     </div>
   );
 };

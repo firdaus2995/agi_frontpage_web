@@ -13,8 +13,17 @@ const KlaimVideo = () => {
       <div
         className={`lg:w-1/2 xs:w-full p-5 flex h-full flex-col lg:items-start xs:items-center justify-center gap-10`}
       >
-        <p className="lg:text-4xl xs:text-2xl lg:text-left xs:text-center"><span className='font-bold text-purple_dark'>Warisan Kebaikan,</span> Solusi Perlindungan Masa Depan</p>
-        <div role='button' className='p-4 bg-purple_dark rounded-xl text-sm font-semibold text-white flex flex-row gap-2'>Cerita Lebih Detail di<Icon name="youtubeIcon" color="white" /></div>
+        <p className="lg:text-4xl xs:text-2xl lg:text-left xs:text-center">
+          <span className="font-bold text-purple_dark">Warisan Kebaikan,</span>{' '}
+          Solusi Perlindungan Masa Depan
+        </p>
+        <div
+          role="button"
+          className="p-4 bg-purple_dark rounded-xl text-sm font-semibold text-white flex flex-row gap-2"
+        >
+          Cerita Lebih Detail di
+          <Icon name="youtubeIcon" color="white" />
+        </div>
       </div>
       <div
         className={`lg:w-1/2 xs:w-full h-full lg:rounded-r-xl lg:rounded-bl-none xs:rounded-b-xl flex flex-col items-end justify-end overflow-hidden relative`}

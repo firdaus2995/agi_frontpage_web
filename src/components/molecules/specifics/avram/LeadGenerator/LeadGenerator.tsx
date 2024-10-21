@@ -34,7 +34,7 @@ const LeadGenerator = () => {
           Profil
         </div>
       </div>
-      <div className='flex items-center justify-center'>
+      <div className="flex items-center justify-center">
         {activeTab === 1 && <Keuangan />}
         {activeTab === 2 && <Perencanaan />}
         {activeTab === 3 && <Profil />}

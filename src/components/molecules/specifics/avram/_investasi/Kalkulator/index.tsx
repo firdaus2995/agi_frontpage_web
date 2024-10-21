@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from 'react';
 
-import Button from "@/components/atoms/Button/Button";
+import Button from '@/components/atoms/Button/Button';
 
 const Kalkulator = () => {
   const [widthUpper, setWidthUpper] = useState(28);
   const [widthBelow, setWidthBelow] = useState(28);
 
   const handlerWidthUpperChanged = (e: ChangeEvent<HTMLInputElement>) => {
-    setWidthUpper(30 + (e.target.value.length * 28));
+    setWidthUpper(30 + e.target.value.length * 28);
   };
 
   const handlerWidthBelowChanged = (e: ChangeEvent<HTMLInputElement>) => {
-    setWidthBelow(30 + (e.target.value.length * 28));
+    setWidthBelow(30 + e.target.value.length * 28);
   };
 
   return (
-    <div className='w-full flex flex-col self-stretch items-center justify-center px-20 gap-12'>
-      <div className='flex flex-col self-stretch bg-white rounded-xl p-9 gap-12'>
+    <div className="w-full flex flex-col self-stretch items-center justify-center px-20 gap-12">
+      <div className="flex flex-col self-stretch bg-white rounded-xl p-9 gap-12">
         <div className="w-full flex flex-row justify-center gap-3">
           <Button
             title="Investasi per bulan"
@@ -33,19 +33,33 @@ const Kalkulator = () => {
           <p className="font-bold text-2xl text-center">Modal Awal</p>
           <div className="flex flex-row justify-center items-center gap-1">
             <p className="text-5xl font-light">Rp</p>
-            <input className="text-5xl font-bold focus:outline-none" placeholder="0" style={{ width: widthUpper }} onChange={handlerWidthUpperChanged} />
+            <input
+              className="text-5xl font-bold focus:outline-none"
+              placeholder="0"
+              style={{ width: widthUpper }}
+              onChange={handlerWidthUpperChanged}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl text-center">Dana yang diinvestasikan</p>
+          <p className="font-bold text-2xl text-center">
+            Dana yang diinvestasikan
+          </p>
           <div className="flex flex-row justify-center items-center gap-1">
             <p className="text-5xl font-light">Rp</p>
-            <input className="text-5xl font-bold focus:outline-none" placeholder="0" style={{ width: widthBelow }} onChange={handlerWidthBelowChanged} />
+            <input
+              className="text-5xl font-bold focus:outline-none"
+              placeholder="0"
+              style={{ width: widthBelow }}
+              onChange={handlerWidthBelowChanged}
+            />
           </div>
         </div>
         <div className="flex flex-row justify-center gap-6">
           <div className="flex flex-col p-6 gap-6 justify-center border-1 border-gray_bglightgray rounded-xl shadow">
-            <p className="font-bold text-2xl text-center">Jangka waktu investasi</p>
+            <p className="font-bold text-2xl text-center">
+              Jangka waktu investasi
+            </p>
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-3">
                 <Button
@@ -70,7 +84,9 @@ const Kalkulator = () => {
             </div>
           </div>
           <div className="flex flex-col p-6 gap-6 justify-center border-1 border-gray_bglightgray rounded-xl shadow">
-            <p className="font-bold text-2xl text-center">Jangka waktu investasi</p>
+            <p className="font-bold text-2xl text-center">
+              Jangka waktu investasi
+            </p>
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-3">
                 <Button
@@ -96,15 +112,22 @@ const Kalkulator = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl text-center">Nilai investasi saya di masa depan</p>
+          <p className="font-bold text-2xl text-center">
+            Nilai investasi saya di masa depan
+          </p>
           <div className="flex flex-row justify-center items-center gap-1">
             <p className="text-5xl font-light">Rp</p>
-            <input className="text-5xl font-bold focus:outline-none" placeholder="0" style={{ width: widthBelow }} onChange={handlerWidthBelowChanged} />
+            <input
+              className="text-5xl font-bold focus:outline-none"
+              placeholder="0"
+              style={{ width: widthBelow }}
+              onChange={handlerWidthBelowChanged}
+            />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Kalkulator;

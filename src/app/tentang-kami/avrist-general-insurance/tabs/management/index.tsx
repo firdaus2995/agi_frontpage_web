@@ -40,11 +40,11 @@ const Manajemen: React.FC<ManagementComponentProps> = ({
   const [personList, setPersonList] = useState<any[]>([]);
 
   useEffect(() => {
-    handleGetContentPage(
-      BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.MANAJEMEN
-    ).then((res: any) => {
-      setData(res);
-    });
+    handleGetContentPage(BASE_SLUG.TENTANG_AVRIST_LIFE.PAGE.MANAJEMEN).then(
+      (res: any) => {
+        setData(res);
+      }
+    );
 
     handleGetContent(BASE_SLUG.TENTANG_AVRIST_LIFE.CONTENT.MANAJEMEN, {
       includeAttributes: 'true'

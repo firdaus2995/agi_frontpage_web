@@ -10,8 +10,8 @@ export const handleSubscribe = async (query: QueryParams) => {
         : 60
     },
     headers: {
-        'Content-Type': 'application/json'
-      },
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(query)
   });
 };

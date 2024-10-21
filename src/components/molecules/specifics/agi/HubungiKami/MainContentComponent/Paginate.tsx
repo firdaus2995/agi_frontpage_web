@@ -6,8 +6,8 @@ import { PageInfo } from '@/types/provider.type';
 
 type Props = {
   className?: string;
-  dataPage: PageInfo,
-  onChangePage: (pageNumber: number) => void; 
+  dataPage: PageInfo;
+  onChangePage: (pageNumber: number) => void;
 };
 export const Paginate = (props: Props) => {
   const { className, dataPage, onChangePage } = props;
@@ -32,17 +32,23 @@ export const Paginate = (props: Props) => {
     }
 
     for (let pageIndex = startPage; pageIndex <= endPage; pageIndex++) {
-
       if (pageIndex === dataPage.pagePos) {
         pageNumbers.push(
-          <span key={pageIndex} className="cursor-pointer font-bold text-purple_dark" onClick={() => onChangePage(pageIndex)}>
+          <span
+            key={pageIndex}
+            className="cursor-pointer font-bold text-purple_dark"
+            onClick={() => onChangePage(pageIndex)}
+          >
             {pageIndex}
           </span>
         );
-      }
-      else {
+      } else {
         pageNumbers.push(
-          <span key={pageIndex} className="cursor-pointer text-xl" onClick={() => handleChangePage(pageIndex)}>
+          <span
+            key={pageIndex}
+            className="cursor-pointer text-xl"
+            onClick={() => handleChangePage(pageIndex)}
+          >
             {pageIndex}
           </span>
         );
@@ -66,23 +72,36 @@ export const Paginate = (props: Props) => {
       onChangePage(currentPage + 1);
     }
   };
-  
+
   return (
-    <div className={`w-full flex lg:flex-row xs:flex-col gap-4 justify-between ${className}`}>
+    <div
+      className={`w-full flex lg:flex-row xs:flex-col gap-4 justify-between ${className}`}
+    >
       <p className="text-xl">
-        Menampilkan <span className="font-bold text-purple_dark">1-{dataPage.pageSize}</span> dari{' '}
-        <span className="font-bold">{dataPage?.totalData}</span> hasil
+        Menampilkan{' '}
+        <span className="font-bold text-purple_dark">
+          1-{dataPage.pageSize}
+        </span>{' '}
+        dari <span className="font-bold">{dataPage?.totalData}</span> hasil
       </p>
       <div className="flex flex-row gap-2 items-center">
         <p className="text-xl">
           {renderPageNumbers()} ...{' '}
-            <span className={`cursor-pointer font-bold ${dataPage.pagePos === dataPage.totalPage ? 'text-purple_dark' : ''}`} onClick={() => onChangePage(dataPage.totalPage)}>
-              {dataPage.totalPage}
-            </span>
-          </p>
-          <div onClick={handleNextPage} className='cursor-pointer'>
-            <Icon width={20} height={20} name="chevronRight" color="purple_dark"/>
-          </div>
+          <span
+            className={`cursor-pointer font-bold ${dataPage.pagePos === dataPage.totalPage ? 'text-purple_dark' : ''}`}
+            onClick={() => onChangePage(dataPage.totalPage)}
+          >
+            {dataPage.totalPage}
+          </span>
+        </p>
+        <div onClick={handleNextPage} className="cursor-pointer">
+          <Icon
+            width={20}
+            height={20}
+            name="chevronRight"
+            color="purple_dark"
+          />
+        </div>
       </div>
     </div>
   );

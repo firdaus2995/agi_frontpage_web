@@ -33,10 +33,12 @@ export const RatingEmoji = (props: RatingEmojiProps) => {
   const idArray = ids?.split(';'); // Hasilnya ["1", "2", "3", "4", "5"]
 
   // Membatasi jumlah emoji berdasarkan panjang idArray
-  const filteredEmojis = listEmoji.slice(0, idArray?.length).map((emoji, index) => ({
-    ...emoji,
-    id: idArray[index] // Mengisi id dari idArray
-  }));
+  const filteredEmojis = listEmoji
+    .slice(0, idArray?.length)
+    .map((emoji, index) => ({
+      ...emoji,
+      id: idArray[index] // Mengisi id dari idArray
+    }));
 
   return (
     <div>

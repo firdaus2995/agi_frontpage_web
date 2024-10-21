@@ -44,10 +44,7 @@ const MainContent = ({ content }: Props) => {
     }
   };
 
-  const tabs = [
-    'Hak Cipta',
-    'Merk Dagang'
-  ];
+  const tabs = ['Hak Cipta', 'Merk Dagang'];
 
   return (
     <div className="w-full flex flex-col relative bottom-[70px]">

@@ -23,13 +23,17 @@ export const MainContent = () => {
           <ContentReportList />
           <ReportList />
         </div>
-        <ReportForm onChangeData={function (): void {
-          throw new Error('Function not implemented.');
-        } } setMaxSizeValidation={function (): void {
-          throw new Error('Function not implemented.');
-        } } onSetFormData={function (): void {
-          throw new Error('Function not implemented.');
-        } } />
+        <ReportForm
+          onChangeData={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          setMaxSizeValidation={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          onSetFormData={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
       </div>
       <Image
         alt="border-bottom"

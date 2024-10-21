@@ -21,7 +21,7 @@ const SubCard: React.FC<SubCardProps> = ({ item, onClick }) => {
           alt={item.title}
           width={0}
           height={0}
-          className='absolute w-full h-full inset-0'
+          className="absolute w-full h-full inset-0"
           src={item.videoThumbnail}
         />
         <Button.IconButton

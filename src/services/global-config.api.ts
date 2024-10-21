@@ -8,6 +8,6 @@ export const getListGlobalConfig = async () => {
       revalidate: process.env.NEXT_PUBLIC_REVALIDATE_CACHE
         ? parseInt(process.env.NEXT_PUBLIC_REVALIDATE_CACHE)
         : 60
-    },
+    }
   });
 };

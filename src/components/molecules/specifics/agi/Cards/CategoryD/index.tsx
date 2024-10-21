@@ -23,8 +23,12 @@ const CardCategoryD = ({
   type
 }: ICardCategoryD) => {
   return (
-    <div className={`flex ${type === 'row' ? 'flex-row-reverse p-4' : 'flex-col border-b-8 border-b-purple_dark'} gap-[18px] border border-gray_light rounded-[12px]`}>
-      <div className={`flex relative ${type === 'row' ? 'w-1/3 rounded-xl' : ''}`}>
+    <div
+      className={`flex ${type === 'row' ? 'flex-row-reverse p-4' : 'flex-col border-b-8 border-b-purple_dark'} gap-[18px] border border-gray_light rounded-[12px]`}
+    >
+      <div
+        className={`flex relative ${type === 'row' ? 'w-1/3 rounded-xl' : ''}`}
+      >
         <Image
           alt="blank-image"
           width={0}
@@ -33,7 +37,9 @@ const CardCategoryD = ({
           className="w-full object-cover rounded-xl"
         />
       </div>
-      <div className={`flex flex-col gap-4 p-5 ${type === 'row' ? 'w-2/3' : ''}`}>
+      <div
+        className={`flex flex-col gap-4 p-5 ${type === 'row' ? 'w-2/3' : ''}`}
+      >
         <p className="text-[14px] text-left">
           <span className="font-bold text-purple_dark">{category}</span> {time}
         </p>

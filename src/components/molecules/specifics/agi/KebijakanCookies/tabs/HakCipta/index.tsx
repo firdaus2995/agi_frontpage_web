@@ -14,7 +14,13 @@ const HakCipta = ({ content }: Props) => {
       <p className="font-karla font-bold text-banner-title-mobile lg:text-banner-title-desktop text-purple_dark mt-[24px]">
         {content['struktur-artikel']?.contentData[0]?.details[0]?.value ?? ''}
       </p>
-      <p className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]" dangerouslySetInnerHTML={{ __html: content['struktur-artikel']?.contentData[0]?.details[1]?.value ?? '' }} />
+      <p
+        className="font-opensans font-normal text-tanya-avgen-detail-subtitle text-gray_body mt-[24px]"
+        dangerouslySetInnerHTML={{
+          __html:
+            content['struktur-artikel']?.contentData[0]?.details[1]?.value ?? ''
+        }}
+      />
     </div>
   );
 };

@@ -297,14 +297,14 @@ const SearchForm = () => {
                       />
                     )}
                     {item.description !== '<p>-</p>' &&
-                      (item.description !== '<p>-&nbsp;</p>' && (
+                      item.description !== '<p>-&nbsp;</p>' && (
                         <div
                           className="text-body-text-1 line-clamp-2"
                           dangerouslySetInnerHTML={{
                             __html: item.description
                           }}
                         />
-                      ))}
+                      )}
                   </div>
                 </Link>
               ))

@@ -30,6 +30,8 @@ const Hero: React.FC<IHero> = ({
   const bannerRef: any = useRef<HTMLDivElement>(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   // const tabletSize = 1024;
+  const isBrowser = typeof window !== 'undefined';
+  const width = isBrowser ? window.innerWidth : 0;
 
   useEffect(() => {
     const updateSize = () => {
@@ -120,7 +122,7 @@ const Hero: React.FC<IHero> = ({
             alt="gambar-produk-individu"
             width={0}
             height={0}
-            src={bottomImage}
+            src={`${bottomImage}${width ? `?width=${width}` : ''}`}
             priority
           />
         </div>

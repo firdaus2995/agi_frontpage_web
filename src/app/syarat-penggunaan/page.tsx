@@ -53,7 +53,9 @@ const SyaratPengunaan = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await handleGetContentPage('halaman-syarat-penggunaan-agi');
+        const data = await handleGetContentPage(
+          'halaman-syarat-penggunaan-agi'
+        );
         const { content } = pageTransformer(data);
         setContentData(content);
         setTitleImg(singleImageTransformer(content['title-image']));

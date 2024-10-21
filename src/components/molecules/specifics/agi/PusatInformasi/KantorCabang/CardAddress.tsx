@@ -16,8 +16,10 @@ export const CardAddress = (props: Props) => {
     <CardPurple>
       <div className="px-[24px] py-[24px]">
         <div className="flex flex-row justify-between items-center">
-          <span className="font-bold text-[24px] leading-[30.17px] font-opensanspro">{title}</span>
-          <div role='button' onClick={() => onChangeCenter(lat, lng)}>
+          <span className="font-bold text-[24px] leading-[30.17px] font-opensanspro">
+            {title}
+          </span>
+          <div role="button" onClick={() => onChangeCenter(lat, lng)}>
             <Icon
               name="navigation"
               height={24}
@@ -36,7 +38,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] leading-[25.2px]">{address}</span>
+            <span className="font-opensans text-[18px] leading-[25.2px]">
+              {address}
+            </span>
           </div>
         )}
         {workHour && (
@@ -49,7 +53,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] leading-[25.2px]">{workHour}</span>
+            <span className="font-opensans text-[18px] leading-[25.2px]">
+              {workHour}
+            </span>
           </div>
         )}
         {contact && (
@@ -62,7 +68,9 @@ export const CardAddress = (props: Props) => {
                 color="purple_verylight"
               />
             </div>
-            <span className="font-opensans text-[18px] leading-[25.2px]">{contact}</span>
+            <span className="font-opensans text-[18px] leading-[25.2px]">
+              {contact}
+            </span>
           </div>
         )}
       </div>

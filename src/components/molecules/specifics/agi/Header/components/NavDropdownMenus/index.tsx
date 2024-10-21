@@ -103,7 +103,9 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
           onClick={() => setVisibility(false)}
         >
           <Icon name="helpcircle" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Tanya Avgen</p>
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">
+            Tanya Avgen
+          </p>
         </Link>
         <div
           className="flex flex-row gap-2 cursor-pointer ml-2"
@@ -113,7 +115,9 @@ const NavDropdownMenus: React.FC<NavDropdownMenusProps> = ({
           }}
         >
           <Icon name="mail" color="gray_black" />
-          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">Subscribe</p>
+          <p className="font-bold text-gray_black text-[16px] leading-[19.6px]">
+            Subscribe
+          </p>
         </div>
       </div>
       <EmailSubscribeModal

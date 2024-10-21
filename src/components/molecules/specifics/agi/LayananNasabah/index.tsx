@@ -108,7 +108,9 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row flex-wrap items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href1}
                 >
-                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
+                  <p
+                    className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}
+                  >
                     {val.link1}
                   </p>
                   <Image
@@ -126,7 +128,9 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href2}
                 >
-                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
+                  <p
+                    className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}
+                  >
                     {val.link2}
                   </p>
                   <Image
@@ -144,7 +148,9 @@ const LayananNasabah = (props: LayananNasabah) => {
                   className="flex flex-row items-center xs:gap-2 xm:gap-4 whitespace-nowrap"
                   href={val.href3}
                 >
-                  <p className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}>
+                  <p
+                    className={`font-semibold xs:text-[14px] xm:text-footer-card-subtitle`}
+                  >
                     {val.link3}
                   </p>
                   <Image

@@ -38,7 +38,7 @@ const Agency = (props: agencyProps) => {
         <div className="xs:w-full lg:w-auto flex items-center justify-center">
           <Link
             href={contentStringTransformer(pageData['external-link-button'])}
-            target='_blank'
+            target="_blank"
           >
             <Button
               title={contentStringTransformer(

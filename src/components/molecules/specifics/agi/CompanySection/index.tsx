@@ -28,7 +28,7 @@ const CompanySection = (props: CompanySection) => {
   }, []);
 
   const sliderSettings = {
-    dots: true, 
+    dots: true,
     infinite: true,
     arrows: false,
     speed: 500,
@@ -36,7 +36,7 @@ const CompanySection = (props: CompanySection) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    adaptiveHeight: true,
+    adaptiveHeight: true
   };
 
   const renderCard = (val: any) => {
@@ -58,8 +58,8 @@ const CompanySection = (props: CompanySection) => {
           />
           <Link
             href={contentStringTransformer(val['why-us-button-link'])}
-            className='flex w-full items-center justify-start'
->
+            className="flex w-full items-center justify-start"
+          >
             <Button
               title={contentStringTransformer(val['why-us-button-label'])}
               customButtonClass="bg-purple_dark"

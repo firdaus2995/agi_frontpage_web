@@ -19,7 +19,7 @@ interface ContentPopoverProps {
 
 const ContentPopover: React.FC<ContentPopoverProps> = ({
   isOpenPopover,
-  setIsOpenPopover,
+  setIsOpenPopover
 }) => {
   // Ensure window is accessed only in the browser
   const url = typeof window !== 'undefined' ? window.location.href : '';

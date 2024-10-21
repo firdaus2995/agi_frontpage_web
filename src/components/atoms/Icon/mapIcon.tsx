@@ -51,7 +51,7 @@ const iconType = {
   maps: IconSVG.Maps,
   phone: IconSVG.Phone,
   mapsPin: IconSVG.MapsPin,
-  briefcase: IconSVG.Briefcase,
+  briefcase: IconSVG.Briefcase
 } as const;
 
 type IconsListType = keyof typeof iconType;

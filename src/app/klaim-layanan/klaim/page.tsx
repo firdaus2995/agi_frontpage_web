@@ -26,7 +26,7 @@ const InformasiKlaim: React.FC<ParamsProps> = () => {
   useEffect(() => {
     const value = searchParams.get('tab');
     if (value === 'Login Polis') {
-      router.push('https://my.avrist.com/welcome')
+      router.push('https://my.avrist.com/welcome');
     }
     if (value !== null) {
       setTab(value);
@@ -41,26 +41,28 @@ const InformasiKlaim: React.FC<ParamsProps> = () => {
     setBannerImg(val);
   };
 
-  return tab !== 'Login Polis' && (
-    <div className="flex flex-col items-center justify-center bg-avrast_product_bg">
-      <KlaimHeader title={tab} />
-      <KlaimBanner changeImg={bannerImg} />
-      <InformasiKlaimComponent
-        onTabChange={handleTabChange}
-        isSelectedDetail={isSelectedDetail}
-        onChangeBannerImg={handleChangeBannerImg}
-        tab={tab}
-      />
-      {tab === 'Informasi Klaim' && <PanduanKlaim />}
-      {tab === 'Panduan & Pengajuan' && (
-        <ProsesKlaim
-          onSelectDetail={handleSelectedDetail}
+  return (
+    tab !== 'Login Polis' && (
+      <div className="flex flex-col items-center justify-center bg-avrast_product_bg">
+        <KlaimHeader title={tab} />
+        <KlaimBanner changeImg={bannerImg} />
+        <InformasiKlaimComponent
+          onTabChange={handleTabChange}
+          isSelectedDetail={isSelectedDetail}
           onChangeBannerImg={handleChangeBannerImg}
+          tab={tab}
         />
-      )}
-      <KlaimVideo />
-      <FooterKlaim />
-    </div>
+        {tab === 'Informasi Klaim' && <PanduanKlaim />}
+        {tab === 'Panduan & Pengajuan' && (
+          <ProsesKlaim
+            onSelectDetail={handleSelectedDetail}
+            onChangeBannerImg={handleChangeBannerImg}
+          />
+        )}
+        <KlaimVideo />
+        <FooterKlaim />
+      </div>
+    )
   );
 };
 

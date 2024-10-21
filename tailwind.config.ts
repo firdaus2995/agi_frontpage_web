@@ -27,337 +27,337 @@ const config: Config = {
         '64px',
         {
           lineHeight: '76.8px',
-          letterSpacing: '-4%',
-        },
+          letterSpacing: '-4%'
+        }
       ],
       'heading-1-mobile': [
         '30px',
         {
           lineHeight: '36px',
-          letterSpacing: '-1.44px',
-        },
+          letterSpacing: '-1.44px'
+        }
       ],
       'heading-2-desktop': [
         '48px',
         {
           lineHeight: '120%',
-          letterSpacing: '-1.44px',
-        },
+          letterSpacing: '-1.44px'
+        }
       ],
       'heading-2-mobile': [
         '24px',
         {
           lineHeight: '120%',
           letterSpacing: '1.44px'
-        },
+        }
       ],
       'banner-title-desktop': [
         '36px',
         {
           lineHeight: '48.2px',
-          letterSpacing: '-1.08px',
-        },
+          letterSpacing: '-1.08px'
+        }
       ],
       'banner-title-mobile': [
         '24px',
         {
           lineHeight: '28.8px',
-          letterSpacing: '-0.72px',
-        },
+          letterSpacing: '-0.72px'
+        }
       ],
       'banner-subtitle-desktop': [
         '56px',
         {
           lineHeight: '61.6px',
-          letterSpacing: '-2.24px',
-        },
+          letterSpacing: '-2.24px'
+        }
       ],
       'banner-subtitle-mobile': [
         '24px',
         {
           lineHeight: '28.8px',
-          letterSpacing: '-0.025em',
-        },
+          letterSpacing: '-0.025em'
+        }
       ],
       'banner-btn-label': [
         '20px',
         {
-          lineHeight: '28px',
-        },
+          lineHeight: '28px'
+        }
       ],
       'banner-footer-1-desktop': [
         '36px',
         {
           lineHeight: '120%',
-          letterSpacing: '-1.44px',
-        },
+          letterSpacing: '-1.44px'
+        }
       ],
       'banner-footer-1-mobile': [
         '20px',
         {
           lineHeight: '24px',
-          letterSpacing: '-0.8px',
-        },
+          letterSpacing: '-0.8px'
+        }
       ],
       'banner-footer-2-desktop': [
         '48px',
         {
           lineHeight: '120%',
-          letterSpacing: '-1.44px',
-        },
+          letterSpacing: '-1.44px'
+        }
       ],
       'banner-footer-2-mobile': [
         '36px',
         {
           lineHeight: '120%',
-          letterSpacing: '-1.44px',
-        },
+          letterSpacing: '-1.44px'
+        }
       ],
       'card-title-desktop': [
         '32px',
         {
           lineHeight: '38.4px',
-          letterSpacing: '-1.28px',
-        },
+          letterSpacing: '-1.28px'
+        }
       ],
       'card-title-mobile': [
         '32px',
         {
           lineHeight: '38.4px',
-          letterSpacing: '-1.92px',
-        },
+          letterSpacing: '-1.92px'
+        }
       ],
       'card-subtitle-desktop': [
         '16px',
         {
           lineHeight: '22.4px'
-        },
+        }
       ],
       'card-subtitle-mobile': [
         '16px',
         {
           lineHeight: '22.4px'
-        },
+        }
       ],
       'card-btn-label': [
         '16px',
         {
-          lineHeight: '28px',
-        },
+          lineHeight: '28px'
+        }
       ],
       'information-slider-title-desktop': [
         '28px',
         {
           lineHeight: '33.6px',
-          letterSpacing: '-0.84px',
-        },
+          letterSpacing: '-0.84px'
+        }
       ],
       'information-slider-title-mobile': [
         '24px',
         {
           lineHeight: '48px',
-          letterSpacing: '-1.2px',
-        },
+          letterSpacing: '-1.2px'
+        }
       ],
       'information-slider-subtitle-desktop': [
         '50px',
         {
           lineHeight: '55px',
-          letterSpacing: '-1.5px',
-        },
+          letterSpacing: '-1.5px'
+        }
       ],
       'information-slider-subtitle-mobile': [
         '40px',
         {
           lineHeight: '120%',
-          letterSpacing: '-0.72px',
-        },
+          letterSpacing: '-0.72px'
+        }
       ],
       'footer-card-title': [
         '32px',
         {
           lineHeight: '38.4px',
-          letterSpacing: '-1.6px',
-        },
+          letterSpacing: '-1.6px'
+        }
       ],
       'footer-card-subtitle': [
         '20px',
         {
-          lineHeight: '28px',
-        },
+          lineHeight: '28px'
+        }
       ],
       'top-heading-group': [
         '14px',
         {
-          lineHeight: '19.6px',
-        },
+          lineHeight: '19.6px'
+        }
       ],
       'list-menu-header-desktop': [
         '16px',
         {
-          lineHeight: '23.68px',
-        },
+          lineHeight: '23.68px'
+        }
       ],
       'list-menu-header-mobile': [
         '20px',
         {
-          lineHeight: '28px',
-        },
+          lineHeight: '28px'
+        }
       ],
       'menu-header-title': [
         '32px',
         {
           lineHeight: '38.4px',
-          letterSpacing: '-0.96px',
-        },
+          letterSpacing: '-0.96px'
+        }
       ],
       'menu-header-subtitle': [
         '20px',
         {
-          lineHeight: '28px',
-        },
+          lineHeight: '28px'
+        }
       ],
       'footer-title': [
         '20px',
         {
-          lineHeight: '24px',
-        },
+          lineHeight: '24px'
+        }
       ],
       'footer-subtitle': [
         '18px',
         {
-          lineHeight: '25.2px',
-        },
+          lineHeight: '25.2px'
+        }
       ],
       'footer-phone': [
         '24px',
         {
           lineHeight: '28.8px',
           letterSpacing: '-0.72px'
-        },
+        }
       ],
       'footer-list': [
         '14px',
         {
           lineHeight: '19.6px'
-        },
+        }
       ],
       'footer-link': [
         '18px',
         {
           lineHeight: '25.2px'
-        },
+        }
       ],
       'hero-title': [
         '48px',
         {
           lineHeight: '48px',
           letterSpacing: '-1.44px'
-        },
+        }
       ],
       'information-title-desktop': [
         '56px',
         {
           lineHeight: '120%',
           letterSpacing: '-4%'
-        },
+        }
       ],
       'information-title-mobile': [
         '40px',
         {
           lineHeight: '48px',
           letterSpacing: '-1.6px'
-        },
+        }
       ],
       'tanya-avgen-title-desktop': [
         '56px',
         {
           lineHeight: '120%',
           letterSpacing: '-2.24px'
-        },
+        }
       ],
       'tanya-avgen-title-mobile': [
         '36px',
         {
           lineHeight: '48px',
           letterSpacing: '-1.44px'
-        },
+        }
       ],
       'tanya-avgen-detail-title-desktop': [
         '56px',
         {
           lineHeight: '67.2px',
           letterSpacing: '-2.24px'
-        },
+        }
       ],
       'tanya-avgen-detail-title-mobile': [
         '36px',
         {
           lineHeight: '43.2px',
           letterSpacing: '-1.44px'
-        },
+        }
       ],
       'tanya-avgen-detail-subtitle': [
         '20px',
         {
           lineHeight: '32px'
-        },
+        }
       ],
       '404-title-desktop': [
         '200px',
         {
           lineHeight: '240px',
           letterSpacing: '-8px'
-        },
+        }
       ],
       '404-title-mobile': [
         '120px',
         {
           lineHeight: '144px',
           letterSpacing: '-4.8px'
-        },
+        }
       ],
       'under-construction-title-desktop': [
         '80px',
         {
           lineHeight: '80px',
           letterSpacing: '-3.2px'
-        },
+        }
       ],
       'under-construction-title-mobile': [
         '60px',
         {
           lineHeight: '60px',
           letterSpacing: '-2.4px'
-        },
+        }
       ],
       'sekilas-perusahaan-title': [
         '48px',
         {
           lineHeight: '57.6px',
           letterSpacing: '-3%'
-        },
+        }
       ],
       'sekilas-perusahaan-text': [
         '24px',
         {
           lineHeight: '33.6px',
           letterSpacing: '-3%'
-        },
+        }
       ],
       'history-title': [
         '24px',
         {
           lineHeight: '30.17px'
-        },
+        }
       ],
       'history-text': [
         '16px',
         {
           lineHeight: '21.79px'
-        },
-      ],
-    }, 
+        }
+      ]
+    },
     extend: {
       borderWidth: {
         '1': '1px'

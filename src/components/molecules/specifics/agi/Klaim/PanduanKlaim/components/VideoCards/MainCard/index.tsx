@@ -9,11 +9,16 @@ type MainCardProps = {
 };
 
 const MainCard: React.FC<MainCardProps> = ({ item }) => {
-  console.log(item)
+  console.log(item);
   return (
     <div className="grid lg:grid-cols-2 rounded-lg border border-solid border-gray_bglightgray">
       <div className="w-full min-h-[35rem] lg:col-span-2 rounded-lg border border-solid border-gray_bglightgray shadow-md">
-        <VideoPlayer url={item.videoUrl} thumbnail={item.videoThumbnail} type={item.type} color={item.color} />
+        <VideoPlayer
+          url={item.videoUrl}
+          thumbnail={item.videoThumbnail}
+          type={item.type}
+          color={item.color}
+        />
       </div>
     </div>
   );

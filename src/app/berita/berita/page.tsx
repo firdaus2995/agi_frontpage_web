@@ -221,7 +221,7 @@ const Berita: React.FC<ParamsProps> = () => {
         imageUrl={data?.titleImageUrl ?? BlankImage}
         bottomImageFit={bannerImageFit}
       />
-      <CustomContainer className="pb-[5rem] xs:-mb-2 lg:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] lg:pt-[5rem] bg-white xs:-mt-[3.2rem] lg:-mt-[6.2rem] z-[10]">
+      <CustomContainer className="pb-[5rem] xs:-mb-2 lg:mb-0 justify-between gap-2 items-stretch xs:pt-[3.125rem] lg:pt-[5rem] bg-white z-[10]">
         {/* Tab Desktop */}
         <div className="w-full xs:hidden lg:block">
           <div className="flex lg:w-full xs:w-[90%] lg:flex-row xs:flex-col gap-4 rounded-lg gap-[0.75rem] flex-wrap">

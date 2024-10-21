@@ -1,4 +1,4 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib",
-    "svg.preview.background": "editor"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "svg.preview.background": "editor"
 }

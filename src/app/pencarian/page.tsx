@@ -5,7 +5,11 @@ import FooterInformation from '@/components/molecules/specifics/agi/FooterInform
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import SearchForm from '@/components/molecules/specifics/agi/Pencarian/SearchForm';
 import { handleGetContentPage } from '@/services/content-page.api';
-import { contentStringTransformer, pageTransformer, singleImageTransformer } from '@/utils/responseTransformer';
+import {
+  contentStringTransformer,
+  pageTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const Pencarian = () => {
   const [title, setTitle] = useState('');
@@ -102,12 +106,14 @@ const Pencarian = () => {
   ];
   return (
     <div className="flex flex-col">
-      <Hero title={title} breadcrumbsData={breadcrumbsData} imageUrl={titleImg.imageUrl} />
+      <Hero
+        title={title}
+        breadcrumbsData={breadcrumbsData}
+        imageUrl={titleImg.imageUrl}
+      />
       <SearchForm />
       <FooterInformation
-        title={
-          <p dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />
-        }
+        title={<p dangerouslySetInnerHTML={{ __html: cta1Name ?? '' }} />}
         buttonTitle={cta1Label}
         href={cta1Link}
         image={cta1Img.imageUrl}

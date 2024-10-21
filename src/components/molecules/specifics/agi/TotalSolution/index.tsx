@@ -192,7 +192,9 @@ const TotalSolution = (props: TotalSolution) => {
             role="button"
             onClick={next}
             className={
-              currentSlide === data.length/2 - 1 ? 'opacity-50' : 'opacity-100'
+              currentSlide === data.length / 2 - 1
+                ? 'opacity-50'
+                : 'opacity-100'
             }
           />
         </div>

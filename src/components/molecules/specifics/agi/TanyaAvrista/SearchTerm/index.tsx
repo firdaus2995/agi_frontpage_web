@@ -39,9 +39,7 @@ const SearchTerm = ({
                 value={loading ? 'Loading data...' : value}
                 onKeyDown={(e: any) => {
                   if (e.key === 'Enter' || e.keyCode === 13) {
-                    onSearch(
-                      'List-Pertanyaan-dan-Jawaban-Tanya-Avgen',
-                      value);
+                    onSearch('List-Pertanyaan-dan-Jawaban-Tanya-Avgen', value);
                   }
                 }}
                 disabled={loading}

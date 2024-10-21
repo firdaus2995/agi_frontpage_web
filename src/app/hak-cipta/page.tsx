@@ -5,7 +5,11 @@ import FooterInformation from '@/components/molecules/specifics/agi/FooterInform
 import Hero from '@/components/molecules/specifics/agi/Hero';
 import MainContent from '@/components/molecules/specifics/agi/KebijakanCookies/MainContent';
 import { handleGetContentPage } from '@/services/content-page.api';
-import { contentStringTransformer, pageTransformer, singleImageTransformer } from '@/utils/responseTransformer';
+import {
+  contentStringTransformer,
+  pageTransformer,
+  singleImageTransformer
+} from '@/utils/responseTransformer';
 
 const HakCipta = () => {
   const [title, setTitle] = useState('');
@@ -48,7 +52,9 @@ const HakCipta = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await handleGetContentPage('Halaman-Hak-Cipta-Merk-Dagang');
+        const data = await handleGetContentPage(
+          'Halaman-Hak-Cipta-Merk-Dagang'
+        );
         const { content } = pageTransformer(data);
         setContentData(content);
         setTitleImg(singleImageTransformer(content['title-image']));

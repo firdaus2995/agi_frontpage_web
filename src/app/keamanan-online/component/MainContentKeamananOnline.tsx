@@ -9,7 +9,7 @@ interface Props {
   content: any;
 }
 
-const MainContentKeamananOnline = ({content}: Props) => {
+const MainContentKeamananOnline = ({ content }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

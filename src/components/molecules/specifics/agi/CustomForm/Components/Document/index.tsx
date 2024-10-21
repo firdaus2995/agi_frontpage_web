@@ -42,8 +42,8 @@ const DocumentForm: React.FC<IDocumentForm> = ({
               filename.find((item: any) => item.name === attribute.componentId)
                 .value ?? ''
             )
-          : JSON.parse(attribute.config)?.placeholder ??
-            'Klik Browse untuk mencari'}
+          : (JSON.parse(attribute.config)?.placeholder ??
+            'Klik Browse untuk mencari')}
       </p>
       <input
         type="file"

@@ -58,9 +58,7 @@ const Sample = () => {
                     Dialog Title
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Dialog Body
-                    </p>
+                    <p className="text-sm text-gray-500">Dialog Body</p>
                   </div>
 
                   <div className="mt-4">
@@ -80,6 +78,6 @@ const Sample = () => {
       </Transition>
     </>
   );
-}
+};
 
 export default Sample;

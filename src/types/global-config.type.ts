@@ -1,19 +1,19 @@
 export interface GlobalConfigList {
-  code: number
-  status: string
-  data: Data
-  errors: any
-  pagination: any
+  code: number;
+  status: string;
+  data: Data;
+  errors: any;
+  pagination: any;
 }
 
 export interface Data {
-  total: number
-  configs: Config[]
+  total: number;
+  configs: Config[];
 }
 
 export interface Config {
-  id: number
-  variable: string
-  value: string
-  description: string
+  id: number;
+  variable: string;
+  value: string;
+  description: string;
 }

@@ -84,7 +84,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                     ? `tel:${href}`
                     : item?.hrefType === 'email'
                       ? `mailto:${href}`
-                      : href ?? '#'
+                      : (href ?? '#')
                 }
                 target={item.openInNewTab ? '_blank' : '_self'}
                 className="relative border border-gray_superlight w-full h-auto pt-[24px] pb-[36px] px-[24px] rounded-xl flex flex-col gap-[1.5rem] items-center text-center shadow-md bg-white xs:max-lg:mt-4"
@@ -97,7 +97,9 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                   height={100}
                 />
                 <span className="flex flex-col grow justify-between">
-                  <p className="font-bold text-[1.5rem] font-opensanspro">{item.title}</p>
+                  <p className="font-bold text-[1.5rem] font-opensanspro">
+                    {item.title}
+                  </p>
                   {item.subtitle && (
                     <div className="flex items-end justify-center">
                       <p
@@ -132,7 +134,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
                           ? `tel:${href}`
                           : item?.hrefType === 'email'
                             ? `mailto:${href}`
-                            : href ?? '#'
+                            : (href ?? '#')
                       }
                       target={item.openInNewTab ? '_blank' : '_self'}
                       className="flex flex-col h-[250px] justify-between w-full mx-[2.5rem] md:mx-[12px] h-full min-h-[18.75rem] px-[1.5rem] pt-[1.5rem] pb-[2.25rem] gap-[1.5rem] border border-gray_light rounded-[0.75rem] shadow-md bg-white"
@@ -199,9 +201,7 @@ const FooterCards: React.FC<IFooterCards> = ({ cards, bgColor }) => {
               alt="next"
               src={ArrowCarouselRight}
               onClick={next}
-              className={
-                currentSlide === 2 ? 'opacity-50' : 'opacity-100'
-              }
+              className={currentSlide === 2 ? 'opacity-50' : 'opacity-100'}
             />
           </div>
         </div>

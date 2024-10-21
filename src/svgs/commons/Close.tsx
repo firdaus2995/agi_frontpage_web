@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { IIcon } from "@/components/atoms/Icon";
+import { IIcon } from '@/components/atoms/Icon';
 
 const Cross: React.FC<IIcon> = (props) => {
   return (

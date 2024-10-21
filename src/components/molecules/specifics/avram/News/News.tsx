@@ -330,8 +330,15 @@ const News = () => {
             </div>
           </div>
           <div className="flex flex-row my-10 px-6 items-center gap-1">
-            <p className='text-purple_dark font-bold text-sm cursor-pointer'>Lihat Semua</p>
-            <Icon width={16} height={16} name='chevronRight' color='purple_dark' />
+            <p className="text-purple_dark font-bold text-sm cursor-pointer">
+              Lihat Semua
+            </p>
+            <Icon
+              width={16}
+              height={16}
+              name="chevronRight"
+              color="purple_dark"
+            />
           </div>
         </div>
         {/* mobile */}
@@ -435,8 +442,15 @@ const News = () => {
             </div>
           </Slider>
           <div className="flex flex-row my-10 px-6 items-center gap-1">
-            <p className='text-purple_dark font-bold text-sm cursor-pointer'>Lihat Semua</p>
-            <Icon width={16} height={16} name='chevronRight' color='purple_dark' />
+            <p className="text-purple_dark font-bold text-sm cursor-pointer">
+              Lihat Semua
+            </p>
+            <Icon
+              width={16}
+              height={16}
+              name="chevronRight"
+              color="purple_dark"
+            />
           </div>
         </div>
       </div>

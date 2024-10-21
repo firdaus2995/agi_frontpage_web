@@ -301,8 +301,9 @@ const AccordionList = ({ data, selected }: AccordionListProps) => {
         isExpanded={isExpanded}
         index={idx + 1}
         setIsExpanded={(e) => {
-          console.log(item)
-          updateEkspanded(e)}}
+          console.log(item);
+          updateEkspanded(e);
+        }}
       />
     ));
 
@@ -318,7 +319,7 @@ const AccordionList = ({ data, selected }: AccordionListProps) => {
           </span>{' '}
           dari <span className="font-bold">{totalItems}</span> hasil
         </div>
-        <div className='flex gap-2'>
+        <div className="flex gap-2">
           {Array.from({ length: totalPages }, (_, index) => index + 1).map(
             (pageNumber) => (
               <span
@@ -335,7 +336,11 @@ const AccordionList = ({ data, selected }: AccordionListProps) => {
               </span>
             )
           )}
-          <span className="mt-[3px]" role='button' onClick={() => paginate(totalPages)}>
+          <span
+            className="mt-[3px]"
+            role="button"
+            onClick={() => paginate(totalPages)}
+          >
             <Icon name="chevronRight" color="purple_dark" />
           </span>
         </div>
@@ -363,8 +368,8 @@ const AvrampediaList = () => {
               idx === 0
                 ? 'rounded-l-lg'
                 : idx === headers.length - 1
-                ? 'rounded-r-lg'
-                : ''
+                  ? 'rounded-r-lg'
+                  : ''
             } ${
               header.disabled ? 'cursor-not-allowed text-gray-400' : ''
             } ${selected === header.value ? 'bg-purple_dark text-white' : ''}`}

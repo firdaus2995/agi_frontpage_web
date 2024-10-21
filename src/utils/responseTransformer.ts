@@ -34,7 +34,14 @@ export const contentCategoryTransformer = (
     }
 
     return categoryData.map(
-      ({ title, contentData, id, createdAt, categories, shortDesc }: ContentData) => {
+      ({
+        title,
+        contentData,
+        id,
+        createdAt,
+        categories,
+        shortDesc
+      }: ContentData) => {
         return {
           ...handleTransformedContent(contentData, title),
           id,

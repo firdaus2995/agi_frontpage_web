@@ -70,13 +70,13 @@ const Hero: React.FC<IHero> = ({
   return (
     <div
       className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? '' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
-      style={{
-        marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
-      }}
+      // style={{
+      //   marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
+      // }}
     >
       <div className="w-full flex items-center">
         <div
-          className={`w-full flex lg:flex-row xs:flex-row-reverse justify-between px-[2rem] lg:px-[8.5rem] items-center xs:pt-[2rem] lg:pt-[0.5rem]`}
+          className={`w-full flex lg:flex-row xs:flex-row-reverse justify-between px-[2rem] lg:px-[8.5rem] items-center xs:py-[2rem] lg:py-[0.5rem]`}
         >
           <div className="line-clamp-1">
             <p className="hidden lg:block font-karla text-white text-[1.125rem] lg:text-[3rem] font-light">
@@ -115,11 +115,15 @@ const Hero: React.FC<IHero> = ({
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem]">
+        <div className="w-full h-full lg:h-[380px] relative">
           <Image
             ref={bannerRef}
-            className={`w-full h-auto ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
+            className={`w-full ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
             alt="gambar-produk-individu"
+            fill={
+              (width > 1024 && bottomImageFit === 'proportional_crop') ||
+              bottomImageFit === 'proportional_full'
+            }
             width={0}
             height={0}
             src={`${bottomImage}${width ? `?width=${width}` : ''}`}

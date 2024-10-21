@@ -106,6 +106,7 @@ const TanyaAvgen = () => {
   });
   const [titleImage, setTitleImage] = useState({ imageUrl: '', altText: '' });
   const [bannerImage, setBannerImage] = useState({ imageUrl: '', altText: '' });
+  const [bannerImageFit, setBannerImageFit] = useState('');
   const [footerImage, setFooterImage] = useState({ imageUrl: '', altText: '' });
   const [cards, setCards] = useState<any[]>([]);
   const [listFilteredData, setListFilteredData] = useState<IListFaq[]>([]);
@@ -139,6 +140,11 @@ const TanyaAvgen = () => {
 
         setTitleImage(singleImageTransformer(content['title-image']));
         setBannerImage(singleImageTransformer(content['banner-image']));
+        setBannerImageFit(
+          content['banner-image']?.config
+            ? JSON.parse(content['banner-image']?.config)?.image_fit
+            : ''
+        );
         setFooterImage(singleImageTransformer(content['cta1-image']));
         setFooterText(contentStringTransformer(content['cta1-teks']));
         setFooterBtnLabel(
@@ -323,6 +329,7 @@ const TanyaAvgen = () => {
         loading={loadingSearch}
         value={keyword}
         bannerImage={bannerImage.imageUrl}
+        bannerImageFit={bannerImageFit}
         onChange={(e) => setKeyword(e.target.value)}
       />
       <TopicsCard cards={cards} onClickCards={handleCardsClick} />

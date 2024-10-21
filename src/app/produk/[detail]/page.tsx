@@ -116,11 +116,6 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
           icon3: singleImageTransformer(content['icon-3-kotak-1']).imageUrl,
           subjudul3: contentStringTransformer(content['subjudul-3-kotak-1'])
         };
-        setBannerImageFit(
-          content['banner-image']?.config
-            ? JSON.parse(content['banner-image']?.config)?.image_fit
-            : ''
-        );
         const kotak2 = {
           judul: contentStringTransformer(content['judul-kotak-2'])
         };
@@ -240,6 +235,11 @@ const ProdukIndividuDetail = ({ params }: { params: { detail: string } }) => {
       const jenisProduk = contentStringTransformer(content['jenis-produk']);
       const channel = contentStringTransformer(content['channel']);
       const produkImage = singleImageTransformer(content['produk-image']);
+      setBannerImageFit(
+        content['produk-image']?.config
+          ? JSON.parse(content['produk-image']?.config)?.image_fit
+          : ''
+      );
       const kategoriProdukIcon = singleImageTransformer(
         content['kategori-produk-icon']
       );

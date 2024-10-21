@@ -69,7 +69,7 @@ const Hero: React.FC<IHero> = ({
 
   return (
     <div
-      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? 'h-[18rem] xl:h-[28.8rem]' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
+      className={`relative w-full lg:auto z-0 overflow-hidden ${bottomImage ? '' : 'h-[9rem] lg:h-[12rem]'} ${customClassName}`}
       style={{
         marginBottom: imageSize.height < 160 ? -(imageSize.height * 0.6) : 0
       }}
@@ -115,10 +115,10 @@ const Hero: React.FC<IHero> = ({
         ></div>
       )}
       {bottomImage && (
-        <div className="-z-[1] w-full top-[5.25rem] absolute">
+        <div className="-z-[1] w-full top-[5.25rem]">
           <Image
             ref={bannerRef}
-            className={`w-full xs:h-auto lg:h-full lg:h-[50vh] ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
+            className={`w-full h-auto ${bottomImageFit === 'proportional_full' ? 'object-fill' : 'object-cover'}`}
             alt="gambar-produk-individu"
             width={0}
             height={0}

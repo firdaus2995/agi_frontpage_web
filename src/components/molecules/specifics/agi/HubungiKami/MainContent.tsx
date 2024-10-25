@@ -24,7 +24,7 @@ export const MainContent = (props: Props) => {
             {contentStringTransformer(pageData['body-sub-judul'])}
           </p>
         </div>
-        <RequirementForm Id={formId} />
+        <RequirementForm Id={formId} pageData={pageData} />
         <ContactSupport pageData={pageData} />
       </div>
       <FeedbackForm Id={formSaranId} />

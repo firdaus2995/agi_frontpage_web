@@ -2,7 +2,6 @@
 import { Header } from '@/components/molecules/specifics/agi/InformasiNasabah';
 import FooterKlaim from '@/components/molecules/specifics/agi/Klaim/FooterKlaim';
 import KlaimVideo from '@/components/molecules/specifics/agi/Klaim/KlaimVideo';
-import { MainContent } from '@/components/molecules/specifics/agi/PenangananPengaduan';
 
 const HandleComplaint = () => {
   return (
@@ -11,7 +10,6 @@ const HandleComplaint = () => {
         menu={['Informasi Nasabah', 'Penanganan Pengaduan']}
         title="Informasi Nasabah"
       />
-      <MainContent />
       <KlaimVideo />
       <FooterKlaim />
     </div>

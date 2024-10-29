@@ -7,10 +7,11 @@ import { handleSendEmail } from '@/services/form.api';
 
 type Props = {
   Id?: string;
+  pageData?: any;
 };
 
 export const RequirementForm = (props: Props) => {
-  const { Id } = props;
+  const { Id, pageData } = props;
   const [dataForm, setDataForm] = useState<any>();
   const [dataUpload, setDataUpload] = useState<any>();
   const [formId, setFormId] = useState<any>();
@@ -211,6 +212,7 @@ export const RequirementForm = (props: Props) => {
             />
           )}
           <ReportForm
+            pageData={pageData}
             onChangeData={handleChangeAttachment}
             onSetFormData={handleSetFormData}
             maxSizeValidation={maxSizeValidation}

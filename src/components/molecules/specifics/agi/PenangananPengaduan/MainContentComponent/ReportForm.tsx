@@ -1,11 +1,13 @@
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import CLOCK from '@/assets/images/agi/hubungi-kami/clock.svg';
 import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
 import EMAIL from '@/assets/images/common/email.svg';
 import Icon from '@/components/atoms/Icon';
 import { handleUploadDocument } from '@/services/upload-document-service.api';
+import { contentStringTransformer } from '@/utils/responseTransformer';
 
 type UploadBoxProps = {
   title: string;
@@ -113,6 +115,7 @@ type ReportFormProps = {
   onSetFormData: (value: string, title: any) => void;
   maxSizeValidation?: boolean;
   setMaxSizeValidation: (value: boolean) => void;
+  pageData?: any;
 };
 
 export const ReportForm = (props: ReportFormProps) => {
@@ -120,7 +123,8 @@ export const ReportForm = (props: ReportFormProps) => {
     onChangeData,
     maxSizeValidation,
     setMaxSizeValidation,
-    onSetFormData
+    onSetFormData,
+    pageData
   } = props;
   const [attachmentFiles, setAttachmentFiles] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState({});
@@ -237,24 +241,52 @@ export const ReportForm = (props: ReportFormProps) => {
                   src={CUSTOMER_SERVICE}
                 />
                 <span className="font-opensans font-bold text-[1rem]">
-                  Layanan Nasabah
+                  {contentStringTransformer(pageData['informasi-2-nama']) !==
+                  '-'
+                    ? contentStringTransformer(pageData['informasi-2-nama'])
+                    : 'Layanan Nasabah'}
                 </span>
               </div>
-              <span className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0">
-                021 5740 0381
-              </span>
+              <Link
+                href={
+                  contentStringTransformer(pageData['informasi-2-link']) !==
+                    '-' &&
+                  contentStringTransformer(pageData['informasi-2-link'])
+                }
+                target="_blank"
+                className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0"
+              >
+                {contentStringTransformer(
+                  pageData['informasi-2-label-link']
+                ) !== '-' &&
+                  contentStringTransformer(pageData['informasi-2-label-link'])}
+              </Link>
             </div>
             {/*  */}
             <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
               <div className="flex flex-row gap-[12px] lg:gap-[24px]">
                 <Image width={24} height={24} alt="symbol" src={EMAIL} />
                 <span className="font-opensans font-bold text-[1rem]">
-                  Email
+                  {contentStringTransformer(pageData['informasi-3-nama']) !==
+                  '-'
+                    ? contentStringTransformer(pageData['informasi-3-nama'])
+                    : 'Email'}
                 </span>
               </div>
-              <span className="w-1/2 text-purple_dark font-normal text-[1rem] xs:ml-[36px] lg:ml-0 break-all">
-                avrist.general@avrist.com
-              </span>
+              <Link
+                href={
+                  contentStringTransformer(pageData['informasi-3-link']) !==
+                    '-' &&
+                  contentStringTransformer(pageData['informasi-3-link'])
+                }
+                target="_blank"
+                className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0"
+              >
+                {contentStringTransformer(
+                  pageData['informasi-3-label-link']
+                ) !== '-' &&
+                  contentStringTransformer(pageData['informasi-3-label-link'])}
+              </Link>
             </div>
             {/*  */}
             <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">

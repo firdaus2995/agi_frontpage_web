@@ -54,21 +54,26 @@ const Footer = () => {
     };
   }, []);
 
-  const getLink = (value: string) => {
+  const getLink = (value: string, isWhatsapp: boolean = true) => {
     if (globalConfig.length === 0) {
       return '';
     }
 
-    const foundItem = globalConfig.filter(
+    const foundItem = globalConfig.find(
       (item: { variable: string }) => item.variable === value
-    )[0];
+    );
 
     if (foundItem) {
       let linkValue = foundItem.value;
+      linkValue = linkValue.replace(/[()\s-]/g, '');
       if (linkValue.startsWith('0')) {
         linkValue = '62' + linkValue.slice(1);
       }
-      return linkValue?.replace(/\D/g, '');
+
+      if (isWhatsapp) {
+        return `https://wa.me/${linkValue}`;
+      }
+      return linkValue;
     }
 
     return '';
@@ -128,7 +133,8 @@ const Footer = () => {
             <div className="text-sm flex flex-col gap-4 justify-between h-full">
               <div>
                 <a
-                  href={`tel:+${getLink('handphoneAGI')}`}
+                  href={getLink('handphoneAGI')}
+                  target="_blank"
                   className="font-semibold font-karla text-footer-phone"
                 >
                   {globalConfig.filter(
@@ -145,7 +151,7 @@ const Footer = () => {
                     : ''}
                 </p>
                 <a
-                  href={`tel:+${getLink('phoneAGI')}`}
+                  href={`tel:+${getLink('phoneAGI', false)}`}
                   className="text-footer-list"
                 >
                   {globalConfig.filter(

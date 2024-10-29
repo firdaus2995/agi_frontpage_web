@@ -79,15 +79,17 @@ export const ContactSupport = (props: Props) => {
       return '';
     }
 
-    const foundItem = globalConfig.filter(
+    const foundItem = globalConfig.find(
       (item: { variable: string }) => item.variable === value
-    )[0];
+    );
 
     if (foundItem) {
       let linkValue = foundItem.value;
+      linkValue = linkValue.replace(/[()\s-]/g, '');
       if (linkValue.startsWith('0')) {
         linkValue = '62' + linkValue.slice(1);
       }
+
       return linkValue;
     }
 

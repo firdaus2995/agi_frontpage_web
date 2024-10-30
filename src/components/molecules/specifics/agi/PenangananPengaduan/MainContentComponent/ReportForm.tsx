@@ -1,7 +1,6 @@
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import CLOCK from '@/assets/images/agi/hubungi-kami/clock.svg';
 import CUSTOMER_SERVICE from '@/assets/images/common/customer-service.svg';
 import EMAIL from '@/assets/images/common/email.svg';

@@ -2,7 +2,7 @@ version: '3'
 services:
   agi-frontpage-web:
     container_name: agi-frontpage-web-app
-    image: agi-frontpage-web
+    image:  ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}
     build:
       context: .
       dockerfile: Dockerfile

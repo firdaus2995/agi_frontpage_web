@@ -247,20 +247,12 @@ export const ReportForm = (props: ReportFormProps) => {
                     : 'Layanan Nasabah'}
                 </span>
               </div>
-              <Link
-                href={
-                  contentStringTransformer(pageData['informasi-2-link']) !==
-                    '-' &&
-                  contentStringTransformer(pageData['informasi-2-link'])
-                }
-                target="_blank"
-                className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0"
-              >
+              <div className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0">
                 {contentStringTransformer(
                   pageData['informasi-2-label-link']
                 ) !== '-' &&
                   contentStringTransformer(pageData['informasi-2-label-link'])}
-              </Link>
+              </div>
             </div>
             {/*  */}
             <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
@@ -273,20 +265,12 @@ export const ReportForm = (props: ReportFormProps) => {
                     : 'Email'}
                 </span>
               </div>
-              <Link
-                href={
-                  contentStringTransformer(pageData['informasi-3-link']) !==
-                    '-' &&
-                  contentStringTransformer(pageData['informasi-3-link'])
-                }
-                target="_blank"
-                className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0"
-              >
+              <div className="lg:w-1/2 xs:w-full text-purple_dark font-normal text-[1rem] leading-[23.68px] xs:ml-[36px] lg:ml-0">
                 {contentStringTransformer(
                   pageData['informasi-3-label-link']
                 ) !== '-' &&
                   contentStringTransformer(pageData['informasi-3-label-link'])}
-              </Link>
+              </div>
             </div>
             {/*  */}
             <div className="flex lg:flex-row xs:flex-col xs:items-start lg:items-center justify-between lg:gap-[24px] xs:gap-[0px]">
